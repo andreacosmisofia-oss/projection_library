@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://projection-library.local/schemas/registries/voice_registry.schema.json",
   "title": "Voice Registry Schema",
-  "description": "Registro delle 207 voci modello (P&L 69 + SP 106 + CF 32). Deriva dallo sheet 02_voices di Projection_Library_Spec_v1.1.xlsx. Enum normalizzati da audit M1.0 §8.2 e §8.3. Il campo composito 'calc_phase' del foglio Excel (es. 'E1 proxy / E3 final') è splittato in calc_phase_proxy + calc_phase_final.",
+  "description": "Registro delle 246 voci modello (audit M1.0 §8). Deriva dallo sheet 02_voices di Projection_Library_Spec_v1.1.xlsx. Enum normalizzati da audit M1.0 §8.2 e §8.3. Il campo composito 'calc_phase' del foglio Excel (es. 'E1 proxy / E3 final') è splittato in calc_phase_proxy + calc_phase_final.",
   "type": "object",
   "properties": {
     "voices": {
