@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://projection-library.local/schemas/registries/driver_registry.schema.json",
+  "title": "Driver Registry Schema",
+  "description": "Persistence dei driver storici di management (paralleli al bilancio). Spec da flows/05_driver_intake.md §5. Modello polimorfico discriminato dal campo 'type' (4 tipi: scalar_per_year, static_parameters, time_series, aging_bucket). Campi runtime (current_status, required_by_methods, required_for_voices, years_required) esclusi: derivati a runtime da method_configs. Vedi audit M1.0 §12.",
+  "type": "object",
+  "properties": {
+    "drivers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/DriverEntry" },
+      "description": "Elenco dei driver persistiti."
+    }
+  },
+  "required": ["drivers"],
+  "$defs": {
+    "DriverEntry": {
+      "type": "object",
+      "description": "Singolo driver persistito. Polimorfico discriminato da 'type'. I campi type-specifici sono opzionali a livello di schema ma popolati solo per il type corrispondente.",
+      "properties": {
+        "driver_id": {
+          "type": "string",
+          "pattern": "^driver\\.[a-z0-9_.]+$",
+          "description": "Identificativo del driver (es. 'driver.headcount.cogs_labour_direct', 'driver.term_loan.parameters')."
+        },
+        "project_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "FK al progetto."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["scalar_per_year", "static_parameters", "time_series", "aging_bucket"],
+          "description": "Tipo di driver, discriminator dei campi value/static_parameters/time_series/aging_buckets."
+        },
+        "unit": {
+          "type": ["string", "null"],
+          "description": "Unità di misura (es. 'FTE', 'EUR_000', 'pct', 'units')."
+        },
+        "uploaded_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Timestamp ISO 8601 di caricamento."
+        },
+        "value": {
+          "type": ["number", "null"],
+          "description": "Valore scalare. Presente solo se type='scalar_per_year'."
+        },
+        "year": {
+          "type": ["string", "null"],
+          "enum": ["Y-3", "Y-2", "Y-1", "Y0", null],
+          "description": "Anno storico del valore. Presente solo se type='scalar_per_year'."
+        },
+        "static_parameters": {
+          "type": ["object", "null"],
+          "additionalProperties": { "type": "number" },
+          "description": "Mappa di parametri statici (es. {initial_principal: 5000, term_years: 7, rate: 0.045}). Presente solo se type='static_parameters'."
+        },
+        "time_series": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "object",
+            "properties": {
+              "year": { "type": "string" },
+              "value": { "type": "number" }
+            },
+            "required": ["year", "value"],
+            "additionalProperties": false
+          },
+          "description": "Serie temporale dettagliata (es. cohort customer counts). Presente solo se type='time_series'."
+        },
+        "aging_buckets": {
+          "type": ["object", "null"],
+          "additionalProperties": { "type": "number" },
+          "description": "Distribuzione per bucket (es. {'0-30d': 100, '31-60d': 50, '61-90d': 20, '90d+': 10}). Presente solo se type='aging_bucket'."
+        }
+      },
+      "required": ["driver_id", "project_id", "type"],
+      "additionalProperties": false
+    }
+  }
+}

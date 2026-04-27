@@ -64,3 +64,11 @@ Valori compositi splittati in calc_phase_proxy + calc_phase_final.
 - unit "eur" → eur_000 in ingestion
 - kpi_id: rimuovere qualificatori inline (es. "(target >= 100%)") → spostare in campo note
 - campi voci_attive/disabilitate/method_overrides/required_drivers/validation_overrides: split su separatore pipe `|` → array stringhe
+
+## §12 Modello persistence driver e assumption
+
+- DriverEntry: polimorfico su type; campi runtime (current_status, required_by_methods) esclusi
+- Driver year enum: Y-3, Y-2, Y-1, Y0 (storico)
+- Assumption year enum: Y1, Y2, Y3 (forward)
+- curve_type separato in AssumptionCurveConfig (livello voice+assumption, non per-anno)
+- calibration_score e validation_status: derivati a runtime, non persistiti
