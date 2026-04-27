@@ -49,3 +49,12 @@ Valori compositi splittati in calc_phase_proxy + calc_phase_final.
 - 01_methods, complexity: "simple" → rimappare a "low"
 - 02_voices, nature: valori compositi → rimappare secondo §8.2
 - 02_voices, calc_phase: valori compositi → splittare secondo §8.3
+
+## §10 Mapping ingestion derived_rules.fase
+
+| Valore Excel | fase_proxy | fase_final |
+|---|---|---|
+| E2 | null | E2 |
+| E3.1 | null | E3_1 |
+| E4 (proxy) → E8 (check) | E4 | E8 |
+| varie fasi | null | varies |

@@ -110,17 +110,22 @@
           "type": ["string", "null"],
           "description": "Voci a cui la regola si applica (es. 'pl.da.ppe / intangibles / rou')."
         },
-        "fase": {
-          "type": "string",
-          "enum": ["E1", "E2", "E3", "E3_1", "E4", "E5", "E6", "E7", "E7_5", "E8"],
-          "description": "Fase di calcolo (audit M1.0 §8.3, valore singolo non nullable per le derived_rule)."
+        "fase_proxy": {
+          "type": ["string", "null"],
+          "enum": ["E1", "E2", "E3", "E3_1", "E4", "E5", "E6", "E7", "E7_5", "E8", null],
+          "description": "Fase del ramo proxy (audit M1.0 §8.3 + §10). Null se la regola non ha una fase proxy distinta."
+        },
+        "fase_final": {
+          "type": ["string", "null"],
+          "enum": ["E1", "E2", "E3", "E3_1", "E4", "E5", "E6", "E7", "E7_5", "E8", "varies", null],
+          "description": "Fase del ramo final (audit M1.0 §8.3 + §10). Valore 'varies' per regole applicate in più fasi non specificate (es. subtotal_aggregation). Obbligatorio (può essere null solo in casi eccezionali)."
         },
         "note": {
           "type": ["string", "null"],
           "description": "Note libere."
         }
       },
-      "required": ["derived_rule_id", "tech_code", "name_it", "formula", "fase"],
+      "required": ["derived_rule_id", "tech_code", "name_it", "formula", "fase_final"],
       "additionalProperties": false
     }
   }
