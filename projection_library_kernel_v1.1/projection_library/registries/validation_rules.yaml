@@ -1,0 +1,810 @@
+validation_rules:
+- rule_id: DI_001_required_voices_present
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_pre
+  scope:
+  - global
+  regola_sintesi: all(consuntivo[v][year] is not None for v in required_voices)
+  action: use_fallback
+  action_note: use_fallback (chain) o halt
+  note: Voci richieste mancanti
+- rule_id: DI_002_y0_actual_complete
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_pre
+  scope:
+  - global
+  regola_sintesi: all(consuntivo[v][Y0] is not None for v in driver_voices)
+  action: halt
+  action_note: halt_execution
+  note: Y0 actual è anchor obbligatorio
+- rule_id: DI_003_required_drivers_industrial
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_pre
+  scope:
+  - per_method
+  regola_sintesi: all(driver_data[d] presente per ogni driver richiesto dal metodo)
+  action: use_fallback
+  action_note: use_fallback o halt
+  note: Driver TIER 3+ richiesti
+- rule_id: DI_004_required_exogenous_present
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_pre
+  scope:
+  - per_method
+  regola_sintesi: all(exogenous[p] present per ogni metodo che li richiede)
+  action: halt
+  action_note: halt o default
+  note: Macro CPI per inflation_indexed
+- rule_id: DI_005_kpi_calculable
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_kpi
+  regola_sintesi: numerator_value AND denominator_value AND denominator != 0
+  action: use_fallback
+  action_note: use_fallback (KPI = N/A)
+  note: Per KPI usati come default
+- rule_id: DI_006_assumption_default_filled
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_assumption
+  regola_sintesi: assumption.value is not None for all years Y1-Y3
+  action: use_fallback
+  action_note: use_fallback (= 0 + warning)
+  note: null
+- rule_id: DI_007_method_inputs_complete
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_method
+  regola_sintesi: all(method.inputs are resolvable)
+  action: halt
+  action_note: null
+  note: null
+- rule_id: DI_008_voice_method_compatibility
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_voice
+  regola_sintesi: voice.default_method in voice.allowed_methods
+  action: halt
+  action_note: null
+  note: null
+- rule_id: DI_009_no_orphan_references
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - global
+  regola_sintesi: for each method.inputs.consuntivo, target voice exists in voice_registry
+  action: halt
+  action_note: null
+  note: Chiusura P38 Fase 1
+- rule_id: DI_010_no_orphan_kpi_references
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - global
+  regola_sintesi: for each method.default_kpi_id, kpi exists in kpi_registry
+  action: halt
+  action_note: null
+  note: Chiusura P38 Fase 1
+- rule_id: DI_011_actual_consuntivo_signed_consistent
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_pre
+  scope:
+  - per_voice
+  regola_sintesi: sign(consuntivo[v][year]) matches voice.sign_convention
+  action: halt
+  action_note: null
+  note: Costi devono essere negativi nello storico
+- rule_id: DI_012_subtotal_consistency_historical
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - global
+  regola_sintesi: for each subtotal voice, calculated == stored (tol 0.5%)
+  action: log_and_continue
+  action_note: null
+  note: Verifica integrità storica
+- rule_id: DI_013_balance_check_historical
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_year
+  regola_sintesi: abs(bs.balance_check[year]) <= max(1.0, 0.0001*total_assets)
+  action: halt
+  action_note: halt se Y0; warning altrimenti
+  note: 'Critico: storico deve quadrare'
+- rule_id: DI_014_sector_pack_compatibility
+  categoria: data_integrity
+  severity: block
+  trigger_phases:
+  - E0_post
+  scope:
+  - global
+  regola_sintesi: selected sector_pack registered AND required voices populated
+  action: halt
+  action_note: null
+  note: null
+- rule_id: AI_001_balance_check_projected
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: abs(bs.balance_check[year]) <= max(1.0, 0.0001*abs(total_assets))
+  action: log_and_continue
+  action_note: log_and_continue (CRITICAL)
+  note: Quadratura proiezioni
+- rule_id: AI_002_cash_identity
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: bs.nfp.cash[year] == cash[year-1] + cf.net_change_cash[year]
+  action: log_and_continue
+  action_note: null
+  note: Tol 0.01
+- rule_id: AI_003_retained_earnings_identity
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: RE.close == RE_open + pl.net_income + dividends_paid
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: AI_004_rou_lease_liability_initial_match
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E4_post
+  scope:
+  - per_year
+  regola_sintesi: bs.fa.rou.new_contracts == -bs.nfp.lease_liability.new_contracts
+  action: log_and_continue
+  action_note: null
+  note: P22 Fase 1
+- rule_id: AI_005_subtotal_consistency_projected
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: for each subtotal, calculated == SUM(components)
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: AI_006_pl_chain_consistency
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: pl.net_income == pl.ebt + pl.tax.total
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: AI_007_ebitda_definition
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E3_post
+  scope:
+  - per_year
+  regola_sintesi: pl.ebitda == pl.gross_profit + pl.opex.total + pl.provisions.total
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: AI_008_ebit_definition
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: pl.ebit == pl.ebitda + pl.da.total + pl.impairment.total
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: AI_009_provisions_balance_consistency
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E5_post
+  scope:
+  - per_year
+  regola_sintesi: 'for each provision: balance_close == balance_open + accrual + usage'
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: AI_010_employee_benefits_balance_consistency
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E5_post
+  scope:
+  - per_year
+  regola_sintesi: EB.balance_close == open + service_cost + interest_cost - payments + actuarial
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: AI_011_nwc_change_consistency
+  categoria: accounting_identity
+  severity: error
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: cf.operating.nwc_change == -(bs.nwc.operating[t] - [t-1])
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_001_revenues_positive
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E1_post
+  scope:
+  - per_year
+  regola_sintesi: pl.rev.gross.{voice}[year] >= 0 for all gross voices
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_002_costs_negative
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E1_post
+  scope:
+  - per_year
+  regola_sintesi: pl.cogs.* and pl.opex.* are <= 0 (escluso wip_capitalization)
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_003_assets_positive
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E2_post
+  - E3_post
+  scope:
+  - per_year
+  regola_sintesi: bs.fa.*.net_close >= 0 AND NWC asset voices >= 0
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_004_liabilities_negative
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E3_post
+  - E4_post
+  scope:
+  - per_year
+  regola_sintesi: bs.nwc.ap.trade <= 0 AND borrowings <= 0 AND lease_liability <= 0 AND provisions <= 0 AND EB <= 0 AND DTL
+    <= 0
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_005_equity_components
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: share_capital >= 0; RE may be ±; total_close consistency
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_006_cash_positive
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: bs.nfp.cash[year] >= 0 (overdraft → reclassify in RCF)
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_007_da_negative
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E2_post
+  scope:
+  - per_year
+  regola_sintesi: pl.da.ppe/intangibles/rou <= 0
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_008_interest_expense_negative
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E4_post
+  scope:
+  - per_year
+  regola_sintesi: pl.financial.interest_expense <= 0 AND lease_interest <= 0
+  action: log_and_continue
+  action_note: null
+  note: null
+- rule_id: SC_009_dividends_negative
+  categoria: sign_consistency
+  severity: error
+  trigger_phases:
+  - E6_post
+  scope:
+  - per_year
+  regola_sintesi: bs.equity.capital.dividends_paid <= 0 (riduce equity)
+  action: log_and_continue
+  action_note: null
+  note: Sign convention IFRS
+- rule_id: RP_001_revenue_growth_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: -50% <= kpi.growth.revenue_yoy[year] <= +200%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_002_gross_margin_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: -100% <= kpi.margin.gross[year] <= +95%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_003_ebitda_margin_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: -100% <= kpi.margin.ebitda[year] <= +60%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_004_dso_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0 <= kpi.nwc.dso[year] <= 365
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_005_dio_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0 <= kpi.nwc.dio_total[year] <= 730
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_006_dpo_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0 <= kpi.nwc.dpo[year] <= 365
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_007_ccc_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: -180 <= kpi.nwc.ccc[year] <= 365
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_008_capex_intensity_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0% <= kpi.fa.capex_intensity_total[year] <= 50%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_009_capex_to_da_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0 <= kpi.fa.capex_to_da_ratio[year] <= 5
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_010_useful_life_implied_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 1 <= kpi.fa.useful_life_implied_ppe <= 50
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_011_lease_term_implied_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 1 <= kpi.fa.lease_term_implied <= 30
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_012_nd_to_ebitda_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: -3 <= kpi.nfp.nd_to_ebitda <= 10
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_013_icr_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: kpi.nfp.icr_ebit >= 0.5 (covenant risk threshold)
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_014_cost_of_debt_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0% <= kpi.nfp.cost_of_debt <= 25%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_015_lease_implicit_rate_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0% <= kpi.nfp.lease_implicit_rate <= 15%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_016_etr_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: 0% <= kpi.tax.etr <= 50%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_017_payout_ratio_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: 0% <= kpi.equity.payout_ratio <= 200%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_018_warranty_balance_pct_revenue
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0% <= kpi.provisions.warranty_balance_pct_revenue <= 20%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_019_employee_benefits_to_labour
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: 0% <= EB.balance / total_labour_cost <= 200%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_020_assumption_within_validation_range
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_assumption
+  regola_sintesi: assumption.value within [validation_min, validation_max]
+  action: request_user_input
+  action_note: null
+  note: null
+- rule_id: RP_021_pct_revenue_assumption_consistency
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_assumption
+  regola_sintesi: 'for assumption with unit=pct: 0 <= value <= 1'
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: RP_022_volume_growth_plausible
+  categoria: range_plausibility
+  severity: warning
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_assumption
+  regola_sintesi: 'for volume_growth: -50% <= value <= +500%'
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: CP_001_opening_equals_prior_close
+  categoria: cross_period
+  severity: warning
+  trigger_phases:
+  - E0_post
+  - E2_post
+  - E5_post
+  scope:
+  - per_year
+  - per_voice
+  regola_sintesi: 'for roll-forward voices: balance_open[t] == balance_close[t-1]'
+  action: log_warning
+  action_note: null
+  note: Tol 0.01
+- rule_id: CP_002_revenue_trend_continuity
+  categoria: cross_period
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - global
+  regola_sintesi: abs(growth.revenue_yoy[Y1] - [Y0]) <= 50pp
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: CP_003_margin_trend_continuity
+  categoria: cross_period
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - global
+  regola_sintesi: abs(margin.gross[Y1] - [Y0]) <= 1000bps
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: CP_004_capex_intensity_continuity
+  categoria: cross_period
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - global
+  regola_sintesi: abs(capex_intensity[Y1] - avg_3y) <= 100%
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: CP_005_dso_continuity
+  categoria: cross_period
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - global
+  regola_sintesi: abs(dso[Y1] - dso[Y0]) <= 60 days
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: CP_006_balance_check_continuity
+  categoria: cross_period
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - global
+  regola_sintesi: abs(balance_check[Y1]) <= 10*abs(balance_check[Y0])
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: CP_007_nol_carryforward_consistency
+  categoria: cross_period
+  severity: warning
+  trigger_phases:
+  - E7_post
+  scope:
+  - per_year
+  regola_sintesi: nol_carryforward.close == open + max(0,-taxable_income) - nol_used
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: CP_008_share_count_non_decreasing
+  categoria: cross_period
+  severity: warning
+  trigger_phases:
+  - E6_post
+  scope:
+  - per_year
+  regola_sintesi: 'if buyback==0: shares[year] >= shares[year-1]'
+  action: log_warning
+  action_note: null
+  note: null
+- rule_id: CF_001_method_in_allowed_list
+  categoria: configuration
+  severity: error
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_voice
+  regola_sintesi: voice.method_selected in voice.allowed_methods
+  action: halt
+  action_note: null
+  note: null
+- rule_id: CF_002_method_sector_compatibility
+  categoria: configuration
+  severity: error
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_voice
+  regola_sintesi: 'if sector_pack: method.applicable_sectors includes selected_sector'
+  action: halt
+  action_note: null
+  note: null
+- rule_id: CF_003_assumption_completeness
+  categoria: configuration
+  severity: error
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_method
+  regola_sintesi: all required assumptions populated for Y1-Y3
+  action: halt
+  action_note: null
+  note: null
+- rule_id: CF_004_default_kpi_resolves
+  categoria: configuration
+  severity: error
+  trigger_phases:
+  - E0_post
+  scope:
+  - per_assumption
+  regola_sintesi: 'if default_kpi_id != null: KPI calcolabile in storico'
+  action: use_fallback
+  action_note: null
+  note: null
+- rule_id: CF_005_perimeter_consistency
+  categoria: configuration
+  severity: error
+  trigger_phases:
+  - E0_pre
+  scope:
+  - global
+  regola_sintesi: selected perimeter in [consolidated, legal_entity, cgu]
+  action: halt
+  action_note: null
+  note: null
+- rule_id: CF_006_currency_consistency
+  categoria: configuration
+  severity: error
+  trigger_phases:
+  - E0_pre
+  scope:
+  - global
+  regola_sintesi: currency == EUR for pilot v1.1
+  action: halt
+  action_note: null
+  note: Multi-currency = improvement
+- rule_id: CQ_001_proxy_error_rev_net
+  categoria: calculation_quality
+  severity: info
+  trigger_phases:
+  - E3_1_post
+  scope:
+  - per_year
+  regola_sintesi: abs(rev.net.proxy - rev.net.final) / rev.net.final > 0.01
+  action: log_info
+  action_note: null
+  note: APX_001
+- rule_id: CQ_002_proxy_error_interest_income
+  categoria: calculation_quality
+  severity: warning
+  trigger_phases:
+  - E8_post
+  scope:
+  - per_year
+  regola_sintesi: abs(interest_income.recalc - interest_income) / abs(NI) > 0.05
+  action: log_warning
+  action_note: null
+  note: APX_006
+- rule_id: CQ_003_balance_check_within_tolerance_but_growing
+  categoria: calculation_quality
+  severity: info
+  trigger_phases:
+  - end_of_run
+  scope:
+  - global
+  regola_sintesi: balance_check abs values increasing across years
+  action: log_info
+  action_note: null
+  note: Possibile compounding error
