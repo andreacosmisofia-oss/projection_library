@@ -150,3 +150,80 @@ esistono regole con `severity` mancante.
 4. **Pipeline**: eseguire `scripts/audit_excel.py` come pre-check ad ogni
    modifica strutturale del workbook per intercettare drift tra titolo,
    footer e dati.
+
+## 8. Numeri ufficiali da usare in tutti i docs
+
+Questa sezione è la **fonte unica di verità** per qualunque documento,
+slide, README, schema o codice che faccia riferimento al modello. Usare
+esattamente questi valori e nomi.
+
+### 8.1 Conteggi
+
+| Entità                   | Valore | Sorgente                                   |
+| ------------------------ | -----: | ------------------------------------------ |
+| Voci modello             |    246 | `02_voices`, footer confermato             |
+| Metodi di proiezione     |     62 | `01_methods` Sezione A                     |
+| Derived rules            |     19 | `01_methods` Sezione B                     |
+| KPI catalogati           |     84 | `03_kpis` (di cui 4 template parametrici)  |
+| KPI concreti             |     80 | `03_kpis` (84 − 4 template)                |
+| KPI template parametrici |      4 | `03_kpis`                                  |
+| Validation rules         |     73 | `05_validation`, footer confermato         |
+
+### 8.2 Enum `nature` — valori validi (7)
+
+Forma normalizzata snake_case da usare nel codice e nelle API:
+
+```
+derived
+driver
+reference
+placeholder
+derived_identity
+driver_placeholder
+driver_slot
+```
+
+Mapping con i valori attualmente presenti in `02_voices`:
+
+| Valore in sheet         | Forma normalizzata     |
+| ----------------------- | ---------------------- |
+| `derived`               | `derived`              |
+| `driver`                | `driver`               |
+| `reference`             | `reference`            |
+| `placeholder`           | `placeholder`          |
+| `derived (identity)`    | `derived_identity`     |
+| `driver (placeholder)`  | `driver_placeholder`   |
+| `driver (slot)`         | `driver_slot`          |
+
+### 8.3 `calc_phase` — normalizzazione richiesta
+
+I valori compositi (con separatore `proxy / … final`) **devono essere
+splittati in due colonne separate** nello schema di destinazione:
+
+- `calc_phase_proxy`: la fase usata come proxy (lato sinistro del separatore)
+- `calc_phase_final`: la fase di calcolo finale (lato destro del separatore)
+
+Per i valori atomici, `calc_phase_proxy` resta vuoto e `calc_phase_final`
+contiene il valore.
+
+| Valore attuale in sheet         | `calc_phase_proxy` | `calc_phase_final`     |
+| ------------------------------- | ------------------ | ---------------------- |
+| `E1`                            | —                  | `E1`                   |
+| `E2`                            | —                  | `E2`                   |
+| `E3`                            | —                  | `E3`                   |
+| `E3.1`                          | —                  | `E3.1`                 |
+| `E4`                            | —                  | `E4`                   |
+| `E5`                            | —                  | `E5`                   |
+| `E6`                            | —                  | `E6`                   |
+| `E7`                            | —                  | `E7`                   |
+| `E7.5`                          | —                  | `E7.5`                 |
+| `E8`                            | —                  | `E8`                   |
+| `E1 proxy / E3 final`           | `E1`               | `E3`                   |
+| `E1 proxy / E3.1 final`         | `E1`               | `E3.1`                 |
+| `E4 proxy / E8 check`           | `E4`               | `E8`                   |
+| `E7.5 final (E3 proxy)`         | `E3`               | `E7.5`                 |
+
+Note:
+- `E4 proxy / E8 check`: `final = E8` (la fase E8 è il check finale).
+- `E7.5 final (E3 proxy)`: l'ordine è invertito nella stringa originale; il
+  proxy è `E3` e il final è `E7.5`.
