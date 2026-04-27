@@ -1,5 +1,5 @@
 import openpyxl, json
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 wb = openpyxl.load_workbook("Projection_Library_Spec_v1.1.xlsx", data_only=True)
 print("Sheets:", wb.sheetnames)
@@ -55,3 +55,66 @@ for col in ("nature", "calc_phase"):
         print(f"02_voices: column '{col}' not found.")
     else:
         print(f"02_voices unique '{col}' ({len(vals)}): {vals}")
+
+
+def is_section_marker(row_values):
+    non_empty = [c for c in row_values if c is not None and str(c).strip() != ""]
+    return len(non_empty) == 1 and isinstance(non_empty[0], str) and "Sezione" in non_empty[0]
+
+
+def is_notes_marker(row_values):
+    non_empty = [c for c in row_values if c is not None and str(c).strip() != ""]
+    return len(non_empty) == 1 and isinstance(non_empty[0], str) and non_empty[0].strip().lower().startswith("note")
+
+
+def count_section_data(ws, header_row, stop_row):
+    n = 0
+    for row in ws.iter_rows(min_row=header_row + 1, max_row=stop_row - 1, values_only=True):
+        if any(cell is not None and str(cell).strip() != "" for cell in row):
+            n += 1
+    return n
+
+
+print()
+ws_m = wb["01_methods"]
+sections = []
+for r in range(1, ws_m.max_row + 1):
+    row = [c.value for c in ws_m[r]]
+    if is_section_marker(row) or is_notes_marker(row):
+        sections.append((r, row[0]))
+sections.append((ws_m.max_row + 1, "<EOF>"))
+
+for i in range(len(sections) - 1):
+    sec_row, sec_label = sections[i]
+    next_row = sections[i + 1][0]
+    header_r = sec_row + 1
+    while header_r < next_row:
+        hdr_vals = [c.value for c in ws_m[header_r]]
+        non_empty = [c for c in hdr_vals if c is not None and str(c).strip() != ""]
+        if len(non_empty) >= 2:
+            break
+        header_r += 1
+    if header_r >= next_row:
+        continue
+    n = count_section_data(ws_m, header_r, next_row)
+    print(f"01_methods | {sec_label}: header@row{header_r}, {n} data rows")
+
+ws_k = wb["03_kpis"]
+hdr_k = find_header_row(ws_k)
+print(f"\n03_kpis: header@row{hdr_k}, {count_data_rows(ws_k, hdr_k)} data rows")
+
+ws_v = wb["05_validation"]
+hdr_v = find_header_row(ws_v)
+header_v = [c.value for c in ws_v[hdr_v]]
+sev_idx = header_v.index("severity")
+sev_counter = Counter()
+for row in ws_v.iter_rows(min_row=hdr_v + 1, values_only=True):
+    if not any(cell is not None and str(cell).strip() != "" for cell in row):
+        continue
+    sev = row[sev_idx]
+    if sev is None or str(sev).strip() == "":
+        sev = "<missing>"
+    sev_counter[sev] += 1
+print(f"\n05_validation data rows by 'severity' (total {sum(sev_counter.values())}):")
+for sev, n in sev_counter.most_common():
+    print(f"  {sev}: {n}")
