@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://projection-library.local/schemas/registries/kpi_registry.schema.json",
+  "title": "KPI Registry Schema",
+  "description": "Registro degli 84 KPI catalogati (di cui 4 template parametrici). Deriva dallo sheet 03_kpis di Projection_Library_Spec_v1.1.xlsx. I template parametrici hanno is_template=true e usano un placeholder '<voice>' nel kpi_id; vengono istanziati on-demand per ogni voce target.",
+  "type": "object",
+  "properties": {
+    "kpis": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/KpiEntry" },
+      "description": "Elenco dei KPI catalogati. Cardinalità attesa: 84 (incluse 4 template)."
+    }
+  },
+  "required": ["kpis"],
+  "$defs": {
+    "KpiEntry": {
+      "type": "object",
+      "description": "Singolo KPI o template parametrico (Sheet 03_kpis, 8 colonne).",
+      "properties": {
+        "kpi_id": {
+          "type": "string",
+          "minLength": 1,
+          "anyOf": [
+            {
+              "pattern": "^kpi\\.[a-z_]+\\.[a-z][a-z0-9_]*$",
+              "description": "Pattern canonico: 'kpi.<famiglia>.<nome_specifico>'."
+            },
+            {
+              "pattern": "^kpi\\.[a-z_]+\\.[a-z0-9_]*<[a-z_]+>[a-z0-9_]* \\(template\\)$",
+              "description": "Pattern template: contiene placeholder '<voice>' e suffisso ' (template)'."
+            }
+          ],
+          "description": "Identificativo del KPI. Deve rispettare il pattern canonico oppure quello template."
+        },
+        "famiglia": {
+          "type": "string",
+          "enum": [
+            "growth",
+            "margin",
+            "nwc_days",
+            "capex",
+            "leverage",
+            "return",
+            "tax",
+            "provisions",
+            "employee",
+            "equity",
+            "sector_specific"
+          ],
+          "description": "Famiglia del KPI (11 valori, da sottotitolo sheet 03_kpis)."
+        },
+        "numerator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Espressione del numeratore (es. 'pl.rev.net[t]' o '<voice>[t]' per i template)."
+        },
+        "denominator": {
+          "type": ["string", "null"],
+          "description": "Espressione del denominatore. Null/assente per KPI senza denominatore (es. KPI di livello assoluto)."
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["pct", "ratio", "days", "months", "years", "eur_000", "eur_per_unit", "units"],
+          "description": "Unità di misura del KPI (8 valori; 'units' aggiunto per supportare i KPI sector-specific in 07_sector_packs)."
+        },
+        "sign_handling": {
+          "type": "string",
+          "enum": ["raw", "abs_num", "abs_den", "abs_both", "signed", "derived"],
+          "description": "Trattamento del segno nel calcolo (6 valori)."
+        },
+        "default_aggregation": {
+          "type": ["string", "null"],
+          "enum": ["avg_3y", "last_3y_cagr", "y0_value", null],
+          "description": "Aggregazione di default sullo storico (3 valori + null)."
+        },
+        "used_in_methods_examples": {
+          "type": ["array", "null"],
+          "items": { "type": "string" },
+          "description": "Esempi di method_id che usano questo KPI."
+        },
+        "is_template": {
+          "type": "boolean",
+          "default": false,
+          "description": "True se è un template parametrico (kpi_id contiene '<...>' e suffisso ' (template)'). I template vengono istanziati on-demand per ogni voce target."
+        }
+      },
+      "required": ["kpi_id", "famiglia", "numerator", "unit", "sign_handling"],
+      "additionalProperties": false
+    }
+  }
+}

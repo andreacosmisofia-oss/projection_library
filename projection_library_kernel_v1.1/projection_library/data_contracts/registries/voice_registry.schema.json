@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://projection-library.local/schemas/registries/voice_registry.schema.json",
+  "title": "Voice Registry Schema",
+  "description": "Registro delle 246 voci modello (audit M1.0 §8). Deriva dallo sheet 02_voices di Projection_Library_Spec_v1.1.xlsx. Enum normalizzati da audit M1.0 §8.2 e §8.3. Il campo composito 'calc_phase' del foglio Excel (es. 'E1 proxy / E3 final') è splittato in calc_phase_proxy + calc_phase_final.",
+  "type": "object",
+  "properties": {
+    "voices": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/VoiceEntry" },
+      "description": "Elenco delle voci registrate. Cardinalità attesa: 207 (94 driver + 93 derived + 12 reference + 8 placeholder)."
+    }
+  },
+  "required": ["voices"],
+  "$defs": {
+    "VoiceEntry": {
+      "type": "object",
+      "description": "Singola voce del registry.",
+      "properties": {
+        "voice_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identificativo univoco della voce (es. 'pl.rev.gross.product_sales')."
+        },
+        "statement": {
+          "type": "string",
+          "enum": ["PL", "BS", "CF"],
+          "description": "Prospetto di appartenenza."
+        },
+        "section": {
+          "type": ["string", "null"],
+          "description": "Sezione del prospetto (es. 'rev.gross', 'opex', ecc.)."
+        },
+        "nature": {
+          "type": "string",
+          "enum": [
+            "derived",
+            "driver",
+            "reference",
+            "placeholder",
+            "derived_identity",
+            "driver_placeholder",
+            "driver_slot"
+          ],
+          "description": "Natura della voce (audit M1.0 §8.2 — 7 valori normalizzati)."
+        },
+        "sign": {
+          "type": "string",
+          "enum": ["positive", "negative", "neutral"],
+          "description": "Convenzione di segno della voce."
+        },
+        "default_method": {
+          "type": ["string", "null"],
+          "description": "Metodo di proiezione di default (es. 'volume_price', 'growth_rate', ecc.)."
+        },
+        "calc_phase_proxy": {
+          "type": ["string", "null"],
+          "enum": ["E1", "E2", "E3", "E3_1", "E4", "E5", "E6", "E7", "E7_5", "E8", null],
+          "description": "Fase di calcolo nel ramo proxy (audit M1.0 §8.3). Null se non applicabile."
+        },
+        "calc_phase_final": {
+          "type": ["string", "null"],
+          "enum": ["E1", "E2", "E3", "E3_1", "E4", "E5", "E6", "E7", "E7_5", "E8", null],
+          "description": "Fase di calcolo nel ramo final (audit M1.0 §8.3). Null se non applicabile."
+        },
+        "denominator_flow_voice": {
+          "type": ["string", "null"],
+          "description": "voice_id del flusso usato come denominatore (per voci stock-su-flusso). '—' o null se non applicabile."
+        },
+        "recurrence": {
+          "type": ["string", "null"],
+          "enum": ["recurring", "non_recurring", "one_off", null],
+          "description": "Ricorrenza economica della voce."
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "Note libere."
+        }
+      },
+      "required": ["voice_id", "statement", "nature", "sign"],
+      "additionalProperties": false
+    }
+  }
+}

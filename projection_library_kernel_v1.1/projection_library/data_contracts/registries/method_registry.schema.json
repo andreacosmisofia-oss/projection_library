@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://projection-library.local/schemas/registries/method_registry.schema.json",
+  "title": "Method Registry Schema",
+  "description": "Registro dei metodi di proiezione e delle regole contabili derivate (sheet 01_methods di Projection_Library_Spec_v1.1.xlsx). Sezione A = 62 metodi di proiezione (MethodEntry). Sezione B = 19 regole identitarie (DerivedRuleEntry). Le derived_rule NON sono metodi di proiezione: sono applicate automaticamente dall'engine.",
+  "type": "object",
+  "properties": {
+    "methods": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/MethodEntry" },
+      "description": "Sezione A — Method Registry. Cardinalità attesa: 62."
+    },
+    "derived_rules": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/DerivedRuleEntry" },
+      "description": "Sezione B — Derived Rules. Cardinalità attesa: 19."
+    }
+  },
+  "required": ["methods", "derived_rules"],
+  "$defs": {
+    "MethodEntry": {
+      "type": "object",
+      "description": "Singolo metodo di proiezione (Sezione A, 10 colonne dello sheet 01_methods).",
+      "properties": {
+        "method_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identificativo del metodo (es. 'flat', 'volume_price')."
+        },
+        "tech_code": {
+          "type": "string",
+          "pattern": "^M_[A-Z]+_\\d{3}$",
+          "description": "Codice tecnico (es. 'M_EXT_001', 'M_MAN_008')."
+        },
+        "family": {
+          "type": "string",
+          "enum": [
+            "extrapolation",
+            "ratio",
+            "operational_driver",
+            "build_up",
+            "bridge",
+            "probabilistic",
+            "debt_schedule",
+            "rollforward",
+            "manual"
+          ],
+          "description": "Famiglia del metodo (valori normalizzati)."
+        },
+        "name_it": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Nome leggibile in italiano."
+        },
+        "formula_sintesi": {
+          "type": ["string", "null"],
+          "description": "Formula di sintesi (es. 'anchor[t-1]')."
+        },
+        "applicable_voices_examples": {
+          "type": ["array", "null"],
+          "items": { "type": "string" },
+          "description": "Esempi di voci a cui il metodo è applicabile."
+        },
+        "complexity": {
+          "type": ["string", "null"],
+          "enum": ["low", "medium", "high", null],
+          "description": "Livello di complessità del metodo."
+        },
+        "default_kpi_example": {
+          "type": ["string", "null"],
+          "description": "Esempio di KPI di default associato al metodo. '—' o null se non applicabile."
+        },
+        "fallback": {
+          "type": ["string", "null"],
+          "description": "method_id del fallback. '—' o null se non applicabile."
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "Note libere."
+        }
+      },
+      "required": ["method_id", "tech_code", "family", "name_it"],
+      "additionalProperties": false
+    },
+    "DerivedRuleEntry": {
+      "type": "object",
+      "description": "Singola regola contabile derivata / identità (Sezione B, 7 colonne dello sheet 01_methods).",
+      "properties": {
+        "derived_rule_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identificativo della regola (es. 'da_mid_year_convention')."
+        },
+        "tech_code": {
+          "type": "string",
+          "pattern": "^R_DRV_\\d{3}$",
+          "description": "Codice tecnico (es. 'R_DRV_001')."
+        },
+        "name_it": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Nome leggibile in italiano."
+        },
+        "formula": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Formula identitaria (es. '-1 * max(0, (gross_open + gross_close)/2 - non_depreciable) / useful_life')."
+        },
+        "applicato_a": {
+          "type": ["string", "null"],
+          "description": "Voci a cui la regola si applica (es. 'pl.da.ppe / intangibles / rou')."
+        },
+        "fase_proxy": {
+          "type": ["string", "null"],
+          "enum": ["E1", "E2", "E3", "E3_1", "E4", "E5", "E6", "E7", "E7_5", "E8", null],
+          "description": "Fase del ramo proxy (audit M1.0 §8.3 + §10). Null se la regola non ha una fase proxy distinta."
+        },
+        "fase_final": {
+          "type": ["string", "null"],
+          "enum": ["E1", "E2", "E3", "E3_1", "E4", "E5", "E6", "E7", "E7_5", "E8", "varies", null],
+          "description": "Fase del ramo final (audit M1.0 §8.3 + §10). Valore 'varies' per regole applicate in più fasi non specificate (es. subtotal_aggregation). Obbligatorio (può essere null solo in casi eccezionali)."
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "Note libere."
+        }
+      },
+      "required": ["derived_rule_id", "tech_code", "name_it", "formula", "fase_final"],
+      "additionalProperties": false
+    }
+  }
+}

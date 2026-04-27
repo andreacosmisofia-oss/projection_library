@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://projection-library.local/schemas/registries/validation_rule.schema.json",
+  "title": "Validation Rule Registry Schema",
+  "description": "Registro delle 73 regole di validazione in 7 categorie (audit M1.0 §8). Deriva dallo sheet 05_validation di Projection_Library_Spec_v1.1.xlsx. trigger_phases e scope sono array per gestire i valori compositi presenti nel foglio (es. 'E0/E2/E5_post', 'per_year, per_voice'). action è normalizzata a un enum base; eventuali qualificatori del foglio (es. '(chain)', '(CRITICAL)', '= 0 + warning') vanno in action_note.",
+  "type": "object",
+  "properties": {
+    "validation_rules": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ValidationRuleEntry" },
+      "description": "Elenco delle regole di validazione. Cardinalità attesa: 73."
+    }
+  },
+  "required": ["validation_rules"],
+  "$defs": {
+    "ValidationRuleEntry": {
+      "type": "object",
+      "description": "Singola regola di validazione (Sheet 05_validation, 8 colonne più normalizzazioni).",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "pattern": "^[A-Z]{2,3}_\\d{3}_[a-z0-9_]+$",
+          "description": "Identificativo della regola (es. 'DI_001_required_voices_present')."
+        },
+        "categoria": {
+          "type": "string",
+          "enum": [
+            "data_integrity",
+            "accounting_identity",
+            "sign_consistency",
+            "range_plausibility",
+            "cross_period",
+            "configuration",
+            "calculation_quality"
+          ],
+          "description": "Categoria della regola (7 valori)."
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["block", "error", "warning", "info"],
+          "description": "Severità della regola."
+        },
+        "trigger_phases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "E0_pre",
+              "E0_post",
+              "E1_post",
+              "E2_post",
+              "E3_post",
+              "E3_1_post",
+              "E4_post",
+              "E5_post",
+              "E6_post",
+              "E7_post",
+              "E8_post",
+              "end_of_run"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Fasi in cui la regola viene valutata. Array per gestire valori compositi del foglio (es. 'E0/E2/E5_post' -> ['E0_post','E2_post','E5_post'])."
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "global",
+              "per_voice",
+              "per_year",
+              "per_assumption",
+              "per_kpi",
+              "per_method"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Scope di applicazione. Array per gestire valori compositi (es. 'per_year, per_voice' -> ['per_year','per_voice'])."
+        },
+        "regola_sintesi": {
+          "type": ["string", "null"],
+          "description": "Sintesi della formula / condizione (es. 'all(consuntivo[v][year] is not None for v in required_voices)')."
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "halt",
+            "use_fallback",
+            "log_and_continue",
+            "log_warning",
+            "log_info",
+            "request_user_input",
+            "not_applicable"
+          ],
+          "description": "Azione normalizzata da intraprendere quando la regola fallisce."
+        },
+        "action_note": {
+          "type": ["string", "null"],
+          "description": "Qualificatore o variante dell'action originale (es. '(chain)', '(CRITICAL)', 'KPI = N/A', 'halt se Y0; warning altrimenti')."
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "Note libere (es. riferimento a APX_001, P22 Fase 1, ecc.)."
+        }
+      },
+      "required": ["rule_id", "categoria", "severity", "trigger_phases", "scope", "action"],
+      "additionalProperties": false
+    }
+  }
+}
