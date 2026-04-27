@@ -1,0 +1,39 @@
+pack:
+  sector_pack: real_estate
+  minimum_tier: standard
+  voci_attive:
+  - rental, investment_property (FV), maintenance_capex, fv_revaluation
+  voci_disabilitate:
+  - product_sales/subscription/license/usage_based, BoM, COGS materials/labour, warranty
+  method_overrides_examples:
+  - 'pl.rev.gross.rental: capacity_utilization_price (units × occupancy × rent)'
+  - 'bs.fa.investment_property.improvements: capex_pct_revenue'
+  - 'bs.fa.investment_property.fv_revaluation: manual_zero (default conservativo)'
+  required_drivers:
+  - units_total, occupancy_rate, rent_per_unit, capex_per_unit
+  validation_overrides:
+  - 'RP_002 gross_margin: 60% .. 95%'
+  - 'RP_005 inventory: max 30 (negligible)'
+  - 'KPI custom: rental_yield 3% .. 12%'
+custom_kpis:
+- pack: real_estate
+  kpi_id: kpi.realestate.occupancy_rate
+  numerator: driver.occupancy
+  denominator: null
+  unit: pct
+  validation_range: 70%-100%
+  note: null
+- pack: real_estate
+  kpi_id: kpi.realestate.rent_per_unit
+  numerator: pl.rev.gross.rental
+  denominator: driver.units_total
+  unit: eur_000
+  validation_range: null
+  note: null
+- pack: real_estate
+  kpi_id: kpi.realestate.rental_yield
+  numerator: pl.rev.gross.rental
+  denominator: investment_property.gross_avg
+  unit: pct
+  validation_range: 3%-12%
+  note: null

@@ -1,0 +1,35 @@
+pack:
+  sector_pack: retail
+  minimum_tier: standard
+  voci_attive:
+  - product_sales (store-driven), inventory finished/raw
+  voci_disabilitate:
+  - subscription/license/usage_based, project_contract, BoM industriale
+  method_overrides_examples:
+  - 'pl.rev.gross.product_sales: capacity_utilization_price (store_count × sales_per_store)'
+  - 'inventory.finished: days_target'
+  - inventory.raw=0
+  - 'bs.fa.rou.new_contracts: rou_new_leases_per_unit'
+  - 'expansion_capex: capex_per_unit'
+  required_drivers:
+  - store_count_y0, new_stores, sales_per_store, lease_per_store, capex_per_store
+  validation_overrides:
+  - 'RP_002 gross_margin: 20% .. 60%'
+  - 'RP_004 DSO: 0..30'
+  - 'RP_005 DIO finished: 30..180'
+  - 'RP_006 DPO: 30..120'
+custom_kpis:
+- pack: retail
+  kpi_id: kpi.retail.sales_per_store
+  numerator: pl.rev.gross.product_sales
+  denominator: driver.store_count
+  unit: eur_000
+  validation_range: null
+  note: null
+- pack: retail
+  kpi_id: kpi.retail.same_store_sales_growth
+  numerator: (rev[t]-rev[t-1] mature stores)
+  denominator: rev[t-1]
+  unit: pct
+  validation_range: -15% .. +25%
+  note: null

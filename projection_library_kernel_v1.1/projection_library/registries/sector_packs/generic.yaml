@@ -1,0 +1,14 @@
+pack:
+  sector_pack: generic
+  minimum_tier: minimum
+  voci_attive:
+  - tutte (207)
+  voci_disabilitate:
+  - nessuna
+  method_overrides_examples:
+  - Default pilot — nessun override
+  required_drivers:
+  - (in funzione tier scelto)
+  validation_overrides:
+  - Default RP_xxx ranges
+custom_kpis: []
