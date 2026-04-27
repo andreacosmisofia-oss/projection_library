@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://projection-library.local/schemas/balance_input.schema.json",
+  "title": "Balance Input Schema",
+  "description": "Formato di upload del bilancio (gestionale o civilistico) per il sistema. File Excel/CSV con colonne fisse. Almeno Y0 obbligatorio.",
+  "type": "object",
+  "properties": {
+    "rows": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/BalanceRow" },
+      "minItems": 5,
+      "description": "Lista voci del bilancio. Almeno 5 voci richieste."
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": ["gestionale", "civilistico", "both"],
+          "description": "Tipo di bilancio caricato."
+        },
+        "currency": {
+          "type": "string",
+          "enum": ["EUR"],
+          "description": "Currency. Pilot v1.1 supporta solo EUR."
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["units", "thousands", "millions"],
+          "default": "units",
+          "description": "Unità di misura dei valori. Default 'units' (numeri esatti)."
+        },
+        "fiscal_year_end": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Data di chiusura del fiscal year Y0 (ISO 8601)."
+        }
+      },
+      "required": ["source_type"]
+    }
+  },
+  "required": ["rows", "metadata"],
+  "$defs": {
+    "BalanceRow": {
+      "type": "object",
+      "description": "Singola voce del bilancio con valori per anno.",
+      "properties": {
+        "voice_label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Label libero della voce (es. 'Ricavi delle vendite', 'Materie prime'). Usato per il mapping verso voice_registry."
+        },
+        "voice_section": {
+          "type": "string",
+          "enum": [
+            "P&L",
+            "SP_assets",
+            "SP_liabilities",
+            "SP_equity",
+            "CF_operating",
+            "CF_investing",
+            "CF_financing",
+            "OTHER"
+          ],
+          "description": "Sezione del bilancio. Se fornita, aiuta il mapper. Opzionale."
+        },
+        "Y-3": {
+          "type": ["number", "null"],
+          "description": "Valore anno Y-3 (3 anni prima di Y0). Null o assente se anno non disponibile."
+        },
+        "Y-2": {
+          "type": ["number", "null"],
+          "description": "Valore anno Y-2."
+        },
+        "Y-1": {
+          "type": ["number", "null"],
+          "description": "Valore anno Y-1."
+        },
+        "Y0": {
+          "type": ["number", "null"],
+          "description": "Valore anno Y0 (anno corrente, actual). Almeno alcune voci devono averlo non-null."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Note libere per la voce. Opzionali. Non usate dal sistema."
+        }
+      },
+      "required": ["voice_label"]
+    }
+  },
+  "examples": [
+    {
+      "metadata": {
+        "source_type": "gestionale",
+        "currency": "EUR",
+        "unit": "thousands",
+        "fiscal_year_end": "2025-12-31"
+      },
+      "rows": [
+        {
+          "voice_label": "Ricavi delle vendite",
+          "voice_section": "P&L",
+          "Y-1": 1900,
+          "Y0": 2100
+        },
+        {
+          "voice_label": "Costo del venduto",
+          "voice_section": "P&L",
+          "Y-1": -990,
+          "Y0": -1100
+        },
+        {
+          "voice_label": "Costi del personale",
+          "voice_section": "P&L",
+          "Y-1": -380,
+          "Y0": -420
+        },
+        {
+          "voice_label": "Ammortamenti",
+          "voice_section": "P&L",
+          "Y-1": -85,
+          "Y0": -90
+        },
+        {
+          "voice_label": "Immobilizzazioni materiali nette",
+          "voice_section": "SP_assets",
+          "Y-1": 850,
+          "Y0": 920
+        },
+        {
+          "voice_label": "Crediti commerciali",
+          "voice_section": "SP_assets",
+          "Y-1": 320,
+          "Y0": 380
+        },
+        {
+          "voice_label": "Cassa e disponibilità liquide",
+          "voice_section": "SP_assets",
+          "Y-1": 150,
+          "Y0": 180
+        },
+        {
+          "voice_label": "Debiti commerciali",
+          "voice_section": "SP_liabilities",
+          "Y-1": -180,
+          "Y0": -210
+        },
+        {
+          "voice_label": "Debiti finanziari",
+          "voice_section": "SP_liabilities",
+          "Y-1": -400,
+          "Y0": -350
+        },
+        {
+          "voice_label": "Capitale sociale",
+          "voice_section": "SP_equity",
+          "Y-1": -100,
+          "Y0": -100
+        },
+        {
+          "voice_label": "Riserve e utili portati a nuovo",
+          "voice_section": "SP_equity",
+          "Y-1": -640,
+          "Y0": -820
+        }
+      ]
+    }
+  ],
+  "x-validation-rules": {
+    "post_parse_checks": [
+      {
+        "id": "BC_001",
+        "description": "Almeno una voce con Y0 non-null è richiesta.",
+        "severity": "block"
+      },
+      {
+        "id": "BC_002",
+        "description": "Almeno 5 voci totali richieste.",
+        "severity": "block"
+      },
+      {
+        "id": "BC_003",
+        "description": "Voice_label duplicate nello stesso voice_section generano warning. Permesse se utente intende aggregazione manuale.",
+        "severity": "warning"
+      },
+      {
+        "id": "BC_004",
+        "description": "Se nessuna voice_section è fornita, il sistema procede ma il mapper avrà confidence ridotta.",
+        "severity": "info"
+      },
+      {
+        "id": "BC_005",
+        "description": "Anni con tutti valori null (es. Y-3 con tutte voci null) vengono marcati come 'non presenti' nel risultato di parsing.",
+        "severity": "info"
+      }
+    ],
+    "sign_convention_detection": {
+      "description": "Il sistema rileva la sign convention dell'utente confrontando i valori P&L. Se voci tipicamente di costo (label tipo 'costo*', 'spese*', 'ammortamenti', 'oneri*', 'salari*') hanno valori positivi, suggerisce flip sign. Decisione finale dell'utente."
+    }
+  }
+}
