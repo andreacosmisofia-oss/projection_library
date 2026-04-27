@@ -76,7 +76,21 @@ METHODS_B_DATA_RANGE = (70, 88)  # inclusive
 # Audit M1.0 §9 — complexity normalization.
 COMPLEXITY_MAP = {
     "simple": "low",
+    "complex": "high",
 }
+
+# Audit M1.0 §9 — family normalization (UPPERCASE → lowercase, con caso speciale BUILDUP).
+FAMILY_SPECIAL_MAP = {
+    "BUILDUP": "build_up",
+}
+
+
+def _normalize_family(value):
+    if value is None or not isinstance(value, str):
+        return value
+    if value in FAMILY_SPECIAL_MAP:
+        return FAMILY_SPECIAL_MAP[value]
+    return value.lower()
 
 # Audit M1.0 §10 — fase derived_rules → (fase_proxy, fase_final).
 # Casi compositi da §10 + valori atomici secondo pattern §8.3.
@@ -224,6 +238,7 @@ def extract_methods_section_a(ws) -> list[dict]:
             applicable = [item.strip() for item in applicable_raw.split(",") if item.strip()]
 
         complexity = COMPLEXITY_MAP.get(complexity_raw, complexity_raw)
+        family = _normalize_family(family)
 
         records.append({
             "method_id": method_id,

@@ -46,7 +46,8 @@ Valori compositi splittati in calc_phase_proxy + calc_phase_final.
 
 ## §9 Note di normalizzazione per ingestion
 
-- 01_methods, complexity: "simple" → rimappare a "low"
+- 01_methods, complexity: "simple" → rimappare a "low"; "complex" → rimappare a "high"
+- 01_methods, family: UPPERCASE → lowercase (es. "EXTRAPOLATION" → "extrapolation"); caso speciale "BUILDUP" → "build_up"
 - 02_voices, nature: valori compositi → rimappare secondo §8.2
 - 02_voices, calc_phase: valori compositi → splittare secondo §8.3
 - 02_voices, sign: "signed_either" → normalizzare a "neutral"

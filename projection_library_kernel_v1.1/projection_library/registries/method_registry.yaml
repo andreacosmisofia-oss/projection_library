@@ -1,4 +1,727 @@
-methods: []
+methods:
+- method_id: flat
+  tech_code: M_EXT_001
+  family: extrapolation
+  name_it: Flat (anchor invariato)
+  formula_sintesi: anchor[t-1]
+  applicable_voices_examples:
+  - tutte voci driver come fallback
+  complexity: low
+  default_kpi_example: null
+  fallback: null
+  note: Default conservativo, voci marginali stabili
+- method_id: historical_avg_growth
+  tech_code: M_EXT_002
+  family: extrapolation
+  name_it: Crescita media storica
+  formula_sintesi: anchor[t-1] * (1 + growth_rate)
+  applicable_voices_examples:
+  - ricavi
+  - opex
+  - costi voci stabili
+  complexity: low
+  default_kpi_example: kpi.growth.<voice>_yoy
+  fallback: flat
+  note: Default più diffuso, growth da KPI YoY avg
+- method_id: cagr_extrapolation
+  tech_code: M_EXT_003
+  family: extrapolation
+  name_it: Estrapolazione CAGR
+  formula_sintesi: anchor[t-1] * (1 + cagr)
+  applicable_voices_examples:
+  - revenue
+  - opex
+  - costi
+  complexity: low
+  default_kpi_example: kpi.growth.<voice>_cagr_3y
+  fallback: flat
+  note: Variante stabile per business mature
+- method_id: inflation_indexed_growth
+  tech_code: M_EXT_004
+  family: extrapolation
+  name_it: Crescita indicizzata inflazione
+  formula_sintesi: anchor[t-1] * (1 + cpi * pass_through)
+  applicable_voices_examples:
+  - utilities
+  - maintenance
+  - professional_fees
+  - insurance
+  complexity: low
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: Per costi inflation-linked
+- method_id: pct_net_revenue
+  tech_code: M_RAT_001
+  family: ratio
+  name_it: '% del ricavo netto'
+  formula_sintesi: -1 * pct * pl.rev.net[t]
+  applicable_voices_examples:
+  - cogs.materials
+  - cogs.subcontracting
+  - opex.commissions
+  complexity: low
+  default_kpi_example: kpi.margin.<voice>_pct_revenue
+  fallback: historical_avg_growth
+  note: Costi variabili activity-driven
+- method_id: pct_revenue_with_drift
+  tech_code: M_RAT_002
+  family: ratio
+  name_it: '% ricavo con drift'
+  formula_sintesi: -1 * (pct_start + (pct_target - pct_start) * (t / horizon)) * pl.rev.net[t]
+  applicable_voices_examples:
+  - cogs/opex con margin convergence pianificata
+  complexity: medium
+  default_kpi_example: null
+  fallback: pct_net_revenue
+  note: Convergenza lineare verso target margin
+- method_id: pct_inventory_writeoff
+  tech_code: M_RAT_003
+  family: ratio
+  name_it: '% write-off magazzino'
+  formula_sintesi: -1 * rate * inventory.total_avg
+  applicable_voices_examples:
+  - pl.cogs.inventory_writeoff
+  complexity: low
+  default_kpi_example: kpi.provisions.warranty_usage_rate
+  fallback: flat
+  note: Write-off magazzino su balance medio
+- method_id: pct_gross_revenue
+  tech_code: M_RAT_004
+  family: ratio
+  name_it: '% del ricavo gross'
+  formula_sintesi: -1 * pct * pl.rev.gross_total[t]
+  applicable_voices_examples:
+  - deductions (discounts
+  - rebates
+  - returns
+  - trade_promo)
+  complexity: low
+  default_kpi_example: kpi.mix.<voice>_pct_gross
+  fallback: historical_avg_growth
+  note: Default deduzioni
+- method_id: pct_revenue_residual
+  tech_code: M_RAT_005
+  family: ratio
+  name_it: '% revenue residuale'
+  formula_sintesi: pct * pl.rev.net[t]
+  applicable_voices_examples:
+  - NWC residuali
+  - prepayments
+  complexity: low
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: Per voci scalabili con revenue
+- method_id: days_target
+  tech_code: M_RAT_006
+  family: ratio
+  name_it: Days target (DSO/DIO/DPO)
+  formula_sintesi: sign * days * denominator[t] / 365
+  applicable_voices_examples:
+  - ar.trade_gross
+  - inventory.*
+  - ap.trade
+  - contract_assets/liab
+  complexity: low
+  default_kpi_example: kpi.nwc.dso/dio/dpo
+  fallback: rollforward_explicit_flow
+  note: Default NWC voci
+- method_id: days_target_with_drift
+  tech_code: M_RAT_007
+  family: ratio
+  name_it: Days target con drift
+  formula_sintesi: sign * (days_start + (days_target - days_start) * (t / horizon)) * denominator[t] / 365
+  applicable_voices_examples:
+  - NWC con miglioramento programmato
+  complexity: medium
+  default_kpi_example: null
+  fallback: days_target
+  note: DSO improvement plan
+- method_id: pct_related_flow
+  tech_code: M_RAT_008
+  family: ratio
+  name_it: '% di flusso correlato'
+  formula_sintesi: sign * pct * denominator[t]
+  applicable_voices_examples:
+  - accrued_expenses
+  - NWC su flow voci
+  complexity: low
+  default_kpi_example: kpi.nwc.accrued_days_opex
+  fallback: days_target
+  note: Equivalente N.1 in % invece che days
+- method_id: allowance_pct_ar_gross
+  tech_code: M_RAT_009
+  family: ratio
+  name_it: Allowance % AR gross (IFRS 9)
+  formula_sintesi: -1 * ecl_rate * bs.nwc.ar.trade_gross[t]
+  applicable_voices_examples:
+  - bs.nwc.ar.allowance
+  complexity: low
+  default_kpi_example: kpi.nwc.ecl_rate
+  fallback: flat
+  note: IFRS 9 ECL semplificato
+- method_id: inventory_production_cycle_days
+  tech_code: M_RAT_010
+  family: ratio
+  name_it: Inventory production cycle
+  formula_sintesi: cycle_days * unit_cost * production_volume / 365
+  applicable_voices_examples:
+  - inventory industrial WIP
+  complexity: medium
+  default_kpi_example: null
+  fallback: days_target
+  note: Per WIP industriale con volume produttivo
+- method_id: capex_pct_revenue
+  tech_code: M_RAT_011
+  family: ratio
+  name_it: Capex % revenue
+  formula_sintesi: pct * pl.rev.net[t]
+  applicable_voices_examples:
+  - maintenance_capex
+  - software_capex (default)
+  complexity: low
+  default_kpi_example: kpi.fa.capex_intensity_total
+  fallback: manual_schedule
+  note: Default capex maintenance
+- method_id: capex_pct_gross_base
+  tech_code: M_RAT_012
+  family: ratio
+  name_it: Capex % base PPE
+  formula_sintesi: pct * bs.fa.tangible.gross_close[t-1]
+  applicable_voices_examples:
+  - maintenance_capex asset-heavy
+  complexity: low
+  default_kpi_example: null
+  fallback: capex_pct_revenue
+  note: Variante per business asset-heavy
+- method_id: disposals_pct_gross_base
+  tech_code: M_RAT_013
+  family: ratio
+  name_it: Disposals % gross
+  formula_sintesi: -1 * rate * gross_close[t-1]
+  applicable_voices_examples:
+  - disposals_gross PPE/intangibles
+  complexity: low
+  default_kpi_example: kpi.fa.disposals_rate_ppe
+  fallback: manual_zero
+  note: Dismissioni cicliche
+- method_id: rou_new_leases_pct_base
+  tech_code: M_RAT_014
+  family: ratio
+  name_it: ROU new leases % base
+  formula_sintesi: rate * bs.fa.rou.gross_close[t-1]
+  applicable_voices_examples:
+  - bs.fa.rou.new_contracts
+  complexity: low
+  default_kpi_example: kpi.fa.new_leases_pct_base
+  fallback: manual_zero
+  note: Default rinnovo portafoglio lease
+- method_id: lease_payment_pct_opening
+  tech_code: M_RAT_015
+  family: ratio
+  name_it: Lease payment % opening
+  formula_sintesi: -1 * pct * abs(lease_liability.close[t-1])
+  applicable_voices_examples:
+  - lease_liability.payments_principal
+  complexity: low
+  default_kpi_example: kpi.nfp.lease_payment_pct_opening
+  fallback: manual_schedule
+  note: Quota capitale lease
+- method_id: warranty_usage_pct_balance
+  tech_code: M_RAT_016
+  family: ratio
+  name_it: Warranty usage % balance
+  formula_sintesi: -1 * rate * abs(warranty.balance_close[t-1])
+  applicable_voices_examples:
+  - warranty.usage
+  complexity: low
+  default_kpi_example: kpi.provisions.warranty_usage_rate
+  fallback: manual_zero
+  note: Release fondo warranty
+- method_id: employee_benefits_service_cost_rate
+  tech_code: M_RAT_017
+  family: ratio
+  name_it: EB service cost %
+  formula_sintesi: rate * abs(total_labour_cost[t])
+  applicable_voices_examples:
+  - employee_benefits.service_cost
+  complexity: medium
+  default_kpi_example: kpi.employee.service_cost_rate
+  fallback: flat
+  note: Service cost % costo lavoro (TFR ~6.91% IT)
+- method_id: employee_benefits_payments_pct_balance
+  tech_code: M_RAT_018
+  family: ratio
+  name_it: EB payments % balance
+  formula_sintesi: -1 * turnover * abs(eb.balance_close[t-1])
+  applicable_voices_examples:
+  - employee_benefits.payments
+  complexity: low
+  default_kpi_example: kpi.employee.turnover_rate
+  fallback: manual_schedule
+  note: Liquidazioni turnover-driven
+- method_id: warranty_rate_revenue
+  tech_code: M_RAT_019
+  family: ratio
+  name_it: Warranty rate × revenue
+  formula_sintesi: -1 * rate * pl.rev.gross.product_sales[t]
+  applicable_voices_examples:
+  - pl.provisions.warranty (accrual)
+  complexity: low
+  default_kpi_example: kpi.provisions.warranty_accrual_rate
+  fallback: flat
+  note: Default accrual warranty
+- method_id: warranty_pct_installed_base
+  tech_code: M_RAT_020
+  family: ratio
+  name_it: Warranty % installed base
+  formula_sintesi: -1 * rate * driver.warranty.installed_base_value[t]
+  applicable_voices_examples:
+  - pl.provisions.warranty (alternativa)
+  complexity: medium
+  default_kpi_example: null
+  fallback: warranty_rate_revenue
+  note: Per business con installed base trackato
+- method_id: vat_balance_ratio
+  tech_code: M_RAT_021
+  family: ratio
+  name_it: VAT balance ratio
+  formula_sintesi: sign * vat_rate * avg_periods_unpaid * flow[t] / 12
+  applicable_voices_examples:
+  - bs.nwc.other_current_assets/liab.vat_*
+  complexity: medium
+  default_kpi_example: kpi.nwc.vat_avg_unpaid_periods_pay
+  fallback: flat
+  note: VAT receivable/payable
+- method_id: dividend_payout_ratio
+  tech_code: M_RAT_022
+  family: ratio
+  name_it: Dividend payout ratio
+  formula_sintesi: -1 * payout_ratio * pl.net_income[t-1]
+  applicable_voices_examples:
+  - bs.equity.capital.dividends_paid
+  complexity: low
+  default_kpi_example: kpi.equity.payout_ratio
+  fallback: manual_zero
+  note: Default dividendi
+- method_id: dividend_per_share
+  tech_code: M_RAT_023
+  family: ratio
+  name_it: Dividend per share
+  formula_sintesi: -1 * dps * shares_outstanding
+  applicable_voices_examples:
+  - bs.equity.capital.dividends_paid (alt)
+  complexity: low
+  default_kpi_example: kpi.equity.dividend_per_share
+  fallback: dividend_payout_ratio
+  note: Per società con DPS comunicato
+- method_id: deferred_tax_simplified
+  tech_code: M_RAT_024
+  family: ratio
+  name_it: Deferred tax semplificato
+  formula_sintesi: anchor[t-1] * (1 + drift)
+  applicable_voices_examples:
+  - bs.tax.dta_movement
+  - dtl_movement
+  complexity: low
+  default_kpi_example: null
+  fallback: manual_schedule
+  note: Drift lieve, no DTA/DTL strutturato
+- method_id: volume_price
+  tech_code: M_OPD_001
+  family: operational_driver
+  name_it: Volume × prezzo
+  formula_sintesi: volume * price / 1000
+  applicable_voices_examples:
+  - pl.rev.gross.product_sales
+  - usage_based
+  complexity: medium
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: Driver primario revenue product
+- method_id: volume_unit_cost
+  tech_code: M_OPD_002
+  family: operational_driver
+  name_it: Volume × costo unitario
+  formula_sintesi: -1 * volume * unit_cost
+  applicable_voices_examples:
+  - pl.cogs.materials.raw
+  - labour.direct
+  complexity: medium
+  default_kpi_example: null
+  fallback: pct_net_revenue
+  note: COGS volume-driven
+- method_id: volume_price_split_growth
+  tech_code: M_OPD_003
+  family: operational_driver
+  name_it: Volume e prezzo split growth
+  formula_sintesi: (volume[t-1]*(1+vol_g)) * (price[t-1]*(1+price_g)) / 1000
+  applicable_voices_examples:
+  - revenue con piano volume/price separati
+  complexity: medium
+  default_kpi_example: null
+  fallback: volume_price
+  note: Simile volume_price ma con growth rate separati
+- method_id: bom_input_cost
+  tech_code: M_OPD_004
+  family: operational_driver
+  name_it: BoM input cost
+  formula_sintesi: -1 * volume * Σ(bom_qty_i * bom_price_i)
+  applicable_voices_examples:
+  - pl.cogs.materials.raw (industrial con BoM)
+  complexity: high
+  default_kpi_example: null
+  fallback: volume_unit_cost
+  note: COGS BoM strutturato (N componenti)
+- method_id: capacity_utilization_price
+  tech_code: M_OPD_005
+  family: operational_driver
+  name_it: Capacity × utilization × prezzo
+  formula_sintesi: capacity * utilization * price / 1000
+  applicable_voices_examples:
+  - rental
+  - energy
+  - project
+  - retail (store-driven)
+  complexity: medium
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: Default per business capacity-driven
+- method_id: headcount_unit_cost
+  tech_code: M_OPD_006
+  family: operational_driver
+  name_it: Headcount × cost per FTE
+  formula_sintesi: -1 * fte * cost_per_fte
+  applicable_voices_examples:
+  - pl.cogs.labour.direct
+  - opex.*.personnel
+  complexity: medium
+  default_kpi_example: null
+  fallback: pct_net_revenue
+  note: Default personnel cost
+- method_id: multi_driver_chain
+  tech_code: M_OPD_007
+  family: operational_driver
+  name_it: Multi-driver chain
+  formula_sintesi: prod(driver_i for i in 1..n)
+  applicable_voices_examples:
+  - revenue funnel/multi-stage (es. services FTE × util × rate)
+  complexity: high
+  default_kpi_example: null
+  fallback: headcount_unit_cost
+  note: Catena moltiplicativa generica
+- method_id: per_employee_fixed_cost
+  tech_code: M_OPD_008
+  family: operational_driver
+  name_it: Per-employee fixed cost
+  formula_sintesi: -1 * total_headcount * cost_per_employee
+  applicable_voices_examples:
+  - pl.opex.it.software_cloud
+  - training
+  - welfare
+  complexity: low
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: Costi fissi per dipendente
+- method_id: variable_fixed_split
+  tech_code: M_OPD_009
+  family: operational_driver
+  name_it: Variable + fixed split
+  formula_sintesi: -1 * (volume * var_unit_cost + fixed_cost)
+  applicable_voices_examples:
+  - pl.cogs.labour.direct (con turni)
+  - overhead ibridi
+  complexity: high
+  default_kpi_example: null
+  fallback: volume_unit_cost
+  note: Costi ibridi variabile+fisso
+- method_id: capex_per_unit
+  tech_code: M_OPD_010
+  family: operational_driver
+  name_it: Capex per nuova unità
+  formula_sintesi: new_units * capex_per_unit
+  applicable_voices_examples:
+  - expansion_capex (industrial
+  - retail nuovo store)
+  complexity: medium
+  default_kpi_example: null
+  fallback: manual_schedule
+  note: Default expansion capex
+- method_id: rou_new_leases_per_unit
+  tech_code: M_OPD_011
+  family: operational_driver
+  name_it: ROU new leases per unit
+  formula_sintesi: new_units * lease_value_per_unit
+  applicable_voices_examples:
+  - rou.new_contracts (retail nuovi store)
+  complexity: medium
+  default_kpi_example: null
+  fallback: rou_new_leases_pct_base
+  note: Per espansione store retail
+- method_id: occupancy_load_factor
+  tech_code: M_OPD_012
+  family: operational_driver
+  name_it: Occupancy load factor
+  formula_sintesi: units * days_open * load_factor * tariff / 1000
+  applicable_voices_examples:
+  - hospitality
+  - transport revenue
+  complexity: medium
+  default_kpi_example: null
+  fallback: capacity_utilization_price
+  note: Settori hospitality/transport
+- method_id: account_by_account
+  tech_code: M_BLD_001
+  family: build_up
+  name_it: Account-by-account
+  formula_sintesi: Σ account_i + long_tail
+  applicable_voices_examples:
+  - revenue B2B con top accounts visibili
+  complexity: high
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: Top customer forecast (N parametrico)
+- method_id: cohort_buildup
+  tech_code: M_BLD_002
+  family: build_up
+  name_it: Cohort buildup
+  formula_sintesi: Σ cohort_v.customers * cohort_v.arpu / 1000
+  applicable_voices_examples:
+  - SaaS subscription
+  - real estate vintage
+  complexity: high
+  default_kpi_example: null
+  fallback: arr_bridge
+  note: Panel cohort vintage
+- method_id: backlog_conversion
+  tech_code: M_BLD_003
+  family: build_up
+  name_it: Backlog conversion
+  formula_sintesi: backlog * cr_backlog + intake * cr_same_year
+  applicable_voices_examples:
+  - project
+  - services
+  - construction
+  complexity: high
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: Default project revenue
+- method_id: order_intake_rollforward
+  tech_code: M_BLD_004
+  family: build_up
+  name_it: Order intake rollforward
+  formula_sintesi: opening_backlog + intake - closing_backlog
+  applicable_voices_examples:
+  - project revenue alternativo
+  complexity: high
+  default_kpi_example: null
+  fallback: backlog_conversion
+  note: Variante backlog-based
+- method_id: book_to_bill
+  tech_code: M_BLD_005
+  family: build_up
+  name_it: Book-to-bill
+  formula_sintesi: orders / b2b_ratio
+  applicable_voices_examples:
+  - project revenue indiretto
+  complexity: medium
+  default_kpi_example: null
+  fallback: backlog_conversion
+  note: Per business semiconductor/tech
+- method_id: contract_renewal_waterfall
+  tech_code: M_BLD_006
+  family: build_up
+  name_it: Contract renewal waterfall
+  formula_sintesi: active + expiring*renewal_rate*(1+uplift) + new
+  applicable_voices_examples:
+  - revenue contratti pluriennali
+  complexity: high
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: SaaS B2B contratti
+- method_id: revenue_bridge
+  tech_code: M_BRG_001
+  family: bridge
+  name_it: Revenue bridge analitico
+  formula_sintesi: anchor[t-1] + Δprice + Δvolume + Δmix + Δfx + Δperimeter + Δother
+  applicable_voices_examples:
+  - revenue management reporting
+  complexity: high
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: 6 componenti delta inclusi M&A perimeter
+- method_id: arr_bridge
+  tech_code: M_BRG_002
+  family: bridge
+  name_it: ARR bridge SaaS
+  formula_sintesi: anchor[t-1] + new_arr + expansion - contraction - churn
+  applicable_voices_examples:
+  - pl.rev.gross.subscription (SaaS)
+  complexity: medium
+  default_kpi_example: kpi.saas.new_arr_rate (e altri)
+  fallback: historical_avg_growth
+  note: Default SaaS sector pack — pilot v1.1
+- method_id: pipeline_weighted
+  tech_code: M_PRB_001
+  family: probabilistic
+  name_it: Pipeline weighted
+  formula_sintesi: Σ pipeline_phase_p * win_prob_phase_p (4 fasi)
+  applicable_voices_examples:
+  - B2B sales
+  - services pipeline
+  complexity: high
+  default_kpi_example: null
+  fallback: historical_avg_growth
+  note: '4 fasi: qualified, proposal, negotiation, closing'
+- method_id: weighted_exposure
+  tech_code: M_PRB_002
+  family: probabilistic
+  name_it: Weighted exposure
+  formula_sintesi: -1 * Σ case_i.probability * case_i.exposure
+  applicable_voices_examples:
+  - pl.provisions.legal_other
+  complexity: high
+  default_kpi_example: null
+  fallback: manual_provision_schedule
+  note: Provisions legali probabilistiche
+- method_id: allowance_aging_bucket
+  tech_code: M_PRB_003
+  family: probabilistic
+  name_it: Allowance aging bucket (IFRS 9 matrix)
+  formula_sintesi: -1 * Σ bucket_b.amount * bucket_b.ecl_rate (5 bucket)
+  applicable_voices_examples:
+  - bs.nwc.ar.allowance (alternativa)
+  complexity: high
+  default_kpi_example: null
+  fallback: allowance_pct_ar_gross
+  note: '5 bucket: current, 1-30, 31-90, 91-180, >180'
+- method_id: rollforward_explicit_flow
+  tech_code: M_RLF_001
+  family: rollforward
+  name_it: Rollforward esplicito
+  formula_sintesi: anchor[t-1] + inflow - outflow
+  applicable_voices_examples:
+  - NWC atipici
+  - accrued con flussi espliciti
+  complexity: medium
+  default_kpi_example: null
+  fallback: days_target
+  note: Per voci con flussi inflow/outflow modellati
+- method_id: term_loan_amortization_linear
+  tech_code: M_DBT_001
+  family: debt_schedule
+  name_it: Term loan amortization lineare
+  formula_sintesi: -1 * initial_principal / term_years (se in amortization)
+  applicable_voices_examples:
+  - bs.nfp.borrowings.term_loan_repayments
+  complexity: medium
+  default_kpi_example: null
+  fallback: manual_schedule
+  note: Profilo amortizing standard
+- method_id: term_loan_amortization_annuity
+  tech_code: M_DBT_002
+  family: debt_schedule
+  name_it: Term loan annuity
+  formula_sintesi: -1 * principal * rate * (1+rate)^N / ((1+rate)^N - 1)
+  applicable_voices_examples:
+  - bs.nfp.borrowings.term_loan_repayments (alt)
+  complexity: high
+  default_kpi_example: null
+  fallback: term_loan_amortization_linear
+  note: Profilo annuity (rata costante) — pilot v1.1
+- method_id: manual_one_off
+  tech_code: M_MAN_001
+  family: manual
+  name_it: Manual one-off
+  formula_sintesi: assumptions['amount'][t]
+  applicable_voices_examples:
+  - other_op_income.non_recurring
+  - non_operating_extraordinary
+  complexity: low
+  default_kpi_example: null
+  fallback: manual_zero
+  note: Importi una-tantum
+- method_id: manual_provision_schedule
+  tech_code: M_MAN_002
+  family: manual
+  name_it: Manual provision schedule
+  formula_sintesi: -1 * abs(amount[t])
+  applicable_voices_examples:
+  - pl.provisions.restructuring/legal_other; provisions usage
+  complexity: low
+  default_kpi_example: null
+  fallback: manual_zero
+  note: Provision con timing predefinito
+- method_id: manual_zero_placeholder
+  tech_code: M_MAN_003
+  family: manual
+  name_it: Manual zero placeholder
+  formula_sintesi: '0'
+  applicable_voices_examples:
+  - FX
+  - equity_method (mono-perimetro)
+  complexity: low
+  default_kpi_example: null
+  fallback: null
+  note: Placeholder forzato a zero
+- method_id: manual_schedule
+  tech_code: M_MAN_004
+  family: manual
+  name_it: Manual schedule
+  formula_sintesi: amount[t]
+  applicable_voices_examples:
+  - capex
+  - debt schedule
+  - equity changes
+  - voci episodiche
+  complexity: low
+  default_kpi_example: null
+  fallback: null
+  note: Input manuale generico per anno
+- method_id: manual_zero
+  tech_code: M_MAN_005
+  family: manual
+  name_it: Manual zero (default)
+  formula_sintesi: '0'
+  applicable_voices_examples:
+  - placeholder M&A
+  - voci episodiche
+  complexity: low
+  default_kpi_example: null
+  fallback: null
+  note: Default conservativo
+- method_id: manual_impairment_schedule
+  tech_code: M_MAN_006
+  family: manual
+  name_it: Manual impairment schedule
+  formula_sintesi: -1 * abs(amount[t])
+  applicable_voices_examples:
+  - pl.impairment.* voci
+  complexity: low
+  default_kpi_example: null
+  fallback: manual_zero
+  note: Impairment sempre negativo
+- method_id: manual_lease_schedule
+  tech_code: M_MAN_007
+  family: manual
+  name_it: Manual lease schedule
+  formula_sintesi: amount[t]
+  applicable_voices_examples:
+  - bs.fa.rou.new_contracts (alternativa manual)
+  complexity: low
+  default_kpi_example: null
+  fallback: rou_new_leases_pct_base
+  note: Override portafoglio lease
+- method_id: manual_tax_input
+  tech_code: M_MAN_008
+  family: manual
+  name_it: Manual tax input
+  formula_sintesi: amount[t]
+  applicable_voices_examples:
+  - CIT regimi fiscali speciali
+  complexity: low
+  default_kpi_example: null
+  fallback: null
+  note: Per regimi tax non-standard
 derived_rules:
 - derived_rule_id: da_mid_year_convention
   tech_code: R_DRV_001
