@@ -1,0 +1,154 @@
+methods: []
+derived_rules:
+- derived_rule_id: da_mid_year_convention
+  tech_code: R_DRV_001
+  name_it: D&A mid-year convention
+  formula: -1 * max(0, (gross_open + gross_close)/2 - non_depreciable) / useful_life
+  applicato_a: pl.da.ppe / intangibles / rou
+  fase_proxy: null
+  fase_final: E2
+  note: Mid-year semplificato; vintage = improvement
+- derived_rule_id: ifrs15_movement_from_sp
+  tech_code: R_DRV_002
+  name_it: IFRS 15 movement da SP
+  formula: -(contract_liab[t]-contract_liab[t-1]) o +(contract_assets[t]-[t-1])
+  applicato_a: pl.rev.adjustments.*
+  fase_proxy: null
+  fase_final: E3_1
+  note: IFRS 15 management approximation
+- derived_rule_id: nwc_change_for_cf
+  tech_code: R_DRV_003
+  name_it: NWC change per CF
+  formula: -(bs.nwc.operating[t] - bs.nwc.operating[t-1])
+  applicato_a: cf.operating.nwc_change
+  fase_proxy: null
+  fase_final: E8
+  note: Variazione NWC operativo
+- derived_rule_id: retained_earnings_identity
+  tech_code: R_DRV_004
+  name_it: Identità retained earnings
+  formula: re_open + pl.net_income + dividends_paid
+  applicato_a: bs.equity.retained_earnings.close
+  fase_proxy: null
+  fase_final: E7
+  note: dividends già negativo per convention
+- derived_rule_id: cash_identity_from_cf
+  tech_code: R_DRV_005
+  name_it: Cash identity da CF
+  formula: cash[t-1] + cf.net_change_cash[t]
+  applicato_a: bs.nfp.cash
+  fase_proxy: null
+  fase_final: E8
+  note: Identity di chiusura
+- derived_rule_id: interest_expense_avg_balance
+  tech_code: R_DRV_006
+  name_it: Interest expense su balance medio
+  formula: -1 * abs(borrowings.balance_avg) * cost_of_debt
+  applicato_a: pl.financial.interest_expense
+  fase_proxy: null
+  fase_final: E4
+  note: Tasso unico medio (cost_of_debt per facility = improvement)
+- derived_rule_id: lease_interest_avg_balance
+  tech_code: R_DRV_007
+  name_it: Lease interest su balance medio
+  formula: -1 * abs(lease_liability.balance_avg) * lease_implicit_rate
+  applicato_a: pl.financial.lease_interest
+  fase_proxy: null
+  fase_final: E4
+  note: Tasso unico medio per portafoglio
+- derived_rule_id: interest_income_cash_avg
+  tech_code: R_DRV_008
+  name_it: Interest income su cash medio
+  formula: cash.balance_avg * cash_yield
+  applicato_a: pl.financial.interest_income
+  fase_proxy: E4
+  fase_final: E8
+  note: Proxy cash[t-1], errore <1% NI
+- derived_rule_id: tax_current_etr_simplified
+  tech_code: R_DRV_009
+  name_it: Tax current ETR semplificato
+  formula: -1 * max(0, ebt) * etr
+  applicato_a: pl.tax.current (modalità simplified, default)
+  fase_proxy: null
+  fase_final: E7
+  note: max(0, ebt) per evitare tax benefit automatico (critica 2.6 Doc 1)
+- derived_rule_id: balance_check
+  tech_code: R_DRV_010
+  name_it: Balance check (quadratura)
+  formula: total_assets + total_liabilities - total_equity
+  applicato_a: bs.balance_check (identità)
+  fase_proxy: null
+  fase_final: E8
+  note: 'Tolleranza: max(1.0, 0.0001 × abs(total_assets))'
+- derived_rule_id: taxable_income_bridge
+  tech_code: R_DRV_011
+  name_it: Taxable income bridge
+  formula: ebt + permanent_addbacks - permanent_deductions + temporary_differences
+  applicato_a: taxable_income (interno modalità advanced)
+  fase_proxy: null
+  fase_final: E7
+  note: Catena tax advanced (estensione pilot v1.1)
+- derived_rule_id: nol_utilization
+  tech_code: R_DRV_012
+  name_it: NOL utilization
+  formula: min(taxable_income, nol_carryforward[t-1] * utilization_limit)
+  applicato_a: nol_used (interno)
+  fase_proxy: null
+  fase_final: E7
+  note: Utilization limit es. 80% Italia
+- derived_rule_id: current_tax_with_nol
+  tech_code: R_DRV_013
+  name_it: Current tax con NOL
+  formula: -1 * max(0, taxable_income - nol_used) * etr
+  applicato_a: pl.tax.current (modalità advanced)
+  fase_proxy: null
+  fase_final: E7
+  note: Catena tax advanced opzionale
+- derived_rule_id: gross_close_aggregation
+  tech_code: R_DRV_014
+  name_it: Gross close aggregation
+  formula: gross_open + flussi_in - flussi_out (per famiglia asset)
+  applicato_a: bs.fa.{family}.gross_close
+  fase_proxy: null
+  fase_final: E2
+  note: Roll-forward per ogni famiglia FA
+- derived_rule_id: acc_depr_close_aggregation
+  tech_code: R_DRV_015
+  name_it: Acc.depr close aggregation
+  formula: acc_depr_open + pl.da.X - disposals_acc_depr - impairment_acc
+  applicato_a: bs.fa.{family}.acc_depr_close
+  fase_proxy: null
+  fase_final: E2
+  note: Per famiglie con acc_depr separato
+- derived_rule_id: net_book_value
+  tech_code: R_DRV_016
+  name_it: Net book value
+  formula: gross_close + acc_depr_close (acc_depr negativo)
+  applicato_a: bs.fa.{family}.net_close
+  fase_proxy: null
+  fase_final: E2
+  note: NBV per ogni famiglia
+- derived_rule_id: subtotal_aggregation
+  tech_code: R_DRV_017
+  name_it: Subtotal aggregation
+  formula: SUM(children con prefix matching)
+  applicato_a: tutti i subtotali derived
+  fase_proxy: null
+  fase_final: varies
+  note: gross_total, deductions_total, opex.total, ecc.
+- derived_rule_id: employee_benefits_interest_cost
+  tech_code: R_DRV_018
+  name_it: EB interest cost
+  formula: abs(eb_balance_avg) * discount_rate (segno negativo, P&L)
+  applicato_a: bs.employee_benefits.interest_cost
+  fase_proxy: null
+  fase_final: E5
+  note: Sub-circolarità intra-fase con proxy
+- derived_rule_id: lease_liability_interest_accrued
+  tech_code: R_DRV_019
+  name_it: Lease liability interest accrued
+  formula: abs(lease_liability_avg) * lease_implicit_rate (segno negativo)
+  applicato_a: bs.nfp.lease_liability.interest_accrued
+  fase_proxy: null
+  fase_final: E4
+  note: Sub-circolarità intra-fase con proxy
