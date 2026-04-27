@@ -1,5 +1,7 @@
 # Audit Report — Projection_Library_Spec_v1.1.xlsx
 
+**M1.0 COMPLETATA — 2026-04-27**
+
 Generato da `scripts/audit_excel.py` su `Projection_Library_Spec_v1.1.xlsx`
 (`projection_library_kernel_v1.1/projection_library/`).
 
