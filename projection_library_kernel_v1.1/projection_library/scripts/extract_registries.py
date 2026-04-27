@@ -3,6 +3,7 @@
 M1.2 — currently extracts:
   - 02_voices → registries/voice_registry.yaml
   - 01_methods → registries/method_registry.yaml (Sezione A + Sezione B)
+  - 03_kpis   → registries/kpi_registry.yaml
 
 Validates each record against the corresponding schema in data_contracts/registries/.
 Records that fail validation are reported on stderr and skipped; valid records are
@@ -72,6 +73,12 @@ METHODS_A_HEADER_ROW = 4
 METHODS_A_DATA_RANGE = (5, 66)   # inclusive
 METHODS_B_HEADER_ROW = 69
 METHODS_B_DATA_RANGE = (70, 88)  # inclusive
+
+# 03_kpis
+KPIS_SHEET = "03_kpis"
+KPIS_HEADER_ROW = 4
+KPIS_DATA_RANGE = (5, 88)        # inclusive (84 KPI; audit §8)
+KPI_TEMPLATE_SUFFIX = " (template)"
 
 # Audit M1.0 §9 — complexity normalization.
 COMPLEXITY_MAP = {
@@ -301,9 +308,57 @@ def extract_methods_section_b(ws) -> list[dict]:
     return records
 
 
+def extract_kpis(ws) -> list[dict]:
+    headers = [c.value for c in ws[KPIS_HEADER_ROW]]
+    expected = [
+        "kpi_id", "famiglia", "numerator", "denominator", "unit",
+        "sign_handling", "default_aggregation", "used_in_methods (esempi)",
+    ]
+    if headers[: len(expected)] != expected:
+        raise RuntimeError(f"Unexpected headers in {KPIS_SHEET}: {headers}")
+
+    start, end = KPIS_DATA_RANGE
+    records: list[dict] = []
+    for row in ws.iter_rows(min_row=start, max_row=end, values_only=True):
+        kpi_id = _clean(row[0])
+        if kpi_id is None:
+            continue
+        if _is_footer(kpi_id):
+            continue
+
+        famiglia = _clean(row[1])
+        numerator = _clean(row[2])
+        denominator = _clean(row[3])
+        unit = _clean(row[4])
+        sign_handling = _clean(row[5])
+        default_agg = _clean(row[6])
+        used_in_raw = _clean(row[7])
+
+        if used_in_raw is None:
+            used_in = None
+        else:
+            used_in = [item.strip() for item in used_in_raw.split(",") if item.strip()]
+
+        is_template = kpi_id.endswith(KPI_TEMPLATE_SUFFIX)
+
+        records.append({
+            "kpi_id": kpi_id,
+            "famiglia": famiglia,
+            "numerator": numerator,
+            "denominator": denominator,
+            "unit": unit,
+            "sign_handling": sign_handling,
+            "default_aggregation": default_agg,
+            "used_in_methods_examples": used_in,
+            "is_template": is_template,
+        })
+    return records
+
+
 def main() -> int:
     voice_schema = json.loads((SCHEMA_DIR / "voice_registry.schema.json").read_text(encoding="utf-8"))
     method_schema = json.loads((SCHEMA_DIR / "method_registry.schema.json").read_text(encoding="utf-8"))
+    kpi_schema = json.loads((SCHEMA_DIR / "kpi_registry.schema.json").read_text(encoding="utf-8"))
 
     wb = openpyxl.load_workbook(XLSX_PATH, read_only=True, data_only=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -340,7 +395,21 @@ def main() -> int:
     print(f"01_methods sez. A (methods):       {len(methods_valid)}/{len(methods)} record validi → {methods_out.relative_to(ROOT)}")
     print(f"01_methods sez. B (derived_rules): {len(derived_valid)}/{len(derived)} record validi → {methods_out.relative_to(ROOT)}")
 
-    failed = bool(voices_invalid or methods_invalid or derived_invalid)
+    # --- 03_kpis ---
+    kpis = extract_kpis(wb[KPIS_SHEET])
+    kpis_valid, kpis_invalid = _validate(kpis, kpi_schema["$defs"]["KpiEntry"])
+    _report_failures("03_kpis", "kpi_id", kpis_invalid)
+
+    kpis_out = OUT_DIR / "kpi_registry.yaml"
+    with kpis_out.open("w", encoding="utf-8") as f:
+        yaml.safe_dump({"kpis": kpis_valid}, f, sort_keys=False, allow_unicode=True, width=120)
+    template_count = sum(1 for r in kpis_valid if r["is_template"])
+    print(
+        f"03_kpis: {len(kpis_valid)}/{len(kpis)} record validi "
+        f"(di cui {template_count} template) → {kpis_out.relative_to(ROOT)}"
+    )
+
+    failed = bool(voices_invalid or methods_invalid or derived_invalid or kpis_invalid)
     return 1 if failed else 0
 
 

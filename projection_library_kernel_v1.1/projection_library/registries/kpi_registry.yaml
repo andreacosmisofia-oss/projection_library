@@ -1,0 +1,806 @@
+kpis:
+- kpi_id: kpi.growth.revenue_yoy
+  famiglia: growth
+  numerator: pl.rev.net[t]
+  denominator: pl.rev.net[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples:
+  - historical_avg_growth (M_EXT_002)
+  is_template: false
+- kpi_id: kpi.growth.revenue_cagr_3y
+  famiglia: growth
+  numerator: pl.rev.net[t]
+  denominator: pl.rev.net[t-3]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: last_3y_cagr
+  used_in_methods_examples:
+  - cagr_extrapolation (M_EXT_003)
+  is_template: false
+- kpi_id: kpi.growth.gross_sales_yoy
+  famiglia: growth
+  numerator: pl.rev.gross_total[t]
+  denominator: pl.rev.gross_total[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.growth.gross_sales_cagr_3y
+  famiglia: growth
+  numerator: pl.rev.gross_total[t]
+  denominator: pl.rev.gross_total[t-3]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: last_3y_cagr
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.growth.ebitda_yoy
+  famiglia: growth
+  numerator: pl.ebitda[t]
+  denominator: pl.ebitda[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.growth.ebitda_cagr_3y
+  famiglia: growth
+  numerator: pl.ebitda[t]
+  denominator: pl.ebitda[t-3]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: last_3y_cagr
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.growth.opex_yoy
+  famiglia: growth
+  numerator: pl.opex.total[t]
+  denominator: pl.opex.total[t-1]
+  unit: pct
+  sign_handling: abs_both
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.growth.net_income_yoy
+  famiglia: growth
+  numerator: pl.net_income[t]
+  denominator: pl.net_income[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.growth.<voice>_yoy (template)
+  famiglia: growth
+  numerator: <voice>[t]
+  denominator: <voice>[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples:
+  - Istanziato per ogni gross/cogs/opex
+  is_template: true
+- kpi_id: kpi.growth.<voice>_cagr_3y (template)
+  famiglia: growth
+  numerator: <voice>[t]
+  denominator: <voice>[t-3]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: last_3y_cagr
+  used_in_methods_examples:
+  - Istanziato per ogni voce
+  is_template: true
+- kpi_id: kpi.margin.gross
+  famiglia: margin
+  numerator: pl.gross_profit[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.margin.cogs_pct_revenue
+  famiglia: margin
+  numerator: pl.cogs.total[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.margin.opex_pct_revenue
+  famiglia: margin
+  numerator: pl.opex.total[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.margin.ebitda
+  famiglia: margin
+  numerator: pl.ebitda[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.margin.ebit
+  famiglia: margin
+  numerator: pl.ebit[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.margin.net_income
+  famiglia: margin
+  numerator: pl.net_income[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.margin.da_pct_revenue
+  famiglia: margin
+  numerator: pl.da.total[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.mix.discounts_pct_gross
+  famiglia: margin
+  numerator: pl.rev.deductions.discounts[t]
+  denominator: pl.rev.gross_total[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - pct_gross_revenue (M_RAT_004)
+  is_template: false
+- kpi_id: kpi.mix.rebates_pct_gross
+  famiglia: margin
+  numerator: pl.rev.deductions.rebates[t]
+  denominator: pl.rev.gross_total[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - pct_gross_revenue
+  is_template: false
+- kpi_id: kpi.mix.returns_pct_gross
+  famiglia: margin
+  numerator: pl.rev.deductions.returns[t]
+  denominator: pl.rev.gross_total[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - pct_gross_revenue
+  is_template: false
+- kpi_id: kpi.mix.trade_promo_pct_gross
+  famiglia: margin
+  numerator: pl.rev.deductions.trade_promo[t]
+  denominator: pl.rev.gross_total[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - pct_gross_revenue
+  is_template: false
+- kpi_id: kpi.mix.deductions_pct_gross
+  famiglia: margin
+  numerator: pl.rev.deductions_total[t]
+  denominator: pl.rev.gross_total[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.mix.net_to_gross
+  famiglia: margin
+  numerator: pl.rev.net[t]
+  denominator: pl.rev.gross_total[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.margin.<cogs_voice>_pct_revenue (template)
+  famiglia: margin
+  numerator: <cogs_voice>[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - pct_net_revenue (M_RAT_001)
+  is_template: true
+- kpi_id: kpi.margin.<opex_voice>_pct_revenue (template)
+  famiglia: margin
+  numerator: <opex_voice>[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - pct_net_revenue
+  is_template: true
+- kpi_id: kpi.margin.ebitda_adjusted
+  famiglia: margin
+  numerator: pl.ebitda_adjusted[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - Esclude voci non-recurring
+  is_template: false
+- kpi_id: kpi.margin.ebit_adjusted
+  famiglia: margin
+  numerator: pl.ebit_adjusted[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - Esclude voci non-recurring + impairment
+  is_template: false
+- kpi_id: kpi.nwc.dso
+  famiglia: nwc_days
+  numerator: bs.nwc.ar.trade_gross[t]
+  denominator: pl.rev.net[t] / 365
+  unit: days
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - days_target (M_RAT_006)
+  is_template: false
+- kpi_id: kpi.nwc.contract_assets_days
+  famiglia: nwc_days
+  numerator: bs.nwc.contract_assets[t]
+  denominator: pl.rev.net[t] / 365
+  unit: days
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - days_target
+  is_template: false
+- kpi_id: kpi.nwc.dio_raw
+  famiglia: nwc_days
+  numerator: bs.nwc.inventory.raw[t]
+  denominator: pl.cogs.materials.raw[t] / 365
+  unit: days
+  sign_handling: abs_den
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - days_target
+  is_template: false
+- kpi_id: kpi.nwc.dio_wip
+  famiglia: nwc_days
+  numerator: bs.nwc.inventory.wip[t]
+  denominator: pl.cogs.total[t] / 365
+  unit: days
+  sign_handling: abs_den
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - days_target
+  is_template: false
+- kpi_id: kpi.nwc.dio_finished
+  famiglia: nwc_days
+  numerator: bs.nwc.inventory.finished[t]
+  denominator: pl.cogs.total[t] / 365
+  unit: days
+  sign_handling: abs_den
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - days_target
+  is_template: false
+- kpi_id: kpi.nwc.dio_total
+  famiglia: nwc_days
+  numerator: bs.nwc.inventory.total[t]
+  denominator: pl.cogs.total[t] / 365
+  unit: days
+  sign_handling: abs_den
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.nwc.dpo
+  famiglia: nwc_days
+  numerator: bs.nwc.ap.trade[t]
+  denominator: bs.nwc.ap.purchases_base[t] / 365
+  unit: days
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - days_target
+  is_template: false
+- kpi_id: kpi.nwc.accrued_days_opex
+  famiglia: nwc_days
+  numerator: bs.nwc.accrued_expenses[t]
+  denominator: pl.opex.total[t] / 365
+  unit: days
+  sign_handling: abs_both
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - pct_related_flow (M_RAT_008)
+  is_template: false
+- kpi_id: kpi.nwc.contract_liab_days
+  famiglia: nwc_days
+  numerator: bs.nwc.contract_liabilities[t]
+  denominator: pl.rev.net[t] / 365
+  unit: days
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - days_target
+  is_template: false
+- kpi_id: kpi.nwc.ecl_rate
+  famiglia: nwc_days
+  numerator: bs.nwc.ar.allowance[t]
+  denominator: bs.nwc.ar.trade_gross[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - allowance_pct_ar_gross (M_RAT_009)
+  is_template: false
+- kpi_id: kpi.nwc.ccc
+  famiglia: nwc_days
+  numerator: DSO + DIO_total - DPO
+  denominator: null
+  unit: days
+  sign_handling: derived
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - Cash conversion cycle
+  is_template: false
+- kpi_id: kpi.nwc.operating_pct_revenue
+  famiglia: nwc_days
+  numerator: bs.nwc.operating[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: signed
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.nwc.vat_avg_unpaid_periods_pay
+  famiglia: nwc_days
+  numerator: bs.nwc.other_current_liab.vat_payable[t]
+  denominator: pl.rev.gross_total[t] / 12
+  unit: months
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - vat_balance_ratio (M_RAT_021)
+  is_template: false
+- kpi_id: kpi.nwc.cit_advance_pct
+  famiglia: nwc_days
+  numerator: acconti versati
+  denominator: pl.tax.current[t-1]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.fa.capex_intensity_total
+  famiglia: capex
+  numerator: total_capex[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - capex_pct_revenue (M_RAT_011)
+  is_template: false
+- kpi_id: kpi.fa.capex_intensity_maintenance
+  famiglia: capex
+  numerator: bs.fa.tangible.maintenance_capex[t]
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - capex_pct_revenue
+  is_template: false
+- kpi_id: kpi.fa.capex_to_da_ratio
+  famiglia: capex
+  numerator: total_capex[t]
+  denominator: abs(pl.da.total[t])
+  unit: ratio
+  sign_handling: abs_den
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.fa.useful_life_implied_ppe
+  famiglia: capex
+  numerator: (gross_open + gross_close)/2 PPE
+  denominator: abs(pl.da.ppe[t])
+  unit: years
+  sign_handling: abs_den
+  default_aggregation: y0_value
+  used_in_methods_examples:
+  - da_mid_year_convention (R_DRV_001)
+  is_template: false
+- kpi_id: kpi.fa.useful_life_implied_intangibles
+  famiglia: capex
+  numerator: (gross_open + gross_close)/2 intangibles
+  denominator: abs(pl.da.intangibles[t])
+  unit: years
+  sign_handling: abs_den
+  default_aggregation: y0_value
+  used_in_methods_examples:
+  - da_mid_year_convention
+  is_template: false
+- kpi_id: kpi.fa.lease_term_implied
+  famiglia: capex
+  numerator: rou.gross_avg
+  denominator: abs(pl.da.rou[t])
+  unit: years
+  sign_handling: abs_den
+  default_aggregation: y0_value
+  used_in_methods_examples:
+  - da_mid_year_convention
+  is_template: false
+- kpi_id: kpi.fa.disposals_rate_ppe
+  famiglia: capex
+  numerator: bs.fa.tangible.disposals_gross[t]
+  denominator: bs.fa.tangible.gross_open[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - disposals_pct_gross_base (M_RAT_013)
+  is_template: false
+- kpi_id: kpi.fa.new_leases_pct_base
+  famiglia: capex
+  numerator: bs.fa.rou.new_contracts[t]
+  denominator: bs.fa.rou.gross_open[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - rou_new_leases_pct_base (M_RAT_014)
+  is_template: false
+- kpi_id: kpi.fa.rental_yield
+  famiglia: capex
+  numerator: pl.rev.gross.rental[t]
+  denominator: investment_property.gross_avg
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.nfp.nd_to_ebitda
+  famiglia: leverage
+  numerator: abs(borrowings) - cash
+  denominator: pl.ebitda[t]
+  unit: ratio
+  sign_handling: derived
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.nfp.nd_lease_to_ebitda
+  famiglia: leverage
+  numerator: abs(borrowings) + abs(lease) - cash
+  denominator: pl.ebitda[t]
+  unit: ratio
+  sign_handling: derived
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.nfp.cost_of_debt
+  famiglia: leverage
+  numerator: pl.financial.interest_expense[t]
+  denominator: borrowings.balance_avg
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - interest_expense_avg_balance (R_DRV_006)
+  is_template: false
+- kpi_id: kpi.nfp.lease_implicit_rate
+  famiglia: leverage
+  numerator: pl.financial.lease_interest[t]
+  denominator: lease_liability.balance_avg
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - lease_interest_avg_balance (R_DRV_007)
+  is_template: false
+- kpi_id: kpi.nfp.cash_yield
+  famiglia: leverage
+  numerator: pl.financial.interest_income[t]
+  denominator: cash.balance_avg
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - interest_income_cash_avg (R_DRV_008)
+  is_template: false
+- kpi_id: kpi.nfp.icr_ebit
+  famiglia: leverage
+  numerator: pl.ebit[t]
+  denominator: abs(interest_exp) + abs(lease_int)
+  unit: ratio
+  sign_handling: abs_den
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.nfp.icr_ebitda
+  famiglia: leverage
+  numerator: pl.ebitda[t]
+  denominator: abs(interest_exp) + abs(lease_int)
+  unit: ratio
+  sign_handling: abs_den
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.nfp.de_ratio
+  famiglia: leverage
+  numerator: abs(borrowings.total_close)
+  denominator: bs.equity.total_close[t]
+  unit: ratio
+  sign_handling: abs_num
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.nfp.lease_payment_pct_opening
+  famiglia: leverage
+  numerator: lease_liability.payments_principal[t]
+  denominator: abs(lease_liability.close[t-1])
+  unit: pct
+  sign_handling: abs_den
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - lease_payment_pct_opening (M_RAT_015)
+  is_template: false
+- kpi_id: kpi.return.roe
+  famiglia: return
+  numerator: pl.net_income[t]
+  denominator: equity.total_avg
+  unit: pct
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.return.roic
+  famiglia: return
+  numerator: pl.ebit*(1-etr)
+  denominator: invested_capital_avg
+  unit: pct
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.return.roa
+  famiglia: return
+  numerator: pl.net_income[t]
+  denominator: total_assets_avg
+  unit: pct
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.return.asset_turnover
+  famiglia: return
+  numerator: pl.rev.net[t]
+  denominator: total_assets_avg
+  unit: ratio
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.tax.etr
+  famiglia: tax
+  numerator: pl.tax.total[t]
+  denominator: pl.ebt[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - tax_current_etr_simplified (R_DRV_009)
+  is_template: false
+- kpi_id: kpi.tax.cash_tax_rate
+  famiglia: tax
+  numerator: pl.tax.current[t]
+  denominator: pl.ebt[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.tax.deferred_tax_pct_total
+  famiglia: tax
+  numerator: pl.tax.deferred[t]
+  denominator: pl.tax.total[t]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.provisions.warranty_usage_rate
+  famiglia: provisions
+  numerator: bs.provisions.warranty.usage[t]
+  denominator: abs(warranty.balance_close[t-1])
+  unit: pct
+  sign_handling: abs_den
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - warranty_usage_pct_balance (M_RAT_016)
+  is_template: false
+- kpi_id: kpi.provisions.warranty_balance_pct_revenue
+  famiglia: provisions
+  numerator: abs(warranty.balance_close[t])
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.provisions.warranty_accrual_rate
+  famiglia: provisions
+  numerator: pl.provisions.warranty[t]
+  denominator: pl.rev.gross.product_sales[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - warranty_rate_revenue (M_RAT_019)
+  is_template: false
+- kpi_id: kpi.provisions.total_pct_revenue
+  famiglia: provisions
+  numerator: abs(provisions.total_close[t])
+  denominator: pl.rev.net[t]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.employee.service_cost_rate
+  famiglia: employee
+  numerator: bs.employee_benefits.service_cost[t]
+  denominator: total_labour_cost[t]
+  unit: pct
+  sign_handling: abs_both
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - employee_benefits_service_cost_rate (M_RAT_017)
+  is_template: false
+- kpi_id: kpi.employee.turnover_rate
+  famiglia: employee
+  numerator: bs.employee_benefits.payments_to_employees[t]
+  denominator: abs(eb.balance_close[t-1])
+  unit: pct
+  sign_handling: abs_den
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - employee_benefits_payments_pct_balance (M_RAT_018)
+  is_template: false
+- kpi_id: kpi.employee.discount_rate_implied
+  famiglia: employee
+  numerator: bs.employee_benefits.interest_cost[t]
+  denominator: abs(eb.balance_avg)
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - employee_benefits_interest_cost (R_DRV_018)
+  is_template: false
+- kpi_id: kpi.equity.payout_ratio
+  famiglia: equity
+  numerator: bs.equity.capital.dividends_paid[t]
+  denominator: pl.net_income[t-1]
+  unit: pct
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - dividend_payout_ratio (M_RAT_022)
+  is_template: false
+- kpi_id: kpi.equity.dividend_per_share
+  famiglia: equity
+  numerator: bs.equity.capital.dividends_paid[t]
+  denominator: shares_outstanding[t]
+  unit: eur_per_unit
+  sign_handling: abs_num
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - dividend_per_share (M_RAT_023)
+  is_template: false
+- kpi_id: kpi.saas.arr_y0
+  famiglia: sector_specific
+  numerator: pl.rev.gross.subscription run-rate
+  denominator: null
+  unit: eur_000
+  sign_handling: raw
+  default_aggregation: y0_value
+  used_in_methods_examples:
+  - arr_bridge (M_BRG_002) — SaaS pack
+  is_template: false
+- kpi_id: kpi.saas.new_arr_rate
+  famiglia: sector_specific
+  numerator: driver.saas.new_arr[t]
+  denominator: kpi.saas.arr_y0[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - arr_bridge
+  is_template: false
+- kpi_id: kpi.saas.expansion_rate
+  famiglia: sector_specific
+  numerator: driver.saas.expansion_arr[t]
+  denominator: kpi.saas.arr_y0[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - arr_bridge
+  is_template: false
+- kpi_id: kpi.saas.contraction_rate
+  famiglia: sector_specific
+  numerator: driver.saas.contraction_arr[t]
+  denominator: kpi.saas.arr_y0[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - arr_bridge
+  is_template: false
+- kpi_id: kpi.saas.gross_churn_rate
+  famiglia: sector_specific
+  numerator: driver.saas.churn_arr[t]
+  denominator: kpi.saas.arr_y0[t-1]
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - arr_bridge
+  is_template: false
+- kpi_id: kpi.saas.nrr
+  famiglia: sector_specific
+  numerator: (arr + expansion - contr - churn)
+  denominator: arr_prior
+  unit: ratio
+  sign_handling: derived
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.saas.grr
+  famiglia: sector_specific
+  numerator: (arr - contr - churn)
+  denominator: arr_prior
+  unit: ratio
+  sign_handling: derived
+  default_aggregation: avg_3y
+  used_in_methods_examples: null
+  is_template: false
+- kpi_id: kpi.services.utilization_rate
+  famiglia: sector_specific
+  numerator: driver.services.billable_hours[t]
+  denominator: fte_billable × working_days × 8
+  unit: pct
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - Services pack
+  is_template: false
+- kpi_id: kpi.services.revenue_per_fte
+  famiglia: sector_specific
+  numerator: pl.rev.gross.service_revenue[t]
+  denominator: driver.services.fte_billable[t]
+  unit: eur_000
+  sign_handling: raw
+  default_aggregation: avg_3y
+  used_in_methods_examples:
+  - Services pack
+  is_template: false
