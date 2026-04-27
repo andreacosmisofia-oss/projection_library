@@ -49,6 +49,8 @@ Valori compositi splittati in calc_phase_proxy + calc_phase_final.
 - 01_methods, complexity: "simple" → rimappare a "low"
 - 02_voices, nature: valori compositi → rimappare secondo §8.2
 - 02_voices, calc_phase: valori compositi → splittare secondo §8.3
+- 02_voices, sign: "signed_either" → normalizzare a "neutral"
+- 02_voices, recurrence: "non_recurring_extraordinary" → normalizzare a "non_recurring"
 
 ## §10 Mapping ingestion derived_rules.fase
 

@@ -30,6 +30,16 @@ NATURE_MAP = {
     "placeholder": "placeholder",
 }
 
+# Audit M1.0 §9 — sign normalization.
+SIGN_MAP = {
+    "signed_either": "neutral",
+}
+
+# Audit M1.0 §9 — recurrence normalization.
+RECURRENCE_MAP = {
+    "non_recurring_extraordinary": "non_recurring",
+}
+
 # Audit M1.0 §8.3 — composite calc_phase → (proxy, final).
 CALC_PHASE_MAP = {
     "E1": (None, "E1"),
@@ -100,6 +110,8 @@ def extract_voices(ws) -> list[dict]:
         note = _clean(row[9])
 
         nature = NATURE_MAP.get(nature_raw, nature_raw)
+        sign = SIGN_MAP.get(sign, sign)
+        recurrence = RECURRENCE_MAP.get(recurrence, recurrence)
         if calc_phase_raw is None:
             calc_phase_proxy, calc_phase_final = None, None
         elif calc_phase_raw in CALC_PHASE_MAP:

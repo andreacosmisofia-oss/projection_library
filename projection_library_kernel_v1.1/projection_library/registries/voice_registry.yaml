@@ -175,6 +175,39 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: SUM deductions.*
+- voice_id: pl.rev.adjustments.deferred_movement
+  statement: PL
+  section: rev.adjustments
+  nature: derived
+  sign: neutral
+  default_method: ifrs15_movement_from_sp
+  calc_phase_proxy: null
+  calc_phase_final: E3_1
+  denominator_flow_voice: bs.nwc.contract_liabilities
+  recurrence: recurring
+  note: IFRS 15 da contract_liabilities
+- voice_id: pl.rev.adjustments.contract_asset_movement
+  statement: PL
+  section: rev.adjustments
+  nature: derived
+  sign: neutral
+  default_method: ifrs15_movement_from_sp
+  calc_phase_proxy: null
+  calc_phase_final: E3_1
+  denominator_flow_voice: bs.nwc.contract_assets
+  recurrence: recurring
+  note: IFRS 15 da contract_assets
+- voice_id: pl.rev.adjustments_total
+  statement: PL
+  section: rev.adjustments
+  nature: derived
+  sign: neutral
+  default_method: subtotal_aggregation
+  calc_phase_proxy: null
+  calc_phase_final: E3_1
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
 - voice_id: pl.rev.other_op_income.recurring
   statement: PL
   section: rev.other_op_income
@@ -185,6 +218,17 @@ voices:
   calc_phase_final: E1
   denominator_flow_voice: null
   recurrence: recurring
+  note: null
+- voice_id: pl.rev.other_op_income.non_recurring
+  statement: PL
+  section: rev.other_op_income
+  nature: driver
+  sign: positive
+  default_method: manual_one_off
+  calc_phase_proxy: null
+  calc_phase_final: E1
+  denominator_flow_voice: null
+  recurrence: non_recurring
   note: null
 - voice_id: pl.rev.other_op_income_total
   statement: PL
@@ -294,6 +338,17 @@ voices:
   calc_phase_proxy: null
   calc_phase_final: E1
   denominator_flow_voice: pl.rev.net
+  recurrence: recurring
+  note: null
+- voice_id: pl.cogs.wip_capitalization
+  statement: PL
+  section: cogs
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E3
+  denominator_flow_voice: bs.nwc.inventory.wip
   recurrence: recurring
   note: null
 - voice_id: pl.cogs.total
@@ -516,6 +571,28 @@ voices:
   denominator_flow_voice: pl.rev.gross.product_sales
   recurrence: recurring
   note: null
+- voice_id: pl.provisions.restructuring
+  statement: PL
+  section: provisions
+  nature: driver
+  sign: negative
+  default_method: manual_provision_schedule
+  calc_phase_proxy: null
+  calc_phase_final: E1
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: null
+- voice_id: pl.provisions.legal_other
+  statement: PL
+  section: provisions
+  nature: driver
+  sign: negative
+  default_method: manual_provision_schedule
+  calc_phase_proxy: null
+  calc_phase_final: E1
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: 'Alt: weighted_exposure (services)'
 - voice_id: pl.provisions.total
   statement: PL
   section: provisions
@@ -524,6 +601,17 @@ voices:
   default_method: subtotal_aggregation
   calc_phase_proxy: null
   calc_phase_final: E1
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
+- voice_id: pl.ebitda
+  statement: PL
+  section: ebitda
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: E1
+  calc_phase_final: E3
   denominator_flow_voice: null
   recurrence: null
   note: null
@@ -571,6 +659,39 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+- voice_id: pl.impairment.ppe
+  statement: PL
+  section: impairment
+  nature: driver
+  sign: negative
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: Splitting da pl.da.impairment_oneoff
+- voice_id: pl.impairment.intangibles
+  statement: PL
+  section: impairment
+  nature: driver
+  sign: negative
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: Splitting
+- voice_id: pl.impairment.goodwill
+  statement: PL
+  section: impairment
+  nature: driver
+  sign: negative
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: IAS 36
 - voice_id: pl.impairment.total
   statement: PL
   section: impairment
@@ -579,6 +700,17 @@ voices:
   default_method: subtotal_aggregation
   calc_phase_proxy: null
   calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
+- voice_id: pl.ebit
+  statement: PL
+  section: ebit
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E7
   denominator_flow_voice: null
   recurrence: null
   note: null
@@ -615,6 +747,94 @@ voices:
   denominator_flow_voice: bs.nfp.lease_liability
   recurrence: recurring
   note: null
+- voice_id: pl.financial.fx_gain_loss
+  statement: PL
+  section: financial
+  nature: driver_placeholder
+  sign: neutral
+  default_method: manual_zero_placeholder
+  calc_phase_proxy: null
+  calc_phase_final: E1
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: Mono-EUR pilot
+- voice_id: pl.financial.total_net
+  statement: PL
+  section: financial
+  nature: derived
+  sign: neutral
+  default_method: subtotal_aggregation
+  calc_phase_proxy: null
+  calc_phase_final: E4
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
+- voice_id: pl.equity_method_result
+  statement: PL
+  section: equity_method
+  nature: driver_placeholder
+  sign: neutral
+  default_method: manual_zero_placeholder
+  calc_phase_proxy: null
+  calc_phase_final: E1
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: Mono-perimetro pilot
+- voice_id: pl.other.non_operating_recurring
+  statement: PL
+  section: other_non_op
+  nature: driver
+  sign: neutral
+  default_method: flat
+  calc_phase_proxy: null
+  calc_phase_final: E1
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
+- voice_id: pl.other.non_operating_extraordinary
+  statement: PL
+  section: other_non_op
+  nature: driver
+  sign: neutral
+  default_method: manual_one_off
+  calc_phase_proxy: null
+  calc_phase_final: E1
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: Plus/minus su disposals manuali
+- voice_id: pl.other.fair_value_gain_loss_investment_property
+  statement: PL
+  section: other_non_op
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: bs.fa.investment_property.fv_revaluation
+  recurrence: recurring
+  note: IAS 40 FV model — voce nuova
+- voice_id: pl.tax.permanent_differences
+  statement: PL
+  section: tax
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: Pilot v1.1 advanced tax
+- voice_id: pl.tax.temporary_differences
+  statement: PL
+  section: tax
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
 - voice_id: pl.tax.current
   statement: PL
   section: tax
@@ -626,6 +846,17 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default simplified, alt advanced con NOL
+- voice_id: pl.tax.deferred
+  statement: PL
+  section: tax
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E7
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
 - voice_id: pl.tax.total
   statement: PL
   section: tax
@@ -637,6 +868,50 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+- voice_id: pl.ebt
+  statement: PL
+  section: ebt
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E7
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
+- voice_id: pl.net_income
+  statement: PL
+  section: net_income
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E7
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
+- voice_id: pl.ebitda_adjusted
+  statement: PL
+  section: adjusted
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E7
+  denominator_flow_voice: null
+  recurrence: null
+  note: Esclude voci non_recurring_extraordinary
+- voice_id: pl.ebit_adjusted
+  statement: PL
+  section: adjusted
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E7
+  denominator_flow_voice: null
+  recurrence: null
+  note: Esclude voci non_recurring_extraordinary + impairment
 - voice_id: bs.fa.tangible.gross_open
   statement: BS
   section: fa.tangible
@@ -681,6 +956,28 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+- voice_id: bs.fa.tangible.acquired_via_ma
+  statement: BS
+  section: fa.tangible
+  nature: placeholder
+  sign: positive
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: M&A placeholder
+- voice_id: bs.fa.tangible.divested_via_carve_out
+  statement: BS
+  section: fa.tangible
+  nature: placeholder
+  sign: negative
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: Carve-out placeholder
 - voice_id: bs.fa.tangible.gross_close
   statement: BS
   section: fa.tangible
@@ -758,6 +1055,17 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: 'Alt: pct_net_revenue (SaaS R&D capitalized)'
+- voice_id: bs.fa.intangible.acquired_via_ma
+  statement: BS
+  section: fa.intangible
+  nature: placeholder
+  sign: positive
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: null
 - voice_id: bs.fa.intangible.disposals_gross
   statement: BS
   section: fa.intangible
@@ -835,6 +1143,17 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+- voice_id: bs.fa.intangible.goodwill_acquisitions
+  statement: BS
+  section: fa.intangible
+  nature: placeholder
+  sign: positive
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: null
 - voice_id: bs.fa.intangible.goodwill_close
   statement: BS
   section: fa.intangible
@@ -873,6 +1192,17 @@ voices:
   section: fa.rou
   nature: driver
   sign: negative
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
+- voice_id: bs.fa.rou.modifications
+  statement: BS
+  section: fa.rou
+  nature: driver
+  sign: neutral
   default_method: manual_zero
   calc_phase_proxy: null
   calc_phase_final: E2
@@ -967,6 +1297,17 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+- voice_id: bs.fa.investment_property.fv_revaluation
+  statement: BS
+  section: fa.investment_property
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: → flussa a P&L (FV gain/loss)
 - voice_id: bs.fa.investment_property.improvements
   statement: BS
   section: fa.investment_property
@@ -1000,6 +1341,39 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Aggiunta (critica 3.7 Doc 1)
+- voice_id: bs.fa.financial.investments_movement
+  statement: BS
+  section: fa.financial
+  nature: driver
+  sign: neutral
+  default_method: manual_schedule
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
+- voice_id: bs.fa.financial.bonds_amc_movement
+  statement: BS
+  section: fa.financial
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
+- voice_id: bs.fa.financial.fvtpl_movement
+  statement: BS
+  section: fa.financial
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E2
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
 - voice_id: bs.fa.financial.balance_close
   statement: BS
   section: fa.financial
@@ -1242,6 +1616,17 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Final in E7.5
+- voice_id: bs.nwc.operating
+  statement: BS
+  section: nwc
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: E3
+  calc_phase_final: E7_5
+  denominator_flow_voice: null
+  recurrence: null
+  note: Doppia istanza
 - voice_id: bs.nfp.borrowings.term_loan_open
   statement: BS
   section: nfp.borrowings
@@ -1275,6 +1660,61 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default amortizing lineare
+- voice_id: bs.nfp.borrowings.rcf_movement
+  statement: BS
+  section: nfp.borrowings
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E4
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: Plug RCF = improvement
+- voice_id: bs.nfp.borrowings.bonds_movement
+  statement: BS
+  section: nfp.borrowings
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E4
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
+- voice_id: bs.nfp.borrowings.shareholder_loans_movement
+  statement: BS
+  section: nfp.borrowings
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E4
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
+- voice_id: bs.nfp.borrowings.assumed_via_ma
+  statement: BS
+  section: nfp.borrowings
+  nature: placeholder
+  sign: negative
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E4
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: M&A placeholder
+- voice_id: bs.nfp.borrowings.haircut_writeoff
+  statement: BS
+  section: nfp.borrowings
+  nature: placeholder
+  sign: positive
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E4
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: Restructuring placeholder
 - voice_id: bs.nfp.borrowings.total_open
   statement: BS
   section: nfp.borrowings
@@ -1341,6 +1781,17 @@ voices:
   denominator_flow_voice: bs.nfp.lease_liability.close
   recurrence: recurring
   note: null
+- voice_id: bs.nfp.lease_liability.modifications
+  statement: BS
+  section: nfp.lease_liability
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E4
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
 - voice_id: bs.nfp.lease_liability.close
   statement: BS
   section: nfp.lease_liability
@@ -1363,6 +1814,17 @@ voices:
   denominator_flow_voice: cf.net_change_cash
   recurrence: null
   note: Identità chiusura
+- voice_id: bs.nfp.net_debt
+  statement: BS
+  section: nfp
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: null
+  recurrence: null
+  note: borrowings + lease + cash
 - voice_id: bs.equity.share_capital_open
   statement: BS
   section: equity
@@ -1385,6 +1847,28 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+- voice_id: bs.equity.capital.acquisition_consideration
+  statement: BS
+  section: equity.capital
+  nature: placeholder
+  sign: positive
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: M&A paper deal
+- voice_id: bs.equity.capital.spin_off_distribution
+  statement: BS
+  section: equity.capital
+  nature: placeholder
+  sign: negative
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: Spin-off
 - voice_id: bs.equity.capital.dividends_paid
   statement: BS
   section: equity.capital
@@ -1401,6 +1885,28 @@ voices:
   section: equity.capital
   nature: driver
   sign: negative
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
+- voice_id: bs.equity.capital.oci_movement
+  statement: BS
+  section: equity.capital
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: bs.employee_benefits.actuarial_changes
+  recurrence: recurring
+  note: + identity attuariale EB
+- voice_id: bs.equity.capital.nci_movement
+  statement: BS
+  section: equity.capital
+  nature: driver
+  sign: neutral
   default_method: manual_zero
   calc_phase_proxy: null
   calc_phase_final: E6
@@ -1440,6 +1946,28 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+- voice_id: bs.equity.oci_cumulative_open
+  statement: BS
+  section: equity
+  nature: reference
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
+- voice_id: bs.equity.oci_cumulative.close
+  statement: BS
+  section: equity
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
 - voice_id: bs.equity.nci.close
   statement: BS
   section: equity
@@ -1473,6 +2001,17 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+- voice_id: bs.tax.dta_movement
+  statement: BS
+  section: tax
+  nature: driver
+  sign: neutral
+  default_method: deferred_tax_simplified
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: recurring
+  note: null
 - voice_id: bs.tax.dta_close
   statement: BS
   section: tax
@@ -1494,6 +2033,17 @@ voices:
   calc_phase_final: E6
   denominator_flow_voice: null
   recurrence: null
+  note: null
+- voice_id: bs.tax.dtl_movement
+  statement: BS
+  section: tax
+  nature: driver
+  sign: neutral
+  default_method: deferred_tax_simplified
+  calc_phase_proxy: null
+  calc_phase_final: E6
+  denominator_flow_voice: null
+  recurrence: recurring
   note: null
 - voice_id: bs.tax.dtl_close
   statement: BS
@@ -1572,6 +2122,17 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+- voice_id: bs.provisions.restructuring.usage
+  statement: BS
+  section: provisions
+  nature: driver
+  sign: positive
+  default_method: manual_provision_schedule
+  calc_phase_proxy: null
+  calc_phase_final: E5
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: null
 - voice_id: bs.provisions.restructuring.balance_close
   statement: BS
   section: provisions
@@ -1593,6 +2154,17 @@ voices:
   calc_phase_final: E5
   denominator_flow_voice: null
   recurrence: null
+  note: null
+- voice_id: bs.provisions.legal_other.usage
+  statement: BS
+  section: provisions
+  nature: driver
+  sign: positive
+  default_method: manual_provision_schedule
+  calc_phase_proxy: null
+  calc_phase_final: E5
+  denominator_flow_voice: null
+  recurrence: non_recurring
   note: null
 - voice_id: bs.provisions.legal_other.balance_close
   statement: BS
@@ -1693,6 +2265,17 @@ voices:
   denominator_flow_voice: bs.employee_benefits.balance_close
   recurrence: recurring
   note: null
+- voice_id: bs.employee_benefits.actuarial_changes
+  statement: BS
+  section: employee_benefits
+  nature: driver
+  sign: neutral
+  default_method: manual_zero
+  calc_phase_proxy: null
+  calc_phase_final: E5
+  denominator_flow_voice: null
+  recurrence: non_recurring
+  note: → flussa a OCI
 - voice_id: bs.employee_benefits.balance_close
   statement: BS
   section: employee_benefits
@@ -1726,6 +2309,28 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: SUM liability + equity
+- voice_id: bs.balance_check
+  statement: BS
+  section: totals
+  nature: derived
+  sign: neutral
+  default_method: balance_check
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: null
+  recurrence: null
+  note: Tolleranza max(1.0, 0.0001×|TA|)
+- voice_id: cf.operating.net_income
+  statement: CF
+  section: operating
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: pl.net_income
+  recurrence: null
+  note: null
 - voice_id: cf.operating.da_addback
   statement: CF
   section: operating
@@ -1748,6 +2353,72 @@ voices:
   denominator_flow_voice: pl.impairment.total
   recurrence: null
   note: null
+- voice_id: cf.operating.provisions_addback
+  statement: CF
+  section: operating
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: pl.provisions.total, usages
+  recurrence: null
+  note: null
+- voice_id: cf.operating.tax_deferred_addback
+  statement: CF
+  section: operating
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: pl.tax.deferred
+  recurrence: null
+  note: null
+- voice_id: cf.operating.financial_addback
+  statement: CF
+  section: operating
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: pl.financial.total_net
+  recurrence: null
+  note: Riclassifica a financing
+- voice_id: cf.operating.equity_method_addback
+  statement: CF
+  section: operating
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: pl.equity_method_result
+  recurrence: null
+  note: null
+- voice_id: cf.operating.fv_addback
+  statement: CF
+  section: operating
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: pl.other.fair_value_gain_loss_investment_property
+  recurrence: null
+  note: Non-cash
+- voice_id: cf.operating.nwc_change
+  statement: CF
+  section: operating
+  nature: derived
+  sign: neutral
+  default_method: nwc_change_for_cf
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: bs.nwc.operating
+  recurrence: null
+  note: null
 - voice_id: cf.operating.tax_paid
   statement: CF
   section: operating
@@ -1768,6 +2439,17 @@ voices:
   calc_phase_proxy: null
   calc_phase_final: E8
   denominator_flow_voice: bs.employee_benefits.payments
+  recurrence: null
+  note: null
+- voice_id: cf.operating.total
+  statement: CF
+  section: operating
+  nature: derived
+  sign: neutral
+  default_method: subtotal_aggregation
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: null
   recurrence: null
   note: null
 - voice_id: cf.investing.capex_ppe
@@ -1814,6 +2496,61 @@ voices:
   denominator_flow_voice: bs.fa.intangible.disposals
   recurrence: null
   note: null
+- voice_id: cf.investing.investment_property_change
+  statement: CF
+  section: investing
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: bs.fa.investment_property
+  recurrence: null
+  note: Esclude FV revaluation (non-cash)
+- voice_id: cf.investing.financial_assets_movement
+  statement: CF
+  section: investing
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: bs.fa.financial.movements
+  recurrence: null
+  note: null
+- voice_id: cf.investing.acquisitions_ma_placeholder
+  statement: CF
+  section: investing
+  nature: derived
+  sign: negative
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: M&A placeholder
+  recurrence: non_recurring
+  note: Cash effect M&A
+- voice_id: cf.investing.divestitures_carve_out_placeholder
+  statement: CF
+  section: investing
+  nature: derived
+  sign: positive
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: carve-out placeholder
+  recurrence: non_recurring
+  note: null
+- voice_id: cf.investing.total
+  statement: CF
+  section: investing
+  nature: derived
+  sign: neutral
+  default_method: subtotal_aggregation
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
 - voice_id: cf.financing.borrowings_drawdowns
   statement: CF
   section: financing
@@ -1834,6 +2571,39 @@ voices:
   calc_phase_proxy: null
   calc_phase_final: E8
   denominator_flow_voice: bs.nfp.borrowings.term_loan_repayments
+  recurrence: null
+  note: null
+- voice_id: cf.financing.rcf_movement_cash
+  statement: CF
+  section: financing
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: bs.nfp.borrowings.rcf_movement
+  recurrence: null
+  note: null
+- voice_id: cf.financing.bonds_movement_cash
+  statement: CF
+  section: financing
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: bs.nfp.borrowings.bonds_movement
+  recurrence: null
+  note: null
+- voice_id: cf.financing.shareholder_loans_cash
+  statement: CF
+  section: financing
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: bs.nfp.borrowings.shareholder
   recurrence: null
   note: null
 - voice_id: cf.financing.lease_payments_principal
@@ -1891,6 +2661,39 @@ voices:
   denominator_flow_voice: bs.equity.capital.dividends_paid
   recurrence: null
   note: Già negativo (Step 1)
+- voice_id: cf.financing.capital_changes
+  statement: CF
+  section: financing
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: equity capital changes
+  recurrence: null
+  note: null
+- voice_id: cf.financing.total
+  statement: CF
+  section: financing
+  nature: derived
+  sign: neutral
+  default_method: subtotal_aggregation
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
+- voice_id: cf.net_change_cash
+  statement: CF
+  section: totals
+  nature: derived
+  sign: neutral
+  default_method: null
+  calc_phase_proxy: null
+  calc_phase_final: E8
+  denominator_flow_voice: null
+  recurrence: null
+  note: null
 - voice_id: cf.cash_close
   statement: CF
   section: totals
