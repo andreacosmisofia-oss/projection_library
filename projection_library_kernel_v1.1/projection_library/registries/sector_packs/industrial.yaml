@@ -1,0 +1,50 @@
+pack:
+  sector_pack: industrial
+  minimum_tier: advanced
+  voci_attive:
+  - '207'
+  voci_disabilitate:
+  - subscription/license/usage_based, BoM ottenibile
+  method_overrides_examples:
+  - 'pl.rev.gross.product_sales: volume_price'
+  - 'pl.cogs.materials.raw: bom_input_cost'
+  - 'pl.cogs.labour.direct: variable_fixed_split'
+  - 'inventory.wip: inventory_production_cycle_days'
+  - 'bs.fa.tangible.expansion_capex: capex_per_unit'
+  - 'warranty: warranty_pct_installed_base'
+  required_drivers:
+  - production_volume, capacity, capacity_utilization, BoM detail, headcount production, installed_base_value
+  validation_overrides:
+  - 'RP_002 gross_margin: -100% .. +60%'
+  - 'RP_004 DSO: 0..180'
+  - 'RP_005 DIO_total: 0..365'
+  - 'RP_008 capex_intensity: 0%..30%'
+custom_kpis:
+- pack: industrial
+  kpi_id: kpi.industrial.production_volume
+  numerator: driver.production_volume
+  denominator: null
+  unit: units
+  validation_range: null
+  note: Volume per period
+- pack: industrial
+  kpi_id: kpi.industrial.capacity_utilization
+  numerator: driver.production_volume
+  denominator: driver.capacity
+  unit: pct
+  validation_range: 60%-95%
+  note: null
+- pack: industrial
+  kpi_id: kpi.industrial.unit_cost_avg
+  numerator: abs(pl.cogs.materials.raw)
+  denominator: driver.production_volume
+  unit: eur_000
+  validation_range: null
+  note: null
+- pack: industrial
+  kpi_id: kpi.industrial.warranty_balance_pct_installed_base
+  numerator: abs(warranty.balance)
+  denominator: driver.installed_base_value
+  unit: pct
+  validation_range: 0.5%-5%
+  note: null

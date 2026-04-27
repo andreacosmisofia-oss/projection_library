@@ -1,0 +1,33 @@
+pack:
+  sector_pack: services
+  minimum_tier: standard
+  voci_attive:
+  - service_revenue, project_contract, backlog_conversion, headcount-driven
+  voci_disabilitate:
+  - product_sales (no), inventory raw/wip/finished, BoM, warranty
+  method_overrides_examples:
+  - 'pl.rev.gross.service_revenue: headcount_unit_cost (FTE × utilization × rate)'
+  - 'pl.rev.gross.project_contract: backlog_conversion'
+  - 'bs.nwc.contract_assets: days_target'
+  - 'pl.provisions.legal_other: weighted_exposure (M_PRB_002)'
+  required_drivers:
+  - fte_billable, utilization_rate, billing_rate, backlog, order_intake, conversion_rate_backlog
+  validation_overrides:
+  - 'RP_002 gross_margin: 30% .. 70%'
+  - 'RP_004 DSO: 30..120'
+  - 'RP_005 DIO: 0..30 (negligible)'
+custom_kpis:
+- pack: services
+  kpi_id: kpi.services.utilization_rate
+  numerator: driver.billable_hours
+  denominator: (fte × working_days × 8)
+  unit: pct
+  validation_range: 60%-90%
+  note: null
+- pack: services
+  kpi_id: kpi.services.revenue_per_fte
+  numerator: pl.rev.gross.service_revenue
+  denominator: driver.fte_billable
+  unit: eur_000
+  validation_range: null
+  note: null

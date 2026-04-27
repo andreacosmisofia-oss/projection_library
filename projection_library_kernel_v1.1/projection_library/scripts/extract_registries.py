@@ -1,10 +1,11 @@
 """Extract registry YAMLs from Projection_Library_Spec_v1.1.xlsx.
 
 M1.2 — currently extracts:
-  - 02_voices    → registries/voice_registry.yaml
-  - 01_methods   → registries/method_registry.yaml (Sezione A + Sezione B)
-  - 03_kpis      → registries/kpi_registry.yaml
-  - 05_validation → registries/validation_rules.yaml
+  - 02_voices       → registries/voice_registry.yaml
+  - 01_methods      → registries/method_registry.yaml (Sezione A + Sezione B)
+  - 03_kpis         → registries/kpi_registry.yaml
+  - 05_validation   → registries/validation_rules.yaml
+  - 07_sector_packs → registries/sector_packs/{6 file}.yaml (1 file per pack)
 
 Validates each record against the corresponding schema in data_contracts/registries/.
 Records that fail validation are reported on stderr and skipped; valid records are
@@ -85,6 +86,19 @@ KPI_TEMPLATE_SUFFIX = " (template)"
 VALIDATION_SHEET = "05_validation"
 VALIDATION_HEADER_ROW = 4
 VALIDATION_DATA_RANGE = (5, 77)  # inclusive (73 regole; audit §8)
+
+# 07_sector_packs — sezione A (overview pack) e sezione B (custom KPI).
+SECTOR_PACKS_SHEET = "07_sector_packs"
+SECTOR_PACKS_A_HEADER_ROW = 5
+SECTOR_PACKS_A_DATA_RANGE = (6, 11)   # inclusive (6 pack)
+SECTOR_PACKS_B_HEADER_ROW = 14
+SECTOR_PACKS_B_DATA_RANGE = (15, 28)  # inclusive (14 custom KPI)
+SECTOR_PACKS_OUT_SUBDIR = "sector_packs"
+
+# Audit M1.0 §11 — unit normalization per sector_packs sez. B.
+SECTOR_KPI_UNIT_MAP = {
+    "eur": "eur_000",
+}
 
 # Schema enum trigger_phases (fonte verità per la normalizzazione del suffisso _post).
 TRIGGER_PHASES_ENUM = {
@@ -461,11 +475,99 @@ def extract_validation_rules(ws) -> list[dict]:
     return records
 
 
+def _split_pipe(value):
+    """Split su '|' con strip; restituisce [] se value è None."""
+    if value is None:
+        return []
+    return [item.strip() for item in str(value).split("|") if item.strip()]
+
+
+def _split_kpi_qualifier(raw: str) -> tuple[str, str | None]:
+    """Audit §11 — separa kpi_id da qualificatore inline ' (...)' a fine stringa.
+
+    Esempi:
+      'kpi.saas.nrr (target >= 100%)' → ('kpi.saas.nrr', '(target >= 100%)')
+      'kpi.industrial.production_volume' → ('kpi.industrial.production_volume', None)
+    """
+    if " (" in raw and raw.endswith(")"):
+        idx = raw.rindex(" (")
+        return raw[:idx], raw[idx + 1:]
+    return raw, None
+
+
+def extract_sector_packs_a(ws) -> list[dict]:
+    headers = [c.value for c in ws[SECTOR_PACKS_A_HEADER_ROW]]
+    expected = [
+        "sector_pack", "minimum_tier", "voci attive", "voci disabilitate",
+        "method_overrides (esempi chiave)", "required_drivers", "validation_overrides",
+    ]
+    if headers[: len(expected)] != expected:
+        raise RuntimeError(f"Unexpected headers (sez. A) in {SECTOR_PACKS_SHEET}: {headers}")
+
+    start, end = SECTOR_PACKS_A_DATA_RANGE
+    records: list[dict] = []
+    for row in ws.iter_rows(min_row=start, max_row=end, values_only=True):
+        sector_pack = _clean(row[0])
+        if sector_pack is None:
+            continue
+        if _is_footer(sector_pack):
+            continue
+
+        records.append({
+            "sector_pack": sector_pack,
+            "minimum_tier": _clean(row[1]),
+            "voci_attive": _split_pipe(_clean(row[2])),
+            "voci_disabilitate": _split_pipe(_clean(row[3])),
+            "method_overrides_examples": _split_pipe(_clean(row[4])),
+            "required_drivers": _split_pipe(_clean(row[5])),
+            "validation_overrides": _split_pipe(_clean(row[6])),
+        })
+    return records
+
+
+def extract_sector_packs_b(ws) -> list[dict]:
+    headers = [c.value for c in ws[SECTOR_PACKS_B_HEADER_ROW]]
+    expected = ["pack", "kpi_id", "numerator", "denominator", "unit", "validation_range", "note"]
+    if headers[: len(expected)] != expected:
+        raise RuntimeError(f"Unexpected headers (sez. B) in {SECTOR_PACKS_SHEET}: {headers}")
+
+    start, end = SECTOR_PACKS_B_DATA_RANGE
+    records: list[dict] = []
+    for row in ws.iter_rows(min_row=start, max_row=end, values_only=True):
+        pack = _clean(row[0])
+        if pack is None:
+            continue
+        if _is_footer(pack):
+            continue
+
+        kpi_id_raw = _clean(row[1])
+        kpi_id, qualifier = _split_kpi_qualifier(kpi_id_raw) if kpi_id_raw else (None, None)
+
+        unit_raw = _clean(row[4])
+        unit = SECTOR_KPI_UNIT_MAP.get(unit_raw, unit_raw)
+
+        note = _clean(row[6])
+        if qualifier is not None:
+            note = f"{note}; {qualifier}" if note else qualifier
+
+        records.append({
+            "pack": pack,
+            "kpi_id": kpi_id,
+            "numerator": _clean(row[2]),
+            "denominator": _clean(row[3]),
+            "unit": unit,
+            "validation_range": _clean(row[5]),
+            "note": note,
+        })
+    return records
+
+
 def main() -> int:
     voice_schema = json.loads((SCHEMA_DIR / "voice_registry.schema.json").read_text(encoding="utf-8"))
     method_schema = json.loads((SCHEMA_DIR / "method_registry.schema.json").read_text(encoding="utf-8"))
     kpi_schema = json.loads((SCHEMA_DIR / "kpi_registry.schema.json").read_text(encoding="utf-8"))
     validation_schema = json.loads((SCHEMA_DIR / "validation_rule.schema.json").read_text(encoding="utf-8"))
+    sector_pack_schema = json.loads((SCHEMA_DIR / "sector_pack.schema.json").read_text(encoding="utf-8"))
 
     wb = openpyxl.load_workbook(XLSX_PATH, read_only=True, data_only=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -532,7 +634,43 @@ def main() -> int:
         )
     print(f"05_validation: {len(rules_valid)}/{len(rules)} record validi → {rules_out.relative_to(ROOT)}")
 
-    failed = bool(voices_invalid or methods_invalid or derived_invalid or kpis_invalid or rules_invalid)
+    # --- 07_sector_packs ---
+    ws_sp = wb[SECTOR_PACKS_SHEET]
+    packs = extract_sector_packs_a(ws_sp)
+    custom_kpis = extract_sector_packs_b(ws_sp)
+
+    packs_valid, packs_invalid = _validate(packs, sector_pack_schema["$defs"]["SectorPackEntry"])
+    _report_failures("07_sector_packs sez. A", "sector_pack", packs_invalid)
+
+    kpis_sp_valid, kpis_sp_invalid = _validate(custom_kpis, sector_pack_schema["$defs"]["SectorKpiEntry"])
+    _report_failures("07_sector_packs sez. B", "kpi_id", kpis_sp_invalid)
+
+    sp_out_dir = OUT_DIR / SECTOR_PACKS_OUT_SUBDIR
+    sp_out_dir.mkdir(parents=True, exist_ok=True)
+
+    written_files: list[str] = []
+    for pack_rec in packs_valid:
+        pack_id = pack_rec["sector_pack"]
+        pack_kpis = [k for k in kpis_sp_valid if k["pack"] == pack_id]
+        out_path = sp_out_dir / f"{pack_id}.yaml"
+        with out_path.open("w", encoding="utf-8") as f:
+            yaml.safe_dump(
+                {"pack": pack_rec, "custom_kpis": pack_kpis},
+                f,
+                sort_keys=False,
+                allow_unicode=True,
+                width=120,
+            )
+        written_files.append(f"{pack_id}.yaml ({len(pack_kpis)} kpi)")
+
+    print(f"07_sector_packs sez. A (packs):       {len(packs_valid)}/{len(packs)} record validi")
+    print(f"07_sector_packs sez. B (custom_kpis): {len(kpis_sp_valid)}/{len(custom_kpis)} record validi")
+    print(f"  → {SECTOR_PACKS_OUT_SUBDIR}/: " + ", ".join(written_files))
+
+    failed = bool(
+        voices_invalid or methods_invalid or derived_invalid or kpis_invalid
+        or rules_invalid or packs_invalid or kpis_sp_invalid
+    )
     return 1 if failed else 0
 
 

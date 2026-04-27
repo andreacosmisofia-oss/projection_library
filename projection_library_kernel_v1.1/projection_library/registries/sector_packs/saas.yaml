@@ -1,0 +1,43 @@
+pack:
+  sector_pack: saas
+  minimum_tier: standard
+  voci_attive:
+  - subscription, R&D capitalized, deferred revenue
+  voci_disabilitate:
+  - warranty (installed_base), inventory.wip/finished, project_contract, energy_production, investment_property
+  method_overrides_examples:
+  - 'pl.rev.gross.subscription: arr_bridge (M_BRG_002)'
+  - 'pl.cogs.subcontracting: pct_net_revenue (cloud)'
+  - 'pl.opex.sm.marketing_performance: pct_net_revenue'
+  - 'bs.fa.intangible.software_capex: pct_net_revenue'
+  - 'bs.nwc.contract_liabilities: days_target'
+  - 'warranty: warranty_rate_revenue=0'
+  required_drivers:
+  - saas.arr_y0, new_arr, expansion_arr, contraction_arr, churn_arr, gross_churn_rate, NRR target
+  validation_overrides:
+  - 'RP_002 gross_margin: 50% .. 90%'
+  - 'RP_003 ebitda_margin: -50% .. +50%'
+  - 'RP_004 DSO: 0..120'
+  - 'new KPI: NRR > 100% target'
+custom_kpis:
+- pack: saas
+  kpi_id: kpi.saas.nrr
+  numerator: (arr + expansion - contr - churn)
+  denominator: arr_prior
+  unit: ratio
+  validation_range: 1.00-1.50
+  note: Best-in-class > 1.20; (target >= 100%)
+- pack: saas
+  kpi_id: kpi.saas.grr
+  numerator: (arr - contr - churn)
+  denominator: arr_prior
+  unit: ratio
+  validation_range: 0.85-0.99
+  note: Best-in-class > 0.95; (target >= 90%)
+- pack: saas
+  kpi_id: kpi.saas.gross_churn_rate
+  numerator: driver.saas.churn_arr
+  denominator: arr_prior
+  unit: pct
+  validation_range: 1%-15%
+  note: (target <= 10%)
