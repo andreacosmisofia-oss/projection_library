@@ -58,3 +58,9 @@ Valori compositi splittati in calc_phase_proxy + calc_phase_final.
 | E3.1 | null | E3_1 |
 | E4 (proxy) → E8 (check) | E4 | E8 |
 | varie fasi | null | varies |
+
+## §11 Normalizzazioni sector_pack
+
+- unit "eur" → eur_000 in ingestion
+- kpi_id: rimuovere qualificatori inline (es. "(target >= 100%)") → spostare in campo note
+- campi voci_attive/disabilitate/method_overrides/required_drivers/validation_overrides: split su separatore pipe `|` → array stringhe

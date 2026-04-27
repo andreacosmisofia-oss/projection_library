@@ -60,8 +60,8 @@
         },
         "unit": {
           "type": "string",
-          "enum": ["pct", "ratio", "days", "months", "years", "eur_000", "eur_per_unit"],
-          "description": "Unità di misura del KPI (7 valori)."
+          "enum": ["pct", "ratio", "days", "months", "years", "eur_000", "eur_per_unit", "units"],
+          "description": "Unità di misura del KPI (8 valori; 'units' aggiunto per supportare i KPI sector-specific in 07_sector_packs)."
         },
         "sign_handling": {
           "type": "string",

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://projection-library.local/schemas/registries/sector_pack.schema.json",
+  "title": "Sector Pack Registry Schema",
+  "description": "Registro dei 6 pack settoriali (generic + 5 settori) e dei 14 KPI custom sector-specific. Deriva dallo sheet 07_sector_packs di Projection_Library_Spec_v1.1.xlsx (Sezione A pack overview, Sezione B custom KPI). Normalizzazioni di ingestion in audit M1.0 §11.",
+  "type": "object",
+  "properties": {
+    "packs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/SectorPackEntry" },
+      "description": "Pack settoriali. Cardinalità attesa: 6 (generic + industrial + saas + retail + real_estate + services)."
+    },
+    "custom_kpis": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/SectorKpiEntry" },
+      "description": "KPI custom sector-specific. Cardinalità attesa: 14 (nessuno per il pack 'generic')."
+    }
+  },
+  "required": ["packs", "custom_kpis"],
+  "$defs": {
+    "SectorPackEntry": {
+      "type": "object",
+      "description": "Singolo sector pack (Sezione A, 7 colonne). Campi liberi del foglio (separati da '|') normalizzati ad array di stringhe.",
+      "properties": {
+        "sector_pack": {
+          "type": "string",
+          "enum": ["generic", "industrial", "saas", "retail", "real_estate", "services"],
+          "description": "Identificativo del pack (6 valori)."
+        },
+        "minimum_tier": {
+          "type": "string",
+          "enum": ["minimum", "standard", "advanced"],
+          "description": "Tier minimo richiesto per attivare il pack."
+        },
+        "voci_attive": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Voci modello attive nel pack (split su '|' dal foglio)."
+        },
+        "voci_disabilitate": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Voci modello disabilitate dal pack (split su '|' dal foglio)."
+        },
+        "method_overrides_examples": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Override di default_method per voci specifiche (esempi chiave; split su '|')."
+        },
+        "required_drivers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Driver richiesti dal pack (split su separatore)."
+        },
+        "validation_overrides": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Override sui range delle validation rules (split su '|')."
+        }
+      },
+      "required": ["sector_pack", "minimum_tier"],
+      "additionalProperties": false
+    },
+    "SectorKpiEntry": {
+      "type": "object",
+      "description": "Singolo KPI sector-specific (Sezione B, 7 colonne).",
+      "properties": {
+        "pack": {
+          "type": "string",
+          "enum": ["industrial", "saas", "retail", "real_estate", "services"],
+          "description": "Pack di appartenenza (5 valori, no 'generic')."
+        },
+        "kpi_id": {
+          "type": "string",
+          "pattern": "^kpi\\.[a-z_]+\\.[a-z0-9_]+$",
+          "description": "Identificativo canonico del KPI (eventuali qualificatori inline del foglio — es. '(target >= 100%)' — vanno spostati in 'note', vedi §11)."
+        },
+        "numerator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Espressione del numeratore."
+        },
+        "denominator": {
+          "type": ["string", "null"],
+          "description": "Espressione del denominatore. Null/'—' per KPI senza denominatore (livello assoluto)."
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["pct", "ratio", "days", "months", "years", "eur_000", "eur_per_unit", "units"],
+          "description": "Unità di misura (8 valori, allineata a kpi_registry; 'eur' del foglio va rimappato a 'eur_000', vedi §11)."
+        },
+        "validation_range": {
+          "type": ["string", "null"],
+          "description": "Range di plausibilità (testo libero, es. '60%-90%', '0.85-0.99'). Null o '—' se non applicabile."
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "Note libere; ospita i qualificatori inline rimossi da kpi_id."
+        }
+      },
+      "required": ["pack", "kpi_id", "numerator", "unit"],
+      "additionalProperties": false
+    }
+  }
+}
