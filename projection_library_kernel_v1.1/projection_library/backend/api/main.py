@@ -14,6 +14,7 @@ import logging
 
 from fastapi import FastAPI
 
+from backend.api.routes.registry import router as registry_router
 from backend.infrastructure.registry import (
     RegistryLoadError,
     get_cache,
@@ -36,6 +37,7 @@ app = FastAPI(
 )
 
 register_lifespan(app)
+app.include_router(registry_router)
 
 
 @app.get("/health", tags=["meta"])
