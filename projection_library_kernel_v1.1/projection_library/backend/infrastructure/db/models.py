@@ -1,11 +1,15 @@
-"""ORM models (Milestones M2 + M3).
+"""ORM models (Milestones M2 + M3 + M5).
 
 M2 defines the ``projects`` table. M3 adds ``balances`` and
 ``raw_voices`` for the Case 1 (gestionale) intake flow described in
-``flows/01_data_intake.md``. Soft delete is implemented via
-``deleted_at`` on ``projects`` and ``balances``: rows with a non-null
-timestamp are filtered out by the API layer but kept in the database
-for audit purposes.
+``flows/01_data_intake.md``. M5 adds ``mappings`` (consumed by the
+historical validator and the KPI calculator; M4 will populate it via
+the auto-suggest flow when it lands), ``historical_kpis``,
+``quality_scores`` and ``validation_reports`` (see
+``flows/03_validation_historical.md`` and ``flows/10_quality_score.md``).
+Soft delete is implemented via ``deleted_at`` on ``projects`` and
+``balances``: rows with a non-null timestamp are filtered out by the
+API layer but kept in the database for audit purposes.
 """
 
 from __future__ import annotations
@@ -134,4 +138,167 @@ class RawVoice(Base):
     )
 
 
-__all__ = ["Balance", "Project", "RawVoice"]
+class Mapping(Base):
+    """User-confirmed mapping ``raw_voices.voice_user_label`` → ``voice_id``.
+
+    M5 only reads from this table (the M4 auto-suggest API will own
+    inserts/updates once it lands). Uniqueness on
+    ``(project_id, voice_user_label, voice_user_section)`` mirrors the
+    raw_voices grain so a label disambiguates by section when the same
+    string appears in P&L and SP.
+    """
+
+    __tablename__ = "mappings"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    voice_user_label: Mapped[str] = mapped_column(String(255), nullable=False)
+    voice_user_section: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    voice_id: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
+    confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    confirmed_by_user: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_mappings_project_label_section",
+            "project_id",
+            "voice_user_label",
+            "voice_user_section",
+            unique=True,
+        ),
+    )
+
+
+class HistoricalKPI(Base):
+    """One row per ``(project, kpi, year)`` plus an ``AGG`` row per KPI.
+
+    The ``AGG`` row carries the aggregated default used to seed forward
+    assumptions (``default_for_projection``) and the per-KPI
+    ``calibration_score``; per-year rows carry the raw computed value.
+    Rows persist between reruns: the calculator deletes a project's
+    KPIs and re-inserts in a single transaction (idempotent).
+    """
+
+    __tablename__ = "historical_kpis"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    kpi_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    year: Mapped[str] = mapped_column(String(8), nullable=False)
+    value: Mapped[float | None] = mapped_column(Float, nullable=True)
+    not_computable_reason: Mapped[str | None] = mapped_column(
+        String(64), nullable=True
+    )
+    default_for_projection: Mapped[float | None] = mapped_column(Float, nullable=True)
+    calibration_score: Mapped[float | None] = mapped_column(Float, nullable=True)
+    lfl_warning: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    computed_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_historical_kpis_project_kpi_year",
+            "project_id",
+            "kpi_id",
+            "year",
+            unique=True,
+        ),
+    )
+
+
+class QualityScore(Base):
+    """Latest computed quality score per project (one active row).
+
+    The scorer upserts on ``(project_id)``: there is always at most one
+    "current" score visible to the UI. ``components_detail`` keeps the
+    explainable breakdown for the modal in ``flows/10_quality_score.md``.
+    ``score_method_calibration`` is nullable because M5 ships before M6
+    method selection — it stays NULL until method configs exist, and
+    the total renormalises the remaining 3 weights.
+    """
+
+    __tablename__ = "quality_scores"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+        unique=True,
+    )
+    score_total: Mapped[float] = mapped_column(Float, nullable=False)
+    score_history: Mapped[float] = mapped_column(Float, nullable=False)
+    score_completeness: Mapped[float] = mapped_column(Float, nullable=False)
+    score_consistency: Mapped[float] = mapped_column(Float, nullable=False)
+    score_method_calibration: Mapped[float | None] = mapped_column(
+        Float, nullable=True
+    )
+    classification: Mapped[str] = mapped_column(String(16), nullable=False)
+    components_detail: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    computed_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+
+
+class ValidationReport(Base):
+    """Persisted output of the historical validator.
+
+    One row per ``(project_id, phase)``; ``phase='historical'`` for M5.
+    The full issue list lives in JSON to keep the schema flat (the
+    validator can produce dozens of issues per run; a relational layout
+    is pure overhead at pilot scale).
+    """
+
+    __tablename__ = "validation_reports"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    phase: Mapped[str] = mapped_column(String(32), nullable=False)
+    summary: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    issues: Mapped[list] = mapped_column(JSON, nullable=False, default=list)
+    can_proceed: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    computed_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_validation_reports_project_phase",
+            "project_id",
+            "phase",
+            unique=True,
+        ),
+    )
+
+
+__all__ = [
+    "Balance",
+    "HistoricalKPI",
+    "Mapping",
+    "Project",
+    "QualityScore",
+    "RawVoice",
+    "ValidationReport",
+]
