@@ -14,6 +14,7 @@ import logging
 
 from fastapi import FastAPI
 
+from backend.api.routes.drivers import router as drivers_router
 from backend.api.routes.intake import router as intake_router
 from backend.api.routes.kpi import router as kpi_router
 from backend.api.routes.methods import router as methods_router
@@ -50,6 +51,7 @@ app.include_router(validation_router)
 app.include_router(kpi_router)
 app.include_router(quality_router)
 app.include_router(methods_router)
+app.include_router(drivers_router)
 
 
 @app.get("/health", tags=["meta"])
