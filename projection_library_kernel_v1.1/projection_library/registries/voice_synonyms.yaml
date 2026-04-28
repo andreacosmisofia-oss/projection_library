@@ -1,0 +1,300 @@
+# voice_synonyms.yaml — initial coverage (M4)
+#
+# Lookup table consumed by domain/intake/mapper.py (strategy B:
+# synonym match → confidence 0.95). Each entry pairs a voice_id from
+# voice_registry.yaml with a list of human-friendly aliases that real
+# bilanci tend to use. Italian and English are kept in separate lists
+# to make later UX/i18n work explicit, but the runtime lookup treats
+# them as one bag (case-insensitive, accent-stripped, ws-collapsed —
+# normalization happens in domain/intake/normalize.py).
+#
+# Coverage status (M4 initial round): pl.rev.* only (23 voices).
+# Remaining sections will be added incrementally on top of this file.
+
+voice_synonyms:
+
+# ----- pl.rev.gross.* -------------------------------------------------
+
+- voice_id: pl.rev.gross.product_sales
+  synonyms_it:
+    - ricavi delle vendite
+    - ricavi vendite prodotti
+    - vendite prodotti
+    - ricavi prodotti
+    - ricavi netti vendite prodotti
+  synonyms_en:
+    - product sales
+    - product revenue
+    - sales of products
+
+- voice_id: pl.rev.gross.service_revenue
+  synonyms_it:
+    - ricavi da servizi
+    - ricavi servizi
+    - prestazioni di servizi
+    - ricavi prestazione servizi
+    - ricavi servizi resi
+  synonyms_en:
+    - service revenue
+    - service income
+    - revenue from services
+
+- voice_id: pl.rev.gross.subscription
+  synonyms_it:
+    - ricavi da abbonamenti
+    - ricavi abbonamenti
+    - canoni periodici
+    - ricavi ricorrenti abbonamento
+    - ricavi subscription
+  synonyms_en:
+    - subscription revenue
+    - recurring subscription revenue
+    - arr revenue
+
+- voice_id: pl.rev.gross.license
+  synonyms_it:
+    - ricavi da licenze
+    - ricavi licenze software
+    - canoni licenza
+    - royalty su licenze
+    - ricavi licensing
+  synonyms_en:
+    - license revenue
+    - licensing revenue
+    - software license revenue
+
+- voice_id: pl.rev.gross.usage_based
+  synonyms_it:
+    - ricavi a consumo
+    - ricavi pay per use
+    - ricavi a volume
+    - ricavi usage based
+    - ricavi transazionali
+  synonyms_en:
+    - usage based revenue
+    - pay per use revenue
+    - transactional revenue
+
+- voice_id: pl.rev.gross.rental
+  synonyms_it:
+    - ricavi da locazione
+    - canoni di locazione attivi
+    - ricavi affitti attivi
+    - proventi locazioni
+    - ricavi noleggio
+  synonyms_en:
+    - rental revenue
+    - rental income
+    - lease income
+
+- voice_id: pl.rev.gross.project_contract
+  synonyms_it:
+    - ricavi da commesse
+    - ricavi su lavori in corso
+    - ricavi commesse pluriennali
+    - avanzamento commesse
+    - ricavi progetti a contratto
+  synonyms_en:
+    - project revenue
+    - contract revenue
+    - revenue from long term contracts
+
+- voice_id: pl.rev.gross.energy_production
+  synonyms_it:
+    - ricavi da produzione di energia
+    - ricavi vendita energia
+    - ricavi cessione energia elettrica
+    - proventi produzione energia
+    - ricavi incentivi energia
+  synonyms_en:
+    - energy sales
+    - energy production revenue
+    - revenue from electricity sales
+
+- voice_id: pl.rev.gross.other
+  synonyms_it:
+    - altri ricavi
+    - altri ricavi delle vendite
+    - ricavi vari
+    - ricavi diversi
+    - altri ricavi caratteristici
+  synonyms_en:
+    - other revenue
+    - other sales revenue
+    - miscellaneous revenue
+
+- voice_id: pl.rev.gross.custom_<n>
+  synonyms_it:
+    - ricavo custom
+    - ricavo personalizzato
+    - ricavo definito dall utente
+    - ricavo extra
+    - voce ricavo aggiuntiva
+  synonyms_en:
+    - custom revenue
+    - user defined revenue
+    - additional revenue line
+
+- voice_id: pl.rev.gross_total
+  synonyms_it:
+    - totale ricavi lordi
+    - ricavi lordi totali
+    - totale vendite e prestazioni
+    - ricavi gestione caratteristica
+    - totale fatturato
+  synonyms_en:
+    - gross revenue
+    - total gross revenue
+    - total sales
+
+# ----- pl.rev.deductions.* --------------------------------------------
+
+- voice_id: pl.rev.deductions.discounts
+  synonyms_it:
+    - sconti commerciali
+    - sconti su vendite
+    - sconti incondizionati
+    - abbuoni attivi su vendite
+    - sconti concessi a clienti
+  synonyms_en:
+    - sales discounts
+    - trade discounts
+    - discounts granted
+
+- voice_id: pl.rev.deductions.rebates
+  synonyms_it:
+    - premi a clienti
+    - rebates clienti
+    - sconti volume
+    - premi di fine anno
+    - bonus a clienti
+  synonyms_en:
+    - customer rebates
+    - volume rebates
+    - year end rebates
+
+- voice_id: pl.rev.deductions.returns
+  synonyms_it:
+    - resi su vendite
+    - rimborsi a clienti
+    - merce resa
+    - storno per resi
+    - resi merce
+  synonyms_en:
+    - sales returns
+    - returns and allowances
+    - refunds to customers
+
+- voice_id: pl.rev.deductions.trade_promo
+  synonyms_it:
+    - promozioni commerciali
+    - contributi promozionali
+    - spese trade marketing
+    - sconti promo a clienti
+    - contributi listing
+  synonyms_en:
+    - trade promotions
+    - trade promo spend
+    - promotional allowances
+
+- voice_id: pl.rev.deductions_total
+  synonyms_it:
+    - totale rettifiche su ricavi
+    - totale sconti e abbuoni
+    - totale deduzioni dai ricavi
+    - rettifiche commerciali totali
+    - storni su ricavi
+  synonyms_en:
+    - total revenue deductions
+    - total discounts and allowances
+    - total sales deductions
+
+# ----- pl.rev.adjustments.* -------------------------------------------
+
+- voice_id: pl.rev.adjustments.deferred_movement
+  synonyms_it:
+    - variazione ricavi differiti
+    - movimentazione ricavi differiti
+    - variazione risconti passivi commerciali
+    - delta risconti su ricavi
+    - movimento deferred revenue
+  synonyms_en:
+    - deferred revenue movement
+    - change in deferred revenue
+    - deferred revenue release
+
+- voice_id: pl.rev.adjustments.contract_asset_movement
+  synonyms_it:
+    - variazione attivita su contratto
+    - movimento contract asset
+    - variazione crediti su contratto
+    - delta contract assets ifrs15
+    - variazione attivita derivanti da contratto
+  synonyms_en:
+    - contract asset movement
+    - change in contract assets
+    - ifrs 15 contract asset movement
+
+- voice_id: pl.rev.adjustments_total
+  synonyms_it:
+    - totale rettifiche ifrs15
+    - totale aggiustamenti su ricavi
+    - aggiustamenti contrattuali totali
+    - totale variazioni ricavi differiti
+    - totale rettifiche su ricavi ifrs15
+  synonyms_en:
+    - total revenue adjustments
+    - total ifrs 15 adjustments
+    - total contract revenue adjustments
+
+# ----- pl.rev.other_op_income.* ---------------------------------------
+
+- voice_id: pl.rev.other_op_income.recurring
+  synonyms_it:
+    - altri proventi operativi ricorrenti
+    - altri ricavi operativi
+    - proventi accessori ricorrenti
+    - ricavi accessori
+    - altri proventi della gestione
+  synonyms_en:
+    - other operating income recurring
+    - other operating income
+    - sundry operating income
+
+- voice_id: pl.rev.other_op_income.non_recurring
+  synonyms_it:
+    - altri proventi non ricorrenti
+    - proventi straordinari operativi
+    - plusvalenze non ricorrenti
+    - sopravvenienze attive operative
+    - proventi una tantum
+  synonyms_en:
+    - other operating income non recurring
+    - one off operating income
+    - non recurring operating gains
+
+- voice_id: pl.rev.other_op_income_total
+  synonyms_it:
+    - totale altri proventi operativi
+    - altri proventi operativi totali
+    - totale altri ricavi della gestione
+    - altri ricavi caratteristici totali
+    - totale proventi accessori
+  synonyms_en:
+    - total other operating income
+    - other income total
+    - total other operating revenue
+
+# ----- pl.rev.net -----------------------------------------------------
+
+- voice_id: pl.rev.net
+  synonyms_it:
+    - ricavi netti
+    - fatturato netto
+    - ricavi delle vendite e prestazioni netti
+    - vendite nette
+    - ricavi netti totali
+  synonyms_en:
+    - net revenue
+    - net sales
+    - total net revenue
