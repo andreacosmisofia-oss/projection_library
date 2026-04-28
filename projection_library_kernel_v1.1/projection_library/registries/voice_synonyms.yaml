@@ -1578,3 +1578,101 @@ voice_synonyms:
     - net debt
     - net financial position
     - net financial debt
+
+# ----- bs.equity.* ----------------------------------------------------
+
+- voice_id: bs.equity.share_capital.close
+  synonyms_it:
+    - capitale sociale finale
+    - capitale sociale chiusura
+    - share capital finale
+    - capitale sociale fine periodo
+    - capitale sottoscritto e versato finale
+  synonyms_en:
+    - share capital closing
+    - closing share capital
+    - share capital end of period
+
+- voice_id: bs.equity.retained_earnings.close
+  synonyms_it:
+    - utili a nuovo finali
+    - riserve di utili portate a nuovo chiusura
+    - retained earnings finali
+    - utili indivisi chiusura
+    - riserve di utili accumulate finali
+  synonyms_en:
+    - retained earnings closing
+    - closing retained earnings
+    - retained earnings end of period
+
+- voice_id: bs.equity.oci_cumulative.close
+  synonyms_it:
+    - oci cumulato finale
+    - riserva oci cumulata chiusura
+    - altre componenti di reddito cumulate finali
+    - other comprehensive income cumulato finale
+    - riserva da valutazione cumulata finale
+  synonyms_en:
+    - cumulative oci closing
+    - closing cumulative oci
+    - cumulative other comprehensive income end
+
+- voice_id: bs.equity.nci.close
+  synonyms_it:
+    - patrimonio netto di terzi finale
+    - interessenze di terzi chiusura
+    - non controlling interest finale
+    - capitale e riserve di terzi finali
+    - quote di pertinenza di terzi chiusura
+  synonyms_en:
+    - non controlling interest closing
+    - closing nci
+    - minority interest end of period
+
+- voice_id: bs.equity.total_close
+  synonyms_it:
+    - patrimonio netto totale finale
+    - patrimonio netto consolidato chiusura
+    - totale equity finale
+    - patrimonio netto fine periodo
+    - patrimonio netto complessivo finale
+  synonyms_en:
+    - total equity closing
+    - closing total equity
+    - total shareholders equity end
+
+- voice_id: bs.equity.capital.dividends_paid
+  synonyms_it:
+    - dividendi distribuiti
+    - dividendi pagati
+    - distribuzione dividendi
+    - dividendi erogati ai soci
+    - distribuzione utili ai soci
+  synonyms_en:
+    - dividends paid
+    - dividends distributed
+    - shareholder dividends paid
+
+- voice_id: bs.equity.capital.share_buyback
+  synonyms_it:
+    - acquisto azioni proprie
+    - buyback azioni proprie
+    - riacquisto azioni proprie
+    - acquisti di azioni proprie
+    - share buyback di periodo
+  synonyms_en:
+    - share buyback
+    - treasury share repurchase
+    - share repurchase
+
+- voice_id: bs.equity.capital.organic_increases
+  synonyms_it:
+    - aumenti di capitale organici
+    - apporti di capitale dei soci
+    - aumenti capitale a pagamento
+    - capital increases organici
+    - aumenti di capitale per nuova finanza
+  synonyms_en:
+    - organic capital increases
+    - paid in capital increases
+    - organic equity raises
