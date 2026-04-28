@@ -1866,3 +1866,215 @@ voice_synonyms:
     - balance sheet check
     - balance sheet quadrature
     - assets minus liabilities equity check
+
+# ----- cf.operating.* -------------------------------------------------
+
+- voice_id: cf.operating.total
+  synonyms_it:
+    - totale flussi di cassa operativi
+    - cash flow operativo totale
+    - cfo totale
+    - flussi netti gestione operativa
+    - cash flow da attivita operativa
+  synonyms_en:
+    - operating cash flow total
+    - total cash flow from operations
+    - cfo total
+
+- voice_id: cf.operating.nwc_change
+  synonyms_it:
+    - variazione capitale circolante
+    - delta nwc operativo
+    - variazione working capital
+    - assorbimento capitale circolante netto
+    - variazione ccn operativo
+  synonyms_en:
+    - change in working capital
+    - working capital movement
+    - nwc change
+
+- voice_id: cf.operating.tax_paid
+  synonyms_it:
+    - imposte pagate
+    - imposte sul reddito pagate
+    - cassa per imposte versate
+    - tax paid di periodo
+    - pagamenti per ires e irap
+  synonyms_en:
+    - taxes paid
+    - income tax paid
+    - cash taxes paid
+
+- voice_id: cf.operating.employee_benefits_paid
+  synonyms_it:
+    - tfr e benefici dipendenti pagati
+    - liquidazioni tfr cassa
+    - employee benefits paid
+    - cassa per benefici dipendenti
+    - pagamenti tfr e fondi pensione
+  synonyms_en:
+    - employee benefits paid
+    - tfr paid in cash
+    - pension and benefits paid
+
+# ----- cf.investing.* -------------------------------------------------
+
+- voice_id: cf.investing.total
+  synonyms_it:
+    - totale flussi di cassa da investimento
+    - cash flow investing totale
+    - cfi totale
+    - flussi netti gestione investimenti
+    - cash flow da attivita di investimento
+  synonyms_en:
+    - investing cash flow total
+    - total cash flow from investing
+    - cfi total
+
+- voice_id: cf.investing.capex_ppe
+  synonyms_it:
+    - capex su immobilizzazioni materiali
+    - investimenti ppe cash
+    - acquisti cespiti
+    - capex tangible cash out
+    - investimenti in immobili impianti e macchinari
+  synonyms_en:
+    - capex ppe
+    - ppe capital expenditure
+    - tangible capex cash out
+
+- voice_id: cf.investing.capex_intangibles
+  synonyms_it:
+    - capex su immobilizzazioni immateriali
+    - investimenti intangibili cash
+    - acquisti beni immateriali
+    - capex intangible cash out
+    - investimenti in software e marchi
+  synonyms_en:
+    - capex intangibles
+    - intangible capital expenditure
+    - intangible capex cash out
+
+- voice_id: cf.investing.disposals_ppe
+  synonyms_it:
+    - dismissioni cespiti
+    - cessione immobilizzazioni materiali
+    - incassi da vendita ppe
+    - disposals immobili impianti e macchinari
+    - vendita cespiti cash in
+  synonyms_en:
+    - disposals ppe
+    - proceeds from disposal of ppe
+    - sale of property plant and equipment
+
+- voice_id: cf.investing.disposals_intangibles
+  synonyms_it:
+    - dismissioni beni immateriali
+    - cessione immobilizzazioni immateriali
+    - incassi da vendita intangibili
+    - disposals intangibili
+    - vendita beni immateriali cash in
+  synonyms_en:
+    - disposals intangibles
+    - proceeds from disposal of intangibles
+    - sale of intangible assets
+
+# ----- cf.financing.* -------------------------------------------------
+
+- voice_id: cf.financing.total
+  synonyms_it:
+    - totale flussi di cassa da finanziamento
+    - cash flow financing totale
+    - cff totale
+    - flussi netti gestione finanziamenti
+    - cash flow da attivita di finanziamento
+  synonyms_en:
+    - financing cash flow total
+    - total cash flow from financing
+    - cff total
+
+- voice_id: cf.financing.borrowings_drawdowns
+  synonyms_it:
+    - erogazioni finanziamenti cash
+    - tiraggi finanziamenti
+    - debt drawdowns cash
+    - nuove erogazioni mutui cash
+    - utilizzi nuovi finanziamenti cash
+  synonyms_en:
+    - borrowings drawdowns
+    - new debt drawdowns
+    - debt issuance cash in
+
+- voice_id: cf.financing.borrowings_repayments
+  synonyms_it:
+    - rimborsi finanziamenti cash
+    - rimborsi mutui di periodo
+    - debt repayments cash
+    - rate capitale rimborsate cash
+    - rimborsi linee di credito cash
+  synonyms_en:
+    - borrowings repayments
+    - debt repayments cash out
+    - debt principal repayments
+
+- voice_id: cf.financing.capital_changes
+  synonyms_it:
+    - variazioni di capitale cash
+    - aumenti capitale cash in
+    - apporti dei soci cash
+    - movimenti di capitale di periodo
+    - equity changes cash
+  synonyms_en:
+    - capital changes
+    - equity changes cash
+    - paid in capital movements
+
+- voice_id: cf.financing.dividends
+  synonyms_it:
+    - dividendi pagati cash
+    - distribuzione dividendi di periodo
+    - dividendi erogati ai soci cash
+    - dividendi cash out
+    - distribuzione utili cash
+  synonyms_en:
+    - dividends paid cash
+    - dividends cash out
+    - distributions to shareholders
+
+- voice_id: cf.financing.lease_payments_principal
+  synonyms_it:
+    - rimborsi leasing quota capitale cash
+    - lease principal payments cash
+    - rate leasing principal cash
+    - pagamenti principal su leasing cash out
+    - rimborsi ifrs16 quota capitale
+  synonyms_en:
+    - lease principal payments cash
+    - ifrs 16 lease principal cash
+    - lease liability principal payments
+
+# ----- cf.* aggregates ------------------------------------------------
+
+- voice_id: cf.net_change_cash
+  synonyms_it:
+    - variazione netta della cassa
+    - net change in cash
+    - delta cassa di periodo
+    - flusso netto di cassa
+    - variazione complessiva disponibilita liquide
+  synonyms_en:
+    - net change in cash
+    - net cash movement
+    - net change in cash and equivalents
+
+- voice_id: cf.cash_close
+  synonyms_it:
+    - cassa finale
+    - disponibilita liquide finali
+    - cassa fine periodo
+    - cassa al termine dell esercizio
+    - liquidita finale
+  synonyms_en:
+    - cash closing
+    - closing cash
+    - cash at end of period
