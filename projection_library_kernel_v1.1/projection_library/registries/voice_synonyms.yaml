@@ -1828,3 +1828,41 @@ voice_synonyms:
     - cit payable
     - corporate income tax payable
     - tax payable cit
+
+# ----- bs.* aggregates ------------------------------------------------
+
+- voice_id: bs.total_assets
+  synonyms_it:
+    - totale attivo
+    - totale attivita
+    - attivo totale di bilancio
+    - totale stato patrimoniale attivo
+    - totale impieghi
+  synonyms_en:
+    - total assets
+    - total balance sheet assets
+    - sum of assets
+
+- voice_id: bs.total_liabilities_equity
+  synonyms_it:
+    - totale passivo e patrimonio netto
+    - totale passivo
+    - totale fonti di finanziamento
+    - totale stato patrimoniale passivo
+    - totale passivita e patrimonio netto
+  synonyms_en:
+    - total liabilities and equity
+    - total liabilities and shareholders equity
+    - total balance sheet liabilities and equity
+
+- voice_id: bs.balance_check
+  synonyms_it:
+    - quadratura di bilancio
+    - check quadratura attivo passivo
+    - sbilancio stato patrimoniale
+    - differenza attivo passivo
+    - controllo quadratura bilancio
+  synonyms_en:
+    - balance sheet check
+    - balance sheet quadrature
+    - assets minus liabilities equity check
