@@ -235,7 +235,10 @@ voices:
   phase: E3_1
   phase_proxy: E1
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - pl.rev.gross_total
+  - pl.rev.deductions.total
+  - pl.rev.adjustments_total
   depends_on_assumptions:
   - children
   depends_on_drivers: []
@@ -340,7 +343,14 @@ voices:
   phase: E3
   phase_proxy: E1
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - pl.cogs.materials.raw
+  - pl.cogs.materials.consumables
+  - pl.cogs.subcontracting
+  - pl.cogs.labour.direct
+  - pl.cogs.overhead
+  - pl.cogs.inventory_writeoff
+  - pl.cogs.wip_capitalization
   depends_on_assumptions:
   - children
   depends_on_drivers: []
@@ -350,7 +360,9 @@ voices:
   phase: E3
   phase_proxy: E1
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - pl.rev.net
+  - pl.cogs.total
   depends_on_assumptions: []
   depends_on_drivers: []
   formula_rule_id: null
@@ -577,7 +589,10 @@ voices:
   phase: E3
   phase_proxy: E1
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - pl.gross_profit
+  - pl.opex.total
+  - pl.provisions.total
   depends_on_assumptions: []
   depends_on_drivers: []
   formula_rule_id: null
@@ -669,7 +684,10 @@ voices:
   phase: E7
   phase_proxy: null
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - pl.ebitda
+  - pl.da.total
+  - pl.impairment.total
   depends_on_assumptions: []
   depends_on_drivers: []
   formula_rule_id: null
@@ -804,7 +822,9 @@ voices:
   phase: E7
   phase_proxy: null
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - pl.tax.current
+  - pl.tax.deferred
   depends_on_assumptions:
   - children
   depends_on_drivers: []
@@ -814,7 +834,12 @@ voices:
   phase: E7
   phase_proxy: null
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - pl.ebit
+  - pl.financial.total_net
+  - pl.equity_method_result
+  - pl.other.non_operating_total
+  - pl.other.fair_value_gain_loss_investment_property
   depends_on_assumptions: []
   depends_on_drivers: []
   formula_rule_id: null
@@ -823,7 +848,9 @@ voices:
   phase: E7
   phase_proxy: null
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - pl.ebt
+  - pl.tax.total
   depends_on_assumptions: []
   depends_on_drivers: []
   formula_rule_id: null
@@ -1673,7 +1700,10 @@ voices:
   phase: E8
   phase_proxy: null
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - bs.nfp.borrowings.balance_close
+  - bs.nfp.lease_liability.close
+  - bs.nfp.cash
   depends_on_assumptions: []
   depends_on_drivers: []
   formula_rule_id: null
@@ -1811,7 +1841,12 @@ voices:
   phase: E7
   phase_proxy: null
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - bs.equity.share_capital.close
+  - bs.equity.reserves
+  - bs.equity.retained_earnings.close
+  - bs.equity.oci_total
+  - bs.equity.nci.close
   depends_on_assumptions:
   - children
   depends_on_drivers: []
@@ -2096,7 +2131,7 @@ voices:
   nature: derived
   depends_on_voices:
   - bs.total_assets
-  - bs.equity.total_close
+  - bs.total_liabilities_equity
   depends_on_assumptions: []
   depends_on_drivers: []
   formula_rule_id: balance_check
@@ -2405,7 +2440,10 @@ voices:
   phase: E8
   phase_proxy: null
   nature: derived
-  depends_on_voices: []
+  depends_on_voices:
+  - cf.operating.total
+  - cf.investing.total
+  - cf.financing.total
   depends_on_assumptions: []
   depends_on_drivers: []
   formula_rule_id: null
