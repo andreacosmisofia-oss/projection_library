@@ -58,6 +58,10 @@
           "type": ["string", "null"],
           "description": "Espressione del denominatore. Null/assente per KPI senza denominatore (es. KPI di livello assoluto)."
         },
+        "formula_python": {
+          "type": ["string", "null"],
+          "description": "Espressione Python machine-readable del KPI (M1.3). Namespace: voices, kpis, assumptions, drivers, year, prev_year, resolve(), safe_div(). Null se non applicabile."
+        },
         "unit": {
           "type": "string",
           "enum": ["pct", "ratio", "days", "months", "years", "eur_000", "eur_per_unit", "units"],

@@ -56,6 +56,10 @@
           "type": ["string", "null"],
           "description": "Formula di sintesi (es. 'anchor[t-1]')."
         },
+        "formula_python": {
+          "type": ["string", "null"],
+          "description": "Espressione Python machine-readable della formula (M1.3). Namespace: voices, assumptions, drivers, kpis, year, prev_year, voice, resolve(), safe_div(), pmt(). Null se non applicabile."
+        },
         "applicable_voices_examples": {
           "type": ["array", "null"],
           "items": { "type": "string" },
@@ -105,6 +109,10 @@
           "type": "string",
           "minLength": 1,
           "description": "Formula identitaria (es. '-1 * max(0, (gross_open + gross_close)/2 - non_depreciable) / useful_life')."
+        },
+        "formula_python": {
+          "type": ["string", "null"],
+          "description": "Espressione Python machine-readable della regola identitaria (M1.3). Namespace: voices, assumptions, drivers, kpis, year, prev_year, resolve(), safe_div(). Null se richiede custom function."
         },
         "applicato_a": {
           "type": ["string", "null"],
