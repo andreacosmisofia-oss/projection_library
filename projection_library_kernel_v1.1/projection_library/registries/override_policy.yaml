@@ -1,0 +1,247 @@
+policies:
+- policy_class: not_overridable_derived
+  applies_to_voices_pattern:
+  - pl.gross_profit*
+  - pl.ebitda*
+  - pl.ebit
+  - pl.ebt
+  - pl.net_income
+  - pl.rev.gross_total
+  - pl.rev.net*
+  - pl.cogs.total*
+  - pl.opex.total
+  - pl.tax.total
+  - pl.financial.total_net
+  - bs.fa.*.net_close
+  - bs.fa.*.gross_close
+  - bs.equity.total_close
+  - bs.equity.retained_earnings.close
+  - bs.nwc.operating*
+  - bs.nfp.net_debt
+  - bs.nfp.cash
+  - bs.total_assets
+  - bs.total_liabilities_equity
+  - bs.balance_check
+  - cf.*.total
+  - cf.net_change_cash
+  exclude_voices: []
+  one_shot_allowed: false
+  overridable: false
+  organic_propagation_targets: []
+  one_shot_propagation_targets: []
+  cf_treatment: ''
+  tax_treatment: ''
+  affects_future_years: false
+  guidance_message: Voce derived — applica override su componenti. Vedi voice_dependencies.yaml.
+- policy_class: revenue_organic
+  applies_to_voices_pattern: pl.rev.gross.*
+  exclude_voices:
+  - pl.rev.gross_total
+  - pl.rev.net.proxy
+  - pl.rev.net.final
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - pl.cogs.*
+  - bs.nwc.ar.*
+  - bs.nwc.other_current_liab.vat_payable
+  - pl.tax.current
+  - pl.tax.total
+  - pl.net_income
+  - bs.equity.retained_earnings.close
+  - bs.nwc.cit_payable
+  one_shot_propagation_targets:
+  - bs.nfp.cash
+  - cf.net_change_cash
+  cf_treatment: operating_cf_revenue_line
+  tax_treatment: applies_etr_unless_flag_off
+  affects_future_years: false
+  guidance_message: null
+- policy_class: cogs_organic
+  applies_to_voices_pattern: pl.cogs.*
+  exclude_voices:
+  - pl.cogs.total.proxy
+  - pl.cogs.total.final
+  - pl.cogs.total
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - bs.nwc.ap.*
+  - bs.nwc.inventory.*
+  - pl.gross_profit.final
+  - pl.ebitda.final
+  - pl.ebit
+  - pl.tax.current
+  - pl.net_income
+  - bs.equity.retained_earnings.close
+  one_shot_propagation_targets:
+  - bs.nfp.cash
+  - cf.net_change_cash
+  cf_treatment: operating_cf_cogs_line
+  tax_treatment: applies_etr_unless_flag_off
+  affects_future_years: false
+  guidance_message: null
+- policy_class: opex_one_shot
+  applies_to_voices_pattern: pl.opex.*
+  exclude_voices:
+  - pl.opex.total
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - pl.ebitda.final
+  - pl.ebit
+  - pl.tax.current
+  - pl.net_income
+  - bs.equity.retained_earnings.close
+  - bs.nwc.ap.*
+  one_shot_propagation_targets:
+  - bs.nfp.cash
+  - cf.net_change_cash
+  cf_treatment: operating_cf_opex_line
+  tax_treatment: applies_etr_unless_flag_off
+  affects_future_years: false
+  guidance_message: null
+- policy_class: capex_organic
+  applies_to_voices_pattern:
+  - bs.fa.*.maintenance_capex
+  - bs.fa.*.expansion_capex
+  - bs.fa.intangible.software_capex
+  - bs.fa.rou_assets.*
+  exclude_voices: []
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - bs.fa.tangible.gross_close
+  - bs.fa.intangible.gross_close
+  - pl.da.*
+  - pl.ebit
+  - pl.tax.current
+  - pl.net_income
+  - bs.equity.retained_earnings.close
+  one_shot_propagation_targets:
+  - bs.fa.tangible.gross_close
+  - bs.fa.intangible.gross_close
+  - bs.nfp.cash
+  - cf.net_change_cash
+  cf_treatment: investing_cf
+  tax_treatment: no_direct_tax_generates_da_unless_flag_off
+  affects_future_years: true
+  guidance_message: null
+- policy_class: equity_injection_one_shot
+  applies_to_voices_pattern: bs.equity.capital.*
+  exclude_voices: []
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - bs.equity.share_capital.close
+  - bs.equity.total_close
+  - bs.balance_check
+  one_shot_propagation_targets:
+  - bs.equity.share_capital.close
+  - bs.equity.total_close
+  - bs.nfp.cash
+  - cf.net_change_cash
+  - cf.financing.equity_changes
+  cf_treatment: financing_cf_equity_line
+  tax_treatment: no_tax
+  affects_future_years: false
+  guidance_message: null
+- policy_class: debt_drawdown_one_shot
+  applies_to_voices_pattern:
+  - bs.nfp.borrowings.*_drawdowns
+  - bs.nfp.borrowings.*_repayments
+  - bs.nfp.borrowings.*_movement
+  - bs.nfp.borrowings.*_new
+  exclude_voices: []
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - bs.nfp.borrowings.balance_close
+  - bs.nfp.net_debt
+  - pl.financial.interest_expense
+  - pl.ebt
+  - pl.tax.current
+  - pl.net_income
+  - bs.equity.retained_earnings.close
+  one_shot_propagation_targets:
+  - bs.nfp.borrowings.balance_close
+  - bs.nfp.net_debt
+  - bs.nfp.cash
+  - cf.net_change_cash
+  - cf.financing.debt_changes
+  cf_treatment: financing_cf_debt_line
+  tax_treatment: no_direct_tax_affects_future_interest_unless_flag_off
+  affects_future_years: true
+  guidance_message: null
+- policy_class: tax_one_shot
+  applies_to_voices_pattern:
+  - bs.nwc.other_current_liab.cit_payable
+  - bs.nwc.other_current_assets.cit_receivable
+  exclude_voices: []
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - pl.tax.total
+  - pl.net_income
+  - bs.equity.retained_earnings.close
+  - bs.nwc.cit_payable
+  one_shot_propagation_targets:
+  - bs.nwc.cit_payable
+  - bs.nfp.cash
+  - cf.net_change_cash
+  cf_treatment: operating_cf_tax_paid_line
+  tax_treatment: direct_modification_no_etr_recalc
+  affects_future_years: false
+  guidance_message: null
+- policy_class: nwc_days_organic
+  applies_to_voices_pattern:
+  - bs.nwc.ar.trade_gross
+  - bs.nwc.ap.trade
+  - bs.nwc.inventory.*
+  exclude_voices:
+  - bs.nwc.inventory.total
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - cf.operating.nwc_change
+  - bs.nfp.cash
+  one_shot_propagation_targets:
+  - cf.operating.nwc_change
+  - bs.nfp.cash
+  - cf.net_change_cash
+  cf_treatment: operating_cf_nwc_change
+  tax_treatment: no_tax
+  affects_future_years: false
+  guidance_message: null
+- policy_class: provisions_organic
+  applies_to_voices_pattern: bs.provisions.*
+  exclude_voices:
+  - bs.provisions.total_close
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets:
+  - pl.provisions.*
+  - pl.ebitda.final
+  - pl.tax.current
+  - pl.net_income
+  - bs.equity.retained_earnings.close
+  one_shot_propagation_targets:
+  - bs.nfp.cash
+  - cf.net_change_cash
+  cf_treatment: operating_cf_addback_provisions
+  tax_treatment: applies_etr_unless_flag_off
+  affects_future_years: false
+  guidance_message: null
+- policy_class: default_organic
+  applies_to_voices_pattern: '*'
+  exclude_voices: []
+  one_shot_allowed: true
+  overridable: true
+  organic_propagation_targets: []
+  one_shot_propagation_targets:
+  - bs.nfp.cash
+  - cf.net_change_cash
+  cf_treatment: operating_cf_generic
+  tax_treatment: applies_etr_unless_flag_off
+  affects_future_years: false
+  guidance_message: null
