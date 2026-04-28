@@ -1250,3 +1250,185 @@ voice_synonyms:
     - investments movement
     - equity investments movement
     - change in investments
+
+# ----- bs.nwc.* -------------------------------------------------------
+
+- voice_id: bs.nwc.ar.trade_gross
+  synonyms_it:
+    - crediti commerciali lordi
+    - crediti verso clienti lordi
+    - crediti commerciali al lordo del fondo svalutazione
+    - crediti vs clienti gross
+    - crediti commerciali ante svalutazione
+  synonyms_en:
+    - trade receivables gross
+    - gross accounts receivable
+    - gross trade ar
+
+- voice_id: bs.nwc.ar.allowance
+  synonyms_it:
+    - fondo svalutazione crediti
+    - svalutazione crediti commerciali
+    - allowance crediti dubbi
+    - fondo rischi su crediti
+    - fondo svalutazione crediti vs clienti
+  synonyms_en:
+    - allowance for doubtful accounts
+    - bad debt allowance
+    - trade receivables allowance
+
+- voice_id: bs.nwc.inventory.raw
+  synonyms_it:
+    - rimanenze materie prime
+    - magazzino materie prime
+    - scorte materie prime
+    - giacenze materie prime
+    - inventario materie prime
+  synonyms_en:
+    - raw materials inventory
+    - inventory of raw materials
+    - raw material stock
+
+- voice_id: bs.nwc.inventory.wip
+  synonyms_it:
+    - rimanenze semilavorati
+    - lavori in corso di lavorazione
+    - wip a magazzino
+    - giacenze semilavorati e wip
+    - inventario work in progress
+  synonyms_en:
+    - work in progress inventory
+    - wip inventory
+    - inventory of work in progress
+
+- voice_id: bs.nwc.inventory.finished
+  synonyms_it:
+    - rimanenze prodotti finiti
+    - magazzino prodotti finiti
+    - giacenze prodotti finiti
+    - scorte prodotti finiti
+    - inventario prodotti finiti e merci
+  synonyms_en:
+    - finished goods inventory
+    - inventory of finished goods
+    - finished products stock
+
+- voice_id: bs.nwc.inventory.total
+  synonyms_it:
+    - rimanenze totali
+    - magazzino totale
+    - giacenze totali
+    - totale scorte
+    - inventario totale
+  synonyms_en:
+    - total inventory
+    - inventories total
+    - total stock
+
+- voice_id: bs.nwc.ap.trade
+  synonyms_it:
+    - debiti commerciali
+    - debiti verso fornitori
+    - debiti vs fornitori
+    - fornitori da pagare
+    - debiti commerciali per acquisti
+  synonyms_en:
+    - trade payables
+    - accounts payable
+    - trade ap
+
+- voice_id: bs.nwc.other_current_assets
+  synonyms_it:
+    - altre attivita correnti
+    - altri crediti a breve termine
+    - altre attivita correnti varie
+    - altri crediti correnti totali
+    - altre poste attive correnti
+  synonyms_en:
+    - other current assets
+    - other current receivables
+    - sundry current assets
+
+- voice_id: bs.nwc.other_current_liab
+  synonyms_it:
+    - altre passivita correnti
+    - altri debiti a breve termine
+    - altre passivita correnti varie
+    - altri debiti correnti totali
+    - altre poste passive correnti
+  synonyms_en:
+    - other current liabilities
+    - other current payables
+    - sundry current liabilities
+
+- voice_id: bs.nwc.accrued_expenses
+  synonyms_it:
+    - ratei passivi
+    - ratei e risconti passivi commerciali
+    - oneri maturati da liquidare
+    - costi maturati non ancora pagati
+    - ratei passivi su costi operativi
+  synonyms_en:
+    - accrued expenses
+    - accrued operating expenses
+    - operating accruals
+
+- voice_id: bs.nwc.prepayments
+  synonyms_it:
+    - risconti attivi
+    - costi anticipati
+    - acconti su costi futuri
+    - anticipi a fornitori non commerciali
+    - costi pagati in anticipo
+  synonyms_en:
+    - prepayments
+    - prepaid expenses
+    - prepaid costs
+
+- voice_id: bs.nwc.contract_assets
+  synonyms_it:
+    - attivita derivanti da contratto
+    - contract assets ifrs15
+    - crediti per fatture da emettere su contratti
+    - attivita su contratto ifrs15
+    - work done not yet billed
+  synonyms_en:
+    - contract assets
+    - ifrs 15 contract assets
+    - unbilled receivables
+
+- voice_id: bs.nwc.contract_liabilities
+  synonyms_it:
+    - passivita derivanti da contratto
+    - contract liabilities ifrs15
+    - acconti da clienti su contratti
+    - ricavi differiti ifrs15
+    - passivita su contratto ifrs15
+  synonyms_en:
+    - contract liabilities
+    - ifrs 15 contract liabilities
+    - deferred revenue ifrs 15
+
+- voice_id: bs.nwc.operating
+  synonyms_it:
+    - capitale circolante operativo
+    - circolante operativo netto
+    - nwc operativo
+    - working capital operativo
+    - capitale d esercizio operativo
+  synonyms_en:
+    - operating working capital
+    - operating nwc
+    - net operating working capital
+
+- voice_id: bs.nwc.other_current_assets.cit_receivable
+  synonyms_it:
+    - crediti per imposte correnti
+    - crediti tributari ires
+    - crediti tributari per imposte sul reddito
+    - crediti vs erario per ires
+    - crediti per cit
+  synonyms_en:
+    - cit receivable
+    - corporate income tax receivable
+    - tax receivable cit
