@@ -1432,3 +1432,149 @@ voice_synonyms:
     - cit receivable
     - corporate income tax receivable
     - tax receivable cit
+
+# ----- bs.nfp.* -------------------------------------------------------
+
+- voice_id: bs.nfp.cash
+  synonyms_it:
+    - cassa
+    - disponibilita liquide
+    - cassa e mezzi equivalenti
+    - cassa e banche attive
+    - liquidita
+  synonyms_en:
+    - cash
+    - cash and cash equivalents
+    - cash and equivalents
+
+- voice_id: bs.nfp.borrowings.total_close
+  synonyms_it:
+    - debiti finanziari totali finali
+    - totale finanziamenti chiusura
+    - debiti verso banche e altri finanziatori finali
+    - posizione debitoria finanziaria finale
+    - totale borrowings chiusura
+  synonyms_en:
+    - total borrowings closing
+    - closing total borrowings
+    - total financial debt end of period
+
+- voice_id: bs.nfp.borrowings.term_loan_drawdowns
+  synonyms_it:
+    - erogazioni term loan
+    - utilizzi finanziamenti a termine
+    - tiraggi mutui
+    - drawdown finanziamenti
+    - nuove erogazioni mutui chirografari
+  synonyms_en:
+    - term loan drawdowns
+    - new term loan disbursements
+    - term loan utilizations
+
+- voice_id: bs.nfp.borrowings.term_loan_repayments
+  synonyms_it:
+    - rimborsi term loan
+    - rimborsi finanziamenti a termine
+    - rate capitale mutui
+    - quota capitale rimborsata mutui
+    - repayments mutui chirografari
+  synonyms_en:
+    - term loan repayments
+    - term loan principal repayments
+    - term loan amortization payments
+
+- voice_id: bs.nfp.borrowings.rcf_movement
+  synonyms_it:
+    - utilizzi e rimborsi linea revolving
+    - movimento linea credito revolving
+    - delta utilizzo rcf
+    - variazione affidamenti revolving
+    - movimento revolving credit facility
+  synonyms_en:
+    - revolving credit facility movement
+    - rcf movement
+    - revolving credit drawdowns and repayments
+
+- voice_id: bs.nfp.borrowings.bonds_movement
+  synonyms_it:
+    - movimento prestiti obbligazionari
+    - emissioni e rimborsi bond
+    - delta obbligazioni emesse
+    - variazione prestiti obbligazionari
+    - movimento bonds di periodo
+  synonyms_en:
+    - bonds movement
+    - bond issuance and repayments
+    - movement in bonds outstanding
+
+- voice_id: bs.nfp.borrowings.shareholder_loans_movement
+  synonyms_it:
+    - movimento finanziamenti soci
+    - variazione debiti verso soci finanziatori
+    - delta finanziamenti dei soci
+    - finanziamenti soci movimentazione
+    - shareholder loan movement
+  synonyms_en:
+    - shareholder loans movement
+    - movement in shareholder loans
+    - shareholder financing movement
+
+- voice_id: bs.nfp.lease_liability.open
+  synonyms_it:
+    - passivita di leasing iniziale
+    - debito ifrs16 apertura
+    - lease liability iniziale
+    - passivita leasing inizio periodo
+    - debito leasing apertura
+  synonyms_en:
+    - lease liability opening
+    - opening lease liability
+    - ifrs 16 lease liability opening
+
+- voice_id: bs.nfp.lease_liability.close
+  synonyms_it:
+    - passivita di leasing finale
+    - debito ifrs16 chiusura
+    - lease liability finale
+    - passivita leasing fine periodo
+    - debito leasing chiusura
+  synonyms_en:
+    - lease liability closing
+    - closing lease liability
+    - ifrs 16 lease liability closing
+
+- voice_id: bs.nfp.lease_liability.payments_principal
+  synonyms_it:
+    - rimborso quota capitale leasing
+    - pagamenti capitale lease liability
+    - rate capitale leasing pagate
+    - principal payments su leasing
+    - rimborsi principal lease ifrs16
+  synonyms_en:
+    - lease principal payments
+    - lease liability principal repayments
+    - ifrs 16 principal payments
+
+- voice_id: bs.nfp.lease_liability.new_contracts
+  synonyms_it:
+    - nuovi contratti di leasing
+    - nuove passivita ifrs16
+    - lease liability nuovi contratti
+    - sottoscrizione nuovi leasing
+    - new lease contracts ifrs16
+  synonyms_en:
+    - new lease contracts
+    - new lease liabilities
+    - new ifrs 16 lease contracts
+
+- voice_id: bs.nfp.net_debt
+  synonyms_it:
+    - posizione finanziaria netta
+    - pfn
+    - indebitamento finanziario netto
+    - debito finanziario netto
+    - posizione finanziaria netta totale
+  synonyms_en:
+    - net debt
+    - net financial position
+    - net financial debt
