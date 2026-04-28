@@ -69,6 +69,8 @@ def evaluate(
       * ``safe_div``, ``pmt`` — finance helpers
       * ``abs``, ``max``, ``min``, ``sum`` — basic reductions
       * ``assumptions``, ``drivers``, ``kpis`` — read-only state dicts
+        (``kpis`` points to ``historical_kpis`` so the namespace stays
+        consistent with KPI references in formulas)
       * ``year``, ``prev_year``, ``voice`` — context constants
     """
     namespace = {
@@ -82,7 +84,7 @@ def evaluate(
         "sum": sum,
         "assumptions": state.assumptions,
         "drivers": state.drivers,
-        "kpis": state.historical_data,
+        "kpis": state.historical_kpis,
         "year": year,
         "prev_year": prev_year_of(year),
         "voice": voice_id,

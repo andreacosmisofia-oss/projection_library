@@ -24,12 +24,34 @@ class Override:
 
 
 @dataclass
+class ValidationIssue:
+    """Lightweight engine-side validation issue.
+
+    Distinct from ``HistoricalValidationIssue`` (M5 intake validator)
+    because the engine produces issues in-memory during a run, without
+    persisting them as a standalone report — they ride alongside the
+    snapshot via ``ProjectionResult.validation_report``.
+    """
+
+    rule_id: str
+    severity: str  # "block" | "error" | "warning" | "info"
+    message: str
+    voice_id: str | None = None
+    year: str | None = None
+    context: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
 class ModelState:
     project: Any = None
     registries: Any = None
 
+    # voice_id -> year -> value (historical actuals, from intake).
     historical_data: dict[str, dict[str, float]] = field(default_factory=dict)
-    drivers: dict[str, dict[str, float]] = field(default_factory=dict)
+    # kpi_id -> year -> value (computed by M5 KPI calculator).
+    historical_kpis: dict[str, dict[str, float]] = field(default_factory=dict)
+
+    drivers: dict[str, dict[str, Any]] = field(default_factory=dict)
     assumptions: dict[str, dict[str, dict[str, float]]] = field(default_factory=dict)
     method_configs: dict[str, Any] = field(default_factory=dict)
 
@@ -39,7 +61,12 @@ class ModelState:
     current_year: str = ""
     current_phase: str = ""
 
-    validation_issues: list[Any] = field(default_factory=list)
+    # E0 outputs.
+    historical_years: list[str] = field(default_factory=list)
+    lfl_years: list[str] = field(default_factory=list)
+    active_sector_pack: str | None = None
+
+    validation_issues: list[ValidationIssue] = field(default_factory=list)
     approximation_log: list[Any] = field(default_factory=list)
 
 
@@ -58,4 +85,9 @@ def resolve_voice_value(voice_id: str, year: str, state: ModelState) -> float:
     return base + delta
 
 
-__all__ = ["ModelState", "Override", "resolve_voice_value"]
+__all__ = [
+    "ModelState",
+    "Override",
+    "ValidationIssue",
+    "resolve_voice_value",
+]

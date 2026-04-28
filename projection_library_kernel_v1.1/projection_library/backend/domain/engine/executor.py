@@ -36,6 +36,7 @@ from backend.domain.engine.phases import (
     phase_e8,
 )
 from backend.domain.engine.value_resolver import ModelState
+from backend.domain.intake.mapping_resolver import resolve_mapped_values
 from backend.infrastructure.db.models import Project
 from backend.infrastructure.db.repositories.drivers_repo import list_drivers
 from backend.infrastructure.db.repositories.m5_repos import list_historical_kpis
@@ -93,8 +94,12 @@ def build_initial_state(
 
     Reads what's already persisted by M2-M7:
     * Project row (raises ``ProjectNotReady`` if missing).
-    * Historical KPIs from ``historical_kpis`` (skipping ``AGG`` rows
-      and ``not_computable`` entries).
+    * Historical voice values from the active ``balance`` + confirmed
+      ``mappings`` via :func:`resolve_mapped_values` — voice-keyed per
+      Flow 07 §"Stato del modello". Empty when no balance is uploaded
+      (allows ``ProjectionResult`` smoke tests on bare projects).
+    * Historical KPIs from ``historical_kpis`` into a separate slot
+      (skipping ``AGG`` rows and ``not_computable`` entries).
     * Drivers from ``drivers`` (skip markers excluded; per-type payload
       flattened into a single ``dict[year_or_param, value]``).
     * Method configs from ``method_configs`` keyed by ``voice_id``.
@@ -108,10 +113,22 @@ def build_initial_state(
         raise ProjectNotReady(f"Project {project_id} not found")
 
     historical_data: dict[str, dict[str, float]] = {}
+    lfl_years: list[str] = []
+    try:
+        mapped = resolve_mapped_values(db, project_id)
+    except LookupError:
+        # No active balance yet — phases that need historical voices
+        # will surface that via E0 hard-blocking validation.
+        mapped = None
+    if mapped is not None:
+        historical_data = {k: dict(v) for k, v in mapped.values.items()}
+        lfl_years = list(mapped.years_lfl)
+
+    historical_kpis: dict[str, dict[str, float]] = {}
     for row in list_historical_kpis(db, project_id):
         if row.year == "AGG" or row.value is None:
             continue
-        historical_data.setdefault(row.kpi_id, {})[row.year] = row.value
+        historical_kpis.setdefault(row.kpi_id, {})[row.year] = row.value
 
     drivers: dict[str, dict[str, Any]] = {}
     for row in list_drivers(db, project_id):
@@ -135,6 +152,7 @@ def build_initial_state(
         project=project,
         registries=registries,
         historical_data=historical_data,
+        historical_kpis=historical_kpis,
         drivers=drivers,
         assumptions={},
         method_configs=method_configs,
@@ -142,6 +160,7 @@ def build_initial_state(
         overrides=[],
         current_year="",
         current_phase="",
+        lfl_years=lfl_years,
         validation_issues=[],
         approximation_log=[],
     )
@@ -163,6 +182,16 @@ def run_engine(
 
     state.current_phase = "E0"
     state = phase_e0_setup(state)
+
+    if any(issue.severity == "block" for issue in state.validation_issues):
+        block_msgs = [
+            issue.message
+            for issue in state.validation_issues
+            if issue.severity == "block"
+        ]
+        raise ProjectNotReady(
+            "E0 validation block: " + "; ".join(block_msgs)
+        )
 
     for year in PROJECTION_YEARS:
         state.current_year = year

@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 def phase_e8(state: ModelState) -> ModelState:
-    logger.info("phase E8 stub year=%s", state.current_year)
+    logger.info("phase E8 year=%s", state.current_year)
     return state
 
 
