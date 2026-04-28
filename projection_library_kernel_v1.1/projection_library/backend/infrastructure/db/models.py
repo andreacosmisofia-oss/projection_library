@@ -1,4 +1,4 @@
-"""ORM models (Milestones M2 + M3 + M5).
+"""ORM models (Milestones M2 + M3 + M5 + M6).
 
 M2 defines the ``projects`` table. M3 adds ``balances`` and
 ``raw_voices`` for the Case 1 (gestionale) intake flow described in
@@ -7,6 +7,8 @@ historical validator and the KPI calculator; M4 will populate it via
 the auto-suggest flow when it lands), ``historical_kpis``,
 ``quality_scores`` and ``validation_reports`` (see
 ``flows/03_validation_historical.md`` and ``flows/10_quality_score.md``).
+M6 adds ``method_configs`` (Expert mode subset of
+``flows/04_method_selection.md``).
 Soft delete is implemented via ``deleted_at`` on ``projects`` and
 ``balances``: rows with a non-null timestamp are filtered out by the
 API layer but kept in the database for audit purposes.
@@ -293,10 +295,57 @@ class ValidationReport(Base):
     )
 
 
+class MethodConfig(Base):
+    """Per-voice projection method choice for a project (M6 Expert mode).
+
+    Lazy persistence: a row is written only when the default is
+    materialised (e.g. by a future ``init`` endpoint) or when the user
+    overrides via ``PUT``. Voices without a row inherit
+    ``voice.default_method`` from the registry at read time.
+
+    ``is_default`` mirrors whether ``method_id`` matches the registry
+    default at the moment of write — recomputed on each upsert so a
+    user can revert to the default by re-PUTting it. ``source`` keeps
+    the provenance: ``registry_default`` (materialised default),
+    ``sector_pack`` (reserved for ``apply-pack``, not used yet) or
+    ``user_override``.
+    """
+
+    __tablename__ = "method_configs"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    voice_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    method_id: Mapped[str] = mapped_column(String(64), nullable=False)
+    method_technical_code: Mapped[str | None] = mapped_column(
+        String(32), nullable=True
+    )
+    is_default: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    source: Mapped[str] = mapped_column(String(32), nullable=False)
+    configured_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow, onupdate=_utcnow
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_method_configs_project_voice",
+            "project_id",
+            "voice_id",
+            unique=True,
+        ),
+    )
+
+
 __all__ = [
     "Balance",
     "HistoricalKPI",
     "Mapping",
+    "MethodConfig",
     "Project",
     "QualityScore",
     "RawVoice",
