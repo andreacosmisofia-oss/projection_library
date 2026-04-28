@@ -37,8 +37,6 @@ policies:
   applies_to_voices_pattern: pl.rev.gross.*
   exclude_voices:
   - pl.rev.gross_total
-  - pl.rev.net.proxy
-  - pl.rev.net.final
   one_shot_allowed: true
   overridable: true
   organic_propagation_targets:
@@ -60,8 +58,6 @@ policies:
 - policy_class: cogs_organic
   applies_to_voices_pattern: pl.cogs.*
   exclude_voices:
-  - pl.cogs.total.proxy
-  - pl.cogs.total.final
   - pl.cogs.total
   one_shot_allowed: true
   overridable: true
@@ -106,7 +102,6 @@ policies:
   - bs.fa.*.maintenance_capex
   - bs.fa.*.expansion_capex
   - bs.fa.intangible.software_capex
-  - bs.fa.rou_assets.*
   exclude_voices: []
   one_shot_allowed: true
   overridable: true
@@ -151,7 +146,6 @@ policies:
   - bs.nfp.borrowings.*_drawdowns
   - bs.nfp.borrowings.*_repayments
   - bs.nfp.borrowings.*_movement
-  - bs.nfp.borrowings.*_new
   exclude_voices: []
   one_shot_allowed: true
   overridable: true

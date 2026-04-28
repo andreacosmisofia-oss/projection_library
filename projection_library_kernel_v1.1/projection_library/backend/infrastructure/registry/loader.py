@@ -231,6 +231,11 @@ def _load_sector_packs_aggregated(packs_dir: Path) -> dict[str, Any]:
 
 _SENTINEL_NULL = {"—", "-", ""}
 
+# Sentinel values declaring "the user must choose at runtime" rather than
+# pointing at a registry id. Treated as resolved for cross-reference
+# purposes (the runtime selector enforces a real choice later).
+_USER_CHOICE_SENTINELS = {"(utente sceglie)", "(user choice)"}
+
 
 def _is_meaningful(value: Any) -> bool:
     return value is not None and (not isinstance(value, str) or value not in _SENTINEL_NULL)
@@ -244,13 +249,21 @@ def _check_cross_references(reg: Registries) -> list[str]:
     derived_ids = set(reg.derived_rules.keys())
     derived_tech_codes = set(reg.derived_rules_by_tech_code.keys())
 
-    # voice.default_method → method.method_id
+    # voice.default_method → method.method_id OR derived_rule.derived_rule_id.
+    # Derived voices (e.g. pl.gross_profit, pl.da.ppe) legitimately have a
+    # derived_rule as their default projection logic; the executor dispatches
+    # accordingly. Sentinels like "(utente sceglie)" are deferred to runtime
+    # selection.
     for vid, voice in reg.voices.items():
         dm = voice.get("default_method")
-        if _is_meaningful(dm) and dm not in method_ids:
+        if not _is_meaningful(dm):
+            continue
+        if dm in _USER_CHOICE_SENTINELS:
+            continue
+        if dm not in method_ids and dm not in derived_ids:
             errors.append(
                 f"[xref] voice_registry: voice '{vid}' default_method='{dm}' "
-                f"is not a known method_id"
+                f"is neither a known method_id nor a known derived_rule_id"
             )
 
     # method.fallback → method.method_id
@@ -354,10 +367,13 @@ def _check_cross_references(reg: Registries) -> list[str]:
                 f"voice_id '{vid}' is not a known voice"
             )
         mid = entry.get("method_id")
-        if _is_meaningful(mid) and mid not in method_ids:
+        if not _is_meaningful(mid) or mid in _USER_CHOICE_SENTINELS:
+            continue
+        if mid not in method_ids and mid not in derived_ids:
             errors.append(
                 f"[xref] required_data '{entry.get('required_data_id')}': "
-                f"method_id '{mid}' is not a known method"
+                f"method_id '{mid}' is neither a known method nor "
+                f"derived_rule"
             )
 
     # sector_packs.custom_kpis: kpi_id must be unique within the pack

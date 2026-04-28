@@ -237,7 +237,7 @@ voices:
   nature: derived
   depends_on_voices:
   - pl.rev.gross_total
-  - pl.rev.deductions.total
+  - pl.rev.deductions_total
   - pl.rev.adjustments_total
   depends_on_assumptions:
   - children
@@ -345,10 +345,9 @@ voices:
   nature: derived
   depends_on_voices:
   - pl.cogs.materials.raw
-  - pl.cogs.materials.consumables
   - pl.cogs.subcontracting
   - pl.cogs.labour.direct
-  - pl.cogs.overhead
+  - pl.cogs.overhead.variable
   - pl.cogs.inventory_writeoff
   - pl.cogs.wip_capitalization
   depends_on_assumptions:
@@ -838,7 +837,7 @@ voices:
   - pl.ebit
   - pl.financial.total_net
   - pl.equity_method_result
-  - pl.other.non_operating_total
+  - pl.other.non_operating_recurring
   - pl.other.fair_value_gain_loss_investment_property
   depends_on_assumptions: []
   depends_on_drivers: []
@@ -1701,7 +1700,7 @@ voices:
   phase_proxy: null
   nature: derived
   depends_on_voices:
-  - bs.nfp.borrowings.balance_close
+  - bs.nfp.borrowings.total_close
   - bs.nfp.lease_liability.close
   - bs.nfp.cash
   depends_on_assumptions: []
@@ -1843,9 +1842,8 @@ voices:
   nature: derived
   depends_on_voices:
   - bs.equity.share_capital.close
-  - bs.equity.reserves
   - bs.equity.retained_earnings.close
-  - bs.equity.oci_total
+  - bs.equity.oci_cumulative.close
   - bs.equity.nci.close
   depends_on_assumptions:
   - children
