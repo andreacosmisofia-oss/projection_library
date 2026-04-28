@@ -1018,7 +1018,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: null
-  override_policy_class: default_organic
+  override_policy_class: capex_organic
 - voice_id: bs.fa.tangible.expansion_capex
   statement: BS
   section: fa.tangible
@@ -1030,7 +1030,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: 'Alt: capex_per_unit'
-  override_policy_class: default_organic
+  override_policy_class: capex_organic
 - voice_id: bs.fa.tangible.disposals_gross
   statement: BS
   section: fa.tangible
@@ -1150,7 +1150,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: 'Alt: pct_net_revenue (SaaS R&D capitalized)'
-  override_policy_class: default_organic
+  override_policy_class: capex_organic
 - voice_id: bs.fa.intangible.acquired_via_ma
   statement: BS
   section: fa.intangible
@@ -1690,7 +1690,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Calcolato in E7.5
-  override_policy_class: default_organic
+  override_policy_class: tax_one_shot
 - voice_id: bs.nwc.other_current_assets.other
   statement: BS
   section: nwc.other
@@ -1738,7 +1738,7 @@ voices:
   denominator_flow_voice: pl.tax.current
   recurrence: null
   note: Identity da pl.tax.current
-  override_policy_class: default_organic
+  override_policy_class: tax_one_shot
 - voice_id: bs.nwc.other_current_liab.other
   statement: BS
   section: nwc.other
@@ -1798,7 +1798,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Magnitudine flusso (positiva)
-  override_policy_class: default_organic
+  override_policy_class: debt_drawdown_one_shot
 - voice_id: bs.nfp.borrowings.term_loan_repayments
   statement: BS
   section: nfp.borrowings
@@ -1810,7 +1810,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default amortizing lineare
-  override_policy_class: default_organic
+  override_policy_class: debt_drawdown_one_shot
 - voice_id: bs.nfp.borrowings.rcf_movement
   statement: BS
   section: nfp.borrowings
@@ -1822,7 +1822,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Plug RCF = improvement
-  override_policy_class: default_organic
+  override_policy_class: debt_drawdown_one_shot
 - voice_id: bs.nfp.borrowings.bonds_movement
   statement: BS
   section: nfp.borrowings
@@ -1834,7 +1834,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
-  override_policy_class: default_organic
+  override_policy_class: debt_drawdown_one_shot
 - voice_id: bs.nfp.borrowings.shareholder_loans_movement
   statement: BS
   section: nfp.borrowings
@@ -1846,7 +1846,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
-  override_policy_class: default_organic
+  override_policy_class: debt_drawdown_one_shot
 - voice_id: bs.nfp.borrowings.assumed_via_ma
   statement: BS
   section: nfp.borrowings
@@ -2014,7 +2014,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
-  override_policy_class: default_organic
+  override_policy_class: equity_injection_one_shot
 - voice_id: bs.equity.capital.acquisition_consideration
   statement: BS
   section: equity.capital
@@ -2026,7 +2026,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: M&A paper deal
-  override_policy_class: default_organic
+  override_policy_class: equity_injection_one_shot
 - voice_id: bs.equity.capital.spin_off_distribution
   statement: BS
   section: equity.capital
@@ -2038,7 +2038,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: Spin-off
-  override_policy_class: default_organic
+  override_policy_class: equity_injection_one_shot
 - voice_id: bs.equity.capital.dividends_paid
   statement: BS
   section: equity.capital
@@ -2050,7 +2050,7 @@ voices:
   denominator_flow_voice: pl.net_income
   recurrence: recurring
   note: Già negativo per convention
-  override_policy_class: default_organic
+  override_policy_class: equity_injection_one_shot
 - voice_id: bs.equity.capital.share_buyback
   statement: BS
   section: equity.capital
@@ -2062,7 +2062,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
-  override_policy_class: default_organic
+  override_policy_class: equity_injection_one_shot
 - voice_id: bs.equity.capital.oci_movement
   statement: BS
   section: equity.capital
@@ -2074,7 +2074,7 @@ voices:
   denominator_flow_voice: bs.employee_benefits.actuarial_changes
   recurrence: recurring
   note: + identity attuariale EB
-  override_policy_class: default_organic
+  override_policy_class: equity_injection_one_shot
 - voice_id: bs.equity.capital.nci_movement
   statement: BS
   section: equity.capital
@@ -2086,7 +2086,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
-  override_policy_class: default_organic
+  override_policy_class: equity_injection_one_shot
 - voice_id: bs.equity.share_capital.close
   statement: BS
   section: equity

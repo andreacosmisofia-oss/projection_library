@@ -102,7 +102,11 @@ policies:
   affects_future_years: false
   guidance_message: null
 - policy_class: capex_organic
-  applies_to_voices_pattern: cf.investing.capex.*
+  applies_to_voices_pattern:
+  - bs.fa.*.maintenance_capex
+  - bs.fa.*.expansion_capex
+  - bs.fa.intangible.software_capex
+  - bs.fa.rou_assets.*
   exclude_voices: []
   one_shot_allowed: true
   overridable: true
@@ -124,7 +128,7 @@ policies:
   affects_future_years: true
   guidance_message: null
 - policy_class: equity_injection_one_shot
-  applies_to_voices_pattern: bs.equity.capital.injection
+  applies_to_voices_pattern: bs.equity.capital.*
   exclude_voices: []
   one_shot_allowed: true
   overridable: true
@@ -143,7 +147,11 @@ policies:
   affects_future_years: false
   guidance_message: null
 - policy_class: debt_drawdown_one_shot
-  applies_to_voices_pattern: bs.nfp.borrowings.drawdown_*
+  applies_to_voices_pattern:
+  - bs.nfp.borrowings.*_drawdowns
+  - bs.nfp.borrowings.*_repayments
+  - bs.nfp.borrowings.*_movement
+  - bs.nfp.borrowings.*_new
   exclude_voices: []
   one_shot_allowed: true
   overridable: true
@@ -166,7 +174,9 @@ policies:
   affects_future_years: true
   guidance_message: null
 - policy_class: tax_one_shot
-  applies_to_voices_pattern: pl.tax.current
+  applies_to_voices_pattern:
+  - bs.nwc.other_current_liab.cit_payable
+  - bs.nwc.other_current_assets.cit_receivable
   exclude_voices: []
   one_shot_allowed: true
   overridable: true
