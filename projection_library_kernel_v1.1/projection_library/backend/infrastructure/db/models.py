@@ -1,4 +1,4 @@
-"""ORM models (Milestones M2 + M3 + M5 + M6 + M7).
+"""ORM models (Milestones M2 + M3 + M5 + M6 + M7 + M8).
 
 M2 defines the ``projects`` table. M3 adds ``balances`` and
 ``raw_voices`` for the Case 1 (gestionale) intake flow described in
@@ -9,7 +9,9 @@ the auto-suggest flow when it lands), ``historical_kpis``,
 ``flows/03_validation_historical.md`` and ``flows/10_quality_score.md``).
 M6 adds ``method_configs`` (Expert mode subset of
 ``flows/04_method_selection.md``). M7 adds ``drivers`` (historical
-management drivers from ``flows/05_driver_intake.md``).
+management drivers from ``flows/05_driver_intake.md``). M8 adds
+``assumptions`` and ``assumption_curve_configs`` (forward-looking
+parameter compilation from ``flows/06_assumption_compilation.md``).
 Soft delete is implemented via ``deleted_at`` on ``projects`` and
 ``balances``: rows with a non-null timestamp are filtered out by the
 API layer but kept in the database for audit purposes.
@@ -397,7 +399,105 @@ class Driver(Base):
     )
 
 
+class Assumption(Base):
+    """Forward-looking parameter value for a single year (M8).
+
+    One row per ``(project_id, voice_id, method_id, assumption_name,
+    year)`` where ``year`` is in ``Y1/Y2/Y3``. Per-year persistence
+    matches the UI grain — a PATCH on one year doesn't touch the
+    others — and lets ``source`` track provenance independently per
+    cell so flat defaults stay distinguishable from a user override.
+
+    ``validation_range_*`` are stamped at populate time (heuristic on
+    the assumption name) so the warning logic doesn't need to consult
+    the registry on every PATCH; ``user_modified_at`` flips to ``now``
+    the first time the user touches a default.
+    """
+
+    __tablename__ = "assumptions"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    voice_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    method_id: Mapped[str] = mapped_column(String(64), nullable=False)
+    assumption_name: Mapped[str] = mapped_column(String(128), nullable=False)
+    year: Mapped[str] = mapped_column(String(8), nullable=False)
+    value: Mapped[float] = mapped_column(Float, nullable=False)
+    source: Mapped[str] = mapped_column(String(32), nullable=False)
+    default_kpi_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    calibration_score: Mapped[float | None] = mapped_column(Float, nullable=True)
+    validation_range_min: Mapped[float | None] = mapped_column(Float, nullable=True)
+    validation_range_max: Mapped[float | None] = mapped_column(Float, nullable=True)
+    parameterized: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False
+    )
+    user_modified_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_assumptions_project_voice_method_name_year",
+            "project_id",
+            "voice_id",
+            "method_id",
+            "assumption_name",
+            "year",
+            unique=True,
+        ),
+    )
+
+
+class AssumptionCurveConfig(Base):
+    """Curve shape config for one ``(voice, method, assumption)`` (M8).
+
+    Separated from :class:`Assumption` because the curve choice lives
+    above the per-year cells — the audit M1.0 §12 explicitly puts it
+    at ``(voice, assumption)`` grain. ``method_id`` is included in the
+    unique key so a method swap (M6 PUT) doesn't accidentally inherit
+    a curve config that no longer applies.
+    """
+
+    __tablename__ = "assumption_curve_configs"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    voice_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    method_id: Mapped[str] = mapped_column(String(64), nullable=False)
+    assumption_name: Mapped[str] = mapped_column(String(128), nullable=False)
+    curve_type: Mapped[str] = mapped_column(String(32), nullable=False)
+    configured_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow, onupdate=_utcnow
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_assumption_curves_project_voice_method_name",
+            "project_id",
+            "voice_id",
+            "method_id",
+            "assumption_name",
+            unique=True,
+        ),
+    )
+
+
 __all__ = [
+    "Assumption",
+    "AssumptionCurveConfig",
     "Balance",
     "Driver",
     "HistoricalKPI",
