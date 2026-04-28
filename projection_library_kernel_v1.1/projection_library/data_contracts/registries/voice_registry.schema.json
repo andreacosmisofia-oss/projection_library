@@ -75,6 +75,10 @@
         "note": {
           "type": ["string", "null"],
           "description": "Note libere."
+        },
+        "override_policy_class": {
+          "type": ["string", "null"],
+          "description": "policy_class in override_policy.yaml a cui la voce è associata (M1.5). Null se la voce non è overridable o eredita la policy via pattern."
         }
       },
       "required": ["voice_id", "statement", "nature", "sign"],
