@@ -1,0 +1,104 @@
+test_cases:
+- test_id: TC_E2E_tier1_minimal
+  description: "Smoke test engine su bilancio minimo TIER 1"
+  sector: generic
+  tier: minimum
+  input_dataset: sample_data/tier1_minimal_balance.xlsx
+  expected:
+    balance_check_max: 1.0
+    quality_score_min: 35
+    quality_score_max: 55
+    validation_block_count: 0
+  purpose: "Verifica engine gira su input minimale Y0-only"
+
+- test_id: TC_E2E_tier2_industrial_clean
+  description: "Full engine test sector industrial TIER 2"
+  sector: industrial
+  tier: standard
+  input_dataset: sample_data/tier2_industrial_clean.xlsx
+  expected:
+    balance_check_max: 1.0
+    quality_score_min: 65
+    validation_block_count: 0
+    voices:
+      pl.rev.net.Y3_growth_min: 0.02
+      pl.rev.net.Y3_growth_max: 0.25
+  purpose: "Test principale engine su caso standard"
+
+- test_id: TC_VALIDATION_unbalanced
+  description: "Validation block su SP non quadrato"
+  sector: generic
+  tier: minimum
+  input_dataset: sample_data/tier2_industrial_unbalanced.xlsx
+  expected:
+    validation_block_count_min: 1
+    validation_rules_triggered: [DI_013]
+    engine_can_run: false
+  purpose: "Verifica DI_013 blocca avanzamento"
+
+- test_id: TC_E2E_saas_arr_bridge
+  description: "Engine SaaS con arr_bridge method"
+  sector: saas
+  tier: standard
+  input_dataset: sample_data/saas_arr_bridge.xlsx
+  expected:
+    balance_check_max: 1.0
+    quality_score_min: 60
+    validation_block_count: 0
+    voices:
+      arr_growth_Y1_min: 0.05
+      arr_growth_Y1_max: 0.40
+  purpose: "Verifica arr_bridge produce ARR coerente con driver"
+
+- test_id: TC_E2E_retail_ifrs16
+  description: "Engine retail con IFRS 16 lease"
+  sector: retail
+  tier: standard
+  input_dataset: sample_data/retail_lease_ifrs16.xlsx
+  expected:
+    balance_check_max: 1.0
+    quality_score_min: 60
+    validation_block_count: 0
+  purpose: "Verifica ROU assets e lease liability gestiti"
+
+- test_id: TC_E2E_real_estate_ias40
+  description: "Engine real estate con IAS 40 fair value"
+  sector: real_estate
+  tier: standard
+  input_dataset: sample_data/real_estate_ias40.xlsx
+  expected:
+    balance_check_max: 1.0
+    quality_score_min: 55
+    validation_block_count: 0
+  purpose: "Verifica IP fair value movement gestito"
+
+- test_id: TC_OVERRIDE_organic
+  description: "Override organic propaga correttamente"
+  sector: industrial
+  tier: standard
+  input_dataset: sample_data/tier2_industrial_clean.xlsx
+  override:
+    voice_id: pl.rev.gross.product_sales
+    year: Y3
+    delta: 2000
+    nature: organic
+  expected:
+    downstream_voices_changed: [pl.cogs.total, bs.nwc.ar.trade_gross, bs.nfp.cash]
+    balance_check_max: 1.0
+  purpose: "Verifica propagazione override organic"
+
+- test_id: TC_OVERRIDE_one_shot
+  description: "Override one_shot non propaga su costi"
+  sector: industrial
+  tier: standard
+  input_dataset: sample_data/tier2_industrial_clean.xlsx
+  override:
+    voice_id: pl.rev.gross.product_sales
+    year: Y2
+    delta: 5000
+    nature: one_shot
+  expected:
+    downstream_voices_unchanged: [pl.cogs.total]
+    downstream_voices_changed: [bs.nfp.cash]
+    balance_check_max: 1.0
+  purpose: "Verifica one_shot non propaga su costi"
