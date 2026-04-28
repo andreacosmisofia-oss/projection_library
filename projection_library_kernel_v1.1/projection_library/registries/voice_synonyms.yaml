@@ -1676,3 +1676,155 @@ voice_synonyms:
     - organic capital increases
     - paid in capital increases
     - organic equity raises
+
+# ----- bs.provisions.* (BS roll-forward closes) -----------------------
+
+- voice_id: bs.provisions.restructuring.balance_close
+  synonyms_it:
+    - fondo ristrutturazione finale
+    - fondo per ristrutturazione chiusura
+    - saldo fondo ristrutturazione fine periodo
+    - provision ristrutturazione finale
+    - fondo oneri di ristrutturazione chiusura
+  synonyms_en:
+    - restructuring provision closing
+    - closing restructuring provision
+    - restructuring provision balance end
+
+- voice_id: bs.provisions.legal_other.balance_close
+  synonyms_it:
+    - fondo rischi legali finale
+    - fondo per cause e contenziosi chiusura
+    - fondo legal claims finale
+    - fondo rischi e oneri legali chiusura
+    - fondo contenziosi finale
+  synonyms_en:
+    - legal claims provision closing
+    - closing legal provisions
+    - legal and other provisions balance end
+
+- voice_id: bs.provisions.warranty.balance_close
+  synonyms_it:
+    - fondo garanzia prodotti finale
+    - fondo per garanzia chiusura
+    - saldo fondo garanzia fine periodo
+    - provision warranty finale
+    - fondo oneri di garanzia chiusura
+  synonyms_en:
+    - warranty provision closing
+    - closing warranty provision
+    - warranty provision balance end
+
+- voice_id: bs.provisions.other.balance_close
+  synonyms_it:
+    - altri fondi rischi finali
+    - altri fondi per rischi e oneri chiusura
+    - fondo altri rischi finale
+    - altri fondi diversi chiusura
+    - altri accantonamenti chiusura
+  synonyms_en:
+    - other provisions closing
+    - other provisions balance end
+    - sundry provisions closing
+
+- voice_id: bs.provisions.total_close
+  synonyms_it:
+    - totale fondi rischi e oneri finale
+    - totale provisions chiusura
+    - fondi rischi totali fine periodo
+    - totale accantonamenti finali
+    - totale fondi per rischi e oneri chiusura
+  synonyms_en:
+    - total provisions closing
+    - closing total provisions
+    - total provisions balance end
+
+# ----- bs.employee_benefits.* (Opt 1: balance + 2 flows) --------------
+
+- voice_id: bs.employee_benefits.balance_close
+  synonyms_it:
+    - fondo tfr finale
+    - trattamento di fine rapporto chiusura
+    - fondo benefici dipendenti finale
+    - fondo quiescenza e tfr chiusura
+    - fondo pensioni e tfr finale
+  synonyms_en:
+    - employee benefits closing
+    - tfr balance closing
+    - pension and tfr fund closing
+
+- voice_id: bs.employee_benefits.service_cost
+  synonyms_it:
+    - service cost benefici dipendenti
+    - costo previdenziale corrente tfr
+    - quota maturata tfr di periodo
+    - service cost piani benefici
+    - costo del servizio tfr
+  synonyms_en:
+    - employee benefits service cost
+    - service cost
+    - current service cost pension
+
+- voice_id: bs.employee_benefits.payments_to_employees
+  synonyms_it:
+    - pagamenti tfr ai dipendenti
+    - liquidazioni tfr
+    - erogazioni fondo tfr
+    - pagamenti benefici ai dipendenti
+    - liquidazioni benefici dipendenti
+  synonyms_en:
+    - payments to employees benefits
+    - tfr payments to employees
+    - benefits paid to employees
+
+# ----- bs.tax.* -------------------------------------------------------
+
+- voice_id: bs.tax.dta_close
+  synonyms_it:
+    - imposte anticipate finali
+    - dta finale
+    - crediti per imposte anticipate chiusura
+    - deferred tax assets finali
+    - attivita per imposte anticipate fine periodo
+  synonyms_en:
+    - deferred tax assets closing
+    - dta closing
+    - closing deferred tax assets
+
+- voice_id: bs.tax.dtl_close
+  synonyms_it:
+    - imposte differite passive finali
+    - dtl finale
+    - debiti per imposte differite chiusura
+    - deferred tax liabilities finali
+    - passivita per imposte differite fine periodo
+  synonyms_en:
+    - deferred tax liabilities closing
+    - dtl closing
+    - closing deferred tax liabilities
+
+- voice_id: bs.tax.nol_carryforward.close
+  synonyms_it:
+    - perdite fiscali riportabili finali
+    - nol carryforward chiusura
+    - perdite a nuovo fiscali fine periodo
+    - perdite fiscali utilizzabili finali
+    - tax loss carryforward chiusura
+  synonyms_en:
+    - nol carryforward closing
+    - tax loss carryforward closing
+    - net operating losses closing
+
+# ----- bs.nwc tax payable side ----------------------------------------
+
+- voice_id: bs.nwc.other_current_liab.cit_payable
+  synonyms_it:
+    - debiti per imposte correnti
+    - debiti tributari ires
+    - debiti tributari per imposte sul reddito
+    - debiti vs erario per ires
+    - debiti per cit
+  synonyms_en:
+    - cit payable
+    - corporate income tax payable
+    - tax payable cit
