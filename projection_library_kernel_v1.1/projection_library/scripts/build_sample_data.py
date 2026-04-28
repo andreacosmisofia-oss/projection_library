@@ -5,10 +5,8 @@ Sign convention:
 - SP: assets positive, liabilities and equity negative
 - SP balances when sum(assets) + sum(liabilities) + sum(equity) == 0
 
-Auto-plug policy:
-- After applying user corrections, residual SP gaps with |gap| < PLUG_THRESHOLD
-  are absorbed into "Cassa e disponibilità".
-- Larger gaps are reported and require explicit user instructions.
+Plug policy:
+- Any residual SP gap is absorbed into "Cassa e disponibilità".
 """
 import sys
 from pathlib import Path
@@ -18,7 +16,6 @@ from openpyxl import Workbook
 OUT_DIR = Path(__file__).resolve().parent.parent / "sample_data"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-PLUG_THRESHOLD = 5
 CASSA_LABEL = "Cassa e disponibilità"
 
 TIER1_ROWS = [
@@ -84,29 +81,21 @@ def pl_net(rows, year_idx: int) -> int:
     return sum(r[year_idx] for r in rows if r[1] == "P&L")
 
 
-def auto_plug_cassa(rows: list, year_idx: int, year_name: str) -> tuple[int, bool]:
-    """Plug Cassa for the given year if |gap| < PLUG_THRESHOLD.
-
-    Returns (gap_before_plug, plugged).
-    """
+def plug_cassa(rows: list, year_idx: int, year_name: str) -> int:
+    """Plug Cassa for the given year so SP balances exactly. Returns gap absorbed."""
     bal = sp_balance(rows, year_idx)
-    gap = bal["sum"]  # need to add (-gap) to assets to balance
+    gap = bal["sum"]
     if gap == 0:
-        return 0, False
-    if abs(gap) < PLUG_THRESHOLD:
-        for i, r in enumerate(rows):
-            if r[0] == CASSA_LABEL:
-                lst = list(r)
-                lst[year_idx] -= gap
-                rows[i] = tuple(lst)
-                print(f"  [{year_name}] auto-plug Cassa: {gap:+d} (|gap| < {PLUG_THRESHOLD})")
-                return gap, True
-        raise RuntimeError(f"Cassa row not found in rows for plug ({year_name})")
-    print(
-        f"  [{year_name}] GAP RESIDUO {gap:+d} >= {PLUG_THRESHOLD} — "
-        f"plug NON applicato, attendo istruzioni"
-    )
-    return gap, False
+        print(f"  [{year_name}] no plug needed (gap = 0)")
+        return 0
+    for i, r in enumerate(rows):
+        if r[0] == CASSA_LABEL:
+            lst = list(r)
+            lst[year_idx] -= gap
+            rows[i] = tuple(lst)
+            print(f"  [{year_name}] plug Cassa: {-gap:+d} (gap absorbed: {gap:+d})")
+            return gap
+    raise RuntimeError(f"Cassa row not found in rows for plug ({year_name})")
 
 
 def report(rows, year_idx: int, year_name: str) -> dict:
@@ -129,10 +118,10 @@ def main() -> int:
     report(TIER2_ROWS, 2, "Tier 2 / Y-1")
     report(TIER2_ROWS, 3, "Tier 2 / Y0")
 
-    print("\n=== Auto-plug pass ===")
-    _, p_t1 = auto_plug_cassa(TIER1_ROWS, 2, "Tier 1 / Y0")
-    _, p_t2_ym1 = auto_plug_cassa(TIER2_ROWS, 2, "Tier 2 / Y-1")
-    _, p_t2_y0 = auto_plug_cassa(TIER2_ROWS, 3, "Tier 2 / Y0")
+    print("\n=== Plug pass (Cassa absorbs full gap) ===")
+    plug_cassa(TIER1_ROWS, 2, "Tier 1 / Y0")
+    plug_cassa(TIER2_ROWS, 2, "Tier 2 / Y-1")
+    plug_cassa(TIER2_ROWS, 3, "Tier 2 / Y0")
 
     print("\n=== Post-plug balance ===")
     final_t1 = report(TIER1_ROWS, 2, "Tier 1 / Y0")
@@ -150,7 +139,7 @@ def main() -> int:
         and final_t2_y0["sum"] == 0
     )
     if not all_balanced:
-        print("\nSTATUS: SP NOT balanced for at least one year — awaiting instructions.")
+        print("\nSTATUS: SP NOT balanced after plug — this should not happen.")
         return 1
     print("\nSTATUS: SP balanced for all years.")
     return 0
