@@ -1,4 +1,4 @@
-"""ORM models (Milestones M2 + M3 + M5 + M6).
+"""ORM models (Milestones M2 + M3 + M5 + M6 + M7).
 
 M2 defines the ``projects`` table. M3 adds ``balances`` and
 ``raw_voices`` for the Case 1 (gestionale) intake flow described in
@@ -8,7 +8,8 @@ the auto-suggest flow when it lands), ``historical_kpis``,
 ``quality_scores`` and ``validation_reports`` (see
 ``flows/03_validation_historical.md`` and ``flows/10_quality_score.md``).
 M6 adds ``method_configs`` (Expert mode subset of
-``flows/04_method_selection.md``).
+``flows/04_method_selection.md``). M7 adds ``drivers`` (historical
+management drivers from ``flows/05_driver_intake.md``).
 Soft delete is implemented via ``deleted_at`` on ``projects`` and
 ``balances``: rows with a non-null timestamp are filtered out by the
 API layer but kept in the database for audit purposes.
@@ -341,8 +342,64 @@ class MethodConfig(Base):
     )
 
 
+class Driver(Base):
+    """Historical management driver (M7, ``flows/05_driver_intake.md``).
+
+    One physical table covers the four polymorphic types declared in
+    ``driver_registry.schema.json``: ``scalar_per_year``,
+    ``static_parameters``, ``time_series`` and ``aging_bucket``. Only
+    the columns relevant to a row's ``type`` are populated; the others
+    stay NULL.
+
+    ``year`` is part of the unique key for ``scalar_per_year`` rows
+    (one value per historical year). For the other types ``year`` is
+    the empty string ``""`` so a single row exists per
+    ``(project_id, driver_id)``. The empty-string convention sidesteps
+    SQLite's "NULLs are distinct" rule, which would otherwise make the
+    unique index ineffective on those types.
+
+    Skip is modelled as a marker row (``skipped=True``, no data
+    columns set, ``year=""``). The route layer treats any row with
+    ``skipped=True`` as authoritative for the ``(project, driver)``
+    pair, regardless of other rows.
+    """
+
+    __tablename__ = "drivers"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    driver_id: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    type: Mapped[str] = mapped_column(String(32), nullable=False)
+    year: Mapped[str] = mapped_column(String(8), nullable=False, default="")
+    value: Mapped[float | None] = mapped_column(Float, nullable=True)
+    unit: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    static_parameters: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    time_series: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    aging_buckets: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    skipped: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    uploaded_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_drivers_project_driver_year",
+            "project_id",
+            "driver_id",
+            "year",
+            unique=True,
+        ),
+    )
+
+
 __all__ = [
     "Balance",
+    "Driver",
     "HistoricalKPI",
     "Mapping",
     "MethodConfig",
