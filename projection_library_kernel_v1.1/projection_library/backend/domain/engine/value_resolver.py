@@ -6,12 +6,22 @@ into ``state.base_values``; overrides live separately and are composed
 on read via ``resolve_voice_value``. Every call site that reads a voice
 value (formulas, derived rules, validation, CF identity, output) must
 go through this function — otherwise the overlay is bypassed.
+
+Year semantics:
+* Historical years (``Y-3`` .. ``Y0``): values come from
+  ``state.historical_data`` (uploaded actuals). Overrides do not apply.
+* Projection years (``Y1``, ``Y2``, ``Y3``): values come from
+  ``state.base_values`` (engine output) + active overrides as overlay.
 """
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Any
+
+
+_YEAR_RE = re.compile(r"^Y(-?\d+)$")
 
 
 @dataclass
@@ -70,12 +80,41 @@ class ModelState:
     approximation_log: list[Any] = field(default_factory=list)
 
 
-def resolve_voice_value(voice_id: str, year: str, state: ModelState) -> float:
-    """Return effective value = base_value + sum(active override deltas).
+def _year_index(year: str) -> int | None:
+    """Return the integer offset of a ``Y<n>`` label, or ``None``."""
+    match = _YEAR_RE.match(year)
+    return int(match.group(1)) if match else None
 
-    Falls back to 0.0 when the voice has no base_value for that year
-    (skipped voice, not yet computed, or referenced before configuration).
+
+def get_prev_year(year: str) -> str:
+    """Return the previous year label.
+
+    ``Y1`` → ``Y0``, ``Y2`` → ``Y1``, ``Y3`` → ``Y2``,
+    ``Y0`` → ``Y-1``, ``Y-1`` → ``Y-2``. Unparseable input returns ``""``.
     """
+    idx = _year_index(year)
+    if idx is None:
+        return ""
+    return f"Y{idx - 1}"
+
+
+def resolve_historical(voice_id: str, year: str, state: ModelState) -> float:
+    """Read a historical voice actual; return 0.0 when missing."""
+    return state.historical_data.get(voice_id, {}).get(year, 0.0)
+
+
+def resolve_voice_value(voice_id: str, year: str, state: ModelState) -> float:
+    """Return the effective value of ``voice_id`` for ``year``.
+
+    Historical years (``Y-3``..``Y0``) read from ``historical_data``;
+    overrides do not apply. Projection years (``Y1``..``Y3``) compose
+    ``base_values`` with the sum of active override deltas. Unknown
+    year labels fall through to the projection branch and return 0.0
+    when the voice has no base value either.
+    """
+    idx = _year_index(year)
+    if idx is not None and idx <= 0:
+        return resolve_historical(voice_id, year, state)
     base = state.base_values.get(voice_id, {}).get(year, 0.0)
     delta = sum(
         ov.delta_amount
@@ -89,5 +128,7 @@ __all__ = [
     "ModelState",
     "Override",
     "ValidationIssue",
+    "get_prev_year",
+    "resolve_historical",
     "resolve_voice_value",
 ]

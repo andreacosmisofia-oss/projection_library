@@ -14,14 +14,11 @@ voce a 0 con error log").
 from __future__ import annotations
 
 import logging
-import re
 from typing import Optional
 
-from .value_resolver import ModelState, resolve_voice_value
+from .value_resolver import ModelState, get_prev_year, resolve_voice_value
 
 logger = logging.getLogger(__name__)
-
-_YEAR_RE = re.compile(r"^Y(-?\d+)$")
 
 
 def safe_div(num: float, den: float) -> Optional[float]:
@@ -42,17 +39,6 @@ def pmt(principal: float, rate: float, n: int) -> float:
     if rate == 0:
         return principal / n
     return rate * principal / (1 - (1 + rate) ** (-n))
-
-
-def prev_year_of(year: str) -> str:
-    """Return the previous year label (Y1 -> Y0, Y0 -> Y-1, ...).
-
-    For non-standard labels (empty string, unparseable) returns "".
-    """
-    match = _YEAR_RE.match(year)
-    if not match:
-        return ""
-    return f"Y{int(match.group(1)) - 1}"
 
 
 def evaluate(
@@ -86,7 +72,7 @@ def evaluate(
         "drivers": state.drivers,
         "kpis": state.historical_kpis,
         "year": year,
-        "prev_year": prev_year_of(year),
+        "prev_year": get_prev_year(year),
         "voice": voice_id,
     }
     try:
@@ -105,4 +91,4 @@ def evaluate(
         return 0.0
 
 
-__all__ = ["safe_div", "pmt", "prev_year_of", "evaluate"]
+__all__ = ["safe_div", "pmt", "evaluate"]

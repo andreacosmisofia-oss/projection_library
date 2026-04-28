@@ -11,7 +11,8 @@ from backend.domain.engine.value_resolver import ModelState
 def test_evaluate_growth_formula():
     """Typical E1 growth formula: prev-year revenue * (1 + growth)."""
     state = ModelState(
-        base_values={"pl.rev.net": {"Y0": 1000.0}},
+        # Y0 is a historical year → seed via historical_data, not base_values
+        historical_data={"pl.rev.net": {"Y0": 1000.0}},
         assumptions={"pl.rev.net": {"growth": {"Y1": 0.10}}},
         current_year="Y1",
     )
