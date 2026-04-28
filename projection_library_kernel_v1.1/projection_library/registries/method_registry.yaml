@@ -4,6 +4,7 @@ methods:
   family: extrapolation
   name_it: Flat (anchor invariato)
   formula_sintesi: anchor[t-1]
+  formula_python: "resolve(voice, prev_year)"
   applicable_voices_examples:
   - tutte voci driver come fallback
   complexity: low
@@ -15,6 +16,7 @@ methods:
   family: extrapolation
   name_it: Crescita media storica
   formula_sintesi: anchor[t-1] * (1 + growth_rate)
+  formula_python: "resolve(voice, prev_year) * (1 + assumptions[voice]['growth_rate'][year])"
   applicable_voices_examples:
   - ricavi
   - opex
@@ -28,6 +30,7 @@ methods:
   family: extrapolation
   name_it: Estrapolazione CAGR
   formula_sintesi: anchor[t-1] * (1 + cagr)
+  formula_python: "resolve(voice, 'Y0') * (1 + assumptions[voice]['cagr'][year]) ** {'Y1':1,'Y2':2,'Y3':3}[year]"
   applicable_voices_examples:
   - revenue
   - opex
@@ -41,6 +44,7 @@ methods:
   family: extrapolation
   name_it: Crescita indicizzata inflazione
   formula_sintesi: anchor[t-1] * (1 + cpi * pass_through)
+  formula_python: "resolve(voice, prev_year) * (1 + assumptions[voice]['cpi_rate'][year])"
   applicable_voices_examples:
   - utilities
   - maintenance
@@ -55,6 +59,7 @@ methods:
   family: ratio
   name_it: '% del ricavo netto'
   formula_sintesi: -1 * pct * pl.rev.net[t]
+  formula_python: "assumptions[voice]['pct'][year] * resolve('pl.rev.net', year)"
   applicable_voices_examples:
   - cogs.materials
   - cogs.subcontracting
@@ -68,6 +73,7 @@ methods:
   family: ratio
   name_it: '% ricavo con drift'
   formula_sintesi: -1 * (pct_start + (pct_target - pct_start) * (t / horizon)) * pl.rev.net[t]
+  formula_python: "(assumptions[voice]['pct_start'][year] + (assumptions[voice]['pct_target'][year] - assumptions[voice]['pct_start'][year]) * assumptions[voice]['drift_progress'][year]) * resolve('pl.rev.net', year)"
   applicable_voices_examples:
   - cogs/opex con margin convergence pianificata
   complexity: medium
@@ -79,6 +85,7 @@ methods:
   family: ratio
   name_it: '% write-off magazzino'
   formula_sintesi: -1 * rate * inventory.total_avg
+  formula_python: "-abs(assumptions[voice]['rate'][year]) * resolve('bs.nwc.inventory.total_avg', year)"
   applicable_voices_examples:
   - pl.cogs.inventory_writeoff
   complexity: low
@@ -90,6 +97,7 @@ methods:
   family: ratio
   name_it: '% del ricavo gross'
   formula_sintesi: -1 * pct * pl.rev.gross_total[t]
+  formula_python: "assumptions[voice]['pct'][year] * resolve('pl.rev.gross_total', year)"
   applicable_voices_examples:
   - deductions (discounts
   - rebates
@@ -104,6 +112,7 @@ methods:
   family: ratio
   name_it: '% revenue residuale'
   formula_sintesi: pct * pl.rev.net[t]
+  formula_python: "assumptions[voice]['pct'][year] * resolve('pl.rev.net', year)"
   applicable_voices_examples:
   - NWC residuali
   - prepayments
@@ -116,6 +125,7 @@ methods:
   family: ratio
   name_it: Days target (DSO/DIO/DPO)
   formula_sintesi: sign * days * denominator[t] / 365
+  formula_python: "assumptions[voice]['sign'][year] * safe_div(resolve(assumptions[voice]['denominator_voice'][year], year), 365) * assumptions[voice]['days'][year]"
   applicable_voices_examples:
   - ar.trade_gross
   - inventory.*
@@ -130,6 +140,7 @@ methods:
   family: ratio
   name_it: Days target con drift
   formula_sintesi: sign * (days_start + (days_target - days_start) * (t / horizon)) * denominator[t] / 365
+  formula_python: "assumptions[voice]['sign'][year] * safe_div(resolve(assumptions[voice]['denominator_voice'][year], year), 365) * (assumptions[voice]['days_start'][year] + (assumptions[voice]['days_target'][year] - assumptions[voice]['days_start'][year]) * assumptions[voice]['drift_progress'][year])"
   applicable_voices_examples:
   - NWC con miglioramento programmato
   complexity: medium
@@ -141,6 +152,7 @@ methods:
   family: ratio
   name_it: '% di flusso correlato'
   formula_sintesi: sign * pct * denominator[t]
+  formula_python: "assumptions[voice]['sign'][year] * assumptions[voice]['pct'][year] * resolve(assumptions[voice]['denominator_voice'][year], year)"
   applicable_voices_examples:
   - accrued_expenses
   - NWC su flow voci
@@ -153,6 +165,7 @@ methods:
   family: ratio
   name_it: Allowance % AR gross (IFRS 9)
   formula_sintesi: -1 * ecl_rate * bs.nwc.ar.trade_gross[t]
+  formula_python: "-abs(assumptions[voice]['ecl_rate'][year]) * resolve('bs.nwc.ar.trade_gross', year)"
   applicable_voices_examples:
   - bs.nwc.ar.allowance
   complexity: low
@@ -164,6 +177,7 @@ methods:
   family: ratio
   name_it: Inventory production cycle
   formula_sintesi: cycle_days * unit_cost * production_volume / 365
+  formula_python: "assumptions[voice]['cycle_days'][year] * assumptions[voice]['unit_cost'][year] * drivers[f'driver.{voice}.production_volume'][year] / 365"
   applicable_voices_examples:
   - inventory industrial WIP
   complexity: medium
@@ -175,6 +189,7 @@ methods:
   family: ratio
   name_it: Capex % revenue
   formula_sintesi: pct * pl.rev.net[t]
+  formula_python: "assumptions[voice]['pct'][year] * resolve('pl.rev.net', year)"
   applicable_voices_examples:
   - maintenance_capex
   - software_capex (default)
@@ -187,6 +202,7 @@ methods:
   family: ratio
   name_it: Capex % base PPE
   formula_sintesi: pct * bs.fa.tangible.gross_close[t-1]
+  formula_python: "assumptions[voice]['pct'][year] * abs(resolve('bs.fa.tangible.gross_close', prev_year))"
   applicable_voices_examples:
   - maintenance_capex asset-heavy
   complexity: low
@@ -198,6 +214,7 @@ methods:
   family: ratio
   name_it: Disposals % gross
   formula_sintesi: -1 * rate * gross_close[t-1]
+  formula_python: "-assumptions[voice]['rate'][year] * abs(resolve(assumptions[voice]['gross_voice'][year], prev_year))"
   applicable_voices_examples:
   - disposals_gross PPE/intangibles
   complexity: low
@@ -209,6 +226,7 @@ methods:
   family: ratio
   name_it: ROU new leases % base
   formula_sintesi: rate * bs.fa.rou.gross_close[t-1]
+  formula_python: "assumptions[voice]['rate'][year] * resolve('bs.fa.rou.gross_close', prev_year)"
   applicable_voices_examples:
   - bs.fa.rou.new_contracts
   complexity: low
@@ -220,6 +238,7 @@ methods:
   family: ratio
   name_it: Lease payment % opening
   formula_sintesi: -1 * pct * abs(lease_liability.close[t-1])
+  formula_python: "-assumptions[voice]['pct'][year] * abs(resolve('bs.nfp.lease_liability.close', prev_year))"
   applicable_voices_examples:
   - lease_liability.payments_principal
   complexity: low
@@ -231,6 +250,7 @@ methods:
   family: ratio
   name_it: Warranty usage % balance
   formula_sintesi: -1 * rate * abs(warranty.balance_close[t-1])
+  formula_python: "-assumptions[voice]['rate'][year] * abs(resolve('bs.provisions.warranty.balance_close', prev_year))"
   applicable_voices_examples:
   - warranty.usage
   complexity: low
@@ -242,6 +262,7 @@ methods:
   family: ratio
   name_it: EB service cost %
   formula_sintesi: rate * abs(total_labour_cost[t])
+  formula_python: "assumptions[voice]['rate'][year] * abs(resolve('pl.opex.labour.total', year))"
   applicable_voices_examples:
   - employee_benefits.service_cost
   complexity: medium
@@ -253,6 +274,7 @@ methods:
   family: ratio
   name_it: EB payments % balance
   formula_sintesi: -1 * turnover * abs(eb.balance_close[t-1])
+  formula_python: "-assumptions[voice]['turnover'][year] * abs(resolve('bs.employee_benefits.balance_close', prev_year))"
   applicable_voices_examples:
   - employee_benefits.payments
   complexity: low
@@ -264,6 +286,7 @@ methods:
   family: ratio
   name_it: Warranty rate × revenue
   formula_sintesi: -1 * rate * pl.rev.gross.product_sales[t]
+  formula_python: "-assumptions[voice]['rate'][year] * resolve('pl.rev.gross.product_sales', year)"
   applicable_voices_examples:
   - pl.provisions.warranty (accrual)
   complexity: low
@@ -275,6 +298,7 @@ methods:
   family: ratio
   name_it: Warranty % installed base
   formula_sintesi: -1 * rate * driver.warranty.installed_base_value[t]
+  formula_python: "-assumptions[voice]['rate'][year] * drivers[f'driver.{voice}.installed_base_value'][year]"
   applicable_voices_examples:
   - pl.provisions.warranty (alternativa)
   complexity: medium
@@ -286,6 +310,7 @@ methods:
   family: ratio
   name_it: VAT balance ratio
   formula_sintesi: sign * vat_rate * avg_periods_unpaid * flow[t] / 12
+  formula_python: "assumptions[voice]['sign'][year] * assumptions[voice]['vat_rate'][year] * assumptions[voice]['avg_periods_unpaid'][year] * resolve(assumptions[voice]['flow_voice'][year], year) / 12"
   applicable_voices_examples:
   - bs.nwc.other_current_assets/liab.vat_*
   complexity: medium
@@ -297,6 +322,7 @@ methods:
   family: ratio
   name_it: Dividend payout ratio
   formula_sintesi: -1 * payout_ratio * pl.net_income[t-1]
+  formula_python: "-assumptions[voice]['payout'][year] * max(0, resolve('pl.net_income', prev_year))"
   applicable_voices_examples:
   - bs.equity.capital.dividends_paid
   complexity: low
@@ -308,6 +334,7 @@ methods:
   family: ratio
   name_it: Dividend per share
   formula_sintesi: -1 * dps * shares_outstanding
+  formula_python: "-assumptions[voice]['dps'][year] * drivers[f'driver.{voice}.shares_outstanding'][year]"
   applicable_voices_examples:
   - bs.equity.capital.dividends_paid (alt)
   complexity: low
@@ -319,6 +346,7 @@ methods:
   family: ratio
   name_it: Deferred tax semplificato
   formula_sintesi: anchor[t-1] * (1 + drift)
+  formula_python: "resolve(voice, prev_year) * (1 + assumptions[voice]['drift'][year])"
   applicable_voices_examples:
   - bs.tax.dta_movement
   - dtl_movement
@@ -331,6 +359,7 @@ methods:
   family: operational_driver
   name_it: Volume × prezzo
   formula_sintesi: volume * price / 1000
+  formula_python: "drivers[f'driver.{voice}.volume'][year] * assumptions[voice]['price_per_unit'][year]"
   applicable_voices_examples:
   - pl.rev.gross.product_sales
   - usage_based
@@ -343,6 +372,7 @@ methods:
   family: operational_driver
   name_it: Volume × costo unitario
   formula_sintesi: -1 * volume * unit_cost
+  formula_python: "-drivers[f'driver.{voice}.volume'][year] * assumptions[voice]['unit_cost'][year]"
   applicable_voices_examples:
   - pl.cogs.materials.raw
   - labour.direct
@@ -355,6 +385,7 @@ methods:
   family: operational_driver
   name_it: Volume e prezzo split growth
   formula_sintesi: (volume[t-1]*(1+vol_g)) * (price[t-1]*(1+price_g)) / 1000
+  formula_python: "(drivers[f'driver.{voice}.volume'][prev_year] * (1 + assumptions[voice]['volume_growth'][year])) * (assumptions[voice]['price'][prev_year] * (1 + assumptions[voice]['price_growth'][year]))"
   applicable_voices_examples:
   - revenue con piano volume/price separati
   complexity: medium
@@ -366,6 +397,7 @@ methods:
   family: operational_driver
   name_it: BoM input cost
   formula_sintesi: -1 * volume * Σ(bom_qty_i * bom_price_i)
+  formula_python: "-drivers[f'driver.{voice}.volume'][year] * sum(drivers[f'driver.{voice}.bom_{m}_qty'][year] * assumptions[voice][f'bom_{m}_price'][year] for m in assumptions[voice]['bom_materials'][year])"
   applicable_voices_examples:
   - pl.cogs.materials.raw (industrial con BoM)
   complexity: high
@@ -377,6 +409,7 @@ methods:
   family: operational_driver
   name_it: Capacity × utilization × prezzo
   formula_sintesi: capacity * utilization * price / 1000
+  formula_python: "drivers[f'driver.{voice}.capacity'][year] * assumptions[voice]['utilization_rate'][year] * assumptions[voice]['price_per_unit'][year]"
   applicable_voices_examples:
   - rental
   - energy
@@ -391,6 +424,7 @@ methods:
   family: operational_driver
   name_it: Headcount × cost per FTE
   formula_sintesi: -1 * fte * cost_per_fte
+  formula_python: "-drivers[f'driver.{voice}.headcount'][year] * assumptions[voice]['cost_per_head'][year]"
   applicable_voices_examples:
   - pl.cogs.labour.direct
   - opex.*.personnel
@@ -403,6 +437,7 @@ methods:
   family: operational_driver
   name_it: Multi-driver chain
   formula_sintesi: prod(driver_i for i in 1..n)
+  formula_python: "prod(drivers[f'driver.{voice}.{d}'][year] for d in assumptions[voice]['driver_chain'][year])"
   applicable_voices_examples:
   - revenue funnel/multi-stage (es. services FTE × util × rate)
   complexity: high
@@ -414,6 +449,7 @@ methods:
   family: operational_driver
   name_it: Per-employee fixed cost
   formula_sintesi: -1 * total_headcount * cost_per_employee
+  formula_python: "-drivers['driver.headcount.total'][year] * assumptions[voice]['cost_per_employee'][year]"
   applicable_voices_examples:
   - pl.opex.it.software_cloud
   - training
@@ -427,6 +463,7 @@ methods:
   family: operational_driver
   name_it: Variable + fixed split
   formula_sintesi: -1 * (volume * var_unit_cost + fixed_cost)
+  formula_python: "-(drivers[f'driver.{voice}.volume'][year] * assumptions[voice]['variable_rate'][year] + assumptions[voice]['fixed_base'][year])"
   applicable_voices_examples:
   - pl.cogs.labour.direct (con turni)
   - overhead ibridi
@@ -439,6 +476,7 @@ methods:
   family: operational_driver
   name_it: Capex per nuova unità
   formula_sintesi: new_units * capex_per_unit
+  formula_python: "drivers[f'driver.{voice}.new_units'][year] * assumptions[voice]['capex_per_unit'][year]"
   applicable_voices_examples:
   - expansion_capex (industrial
   - retail nuovo store)
@@ -451,6 +489,7 @@ methods:
   family: operational_driver
   name_it: ROU new leases per unit
   formula_sintesi: new_units * lease_value_per_unit
+  formula_python: "drivers[f'driver.{voice}.new_units'][year] * assumptions[voice]['lease_value_per_unit'][year]"
   applicable_voices_examples:
   - rou.new_contracts (retail nuovi store)
   complexity: medium
@@ -462,6 +501,7 @@ methods:
   family: operational_driver
   name_it: Occupancy load factor
   formula_sintesi: units * days_open * load_factor * tariff / 1000
+  formula_python: "drivers[f'driver.{voice}.units'][year] * drivers[f'driver.{voice}.days_open'][year] * assumptions[voice]['load_factor'][year] * assumptions[voice]['tariff'][year]"
   applicable_voices_examples:
   - hospitality
   - transport revenue
@@ -474,6 +514,7 @@ methods:
   family: build_up
   name_it: Account-by-account
   formula_sintesi: Σ account_i + long_tail
+  formula_python: "sum(drivers[f'driver.{voice}.account_{a}'][year] for a in assumptions[voice]['top_accounts'][year]) + assumptions[voice]['long_tail'][year]"
   applicable_voices_examples:
   - revenue B2B con top accounts visibili
   complexity: high
@@ -485,6 +526,7 @@ methods:
   family: build_up
   name_it: Cohort buildup
   formula_sintesi: Σ cohort_v.customers * cohort_v.arpu / 1000
+  formula_python: "sum(drivers[f'driver.saas.cohort_{c}_size'][year] * (assumptions[voice]['retention_rate'][year] ** drivers[f'driver.saas.cohort_{c}_age'][year]) * assumptions[voice]['arpu'][year] for c in assumptions[voice]['cohort_ids'][year])"
   applicable_voices_examples:
   - SaaS subscription
   - real estate vintage
@@ -497,6 +539,7 @@ methods:
   family: build_up
   name_it: Backlog conversion
   formula_sintesi: backlog * cr_backlog + intake * cr_same_year
+  formula_python: "resolve(f'driver.{voice}.backlog_open', year) * assumptions[voice]['conversion_rate'][year] + drivers[f'driver.{voice}.new_bookings'][year] * assumptions[voice]['partial_conversion_rate'][year]"
   applicable_voices_examples:
   - project
   - services
@@ -510,6 +553,7 @@ methods:
   family: build_up
   name_it: Order intake rollforward
   formula_sintesi: opening_backlog + intake - closing_backlog
+  formula_python: "resolve(f'driver.{voice}.backlog_open', year) + drivers[f'driver.{voice}.intake'][year] - drivers[f'driver.{voice}.backlog_close'][year]"
   applicable_voices_examples:
   - project revenue alternativo
   complexity: high
@@ -521,6 +565,7 @@ methods:
   family: build_up
   name_it: Book-to-bill
   formula_sintesi: orders / b2b_ratio
+  formula_python: "safe_div(drivers[f'driver.{voice}.orders'][year], assumptions[voice]['b2b_ratio'][year])"
   applicable_voices_examples:
   - project revenue indiretto
   complexity: medium
@@ -532,6 +577,7 @@ methods:
   family: build_up
   name_it: Contract renewal waterfall
   formula_sintesi: active + expiring*renewal_rate*(1+uplift) + new
+  formula_python: "assumptions[voice]['active'][year] + assumptions[voice]['expiring'][year] * assumptions[voice]['renewal_rate'][year] * (1 + assumptions[voice]['uplift'][year]) + assumptions[voice]['new'][year]"
   applicable_voices_examples:
   - revenue contratti pluriennali
   complexity: high
@@ -543,6 +589,7 @@ methods:
   family: bridge
   name_it: Revenue bridge analitico
   formula_sintesi: anchor[t-1] + Δprice + Δvolume + Δmix + Δfx + Δperimeter + Δother
+  formula_python: "resolve(voice, prev_year) + sum(assumptions[voice][f'movement_{m}'][year] for m in assumptions[voice]['movements'][year])"
   applicable_voices_examples:
   - revenue management reporting
   complexity: high
@@ -554,6 +601,7 @@ methods:
   family: bridge
   name_it: ARR bridge SaaS
   formula_sintesi: anchor[t-1] + new_arr + expansion - contraction - churn
+  formula_python: "resolve(voice, prev_year) + drivers['driver.saas.new_arr'][year] + drivers['driver.saas.expansion_arr'][year] - abs(drivers['driver.saas.churn_arr'][year]) - abs(drivers['driver.saas.contraction_arr'][year])"
   applicable_voices_examples:
   - pl.rev.gross.subscription (SaaS)
   complexity: medium
@@ -565,6 +613,7 @@ methods:
   family: probabilistic
   name_it: Pipeline weighted
   formula_sintesi: Σ pipeline_phase_p * win_prob_phase_p (4 fasi)
+  formula_python: "sum(drivers[f'driver.{voice}.pipeline_{phase}'][year] * assumptions[voice][f'win_rate_{phase}'][year] for phase in assumptions[voice]['pipeline_phases'][year])"
   applicable_voices_examples:
   - B2B sales
   - services pipeline
@@ -577,6 +626,7 @@ methods:
   family: probabilistic
   name_it: Weighted exposure
   formula_sintesi: -1 * Σ case_i.probability * case_i.exposure
+  formula_python: "-sum(assumptions[voice][f'case_{c}_probability'][year] * assumptions[voice][f'case_{c}_exposure'][year] for c in assumptions[voice]['cases'][year])"
   applicable_voices_examples:
   - pl.provisions.legal_other
   complexity: high
@@ -588,6 +638,7 @@ methods:
   family: probabilistic
   name_it: Allowance aging bucket (IFRS 9 matrix)
   formula_sintesi: -1 * Σ bucket_b.amount * bucket_b.ecl_rate (5 bucket)
+  formula_python: "-sum(assumptions[voice][f'bucket_{b}_amount'][year] * assumptions[voice][f'bucket_{b}_ecl_rate'][year] for b in assumptions[voice]['buckets'][year])"
   applicable_voices_examples:
   - bs.nwc.ar.allowance (alternativa)
   complexity: high
@@ -599,6 +650,7 @@ methods:
   family: rollforward
   name_it: Rollforward esplicito
   formula_sintesi: anchor[t-1] + inflow - outflow
+  formula_python: "resolve(voice, prev_year) + assumptions[voice]['inflow'][year] - abs(assumptions[voice]['outflow'][year])"
   applicable_voices_examples:
   - NWC atipici
   - accrued con flussi espliciti
@@ -611,6 +663,7 @@ methods:
   family: debt_schedule
   name_it: Term loan amortization lineare
   formula_sintesi: -1 * initial_principal / term_years (se in amortization)
+  formula_python: "-safe_div(drivers[f'driver.{voice}.initial_principal'][year], drivers[f'driver.{voice}.term_years'][year])"
   applicable_voices_examples:
   - bs.nfp.borrowings.term_loan_repayments
   complexity: medium
@@ -622,6 +675,7 @@ methods:
   family: debt_schedule
   name_it: Term loan annuity
   formula_sintesi: -1 * principal * rate * (1+rate)^N / ((1+rate)^N - 1)
+  formula_python: "-pmt(resolve(voice, prev_year), drivers[f'driver.{voice}.rate'][year], drivers[f'driver.{voice}.remaining_years'][year])"
   applicable_voices_examples:
   - bs.nfp.borrowings.term_loan_repayments (alt)
   complexity: high
@@ -633,6 +687,7 @@ methods:
   family: manual
   name_it: Manual one-off
   formula_sintesi: assumptions['amount'][t]
+  formula_python: "assumptions[voice]['value'][year]"
   applicable_voices_examples:
   - other_op_income.non_recurring
   - non_operating_extraordinary
@@ -645,6 +700,7 @@ methods:
   family: manual
   name_it: Manual provision schedule
   formula_sintesi: -1 * abs(amount[t])
+  formula_python: "-abs(assumptions[voice]['value'][year])"
   applicable_voices_examples:
   - pl.provisions.restructuring/legal_other; provisions usage
   complexity: low
@@ -656,6 +712,7 @@ methods:
   family: manual
   name_it: Manual zero placeholder
   formula_sintesi: '0'
+  formula_python: "0.0"
   applicable_voices_examples:
   - FX
   - equity_method (mono-perimetro)
@@ -668,6 +725,7 @@ methods:
   family: manual
   name_it: Manual schedule
   formula_sintesi: amount[t]
+  formula_python: "assumptions[voice]['value'][year]"
   applicable_voices_examples:
   - capex
   - debt schedule
@@ -682,6 +740,7 @@ methods:
   family: manual
   name_it: Manual zero (default)
   formula_sintesi: '0'
+  formula_python: "0.0"
   applicable_voices_examples:
   - placeholder M&A
   - voci episodiche
@@ -694,6 +753,7 @@ methods:
   family: manual
   name_it: Manual impairment schedule
   formula_sintesi: -1 * abs(amount[t])
+  formula_python: "-abs(assumptions[voice]['value'][year])"
   applicable_voices_examples:
   - pl.impairment.* voci
   complexity: low
@@ -705,6 +765,7 @@ methods:
   family: manual
   name_it: Manual lease schedule
   formula_sintesi: amount[t]
+  formula_python: "assumptions[voice]['value'][year]"
   applicable_voices_examples:
   - bs.fa.rou.new_contracts (alternativa manual)
   complexity: low
@@ -716,6 +777,7 @@ methods:
   family: manual
   name_it: Manual tax input
   formula_sintesi: amount[t]
+  formula_python: "assumptions[voice]['value'][year]"
   applicable_voices_examples:
   - CIT regimi fiscali speciali
   complexity: low
@@ -727,6 +789,7 @@ derived_rules:
   tech_code: R_DRV_001
   name_it: D&A mid-year convention
   formula: -1 * max(0, (gross_open + gross_close)/2 - non_depreciable) / useful_life
+  formula_python: "-safe_div(max(0, (resolve(assumptions[voice]['gross_voice'][year], prev_year) + resolve(assumptions[voice]['gross_voice'][year], year)) / 2 - assumptions[voice]['non_depreciable'][year]), assumptions[voice]['useful_life'][year])"
   applicato_a: pl.da.ppe / intangibles / rou
   fase_proxy: null
   fase_final: E2
@@ -735,6 +798,7 @@ derived_rules:
   tech_code: R_DRV_002
   name_it: IFRS 15 movement da SP
   formula: -(contract_liab[t]-contract_liab[t-1]) o +(contract_assets[t]-[t-1])
+  formula_python: "-(resolve('bs.nwc.contract_liab', year) - resolve('bs.nwc.contract_liab', prev_year)) + (resolve('bs.nwc.contract_assets', year) - resolve('bs.nwc.contract_assets', prev_year))"
   applicato_a: pl.rev.adjustments.*
   fase_proxy: null
   fase_final: E3_1
@@ -743,6 +807,7 @@ derived_rules:
   tech_code: R_DRV_003
   name_it: NWC change per CF
   formula: -(bs.nwc.operating[t] - bs.nwc.operating[t-1])
+  formula_python: "-(resolve('bs.nwc.operating.final', year) - resolve('bs.nwc.operating.final', prev_year))"
   applicato_a: cf.operating.nwc_change
   fase_proxy: null
   fase_final: E8
@@ -751,6 +816,7 @@ derived_rules:
   tech_code: R_DRV_004
   name_it: Identità retained earnings
   formula: re_open + pl.net_income + dividends_paid
+  formula_python: "resolve('bs.equity.retained_earnings.close', prev_year) + resolve('pl.net_income', year) + resolve('bs.equity.dividends', year) + resolve('bs.equity.buyback', year)"
   applicato_a: bs.equity.retained_earnings.close
   fase_proxy: null
   fase_final: E7
@@ -759,6 +825,7 @@ derived_rules:
   tech_code: R_DRV_005
   name_it: Cash identity da CF
   formula: cash[t-1] + cf.net_change_cash[t]
+  formula_python: "resolve('bs.nfp.cash', prev_year) + resolve('cf.net_change_cash', year)"
   applicato_a: bs.nfp.cash
   fase_proxy: null
   fase_final: E8
@@ -767,6 +834,7 @@ derived_rules:
   tech_code: R_DRV_006
   name_it: Interest expense su balance medio
   formula: -1 * abs(borrowings.balance_avg) * cost_of_debt
+  formula_python: "-abs((resolve('bs.nfp.borrowings.balance_close', prev_year) + resolve('bs.nfp.borrowings.balance_close', year)) / 2) * assumptions[voice]['cost_of_debt'][year]"
   applicato_a: pl.financial.interest_expense
   fase_proxy: null
   fase_final: E4
@@ -775,6 +843,7 @@ derived_rules:
   tech_code: R_DRV_007
   name_it: Lease interest su balance medio
   formula: -1 * abs(lease_liability.balance_avg) * lease_implicit_rate
+  formula_python: "-abs((resolve('bs.nfp.lease_liability.close', prev_year) + resolve('bs.nfp.lease_liability.close', year)) / 2) * assumptions[voice]['lease_implicit_rate'][year]"
   applicato_a: pl.financial.lease_interest
   fase_proxy: null
   fase_final: E4
@@ -783,6 +852,7 @@ derived_rules:
   tech_code: R_DRV_008
   name_it: Interest income su cash medio
   formula: cash.balance_avg * cash_yield
+  formula_python: "(resolve('bs.nfp.cash', prev_year) + resolve('bs.nfp.cash', year)) / 2 * assumptions[voice]['cash_yield'][year]"
   applicato_a: pl.financial.interest_income
   fase_proxy: E4
   fase_final: E8
@@ -791,6 +861,7 @@ derived_rules:
   tech_code: R_DRV_009
   name_it: Tax current ETR semplificato
   formula: -1 * max(0, ebt) * etr
+  formula_python: "-max(0, resolve('pl.ebt', year)) * assumptions[voice]['etr'][year]"
   applicato_a: pl.tax.current (modalità simplified, default)
   fase_proxy: null
   fase_final: E7
@@ -799,6 +870,7 @@ derived_rules:
   tech_code: R_DRV_010
   name_it: Balance check (quadratura)
   formula: total_assets + total_liabilities - total_equity
+  formula_python: "resolve('bs.total_assets', year) + resolve('bs.total_liabilities', year) - resolve('bs.equity.total_close', year)"
   applicato_a: bs.balance_check (identità)
   fase_proxy: null
   fase_final: E8
@@ -807,6 +879,7 @@ derived_rules:
   tech_code: R_DRV_011
   name_it: Taxable income bridge
   formula: ebt + permanent_addbacks - permanent_deductions + temporary_differences
+  formula_python: "resolve('pl.ebt', year) + assumptions[voice]['permanent_addbacks'][year] - assumptions[voice]['permanent_deductions'][year] + assumptions[voice]['temporary_differences'][year]"
   applicato_a: taxable_income (interno modalità advanced)
   fase_proxy: null
   fase_final: E7
@@ -815,6 +888,7 @@ derived_rules:
   tech_code: R_DRV_012
   name_it: NOL utilization
   formula: min(taxable_income, nol_carryforward[t-1] * utilization_limit)
+  formula_python: "min(resolve('pl.taxable_income', year), resolve('bs.tax.nol_carryforward.close', prev_year) * assumptions[voice]['utilization_limit'][year])"
   applicato_a: nol_used (interno)
   fase_proxy: null
   fase_final: E7
@@ -823,6 +897,7 @@ derived_rules:
   tech_code: R_DRV_013
   name_it: Current tax con NOL
   formula: -1 * max(0, taxable_income - nol_used) * etr
+  formula_python: "-max(0, resolve('pl.taxable_income', year) - resolve('pl.nol_used', year)) * assumptions[voice]['etr'][year]"
   applicato_a: pl.tax.current (modalità advanced)
   fase_proxy: null
   fase_final: E7
@@ -831,6 +906,7 @@ derived_rules:
   tech_code: R_DRV_014
   name_it: Gross close aggregation
   formula: gross_open + flussi_in - flussi_out (per famiglia asset)
+  formula_python: "resolve(f'bs.fa.{family}.gross_open', year) + sum(resolve(f, year) for f in assumptions[voice]['inflows'][year]) - sum(abs(resolve(f, year)) for f in assumptions[voice]['outflows'][year])"
   applicato_a: bs.fa.{family}.gross_close
   fase_proxy: null
   fase_final: E2
@@ -839,6 +915,7 @@ derived_rules:
   tech_code: R_DRV_015
   name_it: Acc.depr close aggregation
   formula: acc_depr_open + pl.da.X - disposals_acc_depr - impairment_acc
+  formula_python: "resolve(f'bs.fa.{family}.acc_depr_open', year) + resolve(f'pl.da.{family}', year) - abs(resolve(f'bs.fa.{family}.disposals_acc_depr', year)) - abs(resolve(f'bs.fa.{family}.impairment_acc', year))"
   applicato_a: bs.fa.{family}.acc_depr_close
   fase_proxy: null
   fase_final: E2
@@ -847,6 +924,7 @@ derived_rules:
   tech_code: R_DRV_016
   name_it: Net book value
   formula: gross_close + acc_depr_close (acc_depr negativo)
+  formula_python: "resolve(f'bs.fa.{family}.gross_close', year) + resolve(f'bs.fa.{family}.acc_depr_close', year)"
   applicato_a: bs.fa.{family}.net_close
   fase_proxy: null
   fase_final: E2
@@ -855,6 +933,7 @@ derived_rules:
   tech_code: R_DRV_017
   name_it: Subtotal aggregation
   formula: SUM(children con prefix matching)
+  formula_python: "sum(resolve(c, year) for c in assumptions[voice]['children'][year])"
   applicato_a: tutti i subtotali derived
   fase_proxy: null
   fase_final: varies
@@ -863,6 +942,7 @@ derived_rules:
   tech_code: R_DRV_018
   name_it: EB interest cost
   formula: abs(eb_balance_avg) * discount_rate (segno negativo, P&L)
+  formula_python: "-abs((resolve('bs.employee_benefits.balance_close', prev_year) + resolve('bs.employee_benefits.balance_close', year)) / 2) * assumptions[voice]['discount_rate'][year]"
   applicato_a: bs.employee_benefits.interest_cost
   fase_proxy: null
   fase_final: E5
@@ -871,6 +951,7 @@ derived_rules:
   tech_code: R_DRV_019
   name_it: Lease liability interest accrued
   formula: abs(lease_liability_avg) * lease_implicit_rate (segno negativo)
+  formula_python: "-abs((resolve('bs.nfp.lease_liability.close', prev_year) + resolve('bs.nfp.lease_liability.close', year)) / 2) * assumptions[voice]['lease_implicit_rate'][year]"
   applicato_a: bs.nfp.lease_liability.interest_accrued
   fase_proxy: null
   fase_final: E4

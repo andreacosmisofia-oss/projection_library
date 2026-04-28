@@ -84,6 +84,10 @@
           "type": ["string", "null"],
           "description": "Sintesi della formula / condizione (es. 'all(consuntivo[v][year] is not None for v in required_voices)')."
         },
+        "formula_python": {
+          "type": ["string", "null"],
+          "description": "Espressione Python machine-readable della regola (M1.3). Per regole troppo complesse usare la convention 'custom_function: validators.<nome>' come stringa. Namespace: voices, assumptions, drivers, kpis, year, prev_year. Null se non applicabile."
+        },
         "action": {
           "type": "string",
           "enum": [
