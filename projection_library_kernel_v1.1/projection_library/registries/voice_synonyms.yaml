@@ -626,3 +626,315 @@ voice_synonyms:
     - total operating expenses
     - total opex
     - total sg and a
+
+# ----- pl.da.* --------------------------------------------------------
+
+- voice_id: pl.da.ppe
+  synonyms_it:
+    - ammortamento immobilizzazioni materiali
+    - ammortamenti su ppe
+    - quote ammortamento beni materiali
+    - ammortamento cespiti
+    - ammortamento immobili impianti e macchinari
+  synonyms_en:
+    - depreciation of ppe
+    - ppe depreciation
+    - depreciation of property plant and equipment
+
+- voice_id: pl.da.intangibles
+  synonyms_it:
+    - ammortamento immobilizzazioni immateriali
+    - ammortamenti su intangibili
+    - quote ammortamento intangibili
+    - ammortamento beni immateriali
+    - ammortamento software e marchi
+  synonyms_en:
+    - amortization of intangibles
+    - intangible amortization
+    - amortization of intangible assets
+
+- voice_id: pl.da.rou
+  synonyms_it:
+    - ammortamento right of use
+    - ammortamento diritti d uso
+    - ammortamento rou ifrs16
+    - ammortamento beni in leasing ifrs16
+    - quote ammortamento right of use
+  synonyms_en:
+    - depreciation of right of use assets
+    - rou depreciation
+    - ifrs 16 rou depreciation
+
+- voice_id: pl.da.total
+  synonyms_it:
+    - totale ammortamenti
+    - ammortamenti totali
+    - totale d e a
+    - ammortamenti complessivi
+    - totale ammortamenti operativi
+  synonyms_en:
+    - total depreciation and amortization
+    - total d and a
+    - total depreciation amortization
+
+# ----- pl.impairment.* ------------------------------------------------
+
+- voice_id: pl.impairment.ppe
+  synonyms_it:
+    - svalutazioni immobilizzazioni materiali
+    - impairment ppe
+    - perdite di valore beni materiali
+    - svalutazioni cespiti
+    - perdite durevoli su immobilizzazioni materiali
+  synonyms_en:
+    - impairment of ppe
+    - ppe impairment
+    - impairment of property plant and equipment
+
+- voice_id: pl.impairment.intangibles
+  synonyms_it:
+    - svalutazioni immobilizzazioni immateriali
+    - impairment intangibili
+    - perdite di valore intangibili
+    - svalutazioni beni immateriali
+    - perdite durevoli su intangibili
+  synonyms_en:
+    - impairment of intangibles
+    - intangible impairment
+    - impairment of intangible assets
+
+- voice_id: pl.impairment.goodwill
+  synonyms_it:
+    - svalutazione avviamento
+    - impairment goodwill
+    - perdita di valore avviamento
+    - svalutazione goodwill
+    - rettifica di valore su avviamento
+  synonyms_en:
+    - goodwill impairment
+    - impairment of goodwill
+    - goodwill writedown
+
+- voice_id: pl.impairment.total
+  synonyms_it:
+    - totale svalutazioni
+    - svalutazioni totali
+    - totale impairment
+    - perdite di valore totali
+    - rettifiche di valore complessive
+  synonyms_en:
+    - total impairment
+    - total impairment charges
+    - total writedowns
+
+# ----- pl.financial.* -------------------------------------------------
+
+- voice_id: pl.financial.interest_income
+  synonyms_it:
+    - proventi finanziari da interessi
+    - interessi attivi
+    - interessi su crediti finanziari
+    - proventi da interessi attivi
+    - interessi attivi bancari
+  synonyms_en:
+    - interest income
+    - finance income
+    - interest income from financial assets
+
+- voice_id: pl.financial.interest_expense
+  synonyms_it:
+    - oneri finanziari per interessi
+    - interessi passivi
+    - interessi su finanziamenti
+    - interessi passivi bancari
+    - interessi su debiti finanziari
+  synonyms_en:
+    - interest expense
+    - finance costs
+    - interest on borrowings
+
+- voice_id: pl.financial.lease_interest
+  synonyms_it:
+    - interessi su passivita di leasing
+    - oneri finanziari ifrs16
+    - interessi passivi su leasing
+    - interessi lease liability
+    - oneri da attualizzazione leasing
+  synonyms_en:
+    - lease interest expense
+    - interest on lease liabilities
+    - ifrs 16 lease interest
+
+- voice_id: pl.financial.fx_gain_loss
+  synonyms_it:
+    - utili e perdite su cambi
+    - differenze cambio nette
+    - oneri e proventi su cambi
+    - risultato netto da differenze cambio
+    - utili perdite cambi valutari
+  synonyms_en:
+    - fx gains and losses
+    - net foreign exchange result
+    - foreign exchange gain loss
+
+- voice_id: pl.financial.total_net
+  synonyms_it:
+    - saldo gestione finanziaria
+    - totale proventi e oneri finanziari
+    - risultato netto della gestione finanziaria
+    - saldo netto attivita finanziaria
+    - totale netto componenti finanziarie
+  synonyms_en:
+    - net finance result
+    - net financial income expense
+    - net financial result
+
+# ----- pl.tax.* -------------------------------------------------------
+
+- voice_id: pl.tax.permanent_differences
+  synonyms_it:
+    - differenze permanenti fiscali
+    - rettifiche fiscali permanenti
+    - variazioni fiscali permanenti
+    - differenze permanenti su imponibile
+    - permanent differences imponibile
+  synonyms_en:
+    - permanent tax differences
+    - permanent differences
+    - permanent book tax differences
+
+- voice_id: pl.tax.temporary_differences
+  synonyms_it:
+    - differenze temporanee fiscali
+    - rettifiche fiscali temporanee
+    - variazioni fiscali temporanee
+    - differenze temporanee imponibile
+    - temporary differences imponibile
+  synonyms_en:
+    - temporary tax differences
+    - temporary differences
+    - temporary book tax differences
+
+- voice_id: pl.tax.current
+  synonyms_it:
+    - imposte correnti
+    - ires e irap correnti
+    - imposte sul reddito correnti
+    - debito d imposta corrente
+    - imposte di competenza correnti
+  synonyms_en:
+    - current tax
+    - current income tax
+    - current income tax expense
+
+- voice_id: pl.tax.deferred
+  synonyms_it:
+    - imposte differite
+    - imposte anticipate e differite
+    - imposte differite nette
+    - movimento imposte differite
+    - oneri imposte differite
+  synonyms_en:
+    - deferred tax
+    - deferred income tax
+    - deferred tax expense
+
+- voice_id: pl.tax.total
+  synonyms_it:
+    - totale imposte
+    - imposte sul reddito totali
+    - imposte sul reddito d esercizio
+    - oneri fiscali complessivi
+    - totale carico fiscale
+  synonyms_en:
+    - total income tax
+    - total tax expense
+    - income tax total
+
+# ----- pl.provisions.* ------------------------------------------------
+
+- voice_id: pl.provisions.warranty
+  synonyms_it:
+    - accantonamenti per garanzia prodotti
+    - accantonamento fondo garanzia
+    - oneri per garanzia
+    - accantonamento garanzia prodotti
+    - accantonamenti rischi garanzia
+  synonyms_en:
+    - warranty provisions
+    - warranty provision charge
+    - warranty accruals
+
+- voice_id: pl.provisions.restructuring
+  synonyms_it:
+    - accantonamenti per ristrutturazione
+    - oneri di ristrutturazione
+    - accantonamento fondo ristrutturazione
+    - costi piano di ristrutturazione
+    - accantonamenti ristrutturazione aziendale
+  synonyms_en:
+    - restructuring provisions
+    - restructuring charges
+    - restructuring provision
+
+- voice_id: pl.provisions.legal_other
+  synonyms_it:
+    - accantonamenti per rischi legali
+    - accantonamento fondo rischi legali
+    - oneri per cause e contenziosi
+    - accantonamenti contenziosi
+    - accantonamenti rischi e oneri legali
+  synonyms_en:
+    - legal provisions
+    - legal and other provisions
+    - litigation provisions
+
+- voice_id: pl.provisions.total
+  synonyms_it:
+    - totale accantonamenti
+    - accantonamenti totali
+    - totale oneri per accantonamenti
+    - accantonamenti complessivi
+    - totale fondi rischi e oneri esercizio
+  synonyms_en:
+    - total provisions
+    - total provision charges
+    - total provisions expense
+
+# ----- pl.other.* -----------------------------------------------------
+
+- voice_id: pl.other.non_operating_recurring
+  synonyms_it:
+    - proventi e oneri non operativi ricorrenti
+    - componenti non caratteristiche ricorrenti
+    - oneri non operativi ricorrenti
+    - altri componenti non operativi ricorrenti
+    - componenti accessorie non operative
+  synonyms_en:
+    - other non operating recurring
+    - non operating items recurring
+    - other recurring non operating
+
+- voice_id: pl.other.non_operating_extraordinary
+  synonyms_it:
+    - proventi e oneri straordinari
+    - sopravvenienze attive e passive
+    - componenti straordinarie nette
+    - oneri non ricorrenti straordinari
+    - oneri non operativi straordinari
+  synonyms_en:
+    - extraordinary items
+    - non recurring extraordinary items
+    - non operating extraordinary items
+
+- voice_id: pl.other.fair_value_gain_loss_investment_property
+  synonyms_it:
+    - utili e perdite fair value investment property
+    - rivalutazione investment property
+    - variazioni fair value immobili da investimento
+    - utile da fair value ip ias40
+    - rettifiche fair value investment property
+  synonyms_en:
+    - fair value gain loss on investment property
+    - investment property fair value change
+    - ias 40 fair value gain loss
