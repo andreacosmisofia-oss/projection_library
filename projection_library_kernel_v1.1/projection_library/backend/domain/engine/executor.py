@@ -72,7 +72,14 @@ class ProjectNotReady(Exception):
 
 @dataclass
 class ProjectionResult:
-    """Engine output. M9.0 returns an empty snapshot; M9.1+ populates it."""
+    """Engine output. M9.0 returns an empty snapshot; M9.1+ populates it.
+
+    ``final_state`` exposes the post-loop :class:`ModelState` for
+    callers that need to introspect raw voice values (M10 snapshot
+    persistence builds ``snapshot_values`` from it). It is intentionally
+    excluded from JSON serialisation: API consumers receive structured
+    snapshots, not the raw state object.
+    """
 
     project_id: str
     run_timestamp: datetime
@@ -85,6 +92,7 @@ class ProjectionResult:
     validation_report: dict[str, Any] = field(default_factory=dict)
     approximation_log: list[Any] = field(default_factory=list)
     overrides_applied: list[Any] = field(default_factory=list)
+    final_state: ModelState | None = None
 
 
 def build_initial_state(
@@ -209,6 +217,8 @@ def run_engine(
         run_timestamp=started_at,
         status="success",
         duration_ms=duration_ms,
+        approximation_log=list(state.approximation_log),
+        final_state=state,
     )
 
 

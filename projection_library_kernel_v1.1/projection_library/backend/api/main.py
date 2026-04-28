@@ -21,6 +21,7 @@ from backend.api.routes.methods import router as methods_router
 from backend.api.routes.projects import router as projects_router
 from backend.api.routes.quality import router as quality_router
 from backend.api.routes.registry import router as registry_router
+from backend.api.routes.snapshots import router as snapshots_router
 from backend.api.routes.validation import router as validation_router
 from backend.infrastructure.registry import (
     RegistryLoadError,
@@ -52,6 +53,7 @@ app.include_router(kpi_router)
 app.include_router(quality_router)
 app.include_router(methods_router)
 app.include_router(drivers_router)
+app.include_router(snapshots_router)
 
 
 @app.get("/health", tags=["meta"])
