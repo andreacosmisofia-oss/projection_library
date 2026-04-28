@@ -34,6 +34,7 @@ from typing import TYPE_CHECKING, Any, AsyncIterator, Iterable
 import yaml
 from jsonschema import Draft202012Validator
 
+from backend.domain.intake.synonyms import SynonymIndex, build_synonym_index
 from backend.infrastructure.registry.cache import RegistryCache, get_cache
 
 if TYPE_CHECKING:
@@ -121,6 +122,7 @@ class Registries:
     voice_dependencies: dict[str, dict[str, Any]]
     override_policies: list[dict[str, Any]]
     required_data: list[dict[str, Any]]
+    synonyms: SynonymIndex = field(default_factory=SynonymIndex)
 
     def counts(self) -> dict[str, int]:
         """Cardinalities of the loaded artefacts (debug / health output)."""
@@ -135,6 +137,8 @@ class Registries:
             "voice_dependencies": len(self.voice_dependencies),
             "override_policies": len(self.override_policies),
             "required_data": len(self.required_data),
+            "synonym_voices": self.synonyms.voice_count(),
+            "synonym_strings": self.synonyms.synonym_count(),
         }
 
 
@@ -574,6 +578,19 @@ def load_registries(
         for phase in rule.get("trigger_phases", []) or []:
             rules_by_phase.setdefault(phase, []).append(rule)
 
+    # Synonyms (M4). Loaded after the voice index so we can xref every
+    # voice_id appearing in voice_synonyms.yaml against the registry.
+    synonyms_path = paths.registries_dir / "voice_synonyms.yaml"
+    if synonyms_path.exists():
+        try:
+            synonyms = build_synonym_index(synonyms_path)
+        except Exception as exc:  # pragma: no cover - defensive
+            raise RegistryLoadError(
+                f"voice_synonyms.yaml: failed to build index ({exc})"
+            ) from exc
+    else:
+        synonyms = SynonymIndex()
+
     reg = Registries(
         voices=voices,
         methods=methods,
@@ -588,12 +605,23 @@ def load_registries(
         voice_dependencies=voice_dependencies,
         override_policies=list(override_doc.get("policies") or []),
         required_data=list(required_doc.get("required_data") or []),
+        synonyms=synonyms,
     )
 
     # Referential + topological checks (run together so the operator sees both)
     semantic_errors: list[str] = []
     semantic_errors.extend(_check_cross_references(reg))
     semantic_errors.extend(_check_dag(reg, known_cycles=known_cycles))
+
+    # Synonym xref: every voice_id mentioned in voice_synonyms must exist in
+    # voice_registry. Caught here so the operator sees one consolidated
+    # error log on startup.
+    for voice_id in reg.synonyms.by_voice:
+        if voice_id not in reg.voices:
+            semantic_errors.append(
+                f"[xref] voice_synonyms.yaml: voice_id '{voice_id}' is not "
+                f"in voice_registry"
+            )
 
     if semantic_errors:
         raise RegistryLoadError(

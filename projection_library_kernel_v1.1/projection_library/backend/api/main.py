@@ -15,6 +15,7 @@ import logging
 from fastapi import FastAPI
 
 from backend.api.routes.intake import router as intake_router
+from backend.api.routes.mapping import router as mapping_router
 from backend.api.routes.projects import router as projects_router
 from backend.api.routes.registry import router as registry_router
 from backend.infrastructure.registry import (
@@ -42,6 +43,7 @@ register_lifespan(app)
 app.include_router(registry_router)
 app.include_router(projects_router)
 app.include_router(intake_router)
+app.include_router(mapping_router)
 
 
 @app.get("/health", tags=["meta"])

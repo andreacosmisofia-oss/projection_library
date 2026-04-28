@@ -134,4 +134,90 @@ class RawVoice(Base):
     )
 
 
-__all__ = ["Balance", "Project", "RawVoice"]
+class Mapping(Base):
+    """Confirmed mapping of a user voice to a system voice (M4).
+
+    One row per ``(project_id, voice_user_label, voice_user_section)``
+    triple — the same label can appear once per section, but never
+    twice within the same section. ``voice_id_system`` is nullable so
+    the user can explicitly mark a voice as ``skipped`` (the row is
+    persisted to record the deliberate skip rather than silently
+    dropping the line).
+    """
+
+    __tablename__ = "mappings"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    voice_user_label: Mapped[str] = mapped_column(String(255), nullable=False)
+    voice_user_section: Mapped[str | None] = mapped_column(
+        String(32), nullable=True
+    )
+    voice_id_system: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    auto_suggested: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False
+    )
+    confirmed_by_user: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False
+    )
+    skipped: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    sign_flip_applied: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        default=_utcnow,
+        onupdate=_utcnow,
+    )
+
+    __table_args__ = (
+        Index(
+            "ux_mappings_project_label_section",
+            "project_id",
+            "voice_user_label",
+            "voice_user_section",
+            unique=True,
+        ),
+    )
+
+
+class CompanyMapping(Base):
+    """Per-company memory of confirmed mappings (M4 strategy A).
+
+    Keyed on a normalized ``(company, label)`` pair so a second upload
+    for the same company finds the row regardless of casing/accents.
+    The route layer normalises before insert/lookup; the columns hold
+    only canonical lower-case strings.
+    """
+
+    __tablename__ = "company_mappings"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    company_name_norm: Mapped[str] = mapped_column(String(255), nullable=False)
+    voice_user_label_norm: Mapped[str] = mapped_column(String(255), nullable=False)
+    voice_id_system: Mapped[str] = mapped_column(String(255), nullable=False)
+    last_used_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow, onupdate=_utcnow
+    )
+
+    __table_args__ = (
+        Index(
+            "ux_company_mappings_company_label",
+            "company_name_norm",
+            "voice_user_label_norm",
+            unique=True,
+        ),
+    )
+
+
+__all__ = ["Balance", "CompanyMapping", "Mapping", "Project", "RawVoice"]
