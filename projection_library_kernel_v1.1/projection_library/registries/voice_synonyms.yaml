@@ -938,3 +938,89 @@ voice_synonyms:
     - fair value gain loss on investment property
     - investment property fair value change
     - ias 40 fair value gain loss
+
+# ----- pl.* aggregates ------------------------------------------------
+
+- voice_id: pl.gross_profit
+  synonyms_it:
+    - margine lordo
+    - utile lordo
+    - primo margine
+    - margine industriale
+    - margine di contribuzione lordo
+  synonyms_en:
+    - gross profit
+    - gross margin
+    - gross income
+
+- voice_id: pl.ebitda
+  synonyms_it:
+    - ebitda
+    - margine operativo lordo
+    - mol
+    - risultato operativo lordo
+    - margine ante ammortamenti
+  synonyms_en:
+    - ebitda
+    - earnings before interest taxes depreciation amortization
+    - operating profit before d and a
+
+- voice_id: pl.ebitda_adjusted
+  synonyms_it:
+    - ebitda adjusted
+    - ebitda rettificato
+    - ebitda normalizzato
+    - mol adjusted
+    - margine operativo lordo rettificato
+  synonyms_en:
+    - adjusted ebitda
+    - normalized ebitda
+    - ebitda adjusted
+
+- voice_id: pl.ebit
+  synonyms_it:
+    - ebit
+    - reddito operativo
+    - risultato operativo
+    - margine operativo netto
+    - utile operativo
+  synonyms_en:
+    - ebit
+    - operating profit
+    - operating income
+
+- voice_id: pl.ebit_adjusted
+  synonyms_it:
+    - ebit adjusted
+    - ebit rettificato
+    - reddito operativo rettificato
+    - risultato operativo normalizzato
+    - utile operativo adjusted
+  synonyms_en:
+    - adjusted ebit
+    - normalized operating profit
+    - ebit adjusted
+
+- voice_id: pl.ebt
+  synonyms_it:
+    - utile ante imposte
+    - risultato ante imposte
+    - reddito ante imposte
+    - utile prima delle imposte
+    - risultato prima delle imposte
+  synonyms_en:
+    - ebt
+    - profit before tax
+    - earnings before tax
+
+- voice_id: pl.net_income
+  synonyms_it:
+    - utile netto
+    - risultato netto
+    - utile d esercizio
+    - utile dell esercizio
+    - risultato netto d esercizio
+  synonyms_en:
+    - net income
+    - net profit
+    - profit for the year
