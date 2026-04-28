@@ -1,0 +1,849 @@
+required_data:
+- required_data_id: pl.rev.gross.product_sales_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.product_sales
+  method_id: volume_price
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'volume_price'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.service_revenue_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.service_revenue
+  method_id: headcount_unit_cost
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'headcount_unit_cost'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.subscription_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.subscription
+  method_id: historical_avg_growth
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.license_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.license
+  method_id: historical_avg_growth
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.usage_based_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.usage_based
+  method_id: volume_price
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'volume_price'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.rental_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.rental
+  method_id: capacity_utilization_price
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'capacity_utilization_price'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.project_contract_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.project_contract
+  method_id: backlog_conversion
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'backlog_conversion'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.energy_production_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.energy_production
+  method_id: capacity_utilization_price
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'capacity_utilization_price'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.other_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.gross.other
+  method_id: flat
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'flat'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.gross.custom_<n>_TIER_1
+  type: driver
+  voice_id: pl.rev.gross.custom_<n>
+  method_id: (utente sceglie)
+  tier: TIER_1
+  sector_scope: all
+  required_if: always
+  default_policy: skip_if_missing
+- required_data_id: pl.rev.deductions.discounts_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.deductions.discounts
+  method_id: pct_gross_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_gross_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.deductions.rebates_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.deductions.rebates
+  method_id: pct_gross_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_gross_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.deductions.returns_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.deductions.returns
+  method_id: pct_gross_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_gross_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.deductions.trade_promo_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.deductions.trade_promo
+  method_id: pct_gross_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_gross_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.other_op_income.recurring_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.other_op_income.recurring
+  method_id: historical_avg_growth
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.rev.other_op_income.non_recurring_TIER_1
+  type: actual_voice
+  voice_id: pl.rev.other_op_income.non_recurring
+  method_id: manual_one_off
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'manual_one_off'
+  default_policy: fallback_to_default
+- required_data_id: pl.cogs.materials.raw_TIER_1
+  type: actual_voice
+  voice_id: pl.cogs.materials.raw
+  method_id: pct_net_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_net_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.cogs.materials.purchased_finished_TIER_1
+  type: actual_voice
+  voice_id: pl.cogs.materials.purchased_finished
+  method_id: pct_net_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_net_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.cogs.labour.direct_TIER_1
+  type: actual_voice
+  voice_id: pl.cogs.labour.direct
+  method_id: headcount_unit_cost
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'headcount_unit_cost'
+  default_policy: fallback_to_default
+- required_data_id: pl.cogs.subcontracting_TIER_1
+  type: actual_voice
+  voice_id: pl.cogs.subcontracting
+  method_id: pct_net_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_net_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.cogs.overhead.variable_TIER_1
+  type: actual_voice
+  voice_id: pl.cogs.overhead.variable
+  method_id: pct_net_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_net_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.cogs.overhead.fixed_TIER_1
+  type: actual_voice
+  voice_id: pl.cogs.overhead.fixed
+  method_id: inflation_indexed_growth
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'inflation_indexed_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.cogs.inventory_writeoff_TIER_1
+  type: actual_voice
+  voice_id: pl.cogs.inventory_writeoff
+  method_id: pct_inventory_writeoff
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_inventory_writeoff'
+  default_policy: fallback_to_default
+- required_data_id: pl.cogs.logistics_inbound_TIER_1
+  type: actual_voice
+  voice_id: pl.cogs.logistics_inbound
+  method_id: pct_net_revenue
+  tier: TIER_1
+  sector_scope: all
+  required_if: method_id == 'pct_net_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.sm.commissions_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.sm.commissions
+  method_id: pct_net_revenue
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'pct_net_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.sm.marketing_performance_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.sm.marketing_performance
+  method_id: pct_net_revenue
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'pct_net_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.sm.marketing_brand_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.sm.marketing_brand
+  method_id: historical_avg_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.sm.personnel_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.sm.personnel
+  method_id: headcount_unit_cost
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'headcount_unit_cost'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.ga.personnel_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.ga.personnel
+  method_id: headcount_unit_cost
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'headcount_unit_cost'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.ga.professional_fees_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.ga.professional_fees
+  method_id: inflation_indexed_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'inflation_indexed_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.ga.insurance_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.ga.insurance
+  method_id: inflation_indexed_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'inflation_indexed_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.ga.travel_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.ga.travel
+  method_id: inflation_indexed_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'inflation_indexed_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.it.software_cloud_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.it.software_cloud
+  method_id: historical_avg_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.facilities.utilities_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.facilities.utilities
+  method_id: inflation_indexed_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'inflation_indexed_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.facilities.maintenance_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.facilities.maintenance
+  method_id: inflation_indexed_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'inflation_indexed_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.rd.personnel_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.rd.personnel
+  method_id: headcount_unit_cost
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'headcount_unit_cost'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.rd.external_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.rd.external
+  method_id: historical_avg_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.logistics_outbound_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.logistics_outbound
+  method_id: pct_net_revenue
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'pct_net_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.customer_support_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.customer_support
+  method_id: headcount_unit_cost
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'headcount_unit_cost'
+  default_policy: fallback_to_default
+- required_data_id: pl.opex.other_recurring_TIER_2
+  type: actual_voice
+  voice_id: pl.opex.other_recurring
+  method_id: historical_avg_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: pl.provisions.warranty_TIER_2
+  type: actual_voice
+  voice_id: pl.provisions.warranty
+  method_id: warranty_rate_revenue
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'warranty_rate_revenue'
+  default_policy: fallback_to_default
+- required_data_id: pl.provisions.restructuring_TIER_2
+  type: actual_voice
+  voice_id: pl.provisions.restructuring
+  method_id: manual_provision_schedule
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_provision_schedule'
+  default_policy: fallback_to_default
+- required_data_id: pl.provisions.legal_other_TIER_2
+  type: actual_voice
+  voice_id: pl.provisions.legal_other
+  method_id: manual_provision_schedule
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_provision_schedule'
+  default_policy: fallback_to_default
+- required_data_id: pl.impairment.ppe_TIER_2
+  type: actual_voice
+  voice_id: pl.impairment.ppe
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: pl.impairment.intangibles_TIER_2
+  type: actual_voice
+  voice_id: pl.impairment.intangibles
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: pl.impairment.goodwill_TIER_2
+  type: actual_voice
+  voice_id: pl.impairment.goodwill
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: pl.financial.fx_gain_loss_TIER_2
+  type: driver
+  voice_id: pl.financial.fx_gain_loss
+  method_id: manual_zero_placeholder
+  tier: TIER_2
+  sector_scope: all
+  required_if: always
+  default_policy: skip_if_missing
+- required_data_id: pl.equity_method_result_TIER_2
+  type: driver
+  voice_id: pl.equity_method_result
+  method_id: manual_zero_placeholder
+  tier: TIER_2
+  sector_scope: all
+  required_if: always
+  default_policy: skip_if_missing
+- required_data_id: pl.other.non_operating_recurring_TIER_2
+  type: actual_voice
+  voice_id: pl.other.non_operating_recurring
+  method_id: flat
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'flat'
+  default_policy: fallback_to_default
+- required_data_id: pl.other.non_operating_extraordinary_TIER_2
+  type: actual_voice
+  voice_id: pl.other.non_operating_extraordinary
+  method_id: manual_one_off
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_one_off'
+  default_policy: fallback_to_default
+- required_data_id: pl.tax.permanent_differences_TIER_2
+  type: actual_voice
+  voice_id: pl.tax.permanent_differences
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.tangible.maintenance_capex_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.tangible.maintenance_capex
+  method_id: capex_pct_revenue
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'capex_pct_revenue'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.tangible.expansion_capex_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.tangible.expansion_capex
+  method_id: manual_schedule
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_schedule'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.tangible.disposals_gross_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.tangible.disposals_gross
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.tangible.disposals_acc_depr_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.tangible.disposals_acc_depr
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.intangible.software_capex_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.intangible.software_capex
+  method_id: historical_avg_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.intangible.disposals_gross_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.intangible.disposals_gross
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.intangible.disposals_acc_amort_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.intangible.disposals_acc_amort
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.rou.new_contracts_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.rou.new_contracts
+  method_id: rou_new_leases_pct_base
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'rou_new_leases_pct_base'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.rou.terminations_gross_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.rou.terminations_gross
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.rou.modifications_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.rou.modifications
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.rou.terminations_acc_depr_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.rou.terminations_acc_depr
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.investment_property.acquisitions_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.investment_property.acquisitions
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.investment_property.disposals_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.investment_property.disposals
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.investment_property.fv_revaluation_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.investment_property.fv_revaluation
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.investment_property.improvements_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.investment_property.improvements
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.financial.investments_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.financial.investments_movement
+  method_id: manual_schedule
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_schedule'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.financial.bonds_amc_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.financial.bonds_amc_movement
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.fa.financial.fvtpl_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.fa.financial.fvtpl_movement
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.ar.trade_gross_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.ar.trade_gross
+  method_id: days_target
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'days_target'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.ar.allowance_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.ar.allowance
+  method_id: allowance_pct_ar_gross
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'allowance_pct_ar_gross'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.contract_assets_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.contract_assets
+  method_id: days_target
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'days_target'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.inventory.raw_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.inventory.raw
+  method_id: days_target
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'days_target'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.inventory.wip_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.inventory.wip
+  method_id: days_target
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'days_target'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.inventory.finished_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.inventory.finished
+  method_id: days_target
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'days_target'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.prepayments_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.prepayments
+  method_id: historical_avg_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.ap.trade_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.ap.trade
+  method_id: days_target
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'days_target'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.accrued_expenses_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.accrued_expenses
+  method_id: pct_related_flow
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'pct_related_flow'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.contract_liabilities_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.contract_liabilities
+  method_id: days_target
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'days_target'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.other_current_assets.vat_receivable_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.other_current_assets.vat_receivable
+  method_id: vat_balance_ratio
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'vat_balance_ratio'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.other_current_assets.cit_receivable_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.other_current_assets.cit_receivable
+  method_id: manual_tax_input
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_tax_input'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.other_current_assets.other_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.other_current_assets.other
+  method_id: historical_avg_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.other_current_liab.vat_payable_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.other_current_liab.vat_payable
+  method_id: vat_balance_ratio
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'vat_balance_ratio'
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.other_current_liab.cit_payable_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.other_current_liab.cit_payable
+  method_id: null
+  tier: TIER_2
+  sector_scope: all
+  required_if: always
+  default_policy: fallback_to_default
+- required_data_id: bs.nwc.other_current_liab.other_TIER_2
+  type: actual_voice
+  voice_id: bs.nwc.other_current_liab.other
+  method_id: historical_avg_growth
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'historical_avg_growth'
+  default_policy: fallback_to_default
+- required_data_id: bs.nfp.borrowings.term_loan_drawdowns_TIER_2
+  type: actual_voice
+  voice_id: bs.nfp.borrowings.term_loan_drawdowns
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.nfp.borrowings.term_loan_repayments_TIER_2
+  type: actual_voice
+  voice_id: bs.nfp.borrowings.term_loan_repayments
+  method_id: term_loan_amortization_linear
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'term_loan_amortization_linear'
+  default_policy: fallback_to_default
+- required_data_id: bs.nfp.borrowings.rcf_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.nfp.borrowings.rcf_movement
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.nfp.borrowings.bonds_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.nfp.borrowings.bonds_movement
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.nfp.borrowings.shareholder_loans_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.nfp.borrowings.shareholder_loans_movement
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.nfp.lease_liability.payments_principal_TIER_2
+  type: actual_voice
+  voice_id: bs.nfp.lease_liability.payments_principal
+  method_id: lease_payment_pct_opening
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'lease_payment_pct_opening'
+  default_policy: fallback_to_default
+- required_data_id: bs.nfp.lease_liability.modifications_TIER_2
+  type: actual_voice
+  voice_id: bs.nfp.lease_liability.modifications
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.equity.capital.organic_increases_TIER_2
+  type: actual_voice
+  voice_id: bs.equity.capital.organic_increases
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.equity.capital.dividends_paid_TIER_2
+  type: actual_voice
+  voice_id: bs.equity.capital.dividends_paid
+  method_id: dividend_payout_ratio
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'dividend_payout_ratio'
+  default_policy: fallback_to_default
+- required_data_id: bs.equity.capital.share_buyback_TIER_2
+  type: actual_voice
+  voice_id: bs.equity.capital.share_buyback
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.equity.capital.oci_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.equity.capital.oci_movement
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.equity.capital.nci_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.equity.capital.nci_movement
+  method_id: manual_zero
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.tax.dta_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.tax.dta_movement
+  method_id: deferred_tax_simplified
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'deferred_tax_simplified'
+  default_policy: fallback_to_default
+- required_data_id: bs.tax.dtl_movement_TIER_2
+  type: actual_voice
+  voice_id: bs.tax.dtl_movement
+  method_id: deferred_tax_simplified
+  tier: TIER_2
+  sector_scope: all
+  required_if: method_id == 'deferred_tax_simplified'
+  default_policy: fallback_to_default
+- required_data_id: bs.provisions.warranty.usage_TIER_3
+  type: actual_voice
+  voice_id: bs.provisions.warranty.usage
+  method_id: warranty_usage_pct_balance
+  tier: TIER_3
+  sector_scope: all
+  required_if: method_id == 'warranty_usage_pct_balance'
+  default_policy: fallback_to_default
+- required_data_id: bs.provisions.restructuring.usage_TIER_3
+  type: actual_voice
+  voice_id: bs.provisions.restructuring.usage
+  method_id: manual_provision_schedule
+  tier: TIER_3
+  sector_scope: all
+  required_if: method_id == 'manual_provision_schedule'
+  default_policy: fallback_to_default
+- required_data_id: bs.provisions.legal_other.usage_TIER_3
+  type: actual_voice
+  voice_id: bs.provisions.legal_other.usage
+  method_id: manual_provision_schedule
+  tier: TIER_3
+  sector_scope: all
+  required_if: method_id == 'manual_provision_schedule'
+  default_policy: fallback_to_default
+- required_data_id: bs.provisions.other.usage_TIER_3
+  type: actual_voice
+  voice_id: bs.provisions.other.usage
+  method_id: manual_zero
+  tier: TIER_3
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
+- required_data_id: bs.employee_benefits.service_cost_TIER_3
+  type: actual_voice
+  voice_id: bs.employee_benefits.service_cost
+  method_id: employee_benefits_service_cost_rate
+  tier: TIER_3
+  sector_scope: all
+  required_if: method_id == 'employee_benefits_service_cost_rate'
+  default_policy: fallback_to_default
+- required_data_id: bs.employee_benefits.payments_to_employees_TIER_3
+  type: actual_voice
+  voice_id: bs.employee_benefits.payments_to_employees
+  method_id: employee_benefits_payments_pct_balance
+  tier: TIER_3
+  sector_scope: all
+  required_if: method_id == 'employee_benefits_payments_pct_balance'
+  default_policy: fallback_to_default
+- required_data_id: bs.employee_benefits.actuarial_changes_TIER_3
+  type: actual_voice
+  voice_id: bs.employee_benefits.actuarial_changes
+  method_id: manual_zero
+  tier: TIER_3
+  sector_scope: all
+  required_if: method_id == 'manual_zero'
+  default_policy: fallback_to_default
