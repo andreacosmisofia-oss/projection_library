@@ -420,3 +420,209 @@ voice_synonyms:
     - total cost of goods sold
     - total cogs
     - cost of sales total
+
+# ----- pl.opex.* ------------------------------------------------------
+
+- voice_id: pl.opex.sm.commissions
+  synonyms_it:
+    - provvigioni di vendita
+    - provvigioni a agenti
+    - commissioni commerciali
+    - provvigioni rete vendita
+    - costi provvigionali
+  synonyms_en:
+    - sales commissions
+    - agent commissions
+    - selling commissions
+
+- voice_id: pl.opex.sm.marketing_performance
+  synonyms_it:
+    - costi marketing performance
+    - spese pubblicita digitale
+    - costi advertising digitale
+    - investimenti marketing performance
+    - spese acquisizione clienti online
+  synonyms_en:
+    - performance marketing
+    - digital advertising spend
+    - performance marketing spend
+
+- voice_id: pl.opex.sm.marketing_brand
+  synonyms_it:
+    - costi di marketing brand
+    - spese pubblicita brand
+    - investimenti brand
+    - campagne brand awareness
+    - costi comunicazione istituzionale
+  synonyms_en:
+    - brand marketing
+    - brand advertising spend
+    - brand marketing spend
+
+- voice_id: pl.opex.sm.personnel
+  synonyms_it:
+    - costo del personale commerciale
+    - personale vendite e marketing
+    - retribuzioni rete vendita
+    - personale sales e marketing
+    - costo personale commerciale e marketing
+  synonyms_en:
+    - sales and marketing personnel
+    - sales personnel cost
+    - sales and marketing payroll
+
+- voice_id: pl.opex.ga.personnel
+  synonyms_it:
+    - costo del personale amministrativo
+    - personale generale e amministrativo
+    - retribuzioni staff amministrativo
+    - personale di sede
+    - costo personale ga
+  synonyms_en:
+    - general and administrative personnel
+    - g and a personnel cost
+    - administrative payroll
+
+- voice_id: pl.opex.ga.professional_fees
+  synonyms_it:
+    - consulenze professionali
+    - compensi a professionisti
+    - parcelle legali e fiscali
+    - onorari consulenti esterni
+    - spese per consulenze
+  synonyms_en:
+    - professional fees
+    - legal and consulting fees
+    - external advisory fees
+
+- voice_id: pl.opex.ga.insurance
+  synonyms_it:
+    - premi assicurativi
+    - assicurazioni aziendali
+    - costi polizze assicurative
+    - oneri assicurativi
+    - spese assicurazioni generali
+  synonyms_en:
+    - insurance expenses
+    - corporate insurance
+    - insurance premiums
+
+- voice_id: pl.opex.ga.travel
+  synonyms_it:
+    - spese di trasferta
+    - rimborsi trasferte e viaggi
+    - costi viaggi e missioni
+    - spese di rappresentanza e viaggio
+    - trasferte personale dipendente
+  synonyms_en:
+    - travel expenses
+    - business travel costs
+    - travel and entertainment
+
+- voice_id: pl.opex.it.software_cloud
+  synonyms_it:
+    - costi software e cloud
+    - canoni software
+    - licenze software saas
+    - servizi cloud
+    - costi it e abbonamenti software
+  synonyms_en:
+    - software and cloud costs
+    - saas subscriptions
+    - cloud services costs
+
+- voice_id: pl.opex.facilities.utilities
+  synonyms_it:
+    - utenze
+    - costi energia elettrica e gas
+    - utenze e forniture
+    - bollette luce gas acqua
+    - costi utenze sede
+  synonyms_en:
+    - utilities expenses
+    - electricity and gas costs
+    - facility utilities
+
+- voice_id: pl.opex.facilities.maintenance
+  synonyms_it:
+    - manutenzioni e riparazioni
+    - costi manutenzione immobili
+    - manutenzione ordinaria
+    - manutenzioni stabilimenti
+    - manutenzioni e pulizie
+  synonyms_en:
+    - facility maintenance
+    - building maintenance and repairs
+    - maintenance expenses
+
+- voice_id: pl.opex.rd.personnel
+  synonyms_it:
+    - costo del personale ricerca e sviluppo
+    - personale rd interno
+    - retribuzioni team r e s
+    - personale ricerca e sviluppo
+    - costo personale rd
+  synonyms_en:
+    - r and d personnel
+    - research and development personnel
+    - r and d payroll
+
+- voice_id: pl.opex.rd.external
+  synonyms_it:
+    - costi rd esterni
+    - consulenze ricerca e sviluppo
+    - servizi esterni di ricerca e sviluppo
+    - prestazioni rd di terzi
+    - r e s in outsourcing
+  synonyms_en:
+    - external r and d costs
+    - outsourced research and development
+    - r and d external services
+
+- voice_id: pl.opex.logistics_outbound
+  synonyms_it:
+    - logistica in uscita
+    - costi spedizioni a clienti
+    - trasporti su vendite
+    - oneri di consegna
+    - costi logistica distributiva
+  synonyms_en:
+    - outbound logistics
+    - outbound freight costs
+    - freight out
+
+- voice_id: pl.opex.customer_support
+  synonyms_it:
+    - costi assistenza clienti
+    - servizio clienti
+    - costi customer service
+    - supporto clienti post vendita
+    - spese call center clienti
+  synonyms_en:
+    - customer support costs
+    - customer service expenses
+    - customer success costs
+
+- voice_id: pl.opex.other_recurring
+  synonyms_it:
+    - altre spese operative ricorrenti
+    - altri oneri di gestione
+    - costi operativi diversi
+    - oneri diversi di gestione
+    - altre spese amministrative ricorrenti
+  synonyms_en:
+    - other recurring opex
+    - other operating expenses
+    - sundry operating expenses
+
+- voice_id: pl.opex.total
+  synonyms_it:
+    - totale costi operativi
+    - totale opex
+    - totale spese operative
+    - costi operativi totali
+    - totale spese di struttura
+  synonyms_en:
+    - total operating expenses
+    - total opex
+    - total sg and a
