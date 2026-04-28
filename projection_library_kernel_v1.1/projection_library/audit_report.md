@@ -75,3 +75,17 @@ Valori compositi splittati in calc_phase_proxy + calc_phase_final.
 - Assumption year enum: Y1, Y2, Y3 (forward)
 - curve_type separato in AssumptionCurveConfig (livello voice+assumption, non per-anno)
 - calibration_score e validation_status: derivati a runtime, non persistiti
+
+## §13 Dangling refs in voice_dependencies.yaml
+
+7 voice_id referenziati come dipendenze non esistono nel voice_registry.yaml corrente. Da riconciliare prima di M1.9 (registry loader).
+
+| Dipendenza dichiarata | Probabile voice_id corretto |
+|---|---|
+| pl.rev.deductions.total | pl.rev.deductions_total |
+| pl.cogs.materials.consumables | da verificare in Excel |
+| pl.cogs.overhead | split in pl.cogs.overhead.variable + pl.cogs.overhead.fixed |
+| pl.other.non_operating_total | split in pl.other.non_operating.recurring + pl.other.non_operating.extraordinary |
+| bs.nfp.borrowings.balance_close | bs.nfp.borrowings.total_close |
+| bs.equity.reserves | da verificare in Excel |
+| bs.equity.oci_total | bs.equity.oci_cumulative.close |
