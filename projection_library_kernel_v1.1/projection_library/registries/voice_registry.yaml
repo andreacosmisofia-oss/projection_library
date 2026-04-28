@@ -10,6 +10,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default industrial
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.service_revenue
   statement: PL
   section: rev.gross
@@ -21,6 +22,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default services
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.subscription
   statement: PL
   section: rev.gross
@@ -32,6 +34,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: 'Default condizionale: arr_bridge se sector=saas'
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.license
   statement: PL
   section: rev.gross
@@ -43,6 +46,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default cambiato da Z.1 (critica 3.5 Doc 1)
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.usage_based
   statement: PL
   section: rev.gross
@@ -54,6 +58,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.rental
   statement: PL
   section: rev.gross
@@ -65,6 +70,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default real_estate
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.project_contract
   statement: PL
   section: rev.gross
@@ -76,6 +82,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.energy_production
   statement: PL
   section: rev.gross
@@ -87,6 +94,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Energy out of scope pilot
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.other
   statement: PL
   section: rev.gross
@@ -98,6 +106,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross.custom_<n>
   statement: PL
   section: rev.gross
@@ -109,6 +118,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Slot user-defined
+  override_policy_class: revenue_organic
 - voice_id: pl.rev.gross_total
   statement: PL
   section: rev.gross
@@ -120,6 +130,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: SUM gross.*
+  override_policy_class: not_overridable_derived
 - voice_id: pl.rev.deductions.discounts
   statement: PL
   section: rev.deductions
@@ -131,6 +142,7 @@ voices:
   denominator_flow_voice: pl.rev.gross_total
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: pl.rev.deductions.rebates
   statement: PL
   section: rev.deductions
@@ -142,6 +154,7 @@ voices:
   denominator_flow_voice: pl.rev.gross_total
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: pl.rev.deductions.returns
   statement: PL
   section: rev.deductions
@@ -153,6 +166,7 @@ voices:
   denominator_flow_voice: pl.rev.gross_total
   recurrence: recurring
   note: Significant in retail
+  override_policy_class: default_organic
 - voice_id: pl.rev.deductions.trade_promo
   statement: PL
   section: rev.deductions
@@ -164,6 +178,7 @@ voices:
   denominator_flow_voice: pl.rev.gross_total
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: pl.rev.deductions_total
   statement: PL
   section: rev.deductions
@@ -175,6 +190,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: SUM deductions.*
+  override_policy_class: not_overridable_derived
 - voice_id: pl.rev.adjustments.deferred_movement
   statement: PL
   section: rev.adjustments
@@ -186,6 +202,7 @@ voices:
   denominator_flow_voice: bs.nwc.contract_liabilities
   recurrence: recurring
   note: IFRS 15 da contract_liabilities
+  override_policy_class: not_overridable_derived
 - voice_id: pl.rev.adjustments.contract_asset_movement
   statement: PL
   section: rev.adjustments
@@ -197,6 +214,7 @@ voices:
   denominator_flow_voice: bs.nwc.contract_assets
   recurrence: recurring
   note: IFRS 15 da contract_assets
+  override_policy_class: not_overridable_derived
 - voice_id: pl.rev.adjustments_total
   statement: PL
   section: rev.adjustments
@@ -208,6 +226,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.rev.other_op_income.recurring
   statement: PL
   section: rev.other_op_income
@@ -219,6 +238,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: pl.rev.other_op_income.non_recurring
   statement: PL
   section: rev.other_op_income
@@ -230,6 +250,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: pl.rev.other_op_income_total
   statement: PL
   section: rev.other_op_income
@@ -241,6 +262,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.rev.net
   statement: PL
   section: rev
@@ -252,6 +274,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: 'Doppia istanza: proxy E1, final E3.1'
+  override_policy_class: not_overridable_derived
 - voice_id: pl.cogs.materials.raw
   statement: PL
   section: cogs
@@ -263,6 +286,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: null
+  override_policy_class: cogs_organic
 - voice_id: pl.cogs.materials.purchased_finished
   statement: PL
   section: cogs
@@ -274,6 +298,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: Default retail
+  override_policy_class: cogs_organic
 - voice_id: pl.cogs.labour.direct
   statement: PL
   section: cogs
@@ -285,6 +310,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Headcount funzione 1
+  override_policy_class: cogs_organic
 - voice_id: pl.cogs.subcontracting
   statement: PL
   section: cogs
@@ -296,6 +322,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: Cloud SaaS qui
+  override_policy_class: cogs_organic
 - voice_id: pl.cogs.overhead.variable
   statement: PL
   section: cogs
@@ -307,6 +334,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: null
+  override_policy_class: cogs_organic
 - voice_id: pl.cogs.overhead.fixed
   statement: PL
   section: cogs
@@ -318,6 +346,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: cogs_organic
 - voice_id: pl.cogs.inventory_writeoff
   statement: PL
   section: cogs
@@ -329,6 +358,7 @@ voices:
   denominator_flow_voice: bs.nwc.inventory.total
   recurrence: recurring
   note: Phase E3 (dipende da inventory)
+  override_policy_class: cogs_organic
 - voice_id: pl.cogs.logistics_inbound
   statement: PL
   section: cogs
@@ -340,6 +370,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: null
+  override_policy_class: cogs_organic
 - voice_id: pl.cogs.wip_capitalization
   statement: PL
   section: cogs
@@ -351,6 +382,7 @@ voices:
   denominator_flow_voice: bs.nwc.inventory.wip
   recurrence: recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.cogs.total
   statement: PL
   section: cogs
@@ -362,6 +394,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Doppia istanza
+  override_policy_class: not_overridable_derived
 - voice_id: pl.gross_profit
   statement: PL
   section: gross_profit
@@ -373,6 +406,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.opex.sm.commissions
   statement: PL
   section: opex
@@ -384,6 +418,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.sm.marketing_performance
   statement: PL
   section: opex
@@ -395,6 +430,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.sm.marketing_brand
   statement: PL
   section: opex
@@ -406,6 +442,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.sm.personnel
   statement: PL
   section: opex
@@ -417,6 +454,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Headcount funzione 2
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.ga.personnel
   statement: PL
   section: opex
@@ -428,6 +466,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Headcount funzione 3
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.ga.professional_fees
   statement: PL
   section: opex
@@ -439,6 +478,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.ga.insurance
   statement: PL
   section: opex
@@ -450,6 +490,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.ga.travel
   statement: PL
   section: opex
@@ -461,6 +502,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.it.software_cloud
   statement: PL
   section: opex
@@ -472,6 +514,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.facilities.utilities
   statement: PL
   section: opex
@@ -483,6 +526,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.facilities.maintenance
   statement: PL
   section: opex
@@ -494,6 +538,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.rd.personnel
   statement: PL
   section: opex
@@ -505,6 +550,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Headcount funzione 4
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.rd.external
   statement: PL
   section: opex
@@ -516,6 +562,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.logistics_outbound
   statement: PL
   section: opex
@@ -527,6 +574,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.customer_support
   statement: PL
   section: opex
@@ -538,6 +586,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Headcount funzione 5
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.other_recurring
   statement: PL
   section: opex
@@ -549,6 +598,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: opex_one_shot
 - voice_id: pl.opex.total
   statement: PL
   section: opex
@@ -560,6 +610,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Final in E1
+  override_policy_class: not_overridable_derived
 - voice_id: pl.provisions.warranty
   statement: PL
   section: provisions
@@ -571,6 +622,7 @@ voices:
   denominator_flow_voice: pl.rev.gross.product_sales
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: pl.provisions.restructuring
   statement: PL
   section: provisions
@@ -582,6 +634,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: pl.provisions.legal_other
   statement: PL
   section: provisions
@@ -593,6 +646,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: 'Alt: weighted_exposure (services)'
+  override_policy_class: default_organic
 - voice_id: pl.provisions.total
   statement: PL
   section: provisions
@@ -604,6 +658,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.ebitda
   statement: PL
   section: ebitda
@@ -615,6 +670,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.da.ppe
   statement: PL
   section: da
@@ -626,6 +682,7 @@ voices:
   denominator_flow_voice: bs.fa.tangible.gross
   recurrence: recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.da.intangibles
   statement: PL
   section: da
@@ -637,6 +694,7 @@ voices:
   denominator_flow_voice: bs.fa.intangible.gross
   recurrence: recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.da.rou
   statement: PL
   section: da
@@ -648,6 +706,7 @@ voices:
   denominator_flow_voice: bs.fa.rou.gross
   recurrence: recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.da.total
   statement: PL
   section: da
@@ -659,6 +718,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.impairment.ppe
   statement: PL
   section: impairment
@@ -670,6 +730,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: Splitting da pl.da.impairment_oneoff
+  override_policy_class: default_organic
 - voice_id: pl.impairment.intangibles
   statement: PL
   section: impairment
@@ -681,6 +742,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: Splitting
+  override_policy_class: default_organic
 - voice_id: pl.impairment.goodwill
   statement: PL
   section: impairment
@@ -692,6 +754,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: IAS 36
+  override_policy_class: default_organic
 - voice_id: pl.impairment.total
   statement: PL
   section: impairment
@@ -703,6 +766,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.ebit
   statement: PL
   section: ebit
@@ -714,6 +778,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.financial.interest_income
   statement: PL
   section: financial
@@ -725,6 +790,7 @@ voices:
   denominator_flow_voice: bs.nfp.cash
   recurrence: recurring
   note: Proxy con cash[t-1]
+  override_policy_class: not_overridable_derived
 - voice_id: pl.financial.interest_expense
   statement: PL
   section: financial
@@ -736,6 +802,7 @@ voices:
   denominator_flow_voice: bs.nfp.borrowings
   recurrence: recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.financial.lease_interest
   statement: PL
   section: financial
@@ -747,6 +814,7 @@ voices:
   denominator_flow_voice: bs.nfp.lease_liability
   recurrence: recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.financial.fx_gain_loss
   statement: PL
   section: financial
@@ -758,6 +826,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Mono-EUR pilot
+  override_policy_class: default_organic
 - voice_id: pl.financial.total_net
   statement: PL
   section: financial
@@ -769,6 +838,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.equity_method_result
   statement: PL
   section: equity_method
@@ -780,6 +850,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Mono-perimetro pilot
+  override_policy_class: default_organic
 - voice_id: pl.other.non_operating_recurring
   statement: PL
   section: other_non_op
@@ -791,6 +862,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: pl.other.non_operating_extraordinary
   statement: PL
   section: other_non_op
@@ -802,6 +874,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: Plus/minus su disposals manuali
+  override_policy_class: default_organic
 - voice_id: pl.other.fair_value_gain_loss_investment_property
   statement: PL
   section: other_non_op
@@ -813,6 +886,7 @@ voices:
   denominator_flow_voice: bs.fa.investment_property.fv_revaluation
   recurrence: recurring
   note: IAS 40 FV model — voce nuova
+  override_policy_class: not_overridable_derived
 - voice_id: pl.tax.permanent_differences
   statement: PL
   section: tax
@@ -824,6 +898,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Pilot v1.1 advanced tax
+  override_policy_class: default_organic
 - voice_id: pl.tax.temporary_differences
   statement: PL
   section: tax
@@ -835,6 +910,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.tax.current
   statement: PL
   section: tax
@@ -846,6 +922,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default simplified, alt advanced con NOL
+  override_policy_class: not_overridable_derived
 - voice_id: pl.tax.deferred
   statement: PL
   section: tax
@@ -857,6 +934,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.tax.total
   statement: PL
   section: tax
@@ -868,6 +946,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.ebt
   statement: PL
   section: ebt
@@ -879,6 +958,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.net_income
   statement: PL
   section: net_income
@@ -890,6 +970,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: pl.ebitda_adjusted
   statement: PL
   section: adjusted
@@ -901,6 +982,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Esclude voci non_recurring_extraordinary
+  override_policy_class: not_overridable_derived
 - voice_id: pl.ebit_adjusted
   statement: PL
   section: adjusted
@@ -912,6 +994,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Esclude voci non_recurring_extraordinary + impairment
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.tangible.gross_open
   statement: BS
   section: fa.tangible
@@ -923,6 +1006,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Y0 actual + lag close
+  override_policy_class: default_organic
 - voice_id: bs.fa.tangible.maintenance_capex
   statement: BS
   section: fa.tangible
@@ -934,6 +1018,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.tangible.expansion_capex
   statement: BS
   section: fa.tangible
@@ -945,6 +1030,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: 'Alt: capex_per_unit'
+  override_policy_class: default_organic
 - voice_id: bs.fa.tangible.disposals_gross
   statement: BS
   section: fa.tangible
@@ -956,6 +1042,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.tangible.acquired_via_ma
   statement: BS
   section: fa.tangible
@@ -967,6 +1054,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: M&A placeholder
+  override_policy_class: default_organic
 - voice_id: bs.fa.tangible.divested_via_carve_out
   statement: BS
   section: fa.tangible
@@ -978,6 +1066,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: Carve-out placeholder
+  override_policy_class: default_organic
 - voice_id: bs.fa.tangible.gross_close
   statement: BS
   section: fa.tangible
@@ -989,6 +1078,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.tangible.acc_depr_open
   statement: BS
   section: fa.tangible
@@ -1000,6 +1090,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.tangible.disposals_acc_depr
   statement: BS
   section: fa.tangible
@@ -1011,6 +1102,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.tangible.acc_depr_close
   statement: BS
   section: fa.tangible
@@ -1022,6 +1114,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.tangible.net_close
   statement: BS
   section: fa.tangible
@@ -1033,6 +1126,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.intangible.gross_open
   statement: BS
   section: fa.intangible
@@ -1044,6 +1138,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.intangible.software_capex
   statement: BS
   section: fa.intangible
@@ -1055,6 +1150,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: 'Alt: pct_net_revenue (SaaS R&D capitalized)'
+  override_policy_class: default_organic
 - voice_id: bs.fa.intangible.acquired_via_ma
   statement: BS
   section: fa.intangible
@@ -1066,6 +1162,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.intangible.disposals_gross
   statement: BS
   section: fa.intangible
@@ -1077,6 +1174,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.intangible.gross_close
   statement: BS
   section: fa.intangible
@@ -1088,6 +1186,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.intangible.acc_amort_open
   statement: BS
   section: fa.intangible
@@ -1099,6 +1198,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.intangible.disposals_acc_amort
   statement: BS
   section: fa.intangible
@@ -1110,6 +1210,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.intangible.acc_amort_close
   statement: BS
   section: fa.intangible
@@ -1121,6 +1222,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.intangible.net_close
   statement: BS
   section: fa.intangible
@@ -1132,6 +1234,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.intangible.goodwill_open
   statement: BS
   section: fa.intangible
@@ -1143,6 +1246,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.intangible.goodwill_acquisitions
   statement: BS
   section: fa.intangible
@@ -1154,6 +1258,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.intangible.goodwill_close
   statement: BS
   section: fa.intangible
@@ -1165,6 +1270,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.rou.gross_open
   statement: BS
   section: fa.rou
@@ -1176,6 +1282,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.rou.new_contracts
   statement: BS
   section: fa.rou
@@ -1187,6 +1294,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: → deriva lease_liability.new
+  override_policy_class: default_organic
 - voice_id: bs.fa.rou.terminations_gross
   statement: BS
   section: fa.rou
@@ -1198,6 +1306,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.rou.modifications
   statement: BS
   section: fa.rou
@@ -1209,6 +1318,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.rou.gross_close
   statement: BS
   section: fa.rou
@@ -1220,6 +1330,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.rou.acc_depr_open
   statement: BS
   section: fa.rou
@@ -1231,6 +1342,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.rou.terminations_acc_depr
   statement: BS
   section: fa.rou
@@ -1242,6 +1354,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.rou.acc_depr_close
   statement: BS
   section: fa.rou
@@ -1253,6 +1366,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.rou.net_close
   statement: BS
   section: fa.rou
@@ -1264,6 +1378,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.investment_property.gross_open
   statement: BS
   section: fa.investment_property
@@ -1275,6 +1390,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: IAS 40 FV model
+  override_policy_class: default_organic
 - voice_id: bs.fa.investment_property.acquisitions
   statement: BS
   section: fa.investment_property
@@ -1286,6 +1402,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.investment_property.disposals
   statement: BS
   section: fa.investment_property
@@ -1297,6 +1414,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.investment_property.fv_revaluation
   statement: BS
   section: fa.investment_property
@@ -1308,6 +1426,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: → flussa a P&L (FV gain/loss)
+  override_policy_class: default_organic
 - voice_id: bs.fa.investment_property.improvements
   statement: BS
   section: fa.investment_property
@@ -1319,6 +1438,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.investment_property.gross_close
   statement: BS
   section: fa.investment_property
@@ -1330,6 +1450,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.fa.financial.balance_open
   statement: BS
   section: fa.financial
@@ -1341,6 +1462,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Aggiunta (critica 3.7 Doc 1)
+  override_policy_class: default_organic
 - voice_id: bs.fa.financial.investments_movement
   statement: BS
   section: fa.financial
@@ -1352,6 +1474,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.financial.bonds_amc_movement
   statement: BS
   section: fa.financial
@@ -1363,6 +1486,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.financial.fvtpl_movement
   statement: BS
   section: fa.financial
@@ -1374,6 +1498,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.fa.financial.balance_close
   statement: BS
   section: fa.financial
@@ -1385,6 +1510,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nwc.ar.trade_gross
   statement: BS
   section: nwc.ar
@@ -1396,6 +1522,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: null
   note: DSO target
+  override_policy_class: nwc_days_organic
 - voice_id: bs.nwc.ar.allowance
   statement: BS
   section: nwc.ar
@@ -1407,6 +1534,7 @@ voices:
   denominator_flow_voice: bs.nwc.ar.trade_gross
   recurrence: null
   note: IFRS 9 ECL
+  override_policy_class: default_organic
 - voice_id: bs.nwc.ar.net
   statement: BS
   section: nwc.ar
@@ -1418,6 +1546,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nwc.contract_assets
   statement: BS
   section: nwc
@@ -1429,6 +1558,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: null
   note: IFRS 15 unbilled
+  override_policy_class: default_organic
 - voice_id: bs.nwc.inventory.raw
   statement: BS
   section: nwc.inventory
@@ -1440,6 +1570,7 @@ voices:
   denominator_flow_voice: pl.cogs.materials.raw
   recurrence: null
   note: DIO raw
+  override_policy_class: nwc_days_organic
 - voice_id: bs.nwc.inventory.wip
   statement: BS
   section: nwc.inventory
@@ -1451,6 +1582,7 @@ voices:
   denominator_flow_voice: pl.cogs.total
   recurrence: null
   note: DIO WIP
+  override_policy_class: nwc_days_organic
 - voice_id: bs.nwc.inventory.finished
   statement: BS
   section: nwc.inventory
@@ -1462,6 +1594,7 @@ voices:
   denominator_flow_voice: pl.cogs.total
   recurrence: null
   note: DIO finished
+  override_policy_class: nwc_days_organic
 - voice_id: bs.nwc.inventory.total
   statement: BS
   section: nwc.inventory
@@ -1473,6 +1606,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nwc.prepayments
   statement: BS
   section: nwc
@@ -1484,6 +1618,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nwc.ap.purchases_base
   statement: BS
   section: nwc.ap
@@ -1495,6 +1630,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: User-defined formula
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nwc.ap.trade
   statement: BS
   section: nwc.ap
@@ -1506,6 +1642,7 @@ voices:
   denominator_flow_voice: bs.nwc.ap.purchases_base
   recurrence: null
   note: DPO target
+  override_policy_class: nwc_days_organic
 - voice_id: bs.nwc.accrued_expenses
   statement: BS
   section: nwc
@@ -1517,6 +1654,7 @@ voices:
   denominator_flow_voice: pl.opex.total
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nwc.contract_liabilities
   statement: BS
   section: nwc
@@ -1528,6 +1666,7 @@ voices:
   denominator_flow_voice: pl.rev.net
   recurrence: null
   note: IFRS 15 deferred
+  override_policy_class: default_organic
 - voice_id: bs.nwc.other_current_assets.vat_receivable
   statement: BS
   section: nwc.other
@@ -1539,6 +1678,7 @@ voices:
   denominator_flow_voice: bs.nwc.ap.purchases_base
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nwc.other_current_assets.cit_receivable
   statement: BS
   section: nwc.other
@@ -1550,6 +1690,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Calcolato in E7.5
+  override_policy_class: default_organic
 - voice_id: bs.nwc.other_current_assets.other
   statement: BS
   section: nwc.other
@@ -1561,6 +1702,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nwc.other_current_assets
   statement: BS
   section: nwc.other
@@ -1572,6 +1714,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Final in E7.5
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nwc.other_current_liab.vat_payable
   statement: BS
   section: nwc.other
@@ -1583,6 +1726,7 @@ voices:
   denominator_flow_voice: pl.rev.gross_total
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nwc.other_current_liab.cit_payable
   statement: BS
   section: nwc.other
@@ -1594,6 +1738,7 @@ voices:
   denominator_flow_voice: pl.tax.current
   recurrence: null
   note: Identity da pl.tax.current
+  override_policy_class: default_organic
 - voice_id: bs.nwc.other_current_liab.other
   statement: BS
   section: nwc.other
@@ -1605,6 +1750,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nwc.other_current_liab
   statement: BS
   section: nwc.other
@@ -1616,6 +1762,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Final in E7.5
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nwc.operating
   statement: BS
   section: nwc
@@ -1627,6 +1774,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Doppia istanza
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nfp.borrowings.term_loan_open
   statement: BS
   section: nfp.borrowings
@@ -1638,6 +1786,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.term_loan_drawdowns
   statement: BS
   section: nfp.borrowings
@@ -1649,6 +1798,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Magnitudine flusso (positiva)
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.term_loan_repayments
   statement: BS
   section: nfp.borrowings
@@ -1660,6 +1810,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Default amortizing lineare
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.rcf_movement
   statement: BS
   section: nfp.borrowings
@@ -1671,6 +1822,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Plug RCF = improvement
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.bonds_movement
   statement: BS
   section: nfp.borrowings
@@ -1682,6 +1834,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.shareholder_loans_movement
   statement: BS
   section: nfp.borrowings
@@ -1693,6 +1846,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.assumed_via_ma
   statement: BS
   section: nfp.borrowings
@@ -1704,6 +1858,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: M&A placeholder
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.haircut_writeoff
   statement: BS
   section: nfp.borrowings
@@ -1715,6 +1870,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: Restructuring placeholder
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.total_open
   statement: BS
   section: nfp.borrowings
@@ -1726,6 +1882,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nfp.borrowings.total_close
   statement: BS
   section: nfp.borrowings
@@ -1737,6 +1894,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Roll-forward signed
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nfp.lease_liability.open
   statement: BS
   section: nfp.lease_liability
@@ -1748,6 +1906,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nfp.lease_liability.new_contracts
   statement: BS
   section: nfp.lease_liability
@@ -1759,6 +1918,7 @@ voices:
   denominator_flow_voice: bs.fa.rou.new_contracts
   recurrence: recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nfp.lease_liability.interest_accrued
   statement: BS
   section: nfp.lease_liability
@@ -1770,6 +1930,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Sub-circolarità con proxy
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nfp.lease_liability.payments_principal
   statement: BS
   section: nfp.lease_liability
@@ -1781,6 +1942,7 @@ voices:
   denominator_flow_voice: bs.nfp.lease_liability.close
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nfp.lease_liability.modifications
   statement: BS
   section: nfp.lease_liability
@@ -1792,6 +1954,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.nfp.lease_liability.close
   statement: BS
   section: nfp.lease_liability
@@ -1803,6 +1966,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Roll-forward
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nfp.cash
   statement: BS
   section: nfp.cash
@@ -1814,6 +1978,7 @@ voices:
   denominator_flow_voice: cf.net_change_cash
   recurrence: null
   note: Identità chiusura
+  override_policy_class: not_overridable_derived
 - voice_id: bs.nfp.net_debt
   statement: BS
   section: nfp
@@ -1825,6 +1990,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: borrowings + lease + cash
+  override_policy_class: not_overridable_derived
 - voice_id: bs.equity.share_capital_open
   statement: BS
   section: equity
@@ -1836,6 +2002,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.equity.capital.organic_increases
   statement: BS
   section: equity.capital
@@ -1847,6 +2014,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.equity.capital.acquisition_consideration
   statement: BS
   section: equity.capital
@@ -1858,6 +2026,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: M&A paper deal
+  override_policy_class: default_organic
 - voice_id: bs.equity.capital.spin_off_distribution
   statement: BS
   section: equity.capital
@@ -1869,6 +2038,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: Spin-off
+  override_policy_class: default_organic
 - voice_id: bs.equity.capital.dividends_paid
   statement: BS
   section: equity.capital
@@ -1880,6 +2050,7 @@ voices:
   denominator_flow_voice: pl.net_income
   recurrence: recurring
   note: Già negativo per convention
+  override_policy_class: default_organic
 - voice_id: bs.equity.capital.share_buyback
   statement: BS
   section: equity.capital
@@ -1891,6 +2062,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.equity.capital.oci_movement
   statement: BS
   section: equity.capital
@@ -1902,6 +2074,7 @@ voices:
   denominator_flow_voice: bs.employee_benefits.actuarial_changes
   recurrence: recurring
   note: + identity attuariale EB
+  override_policy_class: default_organic
 - voice_id: bs.equity.capital.nci_movement
   statement: BS
   section: equity.capital
@@ -1913,6 +2086,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.equity.share_capital.close
   statement: BS
   section: equity
@@ -1924,6 +2098,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.equity.retained_earnings_open
   statement: BS
   section: equity
@@ -1935,6 +2110,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.equity.retained_earnings.close
   statement: BS
   section: equity
@@ -1946,6 +2122,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.equity.oci_cumulative_open
   statement: BS
   section: equity
@@ -1957,6 +2134,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.equity.oci_cumulative.close
   statement: BS
   section: equity
@@ -1968,6 +2146,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.equity.nci.close
   statement: BS
   section: equity
@@ -1979,6 +2158,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.equity.total_close
   statement: BS
   section: equity
@@ -1990,6 +2170,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.tax.dta_open
   statement: BS
   section: tax
@@ -2001,6 +2182,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.tax.dta_movement
   statement: BS
   section: tax
@@ -2012,6 +2194,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.tax.dta_close
   statement: BS
   section: tax
@@ -2023,6 +2206,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.tax.dtl_open
   statement: BS
   section: tax
@@ -2034,6 +2218,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.tax.dtl_movement
   statement: BS
   section: tax
@@ -2045,6 +2230,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.tax.dtl_close
   statement: BS
   section: tax
@@ -2056,6 +2242,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.tax.nol_carryforward.open
   statement: BS
   section: tax
@@ -2067,6 +2254,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Pilot v1.1 advanced
+  override_policy_class: default_organic
 - voice_id: bs.tax.nol_carryforward.close
   statement: BS
   section: tax
@@ -2078,6 +2266,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.provisions.warranty.balance_open
   statement: BS
   section: provisions
@@ -2089,6 +2278,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: provisions_organic
 - voice_id: bs.provisions.warranty.usage
   statement: BS
   section: provisions
@@ -2100,6 +2290,7 @@ voices:
   denominator_flow_voice: bs.provisions.warranty.balance_close
   recurrence: recurring
   note: null
+  override_policy_class: provisions_organic
 - voice_id: bs.provisions.warranty.balance_close
   statement: BS
   section: provisions
@@ -2111,6 +2302,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.provisions.restructuring.balance_open
   statement: BS
   section: provisions
@@ -2122,6 +2314,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: provisions_organic
 - voice_id: bs.provisions.restructuring.usage
   statement: BS
   section: provisions
@@ -2133,6 +2326,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: null
+  override_policy_class: provisions_organic
 - voice_id: bs.provisions.restructuring.balance_close
   statement: BS
   section: provisions
@@ -2144,6 +2338,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.provisions.legal_other.balance_open
   statement: BS
   section: provisions
@@ -2155,6 +2350,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: provisions_organic
 - voice_id: bs.provisions.legal_other.usage
   statement: BS
   section: provisions
@@ -2166,6 +2362,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: null
+  override_policy_class: provisions_organic
 - voice_id: bs.provisions.legal_other.balance_close
   statement: BS
   section: provisions
@@ -2177,6 +2374,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.provisions.other.balance_open
   statement: BS
   section: provisions
@@ -2188,6 +2386,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: provisions_organic
 - voice_id: bs.provisions.other.usage
   statement: BS
   section: provisions
@@ -2199,6 +2398,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: provisions_organic
 - voice_id: bs.provisions.other.balance_close
   statement: BS
   section: provisions
@@ -2210,6 +2410,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.provisions.total_close
   statement: BS
   section: provisions
@@ -2221,6 +2422,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.employee_benefits.balance_open
   statement: BS
   section: employee_benefits
@@ -2232,6 +2434,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.employee_benefits.service_cost
   statement: BS
   section: employee_benefits
@@ -2243,6 +2446,7 @@ voices:
   denominator_flow_voice: labour costs
   recurrence: recurring
   note: '% costo lavoro totale'
+  override_policy_class: default_organic
 - voice_id: bs.employee_benefits.interest_cost
   statement: BS
   section: employee_benefits
@@ -2254,6 +2458,7 @@ voices:
   denominator_flow_voice: null
   recurrence: recurring
   note: Sub-circolarità con proxy
+  override_policy_class: not_overridable_derived
 - voice_id: bs.employee_benefits.payments_to_employees
   statement: BS
   section: employee_benefits
@@ -2265,6 +2470,7 @@ voices:
   denominator_flow_voice: bs.employee_benefits.balance_close
   recurrence: recurring
   note: null
+  override_policy_class: default_organic
 - voice_id: bs.employee_benefits.actuarial_changes
   statement: BS
   section: employee_benefits
@@ -2276,6 +2482,7 @@ voices:
   denominator_flow_voice: null
   recurrence: non_recurring
   note: → flussa a OCI
+  override_policy_class: default_organic
 - voice_id: bs.employee_benefits.balance_close
   statement: BS
   section: employee_benefits
@@ -2287,6 +2494,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: bs.total_assets
   statement: BS
   section: totals
@@ -2298,6 +2506,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: SUM asset side
+  override_policy_class: not_overridable_derived
 - voice_id: bs.total_liabilities_equity
   statement: BS
   section: totals
@@ -2309,6 +2518,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: SUM liability + equity
+  override_policy_class: not_overridable_derived
 - voice_id: bs.balance_check
   statement: BS
   section: totals
@@ -2320,6 +2530,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Tolleranza max(1.0, 0.0001×|TA|)
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.net_income
   statement: CF
   section: operating
@@ -2331,6 +2542,7 @@ voices:
   denominator_flow_voice: pl.net_income
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.da_addback
   statement: CF
   section: operating
@@ -2342,6 +2554,7 @@ voices:
   denominator_flow_voice: pl.da.total
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.impairment_addback
   statement: CF
   section: operating
@@ -2353,6 +2566,7 @@ voices:
   denominator_flow_voice: pl.impairment.total
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.provisions_addback
   statement: CF
   section: operating
@@ -2364,6 +2578,7 @@ voices:
   denominator_flow_voice: pl.provisions.total, usages
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.tax_deferred_addback
   statement: CF
   section: operating
@@ -2375,6 +2590,7 @@ voices:
   denominator_flow_voice: pl.tax.deferred
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.financial_addback
   statement: CF
   section: operating
@@ -2386,6 +2602,7 @@ voices:
   denominator_flow_voice: pl.financial.total_net
   recurrence: null
   note: Riclassifica a financing
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.equity_method_addback
   statement: CF
   section: operating
@@ -2397,6 +2614,7 @@ voices:
   denominator_flow_voice: pl.equity_method_result
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.fv_addback
   statement: CF
   section: operating
@@ -2408,6 +2626,7 @@ voices:
   denominator_flow_voice: pl.other.fair_value_gain_loss_investment_property
   recurrence: null
   note: Non-cash
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.nwc_change
   statement: CF
   section: operating
@@ -2419,6 +2638,7 @@ voices:
   denominator_flow_voice: bs.nwc.operating
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.tax_paid
   statement: CF
   section: operating
@@ -2430,6 +2650,7 @@ voices:
   denominator_flow_voice: pl.tax.current, CIT NWC
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.employee_benefits_paid
   statement: CF
   section: operating
@@ -2441,6 +2662,7 @@ voices:
   denominator_flow_voice: bs.employee_benefits.payments
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.operating.total
   statement: CF
   section: operating
@@ -2452,6 +2674,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.capex_ppe
   statement: CF
   section: investing
@@ -2463,6 +2686,7 @@ voices:
   denominator_flow_voice: bs.fa.tangible.capex
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.capex_intangibles
   statement: CF
   section: investing
@@ -2474,6 +2698,7 @@ voices:
   denominator_flow_voice: bs.fa.intangible.software_capex
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.disposals_ppe
   statement: CF
   section: investing
@@ -2485,6 +2710,7 @@ voices:
   denominator_flow_voice: bs.fa.tangible.disposals
   recurrence: null
   note: Vendita a NBV (semplif.)
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.disposals_intangibles
   statement: CF
   section: investing
@@ -2496,6 +2722,7 @@ voices:
   denominator_flow_voice: bs.fa.intangible.disposals
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.investment_property_change
   statement: CF
   section: investing
@@ -2507,6 +2734,7 @@ voices:
   denominator_flow_voice: bs.fa.investment_property
   recurrence: null
   note: Esclude FV revaluation (non-cash)
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.financial_assets_movement
   statement: CF
   section: investing
@@ -2518,6 +2746,7 @@ voices:
   denominator_flow_voice: bs.fa.financial.movements
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.acquisitions_ma_placeholder
   statement: CF
   section: investing
@@ -2529,6 +2758,7 @@ voices:
   denominator_flow_voice: M&A placeholder
   recurrence: non_recurring
   note: Cash effect M&A
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.divestitures_carve_out_placeholder
   statement: CF
   section: investing
@@ -2540,6 +2770,7 @@ voices:
   denominator_flow_voice: carve-out placeholder
   recurrence: non_recurring
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.investing.total
   statement: CF
   section: investing
@@ -2551,6 +2782,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.borrowings_drawdowns
   statement: CF
   section: financing
@@ -2562,6 +2794,7 @@ voices:
   denominator_flow_voice: bs.nfp.borrowings.term_loan_drawdowns
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.borrowings_repayments
   statement: CF
   section: financing
@@ -2573,6 +2806,7 @@ voices:
   denominator_flow_voice: bs.nfp.borrowings.term_loan_repayments
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.rcf_movement_cash
   statement: CF
   section: financing
@@ -2584,6 +2818,7 @@ voices:
   denominator_flow_voice: bs.nfp.borrowings.rcf_movement
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.bonds_movement_cash
   statement: CF
   section: financing
@@ -2595,6 +2830,7 @@ voices:
   denominator_flow_voice: bs.nfp.borrowings.bonds_movement
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.shareholder_loans_cash
   statement: CF
   section: financing
@@ -2606,6 +2842,7 @@ voices:
   denominator_flow_voice: bs.nfp.borrowings.shareholder
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.lease_payments_principal
   statement: CF
   section: financing
@@ -2617,6 +2854,7 @@ voices:
   denominator_flow_voice: bs.nfp.lease_liability.payments_principal
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.interest_paid
   statement: CF
   section: financing
@@ -2628,6 +2866,7 @@ voices:
   denominator_flow_voice: pl.financial.interest_expense
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.lease_interest_paid
   statement: CF
   section: financing
@@ -2639,6 +2878,7 @@ voices:
   denominator_flow_voice: pl.financial.lease_interest
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.interest_received
   statement: CF
   section: financing
@@ -2650,6 +2890,7 @@ voices:
   denominator_flow_voice: pl.financial.interest_income
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.dividends
   statement: CF
   section: financing
@@ -2661,6 +2902,7 @@ voices:
   denominator_flow_voice: bs.equity.capital.dividends_paid
   recurrence: null
   note: Già negativo (Step 1)
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.capital_changes
   statement: CF
   section: financing
@@ -2672,6 +2914,7 @@ voices:
   denominator_flow_voice: equity capital changes
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.financing.total
   statement: CF
   section: financing
@@ -2683,6 +2926,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.net_change_cash
   statement: CF
   section: totals
@@ -2694,6 +2938,7 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: null
+  override_policy_class: not_overridable_derived
 - voice_id: cf.cash_close
   statement: CF
   section: totals
@@ -2705,3 +2950,4 @@ voices:
   denominator_flow_voice: null
   recurrence: null
   note: Identity check con bs.nfp.cash[t]
+  override_policy_class: not_overridable_derived
