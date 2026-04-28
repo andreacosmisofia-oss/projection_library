@@ -16,6 +16,7 @@ from fastapi import FastAPI
 
 from backend.api.routes.intake import router as intake_router
 from backend.api.routes.kpi import router as kpi_router
+from backend.api.routes.methods import router as methods_router
 from backend.api.routes.projects import router as projects_router
 from backend.api.routes.quality import router as quality_router
 from backend.api.routes.registry import router as registry_router
@@ -48,6 +49,7 @@ app.include_router(intake_router)
 app.include_router(validation_router)
 app.include_router(kpi_router)
 app.include_router(quality_router)
+app.include_router(methods_router)
 
 
 @app.get("/health", tags=["meta"])
