@@ -1024,3 +1024,229 @@ voice_synonyms:
     - net income
     - net profit
     - profit for the year
+
+# ----- bs.fa.tangible.* -----------------------------------------------
+
+- voice_id: bs.fa.tangible.gross_open
+  synonyms_it:
+    - immobilizzazioni materiali costo storico iniziale
+    - costo storico ppe inizio periodo
+    - valore lordo immobilizzazioni materiali apertura
+    - ppe lordo iniziale
+    - costo storico cespiti apertura
+  synonyms_en:
+    - ppe gross opening
+    - property plant and equipment gross opening
+    - opening gross ppe
+
+- voice_id: bs.fa.tangible.gross_close
+  synonyms_it:
+    - immobilizzazioni materiali costo storico finale
+    - costo storico ppe fine periodo
+    - valore lordo immobilizzazioni materiali chiusura
+    - ppe lordo finale
+    - costo storico cespiti chiusura
+  synonyms_en:
+    - ppe gross closing
+    - property plant and equipment gross closing
+    - closing gross ppe
+
+- voice_id: bs.fa.tangible.acc_depr_close
+  synonyms_it:
+    - fondo ammortamento immobilizzazioni materiali finale
+    - fondo ammortamento ppe chiusura
+    - ammortamenti accumulati ppe finale
+    - fondo ammortamento cespiti chiusura
+    - accumulated depreciation ppe finale
+  synonyms_en:
+    - accumulated depreciation ppe closing
+    - closing accumulated depreciation ppe
+    - accumulated ppe depreciation end
+
+- voice_id: bs.fa.tangible.net_close
+  synonyms_it:
+    - immobilizzazioni materiali nette
+    - ppe netto finale
+    - valore netto immobilizzazioni materiali
+    - cespiti netti
+    - immobilizzazioni materiali al netto del fondo
+  synonyms_en:
+    - net ppe closing
+    - net property plant and equipment
+    - closing net ppe
+
+- voice_id: bs.fa.tangible.maintenance_capex
+  synonyms_it:
+    - capex di mantenimento
+    - investimenti di mantenimento
+    - capex maintenance
+    - investimenti per manutenzione cespiti
+    - capex sostituzione
+  synonyms_en:
+    - maintenance capex
+    - maintenance capital expenditure
+    - sustaining capex
+
+- voice_id: bs.fa.tangible.expansion_capex
+  synonyms_it:
+    - capex di espansione
+    - investimenti di espansione
+    - capex growth
+    - capex strategici
+    - investimenti per crescita capacita produttiva
+  synonyms_en:
+    - expansion capex
+    - growth capex
+    - expansionary capital expenditure
+
+# ----- bs.fa.intangible.* ---------------------------------------------
+
+- voice_id: bs.fa.intangible.gross_close
+  synonyms_it:
+    - immobilizzazioni immateriali costo storico finale
+    - intangibili lordi finali
+    - valore lordo intangibili chiusura
+    - costo storico beni immateriali chiusura
+    - intangible gross finale
+  synonyms_en:
+    - intangibles gross closing
+    - closing gross intangible assets
+    - intangible assets gross closing
+
+- voice_id: bs.fa.intangible.acc_amort_close
+  synonyms_it:
+    - fondo ammortamento immateriali finale
+    - ammortamenti accumulati intangibili finale
+    - fondo ammortamento beni immateriali chiusura
+    - accumulated amortization intangibili finale
+    - fondo ammortamento intangibles chiusura
+  synonyms_en:
+    - accumulated amortization intangibles closing
+    - closing accumulated amortization
+    - accumulated intangible amortization end
+
+- voice_id: bs.fa.intangible.net_close
+  synonyms_it:
+    - immobilizzazioni immateriali nette
+    - intangibili netti finali
+    - valore netto intangibili
+    - intangible assets netti
+    - intangibili al netto del fondo
+  synonyms_en:
+    - net intangibles closing
+    - closing net intangible assets
+    - net intangible assets
+
+- voice_id: bs.fa.intangible.software_capex
+  synonyms_it:
+    - capex software
+    - investimenti in software
+    - capitalizzazione software
+    - software capitalizzato
+    - investimenti software interno
+  synonyms_en:
+    - software capex
+    - capitalized software
+    - software capital expenditure
+
+- voice_id: bs.fa.intangible.goodwill_close
+  synonyms_it:
+    - avviamento finale
+    - goodwill chiusura
+    - avviamento al netto degli impairment
+    - avviamento iscritto in bilancio
+    - goodwill consolidato finale
+  synonyms_en:
+    - goodwill closing
+    - closing goodwill
+    - goodwill end of period
+
+# ----- bs.fa.rou.* ----------------------------------------------------
+
+- voice_id: bs.fa.rou.gross_close
+  synonyms_it:
+    - right of use lordo finale
+    - rou costo storico chiusura
+    - diritti d uso ifrs16 lordi finali
+    - rou ifrs16 lordo chiusura
+    - valore lordo right of use chiusura
+  synonyms_en:
+    - rou gross closing
+    - right of use assets gross closing
+    - closing gross right of use assets
+
+- voice_id: bs.fa.rou.acc_depr_close
+  synonyms_it:
+    - fondo ammortamento right of use finale
+    - ammortamenti accumulati rou finale
+    - fondo ammortamento ifrs16 chiusura
+    - rou accumulated depreciation finale
+    - fondo ammortamento diritti d uso chiusura
+  synonyms_en:
+    - accumulated depreciation rou closing
+    - closing accumulated rou depreciation
+    - accumulated right of use depreciation end
+
+- voice_id: bs.fa.rou.net_close
+  synonyms_it:
+    - right of use netto finale
+    - rou netto finale
+    - diritti d uso netti
+    - rou ifrs16 netti chiusura
+    - net right of use chiusura
+  synonyms_en:
+    - net rou closing
+    - net right of use assets
+    - closing net right of use assets
+
+# ----- bs.fa.investment_property.* ------------------------------------
+
+- voice_id: bs.fa.investment_property.gross_close
+  synonyms_it:
+    - investment property valore finale
+    - immobili da investimento ias40 finali
+    - valore investment property chiusura
+    - ip ias40 saldo finale
+    - immobili a fair value chiusura
+  synonyms_en:
+    - investment property closing
+    - investment property balance end
+    - ias 40 investment property closing
+
+- voice_id: bs.fa.investment_property.fv_revaluation
+  synonyms_it:
+    - rivalutazione fair value investment property
+    - variazione fair value immobili da investimento
+    - utile da rivalutazione ip
+    - rettifica fair value ip ias40
+    - movimento fair value investment property
+  synonyms_en:
+    - investment property fair value revaluation
+    - fair value revaluation ip
+    - ias 40 fair value revaluation
+
+# ----- bs.fa.financial.* ----------------------------------------------
+
+- voice_id: bs.fa.financial.balance_close
+  synonyms_it:
+    - attivita finanziarie non correnti finali
+    - immobilizzazioni finanziarie chiusura
+    - saldo attivita finanziarie non correnti
+    - partecipazioni e crediti finanziari finali
+    - financial assets non correnti chiusura
+  synonyms_en:
+    - non current financial assets closing
+    - closing financial assets
+    - financial assets balance end
+
+- voice_id: bs.fa.financial.investments_movement
+  synonyms_it:
+    - variazione partecipazioni
+    - movimento investimenti partecipativi
+    - delta partecipazioni di periodo
+    - acquisizione cessione partecipazioni
+    - movimento equity investments
+  synonyms_en:
+    - investments movement
+    - equity investments movement
+    - change in investments
