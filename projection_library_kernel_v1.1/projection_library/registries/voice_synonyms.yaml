@@ -298,3 +298,125 @@ voice_synonyms:
     - net revenue
     - net sales
     - total net revenue
+
+# ----- pl.cogs.* ------------------------------------------------------
+
+- voice_id: pl.cogs.materials.raw
+  synonyms_it:
+    - acquisti materie prime
+    - materie prime
+    - costi per materie prime
+    - consumi di materie prime
+    - acquisti di materie prime sussidiarie
+  synonyms_en:
+    - raw materials
+    - cost of raw materials
+    - raw material purchases
+
+- voice_id: pl.cogs.materials.purchased_finished
+  synonyms_it:
+    - acquisti prodotti finiti
+    - acquisti merci
+    - acquisti di merci destinate alla vendita
+    - costo del venduto merci
+    - acquisti prodotti per rivendita
+  synonyms_en:
+    - purchased finished goods
+    - cost of merchandise purchased
+    - finished goods purchases
+
+- voice_id: pl.cogs.labour.direct
+  synonyms_it:
+    - manodopera diretta
+    - costo del personale diretto
+    - salari operai diretti
+    - costo lavoro diretto produzione
+    - personale produttivo diretto
+  synonyms_en:
+    - direct labour
+    - direct labor cost
+    - production direct wages
+
+- voice_id: pl.cogs.subcontracting
+  synonyms_it:
+    - lavorazioni esterne
+    - subappalti
+    - costi di subfornitura
+    - lavorazioni di terzi
+    - prestazioni industriali esterne
+  synonyms_en:
+    - subcontracting costs
+    - outsourced manufacturing
+    - third party processing
+
+- voice_id: pl.cogs.overhead.variable
+  synonyms_it:
+    - costi industriali variabili
+    - overhead variabili di produzione
+    - spese variabili di stabilimento
+    - costi variabili indiretti produzione
+    - oneri industriali variabili
+  synonyms_en:
+    - variable manufacturing overhead
+    - variable production overhead
+    - variable factory overhead
+
+- voice_id: pl.cogs.overhead.fixed
+  synonyms_it:
+    - costi industriali fissi
+    - overhead fissi di produzione
+    - spese generali di stabilimento
+    - costi fissi indiretti produzione
+    - ammortamenti e costi fissi produttivi
+  synonyms_en:
+    - fixed manufacturing overhead
+    - fixed production overhead
+    - fixed factory overhead
+
+- voice_id: pl.cogs.inventory_writeoff
+  synonyms_it:
+    - svalutazione magazzino
+    - svalutazione rimanenze
+    - perdite su rimanenze
+    - obsolescenza magazzino
+    - write off scorte
+  synonyms_en:
+    - inventory write off
+    - inventory writedown
+    - obsolete inventory write off
+
+- voice_id: pl.cogs.logistics_inbound
+  synonyms_it:
+    - costi di logistica in entrata
+    - trasporti su acquisti
+    - oneri accessori di acquisto
+    - costi di trasporto in ingresso
+    - dazi e trasporti su materie prime
+  synonyms_en:
+    - inbound logistics
+    - inbound freight costs
+    - freight in
+
+- voice_id: pl.cogs.wip_capitalization
+  synonyms_it:
+    - variazione lavori in corso su ordinazione
+    - capitalizzazione costi su wip
+    - incrementi di immobilizzazioni per lavori interni
+    - variazione semilavorati e wip
+    - costi capitalizzati su commesse
+  synonyms_en:
+    - wip capitalization
+    - work in progress capitalization
+    - capitalized work in progress
+
+- voice_id: pl.cogs.total
+  synonyms_it:
+    - totale costo del venduto
+    - costo del venduto totale
+    - totale costi di produzione
+    - costi industriali totali
+    - cogs totale
+  synonyms_en:
+    - total cost of goods sold
+    - total cogs
+    - cost of sales total
