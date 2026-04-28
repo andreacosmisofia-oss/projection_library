@@ -397,6 +397,115 @@ class Driver(Base):
     )
 
 
+class Snapshot(Base):
+    """Engine run output (M10, ``flows/08_output_presentation.md``).
+
+    One row per engine run, regardless of outcome. The history of runs
+    is preserved (the route layer never updates or deletes); ``GET
+    /snapshot/latest`` selects the most recent by ``created_at``. The
+    JSON columns mirror :class:`ProjectionResult`'s structured fields
+    one-to-one — until later milestones populate them, they stay empty
+    dicts/lists, which is why the schema does not enforce non-empty
+    payloads.
+
+    Voice-level numbers live in :class:`SnapshotValue` (normalised);
+    the JSON blobs are reserved for higher-order summaries the engine
+    will produce in M9.x and M11+.
+    """
+
+    __tablename__ = "snapshots"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    run_timestamp: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False
+    )
+    status: Mapped[str] = mapped_column(String(16), nullable=False)
+    duration_ms: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    error_message: Mapped[str | None] = mapped_column(String(2048), nullable=True)
+    validation_summary: Mapped[dict] = mapped_column(
+        JSON, nullable=False, default=dict
+    )
+    validation_issues: Mapped[list] = mapped_column(
+        JSON, nullable=False, default=list
+    )
+    approximation_log: Mapped[list] = mapped_column(
+        JSON, nullable=False, default=list
+    )
+    pl_data: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    sp_data: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    cf_data: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    projected_kpis: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+
+    values: Mapped[list["SnapshotValue"]] = relationship(
+        "SnapshotValue",
+        back_populates="snapshot",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_snapshots_project_created",
+            "project_id",
+            "created_at",
+        ),
+    )
+
+
+class SnapshotValue(Base):
+    """Normalised per-voice/per-year output of a snapshot (M10).
+
+    One row per ``(snapshot_id, voice_id, year)`` covering both
+    historical actuals and projection years. ``base_value`` is the
+    pure engine output (``state.base_values``) for projection years
+    and ``NULL`` for historical years (where the value comes from
+    intake, not from the engine). ``override_delta`` is the sum of
+    active overrides on the pair — always ``0.0`` for historical
+    years, since overrides only apply to projections (see
+    ``value_resolver.resolve_voice_value``). ``value`` is the
+    effective number the UI shows: ``base_value + override_delta``
+    for projections, the historical actual otherwise.
+    """
+
+    __tablename__ = "snapshot_values"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    snapshot_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("snapshots.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    voice_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    year: Mapped[str] = mapped_column(String(8), nullable=False)
+    value: Mapped[float | None] = mapped_column(Float, nullable=True)
+    base_value: Mapped[float | None] = mapped_column(Float, nullable=True)
+    override_delta: Mapped[float] = mapped_column(
+        Float, nullable=False, default=0.0
+    )
+
+    snapshot: Mapped[Snapshot] = relationship("Snapshot", back_populates="values")
+
+    __table_args__ = (
+        Index(
+            "ix_snapshot_values_snapshot_voice_year",
+            "snapshot_id",
+            "voice_id",
+            "year",
+            unique=True,
+        ),
+    )
+
+
 __all__ = [
     "Balance",
     "Driver",
@@ -406,5 +515,7 @@ __all__ = [
     "Project",
     "QualityScore",
     "RawVoice",
+    "Snapshot",
+    "SnapshotValue",
     "ValidationReport",
 ]
