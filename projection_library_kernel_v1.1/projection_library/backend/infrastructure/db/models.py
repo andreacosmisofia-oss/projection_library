@@ -1,4 +1,4 @@
-"""ORM models (Milestones M2 + M3 + M5 + M6).
+"""ORM models (Milestones M2 + M3 + M5 + M6 + M7).
 
 M2 defines the ``projects`` table. M3 adds ``balances`` and
 ``raw_voices`` for the Case 1 (gestionale) intake flow described in
@@ -8,7 +8,8 @@ the auto-suggest flow when it lands), ``historical_kpis``,
 ``quality_scores`` and ``validation_reports`` (see
 ``flows/03_validation_historical.md`` and ``flows/10_quality_score.md``).
 M6 adds ``method_configs`` (Expert mode subset of
-``flows/04_method_selection.md``).
+``flows/04_method_selection.md``). M7 adds ``drivers`` (driver intake
+flow ``flows/05_driver_intake.md``).
 Soft delete is implemented via ``deleted_at`` on ``projects`` and
 ``balances``: rows with a non-null timestamp are filtered out by the
 API layer but kept in the database for audit purposes.
@@ -341,8 +342,62 @@ class MethodConfig(Base):
     )
 
 
+class Driver(Base):
+    """Per-project driver record (M7 — ``flows/05_driver_intake.md``).
+
+    One row per ``(project_id, driver_id)``. ``values`` carries the
+    per-year payload for ``scalar_per_year`` drivers
+    (``{"Y-1": 42.0, "Y0": 45.0}``); ``static_parameters`` carries the
+    blob for non-time-varying drivers (term loan setup, etc.). At least
+    one of the two is populated for an active driver — both stay null
+    until the user touches the driver, which is the case for rows that
+    only exist in skipped state.
+
+    ``status`` is ``active`` when the user has uploaded at least once
+    or ``skipped`` when explicitly skipped via the PATCH endpoint. The
+    ``GET /drivers/required`` endpoint maps stored data to the
+    ``missing | partial | complete | skipped`` lifecycle expected by
+    the UI.
+    """
+
+    __tablename__ = "drivers"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    driver_id: Mapped[str] = mapped_column(String(160), nullable=False)
+    status: Mapped[str] = mapped_column(String(16), nullable=False, default="active")
+    driver_type: Mapped[str] = mapped_column(String(32), nullable=False)
+    values: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    static_parameters: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    unit: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    uploaded_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        default=_utcnow,
+        onupdate=_utcnow,
+    )
+
+    __table_args__ = (
+        Index(
+            "ix_drivers_project_driver",
+            "project_id",
+            "driver_id",
+            unique=True,
+        ),
+    )
+
+
 __all__ = [
     "Balance",
+    "Driver",
     "HistoricalKPI",
     "Mapping",
     "MethodConfig",
