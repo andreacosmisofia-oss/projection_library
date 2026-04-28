@@ -7,6 +7,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: all(consuntivo[v][year] is not None for v in required_voices)
+  formula_python: "all(v in voices for v in required_voices_tier[project.tier_level])"
   action: use_fallback
   action_note: use_fallback (chain) o halt
   note: Voci richieste mancanti
@@ -18,6 +19,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: all(consuntivo[v][Y0] is not None for v in driver_voices)
+  formula_python: "all(voices[v].get('Y0') is not None for v in mapped_voices)"
   action: halt
   action_note: halt_execution
   note: Y0 actual è anchor obbligatorio
@@ -29,6 +31,7 @@ validation_rules:
   scope:
   - per_method
   regola_sintesi: all(driver_data[d] presente per ogni driver richiesto dal metodo)
+  formula_python: "len(mapped_voice_ids) == len(set(mapped_voice_ids))"
   action: use_fallback
   action_note: use_fallback o halt
   note: Driver TIER 3+ richiesti
@@ -40,6 +43,7 @@ validation_rules:
   scope:
   - per_method
   regola_sintesi: all(exogenous[p] present per ogni metodo che li richiede)
+  formula_python: "all(v in voice_registry for v in mapped_voice_ids)"
   action: halt
   action_note: halt o default
   note: Macro CPI per inflation_indexed
@@ -51,6 +55,7 @@ validation_rules:
   scope:
   - per_kpi
   regola_sintesi: numerator_value AND denominator_value AND denominator != 0
+  formula_python: "all(m in method_registry for m in configured_method_ids)"
   action: use_fallback
   action_note: use_fallback (KPI = N/A)
   note: Per KPI usati come default
@@ -62,6 +67,7 @@ validation_rules:
   scope:
   - per_assumption
   regola_sintesi: assumption.value is not None for all years Y1-Y3
+  formula_python: "all((voice, asm) in assumptions for voice, method in method_configs.items() for asm in method_registry[method]['assumptions'])"
   action: use_fallback
   action_note: use_fallback (= 0 + warning)
   note: null
@@ -73,6 +79,7 @@ validation_rules:
   scope:
   - per_method
   regola_sintesi: all(method.inputs are resolvable)
+  formula_python: "all(driver_id in drivers for driver_id in required_drivers(method_configs) if not drivers.get(driver_id, {}).get('skipped'))"
   action: halt
   action_note: null
   note: null
@@ -84,6 +91,7 @@ validation_rules:
   scope:
   - per_voice
   regola_sintesi: voice.default_method in voice.allowed_methods
+  formula_python: "not any(voices[v].get('Y0', 0) > 0 for v in mapped_voices if voice_registry[v]['sign'] == 'negative' and voice_registry[v]['nature'] == 'driver')"
   action: halt
   action_note: null
   note: null
@@ -95,6 +103,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: for each method.inputs.consuntivo, target voice exists in voice_registry
+  formula_python: "custom_function: validators.di_009_acyclicity_check"
   action: halt
   action_note: null
   note: Chiusura P38 Fase 1
@@ -106,6 +115,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: for each method.default_kpi_id, kpi exists in kpi_registry
+  formula_python: "all(dep in voice_registry for v in voice_registry for dep in voice_dependencies.get(v, {}).get('depends_on_voices', []))"
   action: halt
   action_note: null
   note: Chiusura P38 Fase 1
@@ -117,6 +127,7 @@ validation_rules:
   scope:
   - per_voice
   regola_sintesi: sign(consuntivo[v][year]) matches voice.sign_convention
+  formula_python: "not any(voice_registry[v]['nature'] in ('placeholder', 'driver_placeholder') and v in method_configs for v in voice_registry)"
   action: halt
   action_note: null
   note: Costi devono essere negativi nello storico
@@ -128,6 +139,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: for each subtotal voice, calculated == stored (tol 0.5%)
+  formula_python: "project.sector_pack in sector_pack_registry"
   action: log_and_continue
   action_note: null
   note: Verifica integrità storica
@@ -139,6 +151,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: abs(bs.balance_check[year]) <= max(1.0, 0.0001*total_assets)
+  formula_python: "abs(sum(voices[v].get('Y0',0) for v in bs_asset_voices) + sum(voices[v].get('Y0',0) for v in bs_liab_equity_voices)) <= max(1.0, 0.0001 * abs(sum(voices[v].get('Y0',0) for v in bs_asset_voices)))"
   action: halt
   action_note: halt se Y0; warning altrimenti
   note: 'Critico: storico deve quadrare'
@@ -150,6 +163,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: selected sector_pack registered AND required voices populated
+  formula_python: "project.horizon_years in (1, 2, 3)"
   action: halt
   action_note: null
   note: null
@@ -161,6 +175,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: abs(bs.balance_check[year]) <= max(1.0, 0.0001*abs(total_assets))
+  formula_python: "abs(resolve('bs.balance_check', year)) <= max(1.0, 0.0001 * abs(resolve('bs.total_assets', year)))"
   action: log_and_continue
   action_note: log_and_continue (CRITICAL)
   note: Quadratura proiezioni
@@ -172,6 +187,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: bs.nfp.cash[year] == cash[year-1] + cf.net_change_cash[year]
+  formula_python: "abs(resolve('bs.nfp.cash', year) - (resolve('bs.nfp.cash', prev_year) + resolve('cf.net_change_cash', year))) <= 0.01"
   action: log_and_continue
   action_note: null
   note: Tol 0.01
@@ -183,6 +199,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: RE.close == RE_open + pl.net_income + dividends_paid
+  formula_python: "abs(resolve('bs.equity.retained_earnings.close', year) - (resolve('bs.equity.retained_earnings.close', prev_year) + resolve('pl.net_income', year) + resolve('bs.equity.dividends', year) + resolve('bs.equity.buyback', year))) <= 0.01"
   action: log_and_continue
   action_note: null
   note: null
@@ -194,6 +211,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: bs.fa.rou.new_contracts == -bs.nfp.lease_liability.new_contracts
+  formula_python: "abs(resolve('bs.nfp.net_debt', year) - (resolve('bs.nfp.borrowings.balance_close', year) + resolve('bs.nfp.lease_liability.close', year) - resolve('bs.nfp.cash', year))) <= 0.01"
   action: log_and_continue
   action_note: null
   note: P22 Fase 1
@@ -205,6 +223,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: for each subtotal, calculated == SUM(components)
+  formula_python: "custom_function: validators.ai_005_subtotal_consistency"
   action: log_and_continue
   action_note: null
   note: null
@@ -216,6 +235,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: pl.net_income == pl.ebt + pl.tax.total
+  formula_python: "abs(resolve('pl.ebit', year) - (resolve('pl.ebitda.final', year) + resolve('pl.da.total', year) + resolve('pl.impairment.total', year))) <= 0.01"
   action: log_and_continue
   action_note: null
   note: null
@@ -227,6 +247,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: pl.ebitda == pl.gross_profit + pl.opex.total + pl.provisions.total
+  formula_python: "abs(resolve('pl.ebitda.final', year) - (resolve('pl.gross_profit.final', year) + resolve('pl.opex.total', year) + resolve('pl.provisions.total', year))) <= 0.01"
   action: log_and_continue
   action_note: null
   note: null
@@ -238,6 +259,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: pl.ebit == pl.ebitda + pl.da.total + pl.impairment.total
+  formula_python: "abs(resolve('pl.ebt', year) - (resolve('pl.ebit', year) + resolve('pl.financial.total_net', year) + resolve('pl.equity_method_result', year) + resolve('pl.other.non_operating_total', year))) <= 0.01"
   action: log_and_continue
   action_note: null
   note: null
@@ -249,6 +271,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 'for each provision: balance_close == balance_open + accrual + usage'
+  formula_python: "custom_function: validators.ai_009_provisions_rollforward"
   action: log_and_continue
   action_note: null
   note: null
@@ -260,6 +283,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: EB.balance_close == open + service_cost + interest_cost - payments + actuarial
+  formula_python: "custom_function: validators.ai_010_eb_rollforward"
   action: log_and_continue
   action_note: null
   note: null
@@ -271,6 +295,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: cf.operating.nwc_change == -(bs.nwc.operating[t] - [t-1])
+  formula_python: "abs(resolve('cf.operating.nwc_change', year) - (resolve('bs.nwc.operating.final', year) - resolve('bs.nwc.operating.final', prev_year))) <= 0.01"
   action: log_and_continue
   action_note: null
   note: null
@@ -282,6 +307,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: pl.rev.gross.{voice}[year] >= 0 for all gross voices
+  formula_python: "resolve('pl.rev.gross_total', year) >= 0"
   action: log_and_continue
   action_note: null
   note: null
@@ -293,6 +319,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: pl.cogs.* and pl.opex.* are <= 0 (escluso wip_capitalization)
+  formula_python: "resolve('pl.cogs.total.final', year) <= 0"
   action: log_and_continue
   action_note: null
   note: null
@@ -305,6 +332,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: bs.fa.*.net_close >= 0 AND NWC asset voices >= 0
+  formula_python: "all(resolve(v, year) >= 0 for v in bs_asset_voices if voice_registry[v]['sign'] == 'positive')"
   action: log_and_continue
   action_note: null
   note: null
@@ -318,6 +346,7 @@ validation_rules:
   - per_year
   regola_sintesi: bs.nwc.ap.trade <= 0 AND borrowings <= 0 AND lease_liability <= 0 AND provisions <= 0 AND EB <= 0 AND DTL
     <= 0
+  formula_python: "all(resolve(v, year) <= 0 for v in bs_liab_voices if voice_registry[v]['sign'] == 'negative')"
   action: log_and_continue
   action_note: null
   note: null
@@ -329,6 +358,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: share_capital >= 0; RE may be ±; total_close consistency
+  formula_python: "resolve('pl.tax.current', year) <= 0"
   action: log_and_continue
   action_note: null
   note: null
@@ -340,6 +370,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: bs.nfp.cash[year] >= 0 (overdraft → reclassify in RCF)
+  formula_python: "resolve('pl.da.total', year) <= 0"
   action: log_and_continue
   action_note: null
   note: null
@@ -351,6 +382,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: pl.da.ppe/intangibles/rou <= 0
+  formula_python: "resolve('pl.ebitda.final', year) > -abs(resolve('pl.rev.gross_total', year))"
   action: log_and_continue
   action_note: null
   note: null
@@ -362,6 +394,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: pl.financial.interest_expense <= 0 AND lease_interest <= 0
+  formula_python: "resolve('pl.financial.interest_expense', year) <= 0"
   action: log_and_continue
   action_note: null
   note: null
@@ -373,6 +406,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: bs.equity.capital.dividends_paid <= 0 (riduce equity)
+  formula_python: "resolve('bs.nfp.cash', year) >= 0"
   action: log_and_continue
   action_note: null
   note: Sign convention IFRS
@@ -384,6 +418,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: -50% <= kpi.growth.revenue_yoy[year] <= +200%
+  formula_python: "safe_div(resolve('pl.rev.net.final', year) - resolve('pl.rev.net.final', prev_year), abs(resolve('pl.rev.net.final', prev_year))) >= -0.50"
   action: log_warning
   action_note: null
   note: null
@@ -395,6 +430,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: -100% <= kpi.margin.gross[year] <= +95%
+  formula_python: "safe_div(resolve('pl.gross_profit.final', year), resolve('pl.rev.net.final', year)) >= -1.00"
   action: log_warning
   action_note: null
   note: null
@@ -406,6 +442,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: -100% <= kpi.margin.ebitda[year] <= +60%
+  formula_python: "safe_div(resolve('pl.ebitda.final', year), resolve('pl.rev.net.final', year)) >= -0.50"
   action: log_warning
   action_note: null
   note: null
@@ -417,6 +454,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0 <= kpi.nwc.dso[year] <= 365
+  formula_python: "safe_div(resolve('bs.nwc.ar.trade_gross', year) * 365, resolve('pl.rev.net.final', year)) <= 365"
   action: log_warning
   action_note: null
   note: null
@@ -428,6 +466,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0 <= kpi.nwc.dio_total[year] <= 730
+  formula_python: "safe_div(resolve('bs.nwc.inventory.total', year) * 365, abs(resolve('pl.cogs.total.final', year))) <= 365"
   action: log_warning
   action_note: null
   note: null
@@ -439,6 +478,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0 <= kpi.nwc.dpo[year] <= 365
+  formula_python: "safe_div(abs(resolve('bs.nwc.ap.trade', year)) * 365, abs(resolve('pl.cogs.total.final', year))) <= 365"
   action: log_warning
   action_note: null
   note: null
@@ -450,6 +490,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: -180 <= kpi.nwc.ccc[year] <= 365
+  formula_python: "safe_div(resolve('bs.nfp.net_debt', year), abs(resolve('pl.ebitda.final', year))) <= 10.0"
   action: log_warning
   action_note: null
   note: null
@@ -461,6 +502,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0% <= kpi.fa.capex_intensity_total[year] <= 50%
+  formula_python: "safe_div(resolve('pl.ebitda.final', year), abs(resolve('pl.financial.interest_expense', year))) >= 1.0"
   action: log_warning
   action_note: null
   note: null
@@ -472,6 +514,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0 <= kpi.fa.capex_to_da_ratio[year] <= 5
+  formula_python: "0.0 <= assumptions.get('pl.tax.current', {}).get('etr', {}).get(year, 0.25) <= 0.60"
   action: log_warning
   action_note: null
   note: null
@@ -483,6 +526,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 1 <= kpi.fa.useful_life_implied_ppe <= 50
+  formula_python: "safe_div(abs(resolve('cf.investing.capex.total', year)), resolve('pl.rev.net.final', year)) <= 0.50"
   action: log_warning
   action_note: null
   note: null
@@ -494,6 +538,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 1 <= kpi.fa.lease_term_implied <= 30
+  formula_python: "safe_div(abs(resolve('pl.da.total', year)), resolve('bs.fa.tangible.gross_close', year) + 0.01) <= 0.50"
   action: log_warning
   action_note: null
   note: null
@@ -505,6 +550,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: -3 <= kpi.nfp.nd_to_ebitda <= 10
+  formula_python: "safe_div(resolve('pl.provisions.total', year), resolve('pl.rev.net.final', year)) >= -0.20"
   action: log_warning
   action_note: null
   note: null
@@ -516,6 +562,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: kpi.nfp.icr_ebit >= 0.5 (covenant risk threshold)
+  formula_python: "safe_div(resolve('pl.opex.labour.total', year), resolve('pl.rev.net.final', year)) >= -0.80"
   action: log_warning
   action_note: null
   note: null
@@ -527,6 +574,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0% <= kpi.nfp.cost_of_debt <= 25%
+  formula_python: "custom_function: validators.rp_014_revenue_per_head"
   action: log_warning
   action_note: null
   note: null
@@ -538,6 +586,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0% <= kpi.nfp.lease_implicit_rate <= 15%
+  formula_python: "safe_div(resolve('bs.nwc.operating.final', year), resolve('pl.rev.net.final', year)) >= -0.50"
   action: log_warning
   action_note: null
   note: null
@@ -549,6 +598,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0% <= kpi.tax.etr <= 50%
+  formula_python: "resolve('bs.equity.total_close', year) > 0"
   action: log_warning
   action_note: null
   note: null
@@ -560,6 +610,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0% <= kpi.equity.payout_ratio <= 200%
+  formula_python: "resolve('pl.impairment.goodwill', year) >= -resolve('bs.fa.goodwill.net_close', prev_year)"
   action: log_warning
   action_note: null
   note: null
@@ -571,6 +622,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0% <= kpi.provisions.warranty_balance_pct_revenue <= 20%
+  formula_python: "safe_div(resolve('bs.tax.dta_total', year), abs(resolve('pl.tax.current', year)) + 0.01) <= 5.0"
   action: log_warning
   action_note: null
   note: null
@@ -582,6 +634,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 0% <= EB.balance / total_labour_cost <= 200%
+  formula_python: "resolve('bs.tax.nol_carryforward.close', year) >= 0"
   action: log_warning
   action_note: null
   note: null
@@ -593,6 +646,7 @@ validation_rules:
   scope:
   - per_assumption
   regola_sintesi: assumption.value within [validation_min, validation_max]
+  formula_python: "safe_div(abs(resolve('bs.nfp.lease_liability.close', year)), resolve('bs.total_assets', year)) <= 0.60"
   action: request_user_input
   action_note: null
   note: null
@@ -604,6 +658,7 @@ validation_rules:
   scope:
   - per_assumption
   regola_sintesi: 'for assumption with unit=pct: 0 <= value <= 1'
+  formula_python: "all(-0.50 <= assumptions.get(v, {}).get('growth_rate', {}).get(year, 0) <= 2.00 for v in method_configs if method_configs[v] == 'historical_avg_growth')"
   action: log_warning
   action_note: null
   note: null
@@ -615,6 +670,7 @@ validation_rules:
   scope:
   - per_assumption
   regola_sintesi: 'for volume_growth: -50% <= value <= +500%'
+  formula_python: "all(safe_div(drivers.get(f'driver.{v}.volume', {}).get(year, 0) - drivers.get(f'driver.{v}.volume', {}).get(prev_year, 0), abs(drivers.get(f'driver.{v}.volume', {}).get(prev_year, 1))) <= 2.00 for v in method_configs if method_configs[v] == 'volume_price')"
   action: log_warning
   action_note: null
   note: null
@@ -629,6 +685,7 @@ validation_rules:
   - per_year
   - per_voice
   regola_sintesi: 'for roll-forward voices: balance_open[t] == balance_close[t-1]'
+  formula_python: "custom_function: validators.cp_001_opening_equals_prior_close"
   action: log_warning
   action_note: null
   note: Tol 0.01
@@ -640,6 +697,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: abs(growth.revenue_yoy[Y1] - [Y0]) <= 50pp
+  formula_python: "custom_function: validators.cp_002_revenue_growth_continuity"
   action: log_warning
   action_note: null
   note: null
@@ -651,6 +709,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: abs(margin.gross[Y1] - [Y0]) <= 1000bps
+  formula_python: "custom_function: validators.cp_003_margin_continuity"
   action: log_warning
   action_note: null
   note: null
@@ -662,6 +721,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: abs(capex_intensity[Y1] - avg_3y) <= 100%
+  formula_python: "custom_function: validators.cp_004_nwc_days_continuity"
   action: log_warning
   action_note: null
   note: null
@@ -673,6 +733,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: abs(dso[Y1] - dso[Y0]) <= 60 days
+  formula_python: "safe_div(abs(resolve('cf.investing.capex.total', year)) - abs(resolve('cf.investing.capex.total', prev_year)), abs(resolve('cf.investing.capex.total', prev_year)) + 0.01) <= 1.00"
   action: log_warning
   action_note: null
   note: null
@@ -684,6 +745,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: abs(balance_check[Y1]) <= 10*abs(balance_check[Y0])
+  formula_python: "resolve('bs.nfp.borrowings.balance_close', year) <= resolve('bs.nfp.borrowings.balance_close', prev_year) * 1.50"
   action: log_warning
   action_note: null
   note: null
@@ -695,6 +757,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: nol_carryforward.close == open + max(0,-taxable_income) - nol_used
+  formula_python: "safe_div(resolve('bs.provisions.total', year), resolve('bs.provisions.total', prev_year) + 0.01) <= 3.0"
   action: log_warning
   action_note: null
   note: null
@@ -706,6 +769,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: 'if buyback==0: shares[year] >= shares[year-1]'
+  formula_python: "custom_function: validators.cp_008_headcount_growth"
   action: log_warning
   action_note: null
   note: null
@@ -717,6 +781,7 @@ validation_rules:
   scope:
   - per_voice
   regola_sintesi: voice.method_selected in voice.allowed_methods
+  formula_python: "project.tier_level in ('minimum', 'standard', 'advanced')"
   action: halt
   action_note: null
   note: null
@@ -728,6 +793,7 @@ validation_rules:
   scope:
   - per_voice
   regola_sintesi: 'if sector_pack: method.applicable_sectors includes selected_sector'
+  formula_python: "project.horizon_years == 3"
   action: halt
   action_note: null
   note: null
@@ -739,6 +805,7 @@ validation_rules:
   scope:
   - per_method
   regola_sintesi: all required assumptions populated for Y1-Y3
+  formula_python: "project.currency == 'EUR'"
   action: halt
   action_note: null
   note: null
@@ -750,6 +817,7 @@ validation_rules:
   scope:
   - per_assumption
   regola_sintesi: 'if default_kpi_id != null: KPI calcolabile in storico'
+  formula_python: "project.accounting_standard == 'IFRS'"
   action: use_fallback
   action_note: null
   note: null
@@ -761,6 +829,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: selected perimeter in [consolidated, legal_entity, cgu]
+  formula_python: "project.perimeter in ('consolidated', 'legal_entity', 'cgu')"
   action: halt
   action_note: null
   note: null
@@ -772,6 +841,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: currency == EUR for pilot v1.1
+  formula_python: "len(project.country) == 2 and project.country.isupper()"
   action: halt
   action_note: null
   note: Multi-currency = improvement
@@ -783,6 +853,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: abs(rev.net.proxy - rev.net.final) / rev.net.final > 0.01
+  formula_python: "abs(resolve('pl.rev.net.proxy', year) - resolve('pl.rev.net.final', year)) <= max(1.0, 0.001 * abs(resolve('pl.rev.net.final', year)))"
   action: log_info
   action_note: null
   note: APX_001
@@ -794,6 +865,7 @@ validation_rules:
   scope:
   - per_year
   regola_sintesi: abs(interest_income.recalc - interest_income) / abs(NI) > 0.05
+  formula_python: "custom_function: validators.cq_002_cf_op_consistency"
   action: log_warning
   action_note: null
   note: APX_006
@@ -805,6 +877,7 @@ validation_rules:
   scope:
   - global
   regola_sintesi: balance_check abs values increasing across years
+  formula_python: "abs(resolve('bs.balance_check', year)) <= max(1.0, 0.0001 * abs(resolve('bs.total_assets', year))) and abs(resolve('bs.balance_check', year)) <= abs(resolve('bs.balance_check', prev_year)) * 1.10"
   action: log_info
   action_note: null
   note: Possibile compounding error
