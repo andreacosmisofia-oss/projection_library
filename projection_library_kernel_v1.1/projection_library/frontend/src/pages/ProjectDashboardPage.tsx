@@ -116,7 +116,6 @@ export function ProjectDashboardPage() {
           projectId ? (
             <AssumptionSidebar
               projectId={projectId}
-              voices={voices.data?.items}
               overrides={overrides.data?.items ?? []}
               onAddOverride={handleAddOverride}
             />
