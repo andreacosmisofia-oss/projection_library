@@ -7,6 +7,7 @@ import from a single place.
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 
 from backend.domain.engine import formulas
@@ -15,6 +16,8 @@ from backend.domain.engine.value_resolver import (
     get_prev_year,
     resolve_voice_value,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def roll_forward(
@@ -70,7 +73,16 @@ def dispatch_method(
     if not formula:
         return None
 
-    return formulas.evaluate(formula, voice_id, year, state)
+    value = formulas.evaluate(formula, voice_id, year, state)
+    if value is None:
+        logger.warning(
+            "(%s, %s): evaluate returned None, applying flat fallback",
+            voice_id,
+            year,
+        )
+        value = resolve_voice_value(voice_id, get_prev_year(year), state)
+        state.base_values.setdefault(voice_id, {})[year] = value
+    return value
 
 
 def _resolve_method_id(
