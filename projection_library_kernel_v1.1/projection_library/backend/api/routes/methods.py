@@ -20,6 +20,8 @@ from backend.api.schemas.methods import (
     MethodConfigSummary,
     MethodUpdate,
 )
+from backend.domain.engine.executor import ProjectNotReady
+from backend.domain.iteration import iterate_method_change
 from backend.domain.methods import (
     SOURCE_REGISTRY_DEFAULT,
     SOURCE_USER_OVERRIDE,
@@ -196,9 +198,28 @@ def put_method(
         is_default=is_default,
         source=source,
     )
+    db.flush()
+
+    # Path 9.2: auto-trigger an engine re-run iff the project already
+    # has a snapshot. ProjectNotReady (E0 not satisfied yet) is
+    # surfaced as 422 — same convention as POST /run.
+    try:
+        iteration = iterate_method_change(project_id, db, _registries())
+    except ProjectNotReady as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=str(exc),
+        ) from exc
+
     db.commit()
     db.refresh(row)
-    return _entry_from_row(row, voice)
+
+    entry = _entry_from_row(row, voice)
+    if iteration.snapshot is not None:
+        entry = entry.model_copy(
+            update={"triggered_snapshot_id": iteration.snapshot.id}
+        )
+    return entry
 
 
 __all__ = ["router"]

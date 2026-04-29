@@ -28,6 +28,8 @@ from backend.api.schemas.balance import (
     BalanceUploadResponse,
     BalanceValidationItem,
     BalanceValidationReport,
+    BalanceVoicePatch,
+    BalanceVoicePatchResponse,
     ParsedVoice,
     SourceType,
 )
@@ -36,16 +38,20 @@ from backend.domain.intake import (
     ParseError,
     parse_balance,
 )
+from backend.domain.iteration import iterate_historical_modify
 from backend.infrastructure.db.database import get_db
 from backend.infrastructure.db.models import Balance, Project, RawVoice
 from backend.infrastructure.db.repositories.balance_repo import (
     get_active_balance,
     get_balance_by_id,
+    get_raw_voice,
     list_raw_voices,
     replace_active_balance,
     set_lfl_for_year,
     soft_delete_balance,
+    upsert_raw_voice_value,
 )
+from backend.infrastructure.registry import Registries, get_cache
 
 router = APIRouter(prefix="/api/projects/{project_id}/balance", tags=["intake"])
 
@@ -209,6 +215,79 @@ def delete_balance(
     soft_delete_balance(db, balance)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@router.patch(
+    "/{balance_id}/voice/{raw_voice_id}",
+    response_model=BalanceVoicePatchResponse,
+)
+def patch_voice_value(
+    project_id: str,
+    balance_id: str,
+    raw_voice_id: str,
+    payload: BalanceVoicePatch,
+    db: Annotated[Session, Depends(get_db)],
+) -> BalanceVoicePatchResponse:
+    """Path 9.3 — modify a historical datapoint and trigger the cascade.
+
+    The URL identifies a specific ``raw_voices`` row (used to derive
+    the ``(label, section)`` of the voice), while the body's ``year``
+    selects which yearly datapoint of that voice to update. If no row
+    exists for ``(balance, label, section, year)``, one is created so
+    the user can backfill a missing historical year.
+    """
+    _get_project_or_404(db, project_id)
+    balance = get_balance_by_id(db, project_id, balance_id)
+    if balance is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"balance '{balance_id}' not found",
+        )
+
+    raw_voice = get_raw_voice(db, balance_id, raw_voice_id)
+    if raw_voice is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=(
+                f"raw voice '{raw_voice_id}' not found in balance "
+                f"'{balance_id}'"
+            ),
+        )
+
+    updated_row = upsert_raw_voice_value(
+        db,
+        balance_id=balance_id,
+        voice_user_label=raw_voice.voice_user_label,
+        voice_user_section=raw_voice.voice_user_section,
+        year=payload.year,
+        amount=payload.value,
+    )
+    db.flush()
+
+    registries: Registries = get_cache().get()
+    try:
+        result = iterate_historical_modify(project_id, db, registries)
+    except LookupError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, detail=str(exc)
+        ) from exc
+
+    db.commit()
+    db.refresh(updated_row)
+
+    snapshot_id = result.snapshot.id if result.snapshot is not None else None
+    return BalanceVoicePatchResponse(
+        balance_id=balance_id,
+        raw_voice_id=updated_row.id,
+        voice_user_label=updated_row.voice_user_label,
+        voice_user_section=updated_row.voice_user_section,
+        year=updated_row.year,
+        value=updated_row.amount if updated_row.amount is not None else 0.0,
+        validation_blocked=result.validation_blocked,
+        validation_summary=result.validation_summary,
+        snapshot_id=snapshot_id,
+        engine_block_message=result.engine_block_message,
+    )
 
 
 @router.patch("/{balance_id}/lfl", response_model=BalanceLflResponse)

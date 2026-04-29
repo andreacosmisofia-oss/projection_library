@@ -117,11 +117,69 @@ def set_lfl_for_year(
     return len(rows)
 
 
+def get_raw_voice(
+    db: Session, balance_id: str, raw_voice_id: str
+) -> RawVoice | None:
+    """Fetch one ``raw_voices`` row scoped to a balance."""
+    return db.execute(
+        select(RawVoice).where(
+            RawVoice.id == raw_voice_id,
+            RawVoice.balance_id == balance_id,
+        )
+    ).scalars().first()
+
+
+def upsert_raw_voice_value(
+    db: Session,
+    balance_id: str,
+    voice_user_label: str,
+    voice_user_section: str | None,
+    year: str,
+    amount: float,
+) -> RawVoice:
+    """Set ``amount`` on the ``(balance, label, section, year)`` row.
+
+    Creates the row if it does not exist (Path 9.3 also supports
+    backfilling a missing historical year on an existing voice). The
+    uniqueness contract for raw voices is the (balance, label, section,
+    year) tuple — mirroring the parser's writeback.
+    """
+    section_clause = (
+        RawVoice.voice_user_section.is_(None)
+        if voice_user_section is None
+        else RawVoice.voice_user_section == voice_user_section
+    )
+    existing = db.execute(
+        select(RawVoice).where(
+            RawVoice.balance_id == balance_id,
+            RawVoice.voice_user_label == voice_user_label,
+            section_clause,
+            RawVoice.year == year,
+        )
+    ).scalars().first()
+    if existing is not None:
+        existing.amount = amount
+        return existing
+    row = RawVoice(
+        balance_id=balance_id,
+        voice_user_label=voice_user_label,
+        voice_user_section=voice_user_section,
+        year=year,
+        amount=amount,
+        lfl_flag=True,
+    )
+    db.add(row)
+    db.flush()
+    return row
+
+
 __all__ = [
     "get_active_balance",
     "get_balance_by_id",
+    "get_raw_voice",
     "list_raw_voices",
     "replace_active_balance",
     "set_lfl_for_year",
     "soft_delete_balance",
+    "upsert_raw_voice_value",
 ]

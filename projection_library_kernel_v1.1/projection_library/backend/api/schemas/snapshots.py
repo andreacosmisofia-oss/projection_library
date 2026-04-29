@@ -60,7 +60,33 @@ class SnapshotList(BaseModel):
     items: list[SnapshotSummary]
 
 
+class LatestValidationReport(BaseModel):
+    """Engine-stage validation issues attached to the most recent snapshot.
+
+    Distinct from M5's ``GET /validation-report/historical`` which
+    returns the *intake-time* validator output. This view exposes
+    ``state.validation_issues`` accumulated during the engine run
+    (E0..E8) and is what M12 wants displayed in the dashboard panel.
+    """
+
+    project_id: str
+    snapshot_id: str
+    run_timestamp: datetime
+    status: str
+    summary: dict
+    issues: list
+
+
+class ApproximationLogResponse(BaseModel):
+    project_id: str
+    snapshot_id: str
+    run_timestamp: datetime
+    approximation_log: list
+
+
 __all__ = [
+    "ApproximationLogResponse",
+    "LatestValidationReport",
     "SnapshotDetail",
     "SnapshotList",
     "SnapshotSummary",
