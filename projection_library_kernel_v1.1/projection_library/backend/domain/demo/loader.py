@@ -25,6 +25,7 @@ M4 will replace it with synonym-driven auto-mapping.
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -63,7 +64,14 @@ from backend.infrastructure.db.repositories.snapshots_repo import create_snapsho
 from backend.infrastructure.registry import Registries
 
 
+logger = logging.getLogger(__name__)
+
 SAMPLE_FILENAME = "tier2_industrial_clean.xlsx"
+
+# Method id used when forcing the flat fallback on demo revenue voices
+# whose registry default (e.g. ``volume_price``) requires drivers that
+# the demo dataset does not seed.
+_REVENUE_FALLBACK_METHOD_ID = "flat"
 
 # Repo root used to locate ``sample_data/``: ``backend/domain/demo`` →
 # parents[3] is the project root that also hosts ``sample_data/``.
@@ -143,6 +151,28 @@ def _seed_mappings(db: Session, project_id: str) -> int:
     return len(rows)
 
 
+def _is_revenue_driver(voice: dict[str, Any]) -> bool:
+    """Demo-revenue gate: a PL driver voice that lives in a ``rev`` section.
+
+    The registry defaults for these voices (``volume_price``,
+    ``capacity_utilization_price``, ``backlog_conversion``, …) all
+    require runtime drivers that the demo dataset does not seed, so the
+    engine would otherwise project zeros. Forcing ``flat`` here makes
+    the fallback anchor on the Y0 actuals already present in the
+    balance, which is what the demo wants out of the box.
+
+    ``derived`` voices (subtotals such as ``pl.rev.net``) are excluded:
+    they project via ``subtotal_aggregation`` and replacing that with
+    ``flat`` would break the aggregation chain.
+    """
+    if voice.get("statement") != "PL":
+        return False
+    section = voice.get("section") or ""
+    if not (section == "rev" or section.startswith("rev.")):
+        return False
+    return voice.get("nature") == "driver"
+
+
 def _seed_method_configs(
     db: Session, project_id: str, registries: Registries
 ) -> int:
@@ -151,6 +181,10 @@ def _seed_method_configs(
     Voices whose ``default_method`` resolves to ``None`` (sentinels or
     null values) are skipped — the engine handles the absence the same
     way it would for an unmapped voice.
+
+    Demo revenue drivers (see :func:`_is_revenue_driver`) are forced to
+    ``method_id="flat"`` so the engine projects Y0 actuals forward
+    instead of returning zeros for missing volume/price drivers.
     """
     seen: set[str] = set()
     count = 0
@@ -161,9 +195,12 @@ def _seed_method_configs(
         voice = registries.voices.get(voice_id)
         if voice is None:
             continue
-        method_id = resolve_default_method(voice)
-        if method_id is None:
-            continue
+        if _is_revenue_driver(voice):
+            method_id = _REVENUE_FALLBACK_METHOD_ID
+        else:
+            method_id = resolve_default_method(voice)
+            if method_id is None:
+                continue
         tech_code = resolve_method_tech_code(method_id, registries)
         db.add(
             MethodConfig(
@@ -178,6 +215,32 @@ def _seed_method_configs(
         count += 1
     db.flush()
     return count
+
+
+def _log_pl_y0_debug(mapped: Any, registries: Registries) -> None:
+    """Emit a debug line with Y0 actuals for the first few PL voices.
+
+    Used to confirm the revenue flat-fallback override has real anchors
+    to project from. Only the first five PL voices (in mapping order)
+    are reported to keep the log line bounded.
+    """
+    seen: set[str] = set()
+    samples: list[tuple[str, float | None]] = []
+    for voice_id in SAMPLE_MAPPINGS.values():
+        if voice_id in seen:
+            continue
+        seen.add(voice_id)
+        voice = registries.voices.get(voice_id)
+        if voice is None or voice.get("statement") != "PL":
+            continue
+        samples.append((voice_id, mapped.get(voice_id, "Y0")))
+        if len(samples) >= 5:
+            break
+    logger.info(
+        "demo.load_sample: Y0 actuals for first %d PL voices: %s",
+        len(samples),
+        ", ".join(f"{vid}={val!r}" for vid, val in samples),
+    )
 
 
 def load_sample_project(
@@ -220,6 +283,7 @@ def load_sample_project(
     # assumption defaults. Mirrors the order the UI walks through and
     # populates the rows the engine reads on startup.
     mapped = resolve_mapped_values(db, project.id)
+    _log_pl_y0_debug(mapped, registries)
     validation_report = run_historical_validation(mapped, registries, project)
     upsert_validation_report(
         db, project.id, "historical", validation_report
