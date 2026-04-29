@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { useHealth } from '@/api/useHealth'
 import { useProjects } from '@/api/useProjects'
 import { Button } from '@/components/ui/button'
@@ -48,17 +50,21 @@ export function ProjectsListPage() {
           {projects.data && projects.data.items.length > 0 ? (
             <ul className="divide-y">
               {projects.data.items.map((p) => (
-                <li
-                  key={p.id}
-                  className="flex items-center justify-between py-3"
-                >
-                  <div>
-                    <div className="font-medium">{p.name}</div>
-                    <div className="text-xs text-muted-foreground">
-                      {p.sector_pack} · {p.currency} · {p.horizon_years}y
+                <li key={p.id}>
+                  <Link
+                    to={`/projects/${p.id}`}
+                    className="flex items-center justify-between py-3 transition-colors hover:bg-accent/50 rounded-md px-2"
+                  >
+                    <div>
+                      <div className="font-medium">{p.name}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {p.sector_pack} · {p.currency} · {p.horizon_years}y
+                      </div>
                     </div>
-                  </div>
-                  <code className="text-xs text-muted-foreground">{p.id}</code>
+                    <code className="text-xs text-muted-foreground">
+                      {p.id}
+                    </code>
+                  </Link>
                 </li>
               ))}
             </ul>
