@@ -23,6 +23,8 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
 from backend.api.schemas.snapshots import (
+    ApproximationLogResponse,
+    LatestValidationReport,
     SnapshotDetail,
     SnapshotList,
     SnapshotSummary,
@@ -124,6 +126,67 @@ def get_latest(
             detail=f"no snapshot found for project '{project_id}'",
         )
     return SnapshotDetail.model_validate(snapshot)
+
+
+@router.get(
+    "/validation-report/latest",
+    response_model=LatestValidationReport,
+)
+def get_latest_validation_report(
+    project_id: str,
+    db: Annotated[Session, Depends(get_db)],
+) -> LatestValidationReport:
+    """Return the engine-time validation issues from the latest snapshot.
+
+    Distinct from M5's ``GET /validation-report/historical``: this view
+    shows the issues accumulated during the most recent engine run
+    (``state.validation_issues``). M12 dashboard panel reads from here.
+    """
+    _get_project_or_404(db, project_id)
+    snapshot = get_latest_snapshot(db, project_id)
+    if snapshot is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=(
+                f"no snapshot found for project '{project_id}' — "
+                f"POST /run first"
+            ),
+        )
+    return LatestValidationReport(
+        project_id=project_id,
+        snapshot_id=snapshot.id,
+        run_timestamp=snapshot.run_timestamp,
+        status=snapshot.status,
+        summary=snapshot.validation_summary or {},
+        issues=list(snapshot.validation_issues or []),
+    )
+
+
+@router.get(
+    "/approximation-log",
+    response_model=ApproximationLogResponse,
+)
+def get_approximation_log(
+    project_id: str,
+    db: Annotated[Session, Depends(get_db)],
+) -> ApproximationLogResponse:
+    """Return the approximation log captured during the latest engine run."""
+    _get_project_or_404(db, project_id)
+    snapshot = get_latest_snapshot(db, project_id)
+    if snapshot is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=(
+                f"no snapshot found for project '{project_id}' — "
+                f"POST /run first"
+            ),
+        )
+    return ApproximationLogResponse(
+        project_id=project_id,
+        snapshot_id=snapshot.id,
+        run_timestamp=snapshot.run_timestamp,
+        approximation_log=list(snapshot.approximation_log or []),
+    )
 
 
 @router.get("/snapshots", response_model=SnapshotList)

@@ -28,6 +28,7 @@ class MethodConfigEntry(BaseModel):
     source: str
     requires_user_choice: bool = False
     configured_at: datetime | None = None
+    triggered_snapshot_id: str | None = None
 
 
 class MethodConfigSummary(BaseModel):
