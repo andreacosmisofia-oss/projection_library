@@ -1,4 +1,4 @@
-"""ORM models (Milestones M2 + M3 + M5 + M6 + M7).
+"""ORM models (Milestones M2 + M3 + M5 + M6 + M7 + M10 + M11).
 
 M2 defines the ``projects`` table. M3 adds ``balances`` and
 ``raw_voices`` for the Case 1 (gestionale) intake flow described in
@@ -10,6 +10,8 @@ the auto-suggest flow when it lands), ``historical_kpis``,
 M6 adds ``method_configs`` (Expert mode subset of
 ``flows/04_method_selection.md``). M7 adds ``drivers`` (historical
 management drivers from ``flows/05_driver_intake.md``).
+M10 adds ``snapshots`` and ``snapshot_values`` (engine run output).
+M11 adds ``overrides`` (override layer, ``flows/09_iteration.md``).
 Soft delete is implemented via ``deleted_at`` on ``projects`` and
 ``balances``: rows with a non-null timestamp are filtered out by the
 API layer but kept in the database for audit purposes.
@@ -23,6 +25,7 @@ from datetime import datetime, timezone
 from sqlalchemy import (
     JSON,
     Boolean,
+    CheckConstraint,
     DateTime,
     Float,
     ForeignKey,
@@ -506,12 +509,75 @@ class SnapshotValue(Base):
     )
 
 
+class Override(Base):
+    """User-applied delta on a (voice, year) pair (M11).
+
+    The override layer is overlay-only: ``base_value`` produced by the
+    engine is invariant; ``delta_amount`` is composed on read by
+    :func:`backend.domain.engine.value_resolver.resolve_voice_value`.
+    Inactive rows (``is_active=False``) stay in the table for audit and
+    instant reactivation; ``deactivated_at`` records the toggle time.
+
+    ``override_policy_class`` is resolved at create time from
+    ``registries/override_policy.yaml`` and frozen on the row so the
+    propagation behaviour stays stable even if the policy YAML evolves.
+    """
+
+    __tablename__ = "overrides"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    project_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    voice_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    year: Mapped[str] = mapped_column(String(8), nullable=False)
+    delta_amount: Mapped[float] = mapped_column(Float, nullable=False)
+    nature: Mapped[str] = mapped_column(String(16), nullable=False)
+    override_policy_class: Mapped[str] = mapped_column(
+        String(64), nullable=False
+    )
+    is_active: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=True
+    )
+    user_note: Mapped[str | None] = mapped_column(String(1024), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=_utcnow
+    )
+    deactivated_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+
+    __table_args__ = (
+        CheckConstraint(
+            "nature IN ('organic', 'one_shot')", name="ck_overrides_nature"
+        ),
+        CheckConstraint(
+            "year IN ('Y1', 'Y2', 'Y3')", name="ck_overrides_year"
+        ),
+        Index(
+            "ix_overrides_project_active",
+            "project_id",
+            "is_active",
+        ),
+        Index(
+            "ix_overrides_project_voice_year",
+            "project_id",
+            "voice_id",
+            "year",
+        ),
+    )
+
+
 __all__ = [
     "Balance",
     "Driver",
     "HistoricalKPI",
     "Mapping",
     "MethodConfig",
+    "Override",
     "Project",
     "QualityScore",
     "RawVoice",

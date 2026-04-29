@@ -18,6 +18,7 @@ from backend.api.routes.drivers import router as drivers_router
 from backend.api.routes.intake import router as intake_router
 from backend.api.routes.kpi import router as kpi_router
 from backend.api.routes.methods import router as methods_router
+from backend.api.routes.overrides import router as overrides_router
 from backend.api.routes.projects import router as projects_router
 from backend.api.routes.quality import router as quality_router
 from backend.api.routes.registry import router as registry_router
@@ -54,6 +55,7 @@ app.include_router(quality_router)
 app.include_router(methods_router)
 app.include_router(drivers_router)
 app.include_router(snapshots_router)
+app.include_router(overrides_router)
 
 
 @app.get("/health", tags=["meta"])
