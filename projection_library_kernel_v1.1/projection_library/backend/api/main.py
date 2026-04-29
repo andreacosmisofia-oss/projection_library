@@ -14,6 +14,7 @@ import logging
 import time
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import inspect
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -49,6 +50,14 @@ app = FastAPI(
         "loaded and validated at startup; the app refuses to boot on "
         "schema, cross-reference, or DAG inconsistencies."
     ),
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 register_lifespan(app)
