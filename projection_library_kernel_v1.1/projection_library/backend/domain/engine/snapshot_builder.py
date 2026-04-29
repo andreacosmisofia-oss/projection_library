@@ -67,20 +67,32 @@ def _sum_active_override_delta(
 def build_snapshot_values(state: ModelState) -> list[SnapshotValueRow]:
     """Flatten ``state`` into one row per ``(voice_id, year)``.
 
-    Covers the union of voices observed in ``historical_data`` and
-    ``base_values``; for each voice, emits a row per year present in
-    that voice's slot (historical or projection). Sorted by ``voice_id``
+    Covers the union of voices observed in ``historical_data``,
+    ``base_values`` and ``overrides``; for each voice, emits a row per
+    year present in any of those slots. Including override voices
+    explicitly (M11) makes the override delta visible in the
+    snapshot even when the engine produced no base_value for the
+    voice (e.g. when a method failed silently). Sorted by ``voice_id``
     then year for deterministic output (tests + dashboards depend on a
     stable ordering).
     """
+    override_year_index: dict[str, set[str]] = {}
+    for ov in state.overrides:
+        if not ov.is_active:
+            continue
+        override_year_index.setdefault(ov.voice_id, set()).add(ov.year)
+
     voice_ids = sorted(
-        set(state.historical_data) | set(state.base_values)
+        set(state.historical_data)
+        | set(state.base_values)
+        | set(override_year_index)
     )
     rows: list[SnapshotValueRow] = []
     for voice_id in voice_ids:
         hist = state.historical_data.get(voice_id, {})
         proj = state.base_values.get(voice_id, {})
-        years = sorted(set(hist) | set(proj), key=_year_sort_key)
+        ov_years = override_year_index.get(voice_id, set())
+        years = sorted(set(hist) | set(proj) | ov_years, key=_year_sort_key)
         for year in years:
             if _is_projection_year(year):
                 base = proj.get(year)

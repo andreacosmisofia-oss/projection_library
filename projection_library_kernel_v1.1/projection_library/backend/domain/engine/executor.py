@@ -35,8 +35,9 @@ from backend.domain.engine.phases import (
     phase_e7_5,
     phase_e8,
 )
-from backend.domain.engine.value_resolver import ModelState
+from backend.domain.engine.value_resolver import ModelState, Override
 from backend.domain.intake.mapping_resolver import resolve_mapped_values
+from backend.domain.override.store import list_active_overrides_for_state
 from backend.infrastructure.db.models import Project
 from backend.infrastructure.db.repositories.drivers_repo import list_drivers
 from backend.infrastructure.db.repositories.m5_repos import list_historical_kpis
@@ -96,7 +97,11 @@ class ProjectionResult:
 
 
 def build_initial_state(
-    project_id: str, db: Session, registries: Any
+    project_id: str,
+    db: Session,
+    registries: Any,
+    *,
+    overrides_override: list[Override] | None = None,
 ) -> ModelState:
     """Hydrate a :class:`ModelState` from DB + registries.
 
@@ -111,6 +116,12 @@ def build_initial_state(
     * Drivers from ``drivers`` (skip markers excluded; per-type payload
       flattened into a single ``dict[year_or_param, value]``).
     * Method configs from ``method_configs`` keyed by ``voice_id``.
+    * Active overrides (M11) loaded as :class:`Override` overlay rows.
+
+    ``overrides_override`` lets callers (the M11 resolver re-run path)
+    inject an arbitrary override list — typically the organic-only
+    subset used for the one_shot suppression second pass. When
+    ``None`` (default), the active rows are read from DB.
 
     ``assumptions`` is intentionally empty: M8 (assumption compilation)
     has not shipped yet, so there's no DB table to read from. The slot
@@ -156,6 +167,11 @@ def build_initial_state(
         row.voice_id: row for row in list_method_configs(db, project_id)
     }
 
+    if overrides_override is not None:
+        active_overrides = list(overrides_override)
+    else:
+        active_overrides = list_active_overrides_for_state(db, project_id)
+
     return ModelState(
         project=project,
         registries=registries,
@@ -165,7 +181,7 @@ def build_initial_state(
         assumptions={},
         method_configs=method_configs,
         base_values={},
-        overrides=[],
+        overrides=active_overrides,
         current_year="",
         current_phase="",
         lfl_years=lfl_years,
@@ -175,18 +191,32 @@ def build_initial_state(
 
 
 def run_engine(
-    project_id: str, db: Session, registries: Any
+    project_id: str,
+    db: Session,
+    registries: Any,
+    *,
+    overrides_override: list[Override] | None = None,
 ) -> ProjectionResult:
     """Run E0 + year loop over E1..E8 for Y1, Y2, Y3.
 
     Returns a :class:`ProjectionResult` with ``status="success"`` when
     the loop completes. Persistence is the caller's responsibility:
     the executor is pure orchestration over ``ModelState``.
+
+    ``overrides_override`` is a passthrough to
+    :func:`build_initial_state` used by the M11 one_shot suppression
+    second pass to run the engine with a curated subset of active
+    overrides (organic-only).
     """
     started_at = datetime.now(timezone.utc)
     t0 = time.perf_counter()
 
-    state = build_initial_state(project_id, db, registries)
+    state = build_initial_state(
+        project_id,
+        db,
+        registries,
+        overrides_override=overrides_override,
+    )
 
     state.current_phase = "E0"
     state = phase_e0_setup(state)
@@ -218,6 +248,7 @@ def run_engine(
         status="success",
         duration_ms=duration_ms,
         approximation_log=list(state.approximation_log),
+        overrides_applied=list(state.overrides),
         final_state=state,
     )
 
