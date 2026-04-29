@@ -45,37 +45,50 @@ def test_evaluate_safe_div_zero():
     assert result_with_fallback == 0.0
 
 
-def test_evaluate_exception_returns_zero(caplog):
-    """Any runtime exception inside the formula → 0.0 + logged warning."""
+def test_evaluate_exception_paths(caplog):
+    """Differentiated exception handling per Sprint 1 engine fix.
+
+    * ``KeyError`` → flat fallback (prev-year value) + approximation_log entry.
+    * ``ZeroDivisionError`` → 0.0 (legitimate degenerate case).
+    * Any other exception → ``None`` so the caller can decide what to do.
+    """
     state = ModelState(
-        base_values={"pl.rev.net": {"Y1": 1000.0}},
+        # Y0 historical → flat fallback for Y1 lands on 1000.0.
+        historical_data={"pl.rev.net": {"Y0": 1000.0}},
     )
 
     with caplog.at_level(logging.WARNING, logger="backend.domain.engine.formulas"):
-        # KeyError: missing assumption
+        # KeyError: missing assumption → flat fallback to Y0 value.
         missing_assumption = evaluate(
             "assumptions['pl.rev.net']['growth']['Y1']",
             voice_id="pl.rev.net",
             year="Y1",
             state=state,
         )
-        # NameError: identifier not in whitelist (e.g. __import__ stripped)
+        # NameError: identifier not in whitelist (e.g. __import__ stripped).
         forbidden_name = evaluate(
             "__import__('os').system('echo pwned')",
             voice_id="pl.rev.net",
             year="Y1",
             state=state,
         )
-        # ZeroDivisionError: bare division by zero
+        # ZeroDivisionError: bare division by zero.
         divide_by_zero = evaluate(
             "1 / 0", voice_id="pl.rev.net", year="Y1", state=state
         )
 
-    assert missing_assumption == 0.0
-    assert forbidden_name == 0.0
+    assert missing_assumption == 1000.0
+    assert forbidden_name is None
     assert divide_by_zero == 0.0
     assert any(
+        "missing key" in rec.message for rec in caplog.records
+    )
+    assert any(
         "formula evaluation failed" in rec.message for rec in caplog.records
+    )
+    assert any(
+        entry.get("type") == "missing_key_flat_fallback"
+        for entry in state.approximation_log
     )
 
 

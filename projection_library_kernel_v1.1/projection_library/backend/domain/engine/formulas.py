@@ -5,10 +5,20 @@ ARCHITECTURE invariant 6: "no eval() libero". eval is invoked here with
 can only reach ``resolve``, ``safe_div``, ``pmt``, the basic math
 reductions, and the read-only state dicts.
 
-On any exception the formula returns 0.0 and the failure is logged —
-a single bad formula must never crash the engine run (Flow 07,
-"Edge cases": "Formula evaluation fail [...] wrap in try/except,
-voce a 0 con error log").
+A single bad formula must never crash the engine run (Flow 07, "Edge
+cases"). Failure modes are differentiated:
+
+* ``KeyError`` — a missing assumption / driver / kpi key is the typical
+  symptom of a partially configured project. We log, append a structured
+  entry to ``state.approximation_log`` and return the previous-year
+  value of the voice (flat fallback). For Y1 the previous year is Y0
+  (historical), so the projection silently rolls last year's actual
+  forward.
+* ``ZeroDivisionError`` — legitimate division by zero in the formula;
+  collapse to 0.0 without polluting the approximation log.
+* Any other exception — log and return ``None`` so the caller (the
+  phase dispatcher) can decide whether to apply the flat fallback or
+  skip the voice.
 """
 
 from __future__ import annotations
@@ -46,11 +56,12 @@ def evaluate(
     voice_id: str,
     year: str,
     state: ModelState,
-) -> float:
+) -> Optional[float]:
     """Evaluate a formula string in a whitelisted namespace.
 
-    Returns 0.0 on any exception (logged as warning). The namespace is
-    intentionally narrow:
+    Returns the numeric result, the flat-fallback value on ``KeyError``,
+    ``0.0`` on ``ZeroDivisionError``, or ``None`` for any other exception
+    (logged as warning). The namespace is intentionally narrow:
       * ``resolve(v, y)`` — effective voice value with override overlay
       * ``safe_div``, ``pmt`` — finance helpers
       * ``abs``, ``max``, ``min``, ``sum`` — basic reductions
@@ -59,6 +70,7 @@ def evaluate(
         consistent with KPI references in formulas)
       * ``year``, ``prev_year``, ``voice`` — context constants
     """
+    prev_year = get_prev_year(year)
     namespace = {
         "__builtins__": {},
         "resolve": lambda v, y: resolve_voice_value(v, y, state),
@@ -72,7 +84,7 @@ def evaluate(
         "drivers": state.drivers,
         "kpis": state.historical_kpis,
         "year": year,
-        "prev_year": get_prev_year(year),
+        "prev_year": prev_year,
         "voice": voice_id,
     }
     try:
@@ -80,6 +92,23 @@ def evaluate(
         if result is None:
             return 0.0
         return float(result)
+    except KeyError as exc:
+        logger.warning(
+            "%s missing key %s in %s", voice_id, exc, year
+        )
+        fallback = resolve_voice_value(voice_id, prev_year, state)
+        state.approximation_log.append(
+            {
+                "type": "missing_key_flat_fallback",
+                "voice_id": voice_id,
+                "year": year,
+                "missing_key": str(exc),
+                "fallback_value": fallback,
+            }
+        )
+        return fallback
+    except ZeroDivisionError:
+        return 0.0
     except Exception as exc:
         logger.warning(
             "formula evaluation failed: voice=%s year=%s formula=%r error=%s",
@@ -88,7 +117,7 @@ def evaluate(
             formula_python,
             exc,
         )
-        return 0.0
+        return None
 
 
 __all__ = ["safe_div", "pmt", "evaluate"]

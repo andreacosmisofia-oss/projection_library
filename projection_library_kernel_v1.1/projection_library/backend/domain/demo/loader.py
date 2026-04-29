@@ -13,9 +13,9 @@ Pipeline executed by ``load_sample_project``:
    like ``(utente sceglie)`` are skipped). E0 only requires *one*
    method config; we materialise the full set so the engine can
    project every mapped voice deterministically.
-4. ``state.assumptions`` is left empty — the engine accepts that
-   today. M8 will populate this slot with sensible defaults; until
-   then a ``# TODO M8`` marks the gap.
+4. Walk the M5/M6/M8 pre-engine pipeline (validation → KPIs → quality
+   score → assumption defaults) so ``state.assumptions`` is populated
+   before the engine runs.
 5. Run ``run_engine`` and persist the resulting snapshot via
    ``create_snapshot`` (same call site as ``POST /run``).
 
@@ -31,21 +31,33 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
+from backend.domain.assumptions.populator import populate_defaults
 from backend.domain.engine.executor import run_engine
 from backend.domain.engine.snapshot_builder import (
     build_snapshot_values,
     build_validation_summary,
     serialise_validation_issues,
 )
-from backend.domain.intake import parse_balance
+from backend.domain.intake import (
+    parse_balance,
+    resolve_mapped_values,
+    run_historical_validation,
+)
+from backend.domain.kpi import compute_historical_kpis
 from backend.domain.methods import (
     SOURCE_REGISTRY_DEFAULT,
     resolve_default_method,
     resolve_method_tech_code,
 )
+from backend.domain.quality import compute_quality_score
 from backend.infrastructure.db.models import Mapping, MethodConfig, Project
 from backend.infrastructure.db.repositories.balance_repo import (
     replace_active_balance,
+)
+from backend.infrastructure.db.repositories.m5_repos import (
+    replace_historical_kpis,
+    upsert_quality_score,
+    upsert_validation_report,
 )
 from backend.infrastructure.db.repositories.snapshots_repo import create_snapshot
 from backend.infrastructure.registry import Registries
@@ -204,10 +216,23 @@ def load_sample_project(
     mapping_count = _seed_mappings(db, project.id)
     method_count = _seed_method_configs(db, project.id, registries)
 
-    # TODO M8: populate state.assumptions with sensible defaults.
-    # Today the executor accepts an empty dict and the engine projects
-    # what it can from drivers + method defaults; that's enough for
-    # the demo loader to produce a non-empty snapshot end-to-end.
+    # M5/M6/M8 pre-engine pipeline: validation → KPIs → quality score →
+    # assumption defaults. Mirrors the order the UI walks through and
+    # populates the rows the engine reads on startup.
+    mapped = resolve_mapped_values(db, project.id)
+    validation_report = run_historical_validation(mapped, registries, project)
+    upsert_validation_report(
+        db, project.id, "historical", validation_report
+    )
+    kpi_snapshot = compute_historical_kpis(mapped, registries)
+    replace_historical_kpis(db, project.id, kpi_snapshot)
+    quality_result = compute_quality_score(
+        mapped, validation_report, registries, project.tier_level
+    )
+    upsert_quality_score(db, project.id, quality_result)
+    populate_defaults(db, project.id, registries)
+    db.flush()
+
     result = run_engine(project.id, db, registries)
     state: Any = result.final_state
     snapshot = create_snapshot(

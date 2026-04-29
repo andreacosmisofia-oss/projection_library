@@ -39,6 +39,9 @@ from backend.domain.engine.value_resolver import ModelState, Override
 from backend.domain.intake.mapping_resolver import resolve_mapped_values
 from backend.domain.override.store import list_active_overrides_for_state
 from backend.infrastructure.db.models import Project
+from backend.infrastructure.db.repositories.assumptions_repo import (
+    list_assumptions,
+)
 from backend.infrastructure.db.repositories.drivers_repo import list_drivers
 from backend.infrastructure.db.repositories.m5_repos import list_historical_kpis
 from backend.infrastructure.db.repositories.method_configs_repo import (
@@ -123,9 +126,11 @@ def build_initial_state(
     subset used for the one_shot suppression second pass. When
     ``None`` (default), the active rows are read from DB.
 
-    ``assumptions`` is intentionally empty: M8 (assumption compilation)
-    has not shipped yet, so there's no DB table to read from. The slot
-    exists on ``ModelState`` so M9.x phases can be wired ahead of M8.
+    ``assumptions`` is hydrated from the M8 ``assumptions`` table into
+    the nested ``voice_id -> assumption_name -> year -> value`` shape
+    that ``formulas.evaluate`` exposes to formula authors. All sources
+    (``default_kpi``, ``fallback``, ``user_input``) are included so the
+    engine reflects exactly what the populator persisted.
     """
     project = db.get(Project, project_id)
     if project is None:
@@ -167,6 +172,12 @@ def build_initial_state(
         row.voice_id: row for row in list_method_configs(db, project_id)
     }
 
+    assumptions: dict[str, dict[str, dict[str, float]]] = {}
+    for row in list_assumptions(db, project_id):
+        assumptions.setdefault(row.voice_id, {}).setdefault(
+            row.assumption_name, {}
+        )[row.year] = row.value
+
     if overrides_override is not None:
         active_overrides = list(overrides_override)
     else:
@@ -178,7 +189,7 @@ def build_initial_state(
         historical_data=historical_data,
         historical_kpis=historical_kpis,
         drivers=drivers,
-        assumptions={},
+        assumptions=assumptions,
         method_configs=method_configs,
         base_values={},
         overrides=active_overrides,
