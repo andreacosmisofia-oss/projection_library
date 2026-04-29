@@ -18,6 +18,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import inspect
 from sqlalchemy.exc import SQLAlchemyError
 
+from backend.api.routes.assumptions import router as assumptions_router
 from backend.api.routes.demo import router as demo_router
 from backend.api.routes.drivers import router as drivers_router
 from backend.api.routes.exports import router as exports_router
@@ -69,6 +70,7 @@ app.include_router(kpi_router)
 app.include_router(quality_router)
 app.include_router(methods_router)
 app.include_router(drivers_router)
+app.include_router(assumptions_router)
 app.include_router(snapshots_router)
 app.include_router(overrides_router)
 app.include_router(demo_router)
