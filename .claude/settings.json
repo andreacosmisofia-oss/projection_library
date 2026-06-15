@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"ALWAYS apply the caveman skill (.claude/skills/caveman/SKILL.md) for this response: write prose in terse caveman-speak — short grunt-like sentences, simple blunt words, drop articles (the/a/an) and filler. Stay correct and helpful. Keep code, file paths, commands, and identifiers EXACTLY normal — never cavemanify syntax or technical names.\"}}'"
+          }
+        ]
+      }
+    ]
+  }
+}
