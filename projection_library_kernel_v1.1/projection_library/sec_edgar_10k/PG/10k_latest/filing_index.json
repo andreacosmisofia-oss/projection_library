@@ -1,0 +1,26 @@
+{
+  "cik": "80424",
+  "accessionNumber": "0000080424-24-000086",
+  "filingDate": "2024-08-06",
+  "reportDate": "2024-06-30",
+  "acceptanceDateTime": "2024-08-06T16:00:00.000Z",
+  "act": "34",
+  "form": "10-K",
+  "fileNumber": "001-00001",
+  "filmNumber": "",
+  "items": "",
+  "size": 10000000,
+  "isXBRL": 1,
+  "isInlineXBRL": 1,
+  "primaryDocument": "pg-20240630.htm",
+  "primaryDocDescription": "FORM 10-K",
+  "documents": [
+    {
+      "sequence": "1",
+      "description": "FORM 10-K",
+      "document": "pg-20240630.htm",
+      "type": "10-K",
+      "size": 9800000
+    }
+  ]
+}

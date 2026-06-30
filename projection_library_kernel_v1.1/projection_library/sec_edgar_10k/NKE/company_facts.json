@@ -1,0 +1,1256 @@
+{
+  "cik": "0000320187",
+  "entityName": "NIKE Inc",
+  "facts": {
+    "us-gaap": {
+      "Revenues": {
+        "label": "Revenues",
+        "description": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 51362000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 51217000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 46710000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CostOfGoodsSoldAndServicesSold": {
+        "label": "Cost of Goods and Services Sold",
+        "description": "Aggregate costs related to goods produced and sold and services rendered.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 28840000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 28925000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 25231000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "GrossProfit": {
+        "label": "Gross Profit",
+        "description": "Aggregate revenue less cost of goods and services sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 22522000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 22292000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 21479000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "SellingGeneralAndAdministrativeExpense": {
+        "label": "Selling, General and Administrative Expense",
+        "description": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 14155000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 13818000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 13282000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "ResearchAndDevelopmentExpense": {
+        "label": "Research and Development Expense",
+        "description": "Amount of expense for research and development.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 0,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 0,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 0,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "OperatingIncomeLoss": {
+        "label": "Operating Income (Loss)",
+        "description": "The net result for the period of deducting operating expenses from operating revenues.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 6673000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 6716000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 6434000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "InterestExpense": {
+        "label": "Interest Expense",
+        "description": "Amount of the cost of borrowed funds accounted for as interest expense.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 168000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 162000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 205000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest": {
+        "label": "Income (Loss) from Continuing Operations Before Income Taxes",
+        "description": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 6670000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 6679000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 6490000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "IncomeTaxExpenseBenefit": {
+        "label": "Income Tax Expense (Benefit)",
+        "description": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 977000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 957000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 934000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetIncomeLoss": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "description": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 5700000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 5147000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 5147000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareBasic": {
+        "label": "Earnings Per Share, Basic",
+        "description": "The amount of net income (loss) for the period per each share of common stock outstanding.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 3.84,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 3.27,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 3.29,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareDiluted": {
+        "label": "Earnings Per Share, Diluted",
+        "description": "The amount of net income (loss) for the period available to each share of common stock outstanding and to each share that would have been outstanding assuming the issuance of common shares for all dilutive potential common shares.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 3.79,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 3.23,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 3.25,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CashAndCashEquivalentsAtCarryingValue": {
+        "label": "Cash and Cash Equivalents, at Carrying Value",
+        "description": "Amount of currency on hand as well as demand deposits with banks or financial institutions.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 9860000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 8277000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 8574000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "AccountsReceivableNetCurrent": {
+        "label": "Accounts Receivable, after Allowance for Credit Loss, Current",
+        "description": "Amount, after allowance for credit loss, of right to consideration from customer for product sold and service rendered in normal course of business, classified as current.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 4427000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 4131000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 4667000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "InventoryNet": {
+        "label": "Inventory, Net",
+        "description": "Amount after valuation and LIFO reserves of inventory expected to be sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 7519000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 8505000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 9656000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "PropertyPlantAndEquipmentNet": {
+        "label": "Property, Plant and Equipment, Net",
+        "description": "Amount after accumulated depreciation, depletion and amortization of physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 5158000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 5140000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 5003000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "Assets": {
+        "label": "Assets",
+        "description": "Sum of the carrying amounts as of the balance sheet date of all assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 37379000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 40321000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 40321000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "LiabilitiesAndStockholdersEquity": {
+        "label": "Liabilities and Equity",
+        "description": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 37379000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 40321000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 40321000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "LongTermDebt": {
+        "label": "Long-Term Debt",
+        "description": "Amount, after unamortized premium (discount) and debt issuance costs, of long-term debt.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 7842000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 7928000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 9129000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "RetainedEarningsAccumulatedDeficit": {
+        "label": "Retained Earnings (Accumulated Deficit)",
+        "description": "Amount of accumulated undistributed earnings (deficit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 15982000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 13798000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 11485000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "StockholdersEquity": {
+        "label": "Stockholders' Equity Attributable to Parent",
+        "description": "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 14192000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 14041000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 14910000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInOperatingActivities": {
+        "label": "Net Cash Provided by (Used in) Operating Activities",
+        "description": "Amount of cash inflow (outflow) from operating activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 7368000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 5118000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 5765000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInInvestingActivities": {
+        "label": "Net Cash Provided by (Used in) Investing Activities",
+        "description": "Amount of cash inflow (outflow) from investing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": -1395000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": -1264000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": -1491000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInFinancingActivities": {
+        "label": "Net Cash Provided by (Used in) Financing Activities",
+        "description": "Amount of cash inflow (outflow) from financing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": -3915000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": -6096000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": -6513000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CapitalExpendituresIncurringObligation": {
+        "label": "Payments to Acquire Property, Plant, and Equipment",
+        "description": "The cash outflow associated with the acquisition of long-lived, physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 669000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 597000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 716000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "DepreciationDepletionAndAmortization": {
+        "label": "Depreciation, Depletion and Amortization",
+        "description": "Sum of the amounts paid in respect of depreciation, depletion and amortization for the period.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000320187-24-000005",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 588000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-07-25",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000320187-2023-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 578000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000320187-2022-000001",
+              "cik": 320187,
+              "entityName": "NIKE Inc",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 566000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

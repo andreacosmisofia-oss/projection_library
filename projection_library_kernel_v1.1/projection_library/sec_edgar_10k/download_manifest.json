@@ -1,0 +1,106 @@
+{
+  "generated_at_utc": "2026-06-30T08:58:05Z",
+  "source": "synthetic — based on public 10-K filings (SEC EDGAR format)",
+  "companies": [
+    {
+      "ticker": "CAT",
+      "cik": 18230,
+      "entity": "CATERPILLAR INC",
+      "sic": "3531",
+      "period_end": "2023-12-31",
+      "accession": "0000018230-24-000009",
+      "gaap_concepts": 26,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "PG",
+      "cik": 80424,
+      "entity": "PROCTER & GAMBLE Co",
+      "sic": "2840",
+      "period_end": "2024-06-30",
+      "accession": "0000080424-24-000086",
+      "gaap_concepts": 25,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "GM",
+      "cik": 1467858,
+      "entity": "General Motors Co",
+      "sic": "3711",
+      "period_end": "2023-12-31",
+      "accession": "0001467858-24-000008",
+      "gaap_concepts": 26,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "PFE",
+      "cik": 78003,
+      "entity": "PFIZER INC",
+      "sic": "2836",
+      "period_end": "2023-12-31",
+      "accession": "0000078003-24-000006",
+      "gaap_concepts": 26,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "ORCL",
+      "cik": 1341439,
+      "entity": "ORACLE CORP",
+      "sic": "7372",
+      "period_end": "2024-05-31",
+      "accession": "0001341439-24-000017",
+      "gaap_concepts": 26,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "T",
+      "cik": 732717,
+      "entity": "AT&T INC",
+      "sic": "4813",
+      "period_end": "2023-12-31",
+      "accession": "0000732717-24-000005",
+      "gaap_concepts": 25,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "FCX",
+      "cik": 831259,
+      "entity": "FREEPORT-MCMORAN INC",
+      "sic": "1094",
+      "period_end": "2023-12-31",
+      "accession": "0000831259-24-000010",
+      "gaap_concepts": 26,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "FDX",
+      "cik": 1048911,
+      "entity": "FEDEX CORP",
+      "sic": "4512",
+      "period_end": "2024-05-31",
+      "accession": "0001048911-24-000015",
+      "gaap_concepts": 26,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "NKE",
+      "cik": 320187,
+      "entity": "NIKE Inc",
+      "sic": "3149",
+      "period_end": "2024-05-31",
+      "accession": "0000320187-24-000005",
+      "gaap_concepts": 26,
+      "status": "synthetic"
+    },
+    {
+      "ticker": "BA",
+      "cik": 12927,
+      "entity": "BOEING CO",
+      "sic": "3720",
+      "period_end": "2023-12-31",
+      "accession": "0000012927-24-000004",
+      "gaap_concepts": 26,
+      "status": "synthetic"
+    }
+  ]
+}

@@ -1,0 +1,1208 @@
+{
+  "cik": "0000080424",
+  "entityName": "PROCTER & GAMBLE Co",
+  "facts": {
+    "us-gaap": {
+      "Revenues": {
+        "label": "Revenues",
+        "description": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 84039000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 82006000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 80187000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CostOfGoodsSoldAndServicesSold": {
+        "label": "Cost of Goods and Services Sold",
+        "description": "Aggregate costs related to goods produced and sold and services rendered.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 42098000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 42460000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 43263000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "GrossProfit": {
+        "label": "Gross Profit",
+        "description": "Aggregate revenue less cost of goods and services sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 41941000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 39546000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 36924000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "SellingGeneralAndAdministrativeExpense": {
+        "label": "Selling, General and Administrative Expense",
+        "description": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 22049000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 20774000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 19552000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "OperatingIncomeLoss": {
+        "label": "Operating Income (Loss)",
+        "description": "The net result for the period of deducting operating expenses from operating revenues.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 18558000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 17348000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 15972000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "InterestExpense": {
+        "label": "Interest Expense",
+        "description": "Amount of the cost of borrowed funds accounted for as interest expense.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 866000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 751000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 615000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest": {
+        "label": "Income (Loss) from Continuing Operations Before Income Taxes",
+        "description": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 18000000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 17176000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 15868000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "IncomeTaxExpenseBenefit": {
+        "label": "Income Tax Expense (Benefit)",
+        "description": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 3680000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 3390000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 3071000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetIncomeLoss": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "description": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 14879000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 14508000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 14306000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareBasic": {
+        "label": "Earnings Per Share, Basic",
+        "description": "The amount of net income (loss) for the period per each share of common stock outstanding.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 6.04,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 5.92,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 5.78,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareDiluted": {
+        "label": "Earnings Per Share, Diluted",
+        "description": "The amount of net income (loss) for the period available to each share of common stock outstanding and to each share that would have been outstanding assuming the issuance of common shares for all dilutive potential common shares.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 5.97,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 5.83,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 5.66,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CashAndCashEquivalentsAtCarryingValue": {
+        "label": "Cash and Cash Equivalents, at Carrying Value",
+        "description": "Amount of currency on hand as well as demand deposits with banks or financial institutions.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 9068000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 5590000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 7954000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "AccountsReceivableNetCurrent": {
+        "label": "Accounts Receivable, after Allowance for Credit Loss, Current",
+        "description": "Amount, after allowance for credit loss, of right to consideration from customer for product sold and service rendered in normal course of business, classified as current.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 5215000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 4837000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 4928000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "InventoryNet": {
+        "label": "Inventory, Net",
+        "description": "Amount after valuation and LIFO reserves of inventory expected to be sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 6671000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 6766000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 6881000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "PropertyPlantAndEquipmentNet": {
+        "label": "Property, Plant and Equipment, Net",
+        "description": "Amount after accumulated depreciation, depletion and amortization of physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 22316000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 22108000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 22215000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "Assets": {
+        "label": "Assets",
+        "description": "Sum of the carrying amounts as of the balance sheet date of all assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 120040000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 120840000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 119307000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "LiabilitiesAndStockholdersEquity": {
+        "label": "Liabilities and Equity",
+        "description": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 120040000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 120840000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 119307000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "LongTermDebt": {
+        "label": "Long-Term Debt",
+        "description": "Amount, after unamortized premium (discount) and debt issuance costs, of long-term debt.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 24378000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 24254000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 23227000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "RetainedEarningsAccumulatedDeficit": {
+        "label": "Retained Earnings (Accumulated Deficit)",
+        "description": "Amount of accumulated undistributed earnings (deficit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 97629000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 93953000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 92489000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "StockholdersEquity": {
+        "label": "Stockholders' Equity Attributable to Parent",
+        "description": "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 48756000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 46370000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 46810000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInOperatingActivities": {
+        "label": "Net Cash Provided by (Used in) Operating Activities",
+        "description": "Amount of cash inflow (outflow) from operating activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 19939000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 16727000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 16729000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInInvestingActivities": {
+        "label": "Net Cash Provided by (Used in) Investing Activities",
+        "description": "Amount of cash inflow (outflow) from investing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": -4079000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": -4680000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": -5060000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInFinancingActivities": {
+        "label": "Net Cash Provided by (Used in) Financing Activities",
+        "description": "Amount of cash inflow (outflow) from financing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": -12382000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": -12553000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": -14378000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CapitalExpendituresIncurringObligation": {
+        "label": "Payments to Acquire Property, Plant, and Equipment",
+        "description": "The cash outflow associated with the acquisition of long-lived, physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 3441000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 3143000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 2789000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "DepreciationDepletionAndAmortization": {
+        "label": "Depreciation, Depletion and Amortization",
+        "description": "Sum of the amounts paid in respect of depreciation, depletion and amortization for the period.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000080424-24-000086",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2024-06-30",
+              "val": 2783000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-08-06",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0000080424-2023-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2023-06-30",
+              "val": 2699000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000080424-2022-000001",
+              "cik": 80424,
+              "entityName": "PROCTER & GAMBLE Co",
+              "loc": "US-DE",
+              "end": "2022-06-30",
+              "val": 2671000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

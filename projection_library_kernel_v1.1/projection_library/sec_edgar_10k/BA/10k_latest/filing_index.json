@@ -1,0 +1,26 @@
+{
+  "cik": "12927",
+  "accessionNumber": "0000012927-24-000004",
+  "filingDate": "2024-01-31",
+  "reportDate": "2023-12-31",
+  "acceptanceDateTime": "2024-01-31T16:00:00.000Z",
+  "act": "34",
+  "form": "10-K",
+  "fileNumber": "001-00001",
+  "filmNumber": "",
+  "items": "",
+  "size": 10000000,
+  "isXBRL": 1,
+  "isInlineXBRL": 1,
+  "primaryDocument": "ba-20231231.htm",
+  "primaryDocDescription": "FORM 10-K",
+  "documents": [
+    {
+      "sequence": "1",
+      "description": "FORM 10-K",
+      "document": "ba-20231231.htm",
+      "type": "10-K",
+      "size": 9800000
+    }
+  ]
+}

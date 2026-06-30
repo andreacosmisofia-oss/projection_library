@@ -1,0 +1,1256 @@
+{
+  "cik": "0000078003",
+  "entityName": "PFIZER INC",
+  "facts": {
+    "us-gaap": {
+      "Revenues": {
+        "label": "Revenues",
+        "description": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 58496000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 100330000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 81288000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "CostOfGoodsSoldAndServicesSold": {
+        "label": "Cost of Goods and Services Sold",
+        "description": "Aggregate costs related to goods produced and sold and services rendered.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 23826000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 33969000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 23225000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "GrossProfit": {
+        "label": "Gross Profit",
+        "description": "Aggregate revenue less cost of goods and services sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 34670000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 66361000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 58063000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "SellingGeneralAndAdministrativeExpense": {
+        "label": "Selling, General and Administrative Expense",
+        "description": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 13723000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 12696000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 12703000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "ResearchAndDevelopmentExpense": {
+        "label": "Research and Development Expense",
+        "description": "Amount of expense for research and development.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 10679000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 11428000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 9393000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "OperatingIncomeLoss": {
+        "label": "Operating Income (Loss)",
+        "description": "The net result for the period of deducting operating expenses from operating revenues.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 3668000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 40153000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 28534000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "InterestExpense": {
+        "label": "Interest Expense",
+        "description": "Amount of the cost of borrowed funds accounted for as interest expense.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 2189000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 1397000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 1232000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest": {
+        "label": "Income (Loss) from Continuing Operations Before Income Taxes",
+        "description": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": -3450000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 39527000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 27996000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "IncomeTaxExpenseBenefit": {
+        "label": "Income Tax Expense (Benefit)",
+        "description": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": -1141000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 7779000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 4452000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "NetIncomeLoss": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "description": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": -2382000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 31372000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 22036000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareBasic": {
+        "label": "Earnings Per Share, Basic",
+        "description": "The amount of net income (loss) for the period per each share of common stock outstanding.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": -0.42,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 5.53,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 3.9,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareDiluted": {
+        "label": "Earnings Per Share, Diluted",
+        "description": "The amount of net income (loss) for the period available to each share of common stock outstanding and to each share that would have been outstanding assuming the issuance of common shares for all dilutive potential common shares.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": -0.42,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 5.47,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 3.85,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "CashAndCashEquivalentsAtCarryingValue": {
+        "label": "Cash and Cash Equivalents, at Carrying Value",
+        "description": "Amount of currency on hand as well as demand deposits with banks or financial institutions.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 2793000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 1993000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 1923000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "AccountsReceivableNetCurrent": {
+        "label": "Accounts Receivable, after Allowance for Credit Loss, Current",
+        "description": "Amount, after allowance for credit loss, of right to consideration from customer for product sold and service rendered in normal course of business, classified as current.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 10001000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 9744000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 7806000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "InventoryNet": {
+        "label": "Inventory, Net",
+        "description": "Amount after valuation and LIFO reserves of inventory expected to be sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 10261000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 9342000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 7614000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "PropertyPlantAndEquipmentNet": {
+        "label": "Property, Plant and Equipment, Net",
+        "description": "Amount after accumulated depreciation, depletion and amortization of physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 21178000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 18968000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 16862000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "Assets": {
+        "label": "Assets",
+        "description": "Sum of the carrying amounts as of the balance sheet date of all assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 226502000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 197218000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 181476000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "LiabilitiesAndStockholdersEquity": {
+        "label": "Liabilities and Equity",
+        "description": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 226502000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 197218000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 181476000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "LongTermDebt": {
+        "label": "Long-Term Debt",
+        "description": "Amount, after unamortized premium (discount) and debt issuance costs, of long-term debt.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 62211000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 35629000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 35839000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "RetainedEarningsAccumulatedDeficit": {
+        "label": "Retained Earnings (Accumulated Deficit)",
+        "description": "Amount of accumulated undistributed earnings (deficit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 60493000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 69019000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 52578000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "StockholdersEquity": {
+        "label": "Stockholders' Equity Attributable to Parent",
+        "description": "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 89015000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 91829000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 79439000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInOperatingActivities": {
+        "label": "Net Cash Provided by (Used in) Operating Activities",
+        "description": "Amount of cash inflow (outflow) from operating activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 9973000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 29276000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 32695000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInInvestingActivities": {
+        "label": "Net Cash Provided by (Used in) Investing Activities",
+        "description": "Amount of cash inflow (outflow) from investing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": -50108000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": -50119000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": -22048000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInFinancingActivities": {
+        "label": "Net Cash Provided by (Used in) Financing Activities",
+        "description": "Amount of cash inflow (outflow) from financing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 43001000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 25039000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": -6905000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "CapitalExpendituresIncurringObligation": {
+        "label": "Payments to Acquire Property, Plant, and Equipment",
+        "description": "The cash outflow associated with the acquisition of long-lived, physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 3240000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 3322000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 2637000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "DepreciationDepletionAndAmortization": {
+        "label": "Depreciation, Depletion and Amortization",
+        "description": "Sum of the amounts paid in respect of depreciation, depletion and amortization for the period.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0000078003-24-000006",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 5155000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-21",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0000078003-2022-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 4143000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0000078003-2021-000001",
+              "cik": 78003,
+              "entityName": "PFIZER INC",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 3706000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

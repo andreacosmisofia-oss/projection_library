@@ -1,0 +1,86 @@
+{
+  "cik": "0001341439",
+  "entityType": "operating",
+  "sic": "7372",
+  "sicDescription": "Prepackaged Software",
+  "insiderTransactionForOwnerExists": 0,
+  "insiderTransactionForIssuerExists": 1,
+  "name": "ORACLE CORP",
+  "tickers": [
+    "ORCL"
+  ],
+  "exchanges": [
+    "NYSE"
+  ],
+  "ein": "",
+  "description": "",
+  "website": "",
+  "investorWebsite": "",
+  "category": "Large accelerated filer",
+  "fiscalYearEnd": "MAY",
+  "stateOfIncorporation": "DE",
+  "stateOfIncorporationDescription": "DE",
+  "addresses": {
+    "mailing": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    },
+    "business": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    }
+  },
+  "phone": "",
+  "flags": "",
+  "filings": {
+    "recent": {
+      "accessionNumber": [
+        "0001341439-24-000017"
+      ],
+      "filingDate": [
+        "2024-06-20"
+      ],
+      "reportDate": [
+        "2024-05-31"
+      ],
+      "acceptanceDateTime": [
+        "2024-06-20T16:00:00.000Z"
+      ],
+      "act": [
+        "34"
+      ],
+      "form": [
+        "10-K"
+      ],
+      "fileNumber": [
+        "001-00001"
+      ],
+      "filmNumber": [
+        ""
+      ],
+      "items": [
+        ""
+      ],
+      "size": [
+        10000000
+      ],
+      "isXBRL": [
+        1
+      ],
+      "isInlineXBRL": [
+        1
+      ],
+      "primaryDocument": [
+        "orcl-20240531.htm"
+      ],
+      "primaryDocDescription": [
+        "FORM 10-K"
+      ]
+    },
+    "files": []
+  }
+}

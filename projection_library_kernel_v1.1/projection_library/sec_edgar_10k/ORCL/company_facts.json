@@ -1,0 +1,1256 @@
+{
+  "cik": "0001341439",
+  "entityName": "ORACLE CORP",
+  "facts": {
+    "us-gaap": {
+      "Revenues": {
+        "label": "Revenues",
+        "description": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 52961000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 49954000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 42440000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CostOfGoodsSoldAndServicesSold": {
+        "label": "Cost of Goods and Services Sold",
+        "description": "Aggregate costs related to goods produced and sold and services rendered.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 17597000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 16464000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 13254000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "GrossProfit": {
+        "label": "Gross Profit",
+        "description": "Aggregate revenue less cost of goods and services sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 35364000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 33490000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 29186000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "SellingGeneralAndAdministrativeExpense": {
+        "label": "Selling, General and Administrative Expense",
+        "description": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 8186000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 7811000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 6576000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "ResearchAndDevelopmentExpense": {
+        "label": "Research and Development Expense",
+        "description": "Amount of expense for research and development.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 8932000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 8622000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 7220000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "OperatingIncomeLoss": {
+        "label": "Operating Income (Loss)",
+        "description": "The net result for the period of deducting operating expenses from operating revenues.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 13815000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 13163000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 10987000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "InterestExpense": {
+        "label": "Interest Expense",
+        "description": "Amount of the cost of borrowed funds accounted for as interest expense.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 3611000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 3280000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 2029000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest": {
+        "label": "Income (Loss) from Continuing Operations Before Income Taxes",
+        "description": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 10488000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 10271000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 8823000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "IncomeTaxExpenseBenefit": {
+        "label": "Income Tax Expense (Benefit)",
+        "description": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 1074000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 1267000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 1432000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetIncomeLoss": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "description": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 10467000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 8503000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 5421000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareBasic": {
+        "label": "Earnings Per Share, Basic",
+        "description": "The amount of net income (loss) for the period per each share of common stock outstanding.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 3.85,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 3.09,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 1.97,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareDiluted": {
+        "label": "Earnings Per Share, Diluted",
+        "description": "The amount of net income (loss) for the period available to each share of common stock outstanding and to each share that would have been outstanding assuming the issuance of common shares for all dilutive potential common shares.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 3.78,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 3.01,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 1.92,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CashAndCashEquivalentsAtCarryingValue": {
+        "label": "Cash and Cash Equivalents, at Carrying Value",
+        "description": "Amount of currency on hand as well as demand deposits with banks or financial institutions.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 10454000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 9711000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 21879000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "AccountsReceivableNetCurrent": {
+        "label": "Accounts Receivable, after Allowance for Credit Loss, Current",
+        "description": "Amount, after allowance for credit loss, of right to consideration from customer for product sold and service rendered in normal course of business, classified as current.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 8093000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 7756000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 6516000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "InventoryNet": {
+        "label": "Inventory, Net",
+        "description": "Amount after valuation and LIFO reserves of inventory expected to be sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 0,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 0,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 0,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "PropertyPlantAndEquipmentNet": {
+        "label": "Property, Plant and Equipment, Net",
+        "description": "Amount after accumulated depreciation, depletion and amortization of physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 22820000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 17695000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 8013000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "Assets": {
+        "label": "Assets",
+        "description": "Sum of the carrying amounts as of the balance sheet date of all assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 141216000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 134384000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 104230000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "LiabilitiesAndStockholdersEquity": {
+        "label": "Liabilities and Equity",
+        "description": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 141216000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 134384000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 104230000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "LongTermDebt": {
+        "label": "Long-Term Debt",
+        "description": "Amount, after unamortized premium (discount) and debt issuance costs, of long-term debt.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 85990000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 86481000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 75595000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "RetainedEarningsAccumulatedDeficit": {
+        "label": "Retained Earnings (Accumulated Deficit)",
+        "description": "Amount of accumulated undistributed earnings (deficit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": -17455000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": -30244000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": -41020000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "StockholdersEquity": {
+        "label": "Stockholders' Equity Attributable to Parent",
+        "description": "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": -14539000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": -15955000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": -15684000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInOperatingActivities": {
+        "label": "Net Cash Provided by (Used in) Operating Activities",
+        "description": "Amount of cash inflow (outflow) from operating activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 18667000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 14253000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 14615000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInInvestingActivities": {
+        "label": "Net Cash Provided by (Used in) Investing Activities",
+        "description": "Amount of cash inflow (outflow) from investing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": -11655000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": -16327000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": -48380000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInFinancingActivities": {
+        "label": "Net Cash Provided by (Used in) Financing Activities",
+        "description": "Amount of cash inflow (outflow) from financing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": -7272000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": -10136000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 53688000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "CapitalExpendituresIncurringObligation": {
+        "label": "Payments to Acquire Property, Plant, and Equipment",
+        "description": "The cash outflow associated with the acquisition of long-lived, physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 11027000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 6952000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 2944000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      },
+      "DepreciationDepletionAndAmortization": {
+        "label": "Depreciation, Depletion and Amortization",
+        "description": "Sum of the amounts paid in respect of depreciation, depletion and amortization for the period.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001341439-24-000017",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2024-05-31",
+              "val": 4827000000,
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-20",
+              "frame": "CY2024"
+            },
+            {
+              "accn": "0001341439-2023-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2023-05-31",
+              "val": 4239000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-02-20",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001341439-2022-000001",
+              "cik": 1341439,
+              "entityName": "ORACLE CORP",
+              "loc": "US-DE",
+              "end": "2022-05-31",
+              "val": 2963000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

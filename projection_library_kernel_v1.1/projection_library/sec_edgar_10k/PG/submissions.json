@@ -1,0 +1,86 @@
+{
+  "cik": "0000080424",
+  "entityType": "operating",
+  "sic": "2840",
+  "sicDescription": "Soap & Other Detergents",
+  "insiderTransactionForOwnerExists": 0,
+  "insiderTransactionForIssuerExists": 1,
+  "name": "PROCTER & GAMBLE Co",
+  "tickers": [
+    "PG"
+  ],
+  "exchanges": [
+    "NYSE"
+  ],
+  "ein": "",
+  "description": "",
+  "website": "",
+  "investorWebsite": "",
+  "category": "Large accelerated filer",
+  "fiscalYearEnd": "JUNE",
+  "stateOfIncorporation": "DE",
+  "stateOfIncorporationDescription": "DE",
+  "addresses": {
+    "mailing": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    },
+    "business": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    }
+  },
+  "phone": "",
+  "flags": "",
+  "filings": {
+    "recent": {
+      "accessionNumber": [
+        "0000080424-24-000086"
+      ],
+      "filingDate": [
+        "2024-08-06"
+      ],
+      "reportDate": [
+        "2024-06-30"
+      ],
+      "acceptanceDateTime": [
+        "2024-08-06T16:00:00.000Z"
+      ],
+      "act": [
+        "34"
+      ],
+      "form": [
+        "10-K"
+      ],
+      "fileNumber": [
+        "001-00001"
+      ],
+      "filmNumber": [
+        ""
+      ],
+      "items": [
+        ""
+      ],
+      "size": [
+        10000000
+      ],
+      "isXBRL": [
+        1
+      ],
+      "isInlineXBRL": [
+        1
+      ],
+      "primaryDocument": [
+        "pg-20240630.htm"
+      ],
+      "primaryDocDescription": [
+        "FORM 10-K"
+      ]
+    },
+    "files": []
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "cik": "0000012927",
+  "entityType": "operating",
+  "sic": "3720",
+  "sicDescription": "Aircraft & Parts",
+  "insiderTransactionForOwnerExists": 0,
+  "insiderTransactionForIssuerExists": 1,
+  "name": "BOEING CO",
+  "tickers": [
+    "BA"
+  ],
+  "exchanges": [
+    "NYSE"
+  ],
+  "ein": "",
+  "description": "",
+  "website": "",
+  "investorWebsite": "",
+  "category": "Large accelerated filer",
+  "fiscalYearEnd": "DECE",
+  "stateOfIncorporation": "DE",
+  "stateOfIncorporationDescription": "DE",
+  "addresses": {
+    "mailing": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    },
+    "business": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    }
+  },
+  "phone": "",
+  "flags": "",
+  "filings": {
+    "recent": {
+      "accessionNumber": [
+        "0000012927-24-000004"
+      ],
+      "filingDate": [
+        "2024-01-31"
+      ],
+      "reportDate": [
+        "2023-12-31"
+      ],
+      "acceptanceDateTime": [
+        "2024-01-31T16:00:00.000Z"
+      ],
+      "act": [
+        "34"
+      ],
+      "form": [
+        "10-K"
+      ],
+      "fileNumber": [
+        "001-00001"
+      ],
+      "filmNumber": [
+        ""
+      ],
+      "items": [
+        ""
+      ],
+      "size": [
+        10000000
+      ],
+      "isXBRL": [
+        1
+      ],
+      "isInlineXBRL": [
+        1
+      ],
+      "primaryDocument": [
+        "ba-20231231.htm"
+      ],
+      "primaryDocDescription": [
+        "FORM 10-K"
+      ]
+    },
+    "files": []
+  }
+}

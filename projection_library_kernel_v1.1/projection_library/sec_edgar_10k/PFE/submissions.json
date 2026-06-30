@@ -1,0 +1,86 @@
+{
+  "cik": "0000078003",
+  "entityType": "operating",
+  "sic": "2836",
+  "sicDescription": "Pharmaceutical Preparations",
+  "insiderTransactionForOwnerExists": 0,
+  "insiderTransactionForIssuerExists": 1,
+  "name": "PFIZER INC",
+  "tickers": [
+    "PFE"
+  ],
+  "exchanges": [
+    "NYSE"
+  ],
+  "ein": "",
+  "description": "",
+  "website": "",
+  "investorWebsite": "",
+  "category": "Large accelerated filer",
+  "fiscalYearEnd": "DECE",
+  "stateOfIncorporation": "DE",
+  "stateOfIncorporationDescription": "DE",
+  "addresses": {
+    "mailing": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    },
+    "business": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    }
+  },
+  "phone": "",
+  "flags": "",
+  "filings": {
+    "recent": {
+      "accessionNumber": [
+        "0000078003-24-000006"
+      ],
+      "filingDate": [
+        "2024-02-21"
+      ],
+      "reportDate": [
+        "2023-12-31"
+      ],
+      "acceptanceDateTime": [
+        "2024-02-21T16:00:00.000Z"
+      ],
+      "act": [
+        "34"
+      ],
+      "form": [
+        "10-K"
+      ],
+      "fileNumber": [
+        "001-00001"
+      ],
+      "filmNumber": [
+        ""
+      ],
+      "items": [
+        ""
+      ],
+      "size": [
+        10000000
+      ],
+      "isXBRL": [
+        1
+      ],
+      "isInlineXBRL": [
+        1
+      ],
+      "primaryDocument": [
+        "pfe-20231231.htm"
+      ],
+      "primaryDocDescription": [
+        "FORM 10-K"
+      ]
+    },
+    "files": []
+  }
+}

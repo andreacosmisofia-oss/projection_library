@@ -1,0 +1,26 @@
+{
+  "cik": "732717",
+  "accessionNumber": "0000732717-24-000005",
+  "filingDate": "2024-02-21",
+  "reportDate": "2023-12-31",
+  "acceptanceDateTime": "2024-02-21T16:00:00.000Z",
+  "act": "34",
+  "form": "10-K",
+  "fileNumber": "001-00001",
+  "filmNumber": "",
+  "items": "",
+  "size": 10000000,
+  "isXBRL": 1,
+  "isInlineXBRL": 1,
+  "primaryDocument": "t-20231231.htm",
+  "primaryDocDescription": "FORM 10-K",
+  "documents": [
+    {
+      "sequence": "1",
+      "description": "FORM 10-K",
+      "document": "t-20231231.htm",
+      "type": "10-K",
+      "size": 9800000
+    }
+  ]
+}

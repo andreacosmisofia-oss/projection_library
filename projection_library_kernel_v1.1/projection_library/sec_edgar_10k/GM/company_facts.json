@@ -1,0 +1,1256 @@
+{
+  "cik": "0001467858",
+  "entityName": "General Motors Co",
+  "facts": {
+    "us-gaap": {
+      "Revenues": {
+        "label": "Revenues",
+        "description": "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 171842000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 156735000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 127004000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "CostOfGoodsSoldAndServicesSold": {
+        "label": "Cost of Goods and Services Sold",
+        "description": "Aggregate costs related to goods produced and sold and services rendered.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 147474000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 136374000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 109904000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "GrossProfit": {
+        "label": "Gross Profit",
+        "description": "Aggregate revenue less cost of goods and services sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 24368000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 20361000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 17100000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "SellingGeneralAndAdministrativeExpense": {
+        "label": "Selling, General and Administrative Expense",
+        "description": "The aggregate total costs related to selling a firm's product and services, as well as all other general and administrative expenses.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 7826000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 7163000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 6620000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "ResearchAndDevelopmentExpense": {
+        "label": "Research and Development Expense",
+        "description": "Amount of expense for research and development.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 948000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 799000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 709000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "OperatingIncomeLoss": {
+        "label": "Operating Income (Loss)",
+        "description": "The net result for the period of deducting operating expenses from operating revenues.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 10027000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 7960000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 7474000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "InterestExpense": {
+        "label": "Interest Expense",
+        "description": "Amount of the cost of borrowed funds accounted for as interest expense.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 2024000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 1481000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 1344000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest": {
+        "label": "Income (Loss) from Continuing Operations Before Income Taxes",
+        "description": "Amount of income (loss) from continuing operations before deduction of income tax expense (benefit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 9652000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 9949000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 9696000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "IncomeTaxExpenseBenefit": {
+        "label": "Income Tax Expense (Benefit)",
+        "description": "Amount of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 2296000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 1704000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 1410000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "NetIncomeLoss": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "description": "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 9942000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 9934000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 7531000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareBasic": {
+        "label": "Earnings Per Share, Basic",
+        "description": "The amount of net income (loss) for the period per each share of common stock outstanding.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 7.11,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 7.02,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 5.16,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "EarningsPerShareDiluted": {
+        "label": "Earnings Per Share, Diluted",
+        "description": "The amount of net income (loss) for the period available to each share of common stock outstanding and to each share that would have been outstanding assuming the issuance of common shares for all dilutive potential common shares.",
+        "entityType": "operating",
+        "units": {
+          "pure": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 6.99,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 6.67,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 4.94,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "CashAndCashEquivalentsAtCarryingValue": {
+        "label": "Cash and Cash Equivalents, at Carrying Value",
+        "description": "Amount of currency on hand as well as demand deposits with banks or financial institutions.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 18825000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 19278000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 19078000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "AccountsReceivableNetCurrent": {
+        "label": "Accounts Receivable, after Allowance for Credit Loss, Current",
+        "description": "Amount, after allowance for credit loss, of right to consideration from customer for product sold and service rendered in normal course of business, classified as current.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 3042000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 2671000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 2520000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "InventoryNet": {
+        "label": "Inventory, Net",
+        "description": "Amount after valuation and LIFO reserves of inventory expected to be sold.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 14864000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 13886000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 11683000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "PropertyPlantAndEquipmentNet": {
+        "label": "Property, Plant and Equipment, Net",
+        "description": "Amount after accumulated depreciation, depletion and amortization of physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 26843000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 24738000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 24069000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "Assets": {
+        "label": "Assets",
+        "description": "Sum of the carrying amounts as of the balance sheet date of all assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 279076000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 264037000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 244714000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "LiabilitiesAndStockholdersEquity": {
+        "label": "Liabilities and Equity",
+        "description": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 279076000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 264037000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 244714000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "LongTermDebt": {
+        "label": "Long-Term Debt",
+        "description": "Amount, after unamortized premium (discount) and debt issuance costs, of long-term debt.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 18039000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 16806000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 16289000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "RetainedEarningsAccumulatedDeficit": {
+        "label": "Retained Earnings (Accumulated Deficit)",
+        "description": "Amount of accumulated undistributed earnings (deficit).",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 53296000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 49291000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 41898000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "StockholdersEquity": {
+        "label": "Stockholders' Equity Attributable to Parent",
+        "description": "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 56681000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 54964000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 52398000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInOperatingActivities": {
+        "label": "Net Cash Provided by (Used in) Operating Activities",
+        "description": "Amount of cash inflow (outflow) from operating activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 22236000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 19545000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 19741000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInInvestingActivities": {
+        "label": "Net Cash Provided by (Used in) Investing Activities",
+        "description": "Amount of cash inflow (outflow) from investing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": -13614000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": -15427000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": -14302000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "NetCashProvidedByUsedInFinancingActivities": {
+        "label": "Net Cash Provided by (Used in) Financing Activities",
+        "description": "Amount of cash inflow (outflow) from financing activities.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": -9234000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": -4714000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": -6478000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "CapitalExpendituresIncurringObligation": {
+        "label": "Payments to Acquire Property, Plant, and Equipment",
+        "description": "The cash outflow associated with the acquisition of long-lived, physical assets.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 7113000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 7140000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 6302000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      },
+      "DepreciationDepletionAndAmortization": {
+        "label": "Depreciation, Depletion and Amortization",
+        "description": "Sum of the amounts paid in respect of depreciation, depletion and amortization for the period.",
+        "entityType": "operating",
+        "units": {
+          "USD": [
+            {
+              "accn": "0001467858-24-000008",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2023-12-31",
+              "val": 8571000000,
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-01-30",
+              "frame": "CY2023"
+            },
+            {
+              "accn": "0001467858-2022-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2022-12-31",
+              "val": 8065000000,
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-02-20",
+              "frame": "CY2022"
+            },
+            {
+              "accn": "0001467858-2021-000001",
+              "cik": 1467858,
+              "entityName": "General Motors Co",
+              "loc": "US-DE",
+              "end": "2021-12-31",
+              "val": 7789000000,
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2022-02-20",
+              "frame": "CY2021"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

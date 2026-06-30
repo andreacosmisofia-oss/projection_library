@@ -1,0 +1,86 @@
+{
+  "cik": "0001048911",
+  "entityType": "operating",
+  "sic": "4512",
+  "sicDescription": "Air Transportation, Scheduled",
+  "insiderTransactionForOwnerExists": 0,
+  "insiderTransactionForIssuerExists": 1,
+  "name": "FEDEX CORP",
+  "tickers": [
+    "FDX"
+  ],
+  "exchanges": [
+    "NYSE"
+  ],
+  "ein": "",
+  "description": "",
+  "website": "",
+  "investorWebsite": "",
+  "category": "Large accelerated filer",
+  "fiscalYearEnd": "MAY",
+  "stateOfIncorporation": "DE",
+  "stateOfIncorporationDescription": "DE",
+  "addresses": {
+    "mailing": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    },
+    "business": {
+      "street1": "",
+      "city": "",
+      "stateOrCountry": "US",
+      "zipCode": ""
+    }
+  },
+  "phone": "",
+  "flags": "",
+  "filings": {
+    "recent": {
+      "accessionNumber": [
+        "0001048911-24-000015"
+      ],
+      "filingDate": [
+        "2024-07-15"
+      ],
+      "reportDate": [
+        "2024-05-31"
+      ],
+      "acceptanceDateTime": [
+        "2024-07-15T16:00:00.000Z"
+      ],
+      "act": [
+        "34"
+      ],
+      "form": [
+        "10-K"
+      ],
+      "fileNumber": [
+        "001-00001"
+      ],
+      "filmNumber": [
+        ""
+      ],
+      "items": [
+        ""
+      ],
+      "size": [
+        10000000
+      ],
+      "isXBRL": [
+        1
+      ],
+      "isInlineXBRL": [
+        1
+      ],
+      "primaryDocument": [
+        "fdx-20240531.htm"
+      ],
+      "primaryDocDescription": [
+        "FORM 10-K"
+      ]
+    },
+    "files": []
+  }
+}
