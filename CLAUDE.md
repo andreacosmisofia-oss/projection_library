@@ -9,7 +9,7 @@ piani dei conti.
 ```
 src/ch_labels/
   recon.py      # ricognizione indice bulk senza download
-  fetch.py      # scarica un pacchetto mensile in raw/
+  fetch.py      # scarica un pacchetto giornaliero o mensile in raw/
   extract.py    # estrae fatti da iXBRL/XBRL
   aggregate.py  # produce il dizionario finale
   taxonomy.py   # scarica e parsa la tassonomia FRC
@@ -33,22 +33,30 @@ Dipendenze: `lxml`, `polars`, `httpx`, `tqdm`, `rich`
 ### 1. Ricognizione (nessun download)
 ```bash
 python -m ch_labels.recon
-# oppure: ch-recon
 ```
-Elenca i pacchetti mensili disponibili con date e URL. Utile per scegliere cosa scaricare.
+Elenca i pacchetti disponibili con date e URL.
 
-### 2. Download un pacchetto
+### 2. Download
+
+**Punto di partenza consigliato — file giornaliero (~30 MB):**
 ```bash
-python -m ch_labels.fetch
-# oppure: ch-fetch [nome-parziale]
+python -m ch_labels.fetch --daily
 ```
-Scarica il pacchetto più recente in `raw/`. Supporta ripresa di download interrotti
-(Range header). Un pacchetto mensile pesa indicativamente 3-8 GB.
+
+**File mensile (~500 MB–2,4 GB):**
+```bash
+python -m ch_labels.fetch --monthly
+# oppure con nome esplicito:
+python -m ch_labels.fetch --monthly October2024
+```
+
+I file vengono salvati in `raw/`. Il download supporta ripresa (Range header).
 
 ### 3. Estrazione fatti
 ```bash
 python -m ch_labels.extract
-# oppure: ch-extract [nome-zip]
+# oppure su un file specifico:
+python -m ch_labels.extract Accounts_Bulk_Data-2025-07-01.zip
 ```
 Processa il ZIP in `raw/` e scrive `out/facts_<nome>.parquet`.
 
@@ -67,7 +75,6 @@ Schema del parquet:
 ### 4. Aggregazione → dizionario
 ```bash
 python -m ch_labels.aggregate
-# oppure: ch-aggregate
 ```
 Legge tutti i `facts_*.parquet` in `out/` e scrive:
 - `out/dictionary.parquet` — coppie (label, tag) con frequenze
@@ -85,48 +92,91 @@ Schema dizionario:
 ### 5. Tassonomia FRC
 ```bash
 python -m ch_labels.taxonomy
-# oppure: ch-taxonomy
 ```
 Scarica e parsa la tassonomia FRC in `ref/`:
 - `ref/frc_taxonomy.zip` — ZIP originale
 - `ref/taxonomy_concepts.csv` — concetti con tipo e period_type
 - `ref/taxonomy_labels.json` — etichette standard per concetto
 
+---
+
 ## Fonti dati
 
 ### Companies House Bulk Accounts Data
-- **Indice**: https://download.companieshouse.gov.uk/en_accountsdata.html
-- **Formato nomi**: `Accounts_Monthly_Data-<Month><YYYY>.zip`
-- **Contenuto**: ZIP di ZIP; ogni ZIP interno è un deposito (un'azienda).
-  Ogni deposito contiene uno o più file XML/XHTML in formato iXBRL o XBRL.
-- **Licenza**: Open Government Licence v3.0
-  https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
-  Uso commerciale e di ricerca permesso con attribuzione.
-- **Dimensione tipica**: 3–8 GB per pacchetto mensile compresso.
-- **Cadenza**: aggiornamento mensile; archivi storici disponibili dal 2011 circa.
-- **Proporzione iXBRL**: i depositi più recenti (dal 2020 circa) sono
-  prevalentemente iXBRL; quelli precedenti sono plain XBRL.
+
+**Tre portali di download** (accesso pubblico, nessuna autenticazione):
+
+| Portale | URL | Contenuto |
+|---|---|---|
+| Giornaliero | `https://download.companieshouse.gov.uk/en_accountsdata.html` | ultimi 60 giorni |
+| Mensile (12 mesi) | `https://download.companieshouse.gov.uk/en_monthlyaccountsdata.html` | ultimi 12 mesi |
+| Storico dal 2008 | `https://download.companieshouse.gov.uk/historicmonthlyaccountsdata.html` | archivio completo |
+
+**Pattern URL dei file:**
+
+```
+# Giornaliero
+https://download.companieshouse.gov.uk/Accounts_Bulk_Data-YYYY-MM-DD.zip
+
+# Mensile
+https://download.companieshouse.gov.uk/Accounts_Monthly_Data-[MonthName][Year].zip
+# es: Accounts_Monthly_Data-October2024.zip
+```
+
+**Dimensioni tipiche:**
+
+| Tipo | Compresso | Non compresso |
+|---|---|---|
+| Giornaliero | ~30 MB | ~300 MB |
+| Mensile (media) | ~500 MB | ~5 GB |
+| Mensile (picco: settembre/dicembre) | fino a 2,4 GB | ~24 GB |
+
+**Contenuto di ogni ZIP:**
+- ~97% file iXBRL (estensione `.html`) — formato prevalente dal 2011 in poi
+- ~3% plain XBRL (estensione `.xml`) — depositi più vecchi
+- Struttura: ZIP di ZIP; ogni ZIP interno è un deposito di una società
+
+**Note operative sui file mensili:**
+I file mensili hanno avuto problemi di disponibilità da dicembre 2023 per buona parte del 2024.
+I file giornalieri non sono mai stati interrotti. Prima di usare i mensili, verificare lo
+stato attuale sul forum: `https://forum.companieshouse.gov.uk/c/data-issues/20`
+
+**Licenza:** Open Government Licence v3.0
+`https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/`
+Uso commerciale, combinazione con altri dati e redistribuzione sono permessi.
+Unico obbligo: attribuzione a Companies House con link alla licenza.
 
 ### FRC XBRL Taxonomy
-- **URL principale**: https://xbrl.frc.org.uk/taxonomy/current
-- **ZIP diretto**: https://xbrl.frc.org.uk/taxonomy/current/taxonomy.zip
-- Contiene le tassonomie UK GAAP (FRS 101/102/105), UK-adopted IFRS e
-  Charities SORP. Ogni concetto ha un `name` attribute (il tag) e una
-  o più etichette standard in inglese.
+
+Il FRC pubblica suite tassonomiche annuali. Ogni suite copre UK GAAP (FRS 101/102/105),
+UK-adopted IFRS, UK SEF e Charities SORP.
+
+| Suite | Stato | URL pagina download |
+|---|---|---|
+| 2026 | Corrente | `https://www.frc.org.uk/library/standards-codes-policy/accounting-and-reporting/frc-taxonomies/current-frc-taxonomy-suites/2026-frc-taxonomy-suite/` |
+| 2025 | Corrente | `https://www.frc.org.uk/library/standards-codes-policy/accounting-and-reporting/frc-taxonomies/current-frc-taxonomy-suites/2025-frc-taxonomy-suite/` |
+| Storiche | Archivio | `https://www.frc.org.uk/library/standards-codes-policy/accounting-and-reporting/frc-taxonomies/historical-frc-taxonomy-suites/` |
+
+Il ZIP della tassonomia contiene: file `.xsd` (schemi), `.xml` (linkbase label/presentation/
+calculation/definition), `changelog.pdf` e mapping Excel con le variazioni rispetto all'anno
+precedente. Non esiste un URL diretto pubblico: il link si trova nella pagina della suite.
+
+Contatto FRC per questioni tecniche: `xbrl@frc.org.uk`
+
+---
 
 ## Note tecniche
 
-- I depositi iXBRL incorporano i fatti XBRL come attributi `name="prefix:Local"`
-  su elementi `<ix:nonNumeric>` e `<ix:nonFraction>`. Il testo visibile
-  dell'elemento è l'etichetta del redattore.
-- La stessa etichetta appare in molti depositi: la frequenza è il segnale
-  di qualità — etichette frequenti sono termine di settore consolidato.
-- Non viene fatta nessuna normalizzazione: maiuscole, punteggiatura,
-  spazi multipli rimangono intatti. La normalizzazione spetta al consumer
-  del dizionario.
-- Il filtro `INTERESTING_PREFIXES` in `extract.py` limita l'output ai tag
-  di namespace rilevanti (uk-bus, uk-core, uk-direp, frs, hmrc, ifrs, …).
-  Modificarlo se si vogliono catturare tag di altre tassonomie.
+- I depositi iXBRL incorporano i fatti XBRL come attributo `name="prefix:Local"`
+  su elementi `<ix:nonNumeric>` e `<ix:nonFraction>`. Il testo visibile è l'etichetta
+  del redattore — non normalizzata, esattamente come la si trova nel documento.
+- I file giornalieri (martedì–sabato mattina, ~5.000 depositi/giorno) coprono 3 giorni
+  di depositi (il martedì copre sabato + domenica + lunedì).
+- Il filtro `INTERESTING_PREFIXES` in `extract.py` limita l'output ai namespace
+  rilevanti (uk-bus, uk-core, uk-direp, frs, hmrc, ifrs, …). Modificarlo per
+  catturare tag di altre tassonomie.
+- Nessuna normalizzazione delle etichette in fase di estrazione: maiuscole, punteggiatura
+  e spazi multipli rimangono intatti. La normalizzazione spetta al consumer del dizionario.
 
 ## Test
 
@@ -134,11 +184,10 @@ Scarica e parsa la tassonomia FRC in `ref/`:
 pytest tests/ -v
 ```
 
-I test non richiedono rete né file reali. Usano un frammento iXBRL sintetico.
+I test non richiedono rete né file reali (7/7 pass).
 
 ## Avvertenza sulla rete
 
-I domini `download.companieshouse.gov.uk`, `www.gov.uk` e `xbrl.frc.org.uk`
-devono essere raggiungibili. In ambienti con proxy restrittivi (come i container
-Claude Code Remote) questi host potrebbero essere bloccati: eseguire il download
-localmente e copiare i file in `raw/` manualmente.
+I domini `download.companieshouse.gov.uk` e `frc.org.uk` devono essere raggiungibili.
+In ambienti con proxy restrittivi (container Claude Code Remote) questi host sono bloccati
+per policy: eseguire i download localmente e copiare i file in `raw/` e `ref/`.

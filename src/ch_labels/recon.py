@@ -5,41 +5,64 @@ Prints available packages, sizes, dates, and license info.
 
 import re
 import sys
-from datetime import datetime
 
 import httpx
 from rich.console import Console
 from rich.table import Table
 
-BULK_INDEX = "https://download.companieshouse.gov.uk/en_accountsdata.html"
 HEADERS = {"User-Agent": "ch-label-extractor/0.1 (research; andrea.cosmi.sofia@gmail.com)"}
+
+DAILY_INDEX   = "https://download.companieshouse.gov.uk/en_accountsdata.html"
+MONTHLY_INDEX = "https://download.companieshouse.gov.uk/en_monthlyaccountsdata.html"
+HISTORIC_INDEX = "https://download.companieshouse.gov.uk/historicmonthlyaccountsdata.html"
+
+# Direct URL patterns (no need to scrape if you know the date/month)
+# Daily:   Accounts_Bulk_Data-YYYY-MM-DD.zip
+# Monthly: Accounts_Monthly_Data-[MonthName][Year].zip
 
 console = Console()
 
 
-def fetch_index() -> str:
+def fetch_page(url: str) -> str:
     with httpx.Client(headers=HEADERS, follow_redirects=True, timeout=30) as client:
-        r = client.get(BULK_INDEX)
+        r = client.get(url)
         r.raise_for_status()
         return r.text
 
 
-def parse_links(html: str) -> list[dict]:
-    """Extract ZIP links with approximate sizes from the index page."""
-    pattern = re.compile(
-        r'href="([^"]*Accounts_Monthly_Data[^"]*\.zip)"[^>]*>.*?</a>',
-        re.IGNORECASE | re.DOTALL,
-    )
+def parse_daily_links(html: str) -> list[dict]:
+    pattern = re.compile(r'href="([^"]*Accounts_Bulk_Data-[\d-]+\.zip)"', re.IGNORECASE)
     entries = []
     for m in pattern.finditer(html):
         url = m.group(1)
         if not url.startswith("http"):
             url = "https://download.companieshouse.gov.uk/" + url.lstrip("/")
         name = url.split("/")[-1]
-        # try to parse date from filename e.g. Accounts_Monthly_Data-March2024.zip
+        date_m = re.search(r"(\d{4}-\d{2}-\d{2})", name)
+        entries.append({
+            "name": name,
+            "url": url,
+            "date_str": date_m.group(1) if date_m else "?",
+            "kind": "daily",
+        })
+    return sorted(entries, key=lambda e: e["date_str"])
+
+
+def parse_monthly_links(html: str) -> list[dict]:
+    pattern = re.compile(r'href="([^"]*Accounts_Monthly_Data-[^"]+\.zip)"', re.IGNORECASE)
+    entries = []
+    for m in pattern.finditer(html):
+        url = m.group(1)
+        if not url.startswith("http"):
+            url = "https://download.companieshouse.gov.uk/" + url.lstrip("/")
+        name = url.split("/")[-1]
         date_m = re.search(r"(\w+)(\d{4})", name)
-        date_str = f"{date_m.group(1)} {date_m.group(2)}" if date_m else "?"
-        entries.append({"name": name, "url": url, "date_str": date_str})
+        entries.append({
+            "name": name,
+            "url": url,
+            "date_str": f"{date_m.group(1)} {date_m.group(2)}" if date_m else "?",
+            "kind": "monthly",
+        })
     return entries
 
 
@@ -58,45 +81,59 @@ def head_size(url: str) -> str:
 
 def main():
     console.print("[bold]Companies House bulk accounts — reconnaissance[/bold]\n")
-    console.print(f"Fetching index: {BULK_INDEX}")
 
-    html = fetch_index()
+    daily_entries, monthly_entries = [], []
 
-    # License block
-    lic_m = re.search(
-        r"(Open Government Licence|Creative Commons|OGL)[^<]{0,200}",
-        html,
-        re.IGNORECASE,
-    )
+    console.print(f"Fetching daily index…  {DAILY_INDEX}")
+    try:
+        daily_entries = parse_daily_links(fetch_page(DAILY_INDEX))
+        console.print(f"  → {len(daily_entries)} daily files found")
+    except Exception as e:
+        console.print(f"  [red]Failed: {e}[/red]")
+
+    console.print(f"Fetching monthly index… {MONTHLY_INDEX}")
+    try:
+        monthly_entries = parse_monthly_links(fetch_page(MONTHLY_INDEX))
+        console.print(f"  → {len(monthly_entries)} monthly files found")
+    except Exception as e:
+        console.print(f"  [red]Failed: {e}[/red]")
+
     console.print(
-        f"\n[bold]License:[/bold] {lic_m.group(0).strip() if lic_m else 'not found in page — check manually'}"
+        "\n[bold]License:[/bold] Open Government Licence v3.0 — "
+        "commercial and research use permitted with attribution.\n"
+        "  https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
     )
 
-    entries = parse_links(html)
-    if not entries:
-        console.print("[red]No monthly ZIP links found — index format may have changed.[/red]")
-        console.print("Raw snippet:\n", html[:2000])
-        sys.exit(1)
+    if daily_entries:
+        latest_daily = daily_entries[-1]
+        size_d = head_size(latest_daily["url"])
+        table = Table(title="Daily files (last 6)", show_lines=False)
+        table.add_column("Date", style="green")
+        table.add_column("Filename", style="cyan")
+        for e in daily_entries[-6:]:
+            table.add_row(e["date_str"], e["name"])
+        console.print(table)
+        console.print(f"  Latest daily: [cyan]{latest_daily['name']}[/cyan]  size ≈ {size_d}")
+        console.print(f"  URL: {latest_daily['url']}")
 
-    console.print(f"\n[bold]{len(entries)} monthly packages found.[/bold]")
-    console.print("Checking size of the most recent package…")
+    if monthly_entries:
+        latest_monthly = monthly_entries[-1]
+        size_m = head_size(latest_monthly["url"])
+        table = Table(title="Monthly files (last 6)", show_lines=False)
+        table.add_column("Month", style="green")
+        table.add_column("Filename", style="cyan")
+        for e in monthly_entries[-6:]:
+            table.add_row(e["date_str"], e["name"])
+        console.print(table)
+        console.print(f"  Latest monthly: [cyan]{latest_monthly['name']}[/cyan]  size ≈ {size_m}")
+        console.print(f"  URL: {latest_monthly['url']}")
 
-    latest = entries[-1]
-    size = head_size(latest["url"])
+    console.print(
+        "\n[bold]Recommendation:[/bold] start with the latest daily file (~30 MB) "
+        "before committing to a full monthly (~500 MB–2.4 GB)."
+    )
 
-    table = Table(title="Available packages (last 6)")
-    table.add_column("Filename", style="cyan")
-    table.add_column("Date", style="green")
-    table.add_column("URL")
-    for e in entries[-6:]:
-        sz = size if e is latest else ""
-        table.add_row(e["name"], e["date_str"], e["url"][:60] + "…")
-
-    console.print(table)
-    console.print(f"\n[bold]Most recent:[/bold] {latest['name']}  size ≈ {size}")
-    console.print(f"URL: {latest['url']}")
-
-    return entries
+    return {"daily": daily_entries, "monthly": monthly_entries}
 
 
 if __name__ == "__main__":
