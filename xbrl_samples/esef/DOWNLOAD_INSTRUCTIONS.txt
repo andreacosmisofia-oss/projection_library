@@ -1,0 +1,98 @@
+ESEF FILING DOWNLOAD INSTRUCTIONS
+==================================
+Generated: 2026-08-07
+Source: filings.xbrl.org index as of 2025-02-28
+Note: All filings below are CONFIRMED in the filings.xbrl.org registry.
+      Downloading requires access to filings.xbrl.org (XBRL International's public registry).
+      Alternatively, files can be downloaded from each company's OAM submission:
+        - eMarket Storage (Italy): https://www.emarketstorage.it/
+        - 1Info (Italy): https://www.1info.it/
+      Or directly from company IR pages.
+
+==================================
+CONFIRMED 2023 ANNUAL REPORT FILINGS (FY 2023-12-31)
+==================================
+
+1. CAMPARI GROUP (Davide Campari-Milano N.V.)
+   LEI:  213800ED5AN2J56N6Z02
+   ISIN: NL0015435975
+   Note: Incorporated in Netherlands, files under NL in ESEF registry
+   URL:  https://filings.xbrl.org/213800ED5AN2J56N6Z02/2023-12-31/ESEF/NL/0/davidecamparimilano-2023-12-31-NL.zip
+   Alt:  https://www.camparigroup.com/en/page/investors/financial-reports
+
+2. BREMBO
+   LEI:  549300BLWVJN2BAT0A44
+   ISIN: IT0003796171  
+   Note: Italian filing (redomiciled to NL in April 2024, but 2023 report filed as IT)
+   URL:  https://filings.xbrl.org/549300BLWVJN2BAT0A44/2023-12-31/ESEF/IT/0/549300BLWVJN2BAT0A44-2023-12-31-it.zip
+   Alt:  https://www.brembogroup.com/en/investors/reports
+
+3. RECORDATI
+   LEI:  815600FBF92FD3531704
+   ISIN: IT0003828271
+   URL (EN): https://filings.xbrl.org/815600FBF92FD3531704/2023-12-31/ESEF/IT/0/815600FBF92FD3531704-2023-12-31-en.zip
+   URL (IT): https://filings.xbrl.org/815600FBF92FD3531704/2023-12-31/ESEF/IT/1/815600FBF92FD3531704-2023-12-31-it.zip
+   Alt:  https://recordati.com/investors-presentations-and-reports/
+
+4. REPLY S.P.A.
+   LEI:  815600DAEFB0388F3521
+   ISIN: IT0005282865
+   URL:  https://filings.xbrl.org/815600DAEFB0388F3521/2023-12-31/ESEF/IT/0/815600DAEFB0388F3521-2023-12-31.zip
+   Alt:  https://www.reply.com/en/investors/financial-reports
+
+5. DATALOGIC
+   LEI:  815600A033443037ED66
+   ISIN: IT0001173215
+   URL:  https://filings.xbrl.org/815600A033443037ED66/2023-12-31/ESEF/IT/0/815600A033443037ED66-2023-12-31-it.zip
+   Alt:  https://www.datalogic.com/eng/investor-relations
+
+==================================
+2022 FILING ONLY (2023 not indexed as of Feb 2025)
+==================================
+
+6. AMPLIFON
+   LEI:  ZYXJDNVM2JI3VBM8G556
+   ISIN: IT0004056444
+   Note: 2022 filing confirmed; 2023 may be at URL below (extrapolated)
+   URL (2022): https://filings.xbrl.org/ZYXJDNVM2JI3VBM8G556/2022-12-31/ESEF/IT/0/ZYXJDNVM2JI3VBM8G556-2022-12-31-it.zip
+   URL (2023, extrapolated): https://filings.xbrl.org/ZYXJDNVM2JI3VBM8G556/2023-12-31/ESEF/IT/0/ZYXJDNVM2JI3VBM8G556-2023-12-31-it.zip
+   Alt:  https://corporate.amplifon.com/en/investors/financial-reports
+
+==================================
+NOT FOUND IN filings.xbrl.org INDEX
+==================================
+These companies file ESEF reports (mandated under EU ESEF Regulation 2019/815)
+but their filings were not in the filings.xbrl.org index as of Feb 2025.
+Use the Italian OAMs or company IR pages directly.
+
+7. DE' LONGHI S.P.A.
+   LEI:  8156000E09A52C4F8A38
+   ISIN: IT0003115950
+   Alt:  https://www.delonghigroup.com/en/investor-relations
+   OAM:  Search on https://www.emarketstorage.it/ or https://www.1info.it/
+
+8. BRUNELLO CUCINELLI S.P.A.
+   ISIN: IT0004764699
+   Alt:  https://investor.brunellocucinelli.com/en/services/archive/investor/financial-reports
+   OAM:  Search on https://www.emarketstorage.it/ or https://www.1info.it/
+
+9. TOD'S S.P.A.
+   ISIN: IT0003007021
+   Alt:  https://www.todsgroup.com/en/investor-relations/financial-reports
+   OAM:  Search on https://www.emarketstorage.it/ or https://www.1info.it/
+
+10. BIESSE S.P.A.
+    ISIN: IT0003097257
+    Alt:  https://www.biesse.com/ww/en/investor-relations/
+    OAM:  Search on https://www.emarketstorage.it/ or https://www.1info.it/
+
+==================================
+FILES IN THIS DIRECTORY
+==================================
+- italian_esef_2023_index.csv  : Full index of 162 Italian ESEF 2023-12-31 filings
+                                  with exact download URLs
+- np3fastigheterab-2022-12-31-sv_EXAMPLE.zip : Swedish ESEF package structure example
+                                                 (NP3 Fastigheter AB, Inline XBRL)
+- sap-2022-12-31-de_EXAMPLE.zip              : German ESEF package structure example
+                                                 (SAP SE, Inline XBRL)
+- DOWNLOAD_INSTRUCTIONS.txt    : This file
