@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrl xmlns="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:itcc-ci="http://www.infocamere.it/itnn/fr/itcc/ci/2018-11-04" xmlns:itcc-ci-micr="http://www.infocamere.it/itnn/fr/itcc/ci/micr/2018-11-04">
+  <link:schemaRef xlink:type="simple" xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase" xlink:href="itcc-ci-micr-2018-11-04.xsd" />
+  <context id="I_31-12-21">
+    <entity>
+      <identifier scheme="http://www.infocamere.it">03072020211</identifier>
+    </entity>
+    <period>
+      <instant>2021-12-31</instant>
+    </period>
+  </context>
+  <context id="D_01-01-21_31-12-21">
+    <entity>
+      <identifier scheme="http://www.infocamere.it">03072020211</identifier>
+    </entity>
+    <period>
+      <startDate>2021-01-01</startDate>
+      <endDate>2021-12-31</endDate>
+    </period>
+  </context>
+  <context id="I_31-12-20">
+    <entity>
+      <identifier scheme="http://www.infocamere.it">03072020211</identifier>
+    </entity>
+    <period>
+      <instant>2020-12-31</instant>
+    </period>
+  </context>
+  <context id="D_01-01-20_31-12-20">
+    <entity>
+      <identifier scheme="http://www.infocamere.it">03072020211</identifier>
+    </entity>
+    <period>
+      <startDate>2020-01-01</startDate>
+      <endDate>2020-12-31</endDate>
+    </period>
+  </context>
+  <unit id="EUR">
+    <measure>iso4217:EUR</measure>
+  </unit>
+  <unit id="shares">
+    <measure>xbrli:shares</measure>
+  </unit>
+  <unit id="pure">
+    <measure>xbrli:pure</measure>
+  </unit>
+  <itcc-ci:DatiAnagraficiDenominazione contextRef="I_31-12-21">ANIMESHON</itcc-ci:DatiAnagraficiDenominazione>
+  <itcc-ci:DatiAnagraficiSede contextRef="I_31-12-21">VIA ROMA 2B, 39010 GARGAZZONE (BZ)</itcc-ci:DatiAnagraficiSede>
+  <itcc-ci:DatiAnagraficiCapitaleSociale contextRef="I_31-12-21" unitRef="EUR" decimals="0">9000</itcc-ci:DatiAnagraficiCapitaleSociale>
+  <itcc-ci:DatiAnagraficiCapitaleSocialeInteramenteVersato contextRef="I_31-12-21">true</itcc-ci:DatiAnagraficiCapitaleSocialeInteramenteVersato>
+  <itcc-ci:DatiAnagraficiCodiceCciaa contextRef="I_31-12-21">BZ</itcc-ci:DatiAnagraficiCodiceCciaa>
+  <itcc-ci:DatiAnagraficiCodiceFiscale contextRef="I_31-12-21">03072020211</itcc-ci:DatiAnagraficiCodiceFiscale>
+  <itcc-ci:DatiAnagraficiNumeroRea contextRef="I_31-12-21">230175</itcc-ci:DatiAnagraficiNumeroRea>
+  <itcc-ci:DatiAnagraficiFormaGiuridica contextRef="I_31-12-21">SOCIETA&amp;#39; A RESPONSABILITA&amp;#39; LIMITATA</itcc-ci:DatiAnagraficiFormaGiuridica>
+  <itcc-ci:DatiAnagraficiSettoreAttivitaPrevalenteAteco contextRef="I_31-12-21">63.12.00</itcc-ci:DatiAnagraficiSettoreAttivitaPrevalenteAteco>
+  <itcc-ci:DatiAnagraficiSocietaLiquidazione contextRef="I_31-12-21">false</itcc-ci:DatiAnagraficiSocietaLiquidazione>
+  <itcc-ci:DatiAnagraficiSocietaSocioUnico contextRef="I_31-12-21">false</itcc-ci:DatiAnagraficiSocietaSocioUnico>
+  <itcc-ci:DatiAnagraficiSocietaSottopostaAltruiAttivitaDirezioneCoordinamento contextRef="I_31-12-21">false</itcc-ci:DatiAnagraficiSocietaSottopostaAltruiAttivitaDirezioneCoordinamento>
+  <itcc-ci:DatiAnagraficiAppartenenzaGruppo contextRef="I_31-12-21">false</itcc-ci:DatiAnagraficiAppartenenzaGruppo>
+  <itcc-ci:TotaleImmobilizzazioniFinanziarie contextRef="I_31-12-21" unitRef="EUR" decimals="0">1000</itcc-ci:TotaleImmobilizzazioniFinanziarie>
+  <itcc-ci:TotaleImmobilizzazioni contextRef="I_31-12-21" unitRef="EUR" decimals="0">1000</itcc-ci:TotaleImmobilizzazioni>
+  <itcc-ci:CreditiEsigibiliEntroEsercizioSuccessivo contextRef="I_31-12-21" unitRef="EUR" decimals="0">65400</itcc-ci:CreditiEsigibiliEntroEsercizioSuccessivo>
+  <itcc-ci:TotaleCrediti contextRef="I_31-12-21" unitRef="EUR" decimals="0">65400</itcc-ci:TotaleCrediti>
+  <itcc-ci:TotaleDisponibilitaLiquide contextRef="I_31-12-21" unitRef="EUR" decimals="0">53627</itcc-ci:TotaleDisponibilitaLiquide>
+  <itcc-ci:TotaleAttivoCircolante contextRef="I_31-12-21" unitRef="EUR" decimals="0">119027</itcc-ci:TotaleAttivoCircolante>
+  <itcc-ci:TotaleAttivo contextRef="I_31-12-21" unitRef="EUR" decimals="0">120027</itcc-ci:TotaleAttivo>
+  <itcc-ci:PatrimonioNettoCapitale contextRef="I_31-12-21" unitRef="EUR" decimals="0">9000</itcc-ci:PatrimonioNettoCapitale>
+  <itcc-ci:PatrimonioNettoRiservaLegale contextRef="I_31-12-21" unitRef="EUR" decimals="0">1800</itcc-ci:PatrimonioNettoRiservaLegale>
+  <itcc-ci:PatrimonioNettoAltreRiserveDistintamenteIndicateTotaleAltreRiserve contextRef="I_31-12-21" unitRef="EUR" decimals="0">35691</itcc-ci:PatrimonioNettoAltreRiserveDistintamenteIndicateTotaleAltreRiserve>
+  <itcc-ci:PatrimonioNettoUtilePerditaEsercizio contextRef="I_31-12-21" unitRef="EUR" decimals="0">16800</itcc-ci:PatrimonioNettoUtilePerditaEsercizio>
+  <itcc-ci:TotalePatrimonioNetto contextRef="I_31-12-21" unitRef="EUR" decimals="0">63291</itcc-ci:TotalePatrimonioNetto>
+  <itcc-ci:DebitiEsigibiliEntroEsercizioSuccessivo contextRef="I_31-12-21" unitRef="EUR" decimals="0">56736</itcc-ci:DebitiEsigibiliEntroEsercizioSuccessivo>
+  <itcc-ci:TotaleDebiti contextRef="I_31-12-21" unitRef="EUR" decimals="0">56736</itcc-ci:TotaleDebiti>
+  <itcc-ci:TotalePassivo contextRef="I_31-12-21" unitRef="EUR" decimals="0">120027</itcc-ci:TotalePassivo>
+  <itcc-ci:TotaleImmobilizzazioniFinanziarie contextRef="I_31-12-20" unitRef="EUR" decimals="0">1000</itcc-ci:TotaleImmobilizzazioniFinanziarie>
+  <itcc-ci:TotaleImmobilizzazioni contextRef="I_31-12-20" unitRef="EUR" decimals="0">1000</itcc-ci:TotaleImmobilizzazioni>
+  <itcc-ci:CreditiEsigibiliEntroEsercizioSuccessivo contextRef="I_31-12-20" unitRef="EUR" decimals="0">115591</itcc-ci:CreditiEsigibiliEntroEsercizioSuccessivo>
+  <itcc-ci:TotaleCrediti contextRef="I_31-12-20" unitRef="EUR" decimals="0">115591</itcc-ci:TotaleCrediti>
+  <itcc-ci:TotaleDisponibilitaLiquide contextRef="I_31-12-20" unitRef="EUR" decimals="0">5802</itcc-ci:TotaleDisponibilitaLiquide>
+  <itcc-ci:TotaleAttivoCircolante contextRef="I_31-12-20" unitRef="EUR" decimals="0">121393</itcc-ci:TotaleAttivoCircolante>
+  <itcc-ci:AttivoRateiRisconti contextRef="I_31-12-20" unitRef="EUR" decimals="0">44</itcc-ci:AttivoRateiRisconti>
+  <itcc-ci:TotaleAttivo contextRef="I_31-12-20" unitRef="EUR" decimals="0">122437</itcc-ci:TotaleAttivo>
+  <itcc-ci:PatrimonioNettoCapitale contextRef="I_31-12-20" unitRef="EUR" decimals="0">9000</itcc-ci:PatrimonioNettoCapitale>
+  <itcc-ci:PatrimonioNettoRiservaSoprapprezzoAzioni contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:PatrimonioNettoRiservaSoprapprezzoAzioni>
+  <itcc-ci:PatrimonioNettoRiserveRivalutazione contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:PatrimonioNettoRiserveRivalutazione>
+  <itcc-ci:PatrimonioNettoRiservaLegale contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:PatrimonioNettoRiservaLegale>
+  <itcc-ci:PatrimonioNettoRiserveStatutarie contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:PatrimonioNettoRiserveStatutarie>
+  <itcc-ci:PatrimonioNettoAltreRiserveDistintamenteIndicateTotaleAltreRiserve contextRef="I_31-12-20" unitRef="EUR" decimals="0">5000</itcc-ci:PatrimonioNettoAltreRiserveDistintamenteIndicateTotaleAltreRiserve>
+  <itcc-ci:PatrimonioNettoUtiliPerditePortatiNuovo contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:PatrimonioNettoUtiliPerditePortatiNuovo>
+  <itcc-ci:PatrimonioNettoUtilePerditaEsercizio contextRef="I_31-12-20" unitRef="EUR" decimals="0">32491</itcc-ci:PatrimonioNettoUtilePerditaEsercizio>
+  <itcc-ci:PatrimonioNettoPerditaRipianataEsercizio contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:PatrimonioNettoPerditaRipianataEsercizio>
+  <itcc-ci:PatrimonioNettoRiservaNegativaAzioniPropriePortafoglio contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:PatrimonioNettoRiservaNegativaAzioniPropriePortafoglio>
+  <itcc-ci:TotalePatrimonioNetto contextRef="I_31-12-20" unitRef="EUR" decimals="0">46491</itcc-ci:TotalePatrimonioNetto>
+  <itcc-ci:TotaleFondiRischiOneri contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:TotaleFondiRischiOneri>
+  <itcc-ci:TrattamentoFineRapportoLavoroSubordinato contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:TrattamentoFineRapportoLavoroSubordinato>
+  <itcc-ci:DebitiEsigibiliEntroEsercizioSuccessivo contextRef="I_31-12-20" unitRef="EUR" decimals="0">12704</itcc-ci:DebitiEsigibiliEntroEsercizioSuccessivo>
+  <itcc-ci:DebitiEsigibiliOltreEsercizioSuccessivo contextRef="I_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:DebitiEsigibiliOltreEsercizioSuccessivo>
+  <itcc-ci:TotaleDebiti contextRef="I_31-12-20" unitRef="EUR" decimals="0">12704</itcc-ci:TotaleDebiti>
+  <itcc-ci:PassivoRateiRisconti contextRef="I_31-12-20" unitRef="EUR" decimals="0">63242</itcc-ci:PassivoRateiRisconti>
+  <itcc-ci:TotalePassivo contextRef="I_31-12-20" unitRef="EUR" decimals="0">122437</itcc-ci:TotalePassivo>
+  <itcc-ci:IntroduzioneInformazioniCalceAlloStatoPatrimonialeMicro contextRef="I_31-12-21">&lt;html&gt;&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Premessa&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Signori Soci,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;il presente bilancio, sottoposto al Vostro esame e alla Vostra approvazione, evidenzia un risultato d'esercizio pari a Euro 16.800.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;1.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;strong&gt; &lt;/strong&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Criteri generali di formazione del &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;bilancio&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt; &lt;strong&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;di esercizio&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Il bilancio relativo all'esercizio chiuso al 31.12.2021 è stato redatto secondo i dettami degli articoli 2423 e seguenti del Codice Civile, integrati dai principi contabili elaborati dall'Organismo Italiano di Contabilità, sulla base delle disposizioni contenute dal D.Lgs. 139/2015 e delle novità da esso apportate.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Il bilancio è stato redatto in forma micro-imprese in quanto sussistono i requisiti di cui all'art. 2435-ter, co. 1, Codice Civile; non sono stati redatti la Nota integrativa, la Relazione sulla Gestione e il Rendiconto finanziario. &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;In calce allo Stato patrimoniale, risultano le informazioni previste dall'art. 2427 numeri 9) e 16) e dall'art. 2428 numeri 3) e 4) del Codice Civile. &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Il presente bilancio è costituito dallo Stato patrimoniale e dal Conto economico e corrisponde alle risultanze delle scritture contabili regolarmente tenute. E' stato redatto in conformità agli artt. 2423 (tranne la disposizione di cui al co. 5), 2423 ter, 2424, 2424 bis, 2425, 2425 bis, 2435 bis e 2435-ter del Codice Civile, secondo i principi di redazione stabiliti dall'art. 2423 bis e i criteri di valutazione di cui all'art. 2426 C.C. (tranne la disposizione di cui al co. 1, n. 11-bis). &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Le voci dello Stato patrimoniale e del Conto economico, precedute da numeri arabi, sono state redatte, ai sensi del 2°, 3° e 4° comma dell'art. 2423-ter del Codice Civile, in relazione alla natura dell'attività esercitata.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Il bilancio di esercizio è stati predisposto in unità di Euro. L'arrotondamento è stato eseguito all'unità inferiore per decimali inferiori a 0,5 Euro e all'unità superiore per decimali pari o superiori a 0,5 Euro. Le differenze derivanti dall'arrotondamento dei valori espressi in unità di euro sono allocate all'apposita riserva di patrimonio netto.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;2. Criteri di valutazione (art. 2427, co.1, n.1, Codice Civile)&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;La valutazione delle voci di bilancio è stata fatta ispirandosi a criteri generali di prudenza e competenza e nella prospettiva della continuazione dell'attività.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Con riferimento ai principi utilizzati per la redazione del presente bilancio di esercizio, si precisa che la valutazione delle singole voci è stata effettuata - così come previsto dall'art. 2423-bis del Codice Civile - tenendo conto della "sostanza dell'operazione o del contratto".&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;I criteri utilizzati sono illustrati in calce alle voci rilevanti dello Stato Patrimoniale e del Conto Economico.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;2.1 Deroghe&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Non si è verificata l'esigenza di ricorrere all'utilizzo del maggior termine di 180 giorni ai sensi dell'art. 2364, co. 2, Codice Civile per la convocazione dell'Assemblea per l'approvazione del bilancio.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Sono stati rispettati ai sensi dell'art. 2423, co. 4, Codice Civile, gli obblighi in tema di rilevazione, valutazione, presentazione e informativa al fine di dare una rappresentazione veritiera e corretta della situazione patrimoniale e finanziaria della Società e del risultato economico dell'esercizio.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;I criteri di valutazione di cui all'art. 2426 del Codice Civile sono conformi a quelli utilizzati nella redazione del bilancio del precedente esercizio e non si è ricorso ad ulteriori deroghe di cui agli artt. 2423-bis, n.6 e 2423-ter, co.5, C.C.)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;2.3 Altre informazioni&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;Anche in questo secondo esercizio l'attività della società è stata interamente dedicata all'attività di ricerca e sviluppo.&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Compensi, anticipazioni e crediti concessi ad amministratori e sindaci e impegni assunti per loro conto&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;(art. 2427, co.1, n. 16, C.c.)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;La società non ha corrisposto, nell'esercizio, nuovi compensi agli amministratori.&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;La Società, non sussistendone l'obbligo, non ha il Collegio Sindacale o il &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helv&amp;quot;,sans-serif"&gt;Sindaco &lt;/span&gt;&lt;/span&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;Unico&lt;span style="color:#333333"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Impegni, garanzie e passività potenziali non risultanti dallo Stato patrimoniale.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;(art. 2427, co.1, n. 9, C.c.)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;A seguito dell'eliminazione dei conti d'ordine dallo Stato patrimoniale, nella Nota integrativa devono essere riportate le informazioni relative all'importo complessivo degli impegni, delle garanzie e delle passività potenziali non risultanti dallo Stato patrimoniale, con indicazione della natura delle garanzie reali prestate, gli impegni esistenti in materia di trattamento di quiescenza e simili, non ché gli impegni assunti nei confronti delle imprese controllate, collegate, nonché controllanti e imprese sottoposte al controllo di queste ultime sono distintamente indicati.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;Non sussistono operazioni che hanno determinato l'obbligo di accendere poste nei conti d'ordine, né altre operazioni fuori bilancio.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;Non sono stati concessi impegni e/o garanzie per debiti altrui.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;Azioni proprie e azioni o quote di società controllanti possedute, acquisite e alienate, anche per tramite di società fiduciaria o per interposta persona&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;(&lt;span style="color:#333333"&gt;Art. 2428, n. 3 e n. 4, C.c.)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;A completamento della doverosa informazione si precisa che ai sensi dell'art. 2428 punti 3) e 4) Codice Civile non esistono né quote proprie, né azioni o quote di società controllanti possedute dalla Società anche per tramite di società fiduciaria o per interposta persona e che né quote proprie, né azioni o quote di società controllanti sono state acquistate e/o alienate dalla Società nel corso dell'esercizio, anche per tramite di società fiduciaria o per interposta persona.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;strong&gt;&lt;span style="font-size:9.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;Attività di ricerca e sviluppo&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-family:Helvetica,sans-serif"&gt;&lt;span style="font-size:10.5pt"&gt;La &lt;/span&gt;&lt;/span&gt;&lt;span style="color:#333333; font-family:Helvetica,sans-serif; font-size:10.5pt"&gt;Società &lt;/span&gt;&lt;span style="font-family:Helvetica,sans-serif"&gt;&lt;span style="font-size:10.5pt"&gt;ha svolto attività di ricerca e sviluppo nel settore dei portali web, concentrandosi sul progetto aziendale di sviluppo, produzione e &lt;/span&gt;&lt;span style="font-size:14px"&gt;commercializzazione&lt;/span&gt;&lt;span style="font-size:10.5pt"&gt; di un innovativo servizio di incubazione, promozione e indicizzazione di contenuti multimediali giapponesi, focalizzato sul settore di anime e manga. &lt;/span&gt;&lt;/span&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;Si confida che l'esito positivo di tali innovazioni possa generare buoni risultati in termini di fatturato con ricadute favorevoli sull'economia dell'azienda.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/html&gt;</itcc-ci:IntroduzioneInformazioniCalceAlloStatoPatrimonialeMicro>
+  <itcc-ci:ValoreProduzioneRicaviVenditePrestazioni contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">0</itcc-ci:ValoreProduzioneRicaviVenditePrestazioni>
+  <itcc-ci:ValoreProduzioneIncrementiImmobilizzazioniLavoriInterni contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">0</itcc-ci:ValoreProduzioneIncrementiImmobilizzazioniLavoriInterni>
+  <itcc-ci:ValoreProduzioneAltriRicaviProventiContributiContoEsercizio contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">0</itcc-ci:ValoreProduzioneAltriRicaviProventiContributiContoEsercizio>
+  <itcc-ci:ValoreProduzioneAltriRicaviProventiAltri contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">68352</itcc-ci:ValoreProduzioneAltriRicaviProventiAltri>
+  <itcc-ci:ValoreProduzioneAltriRicaviProventiTotaleAltriRicaviProventi contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">68352</itcc-ci:ValoreProduzioneAltriRicaviProventiTotaleAltriRicaviProventi>
+  <itcc-ci:TotaleValoreProduzione contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">68352</itcc-ci:TotaleValoreProduzione>
+  <itcc-ci:CostiProduzioneMateriePrimeSussidiarieConsumoMerci contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">31</itcc-ci:CostiProduzioneMateriePrimeSussidiarieConsumoMerci>
+  <itcc-ci:CostiProduzioneServizi contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">47798</itcc-ci:CostiProduzioneServizi>
+  <itcc-ci:CostiProduzioneGodimentoBeniTerzi contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">1716</itcc-ci:CostiProduzioneGodimentoBeniTerzi>
+  <itcc-ci:CostiProduzioneOneriDiversiGestione contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">863</itcc-ci:CostiProduzioneOneriDiversiGestione>
+  <itcc-ci:TotaleCostiProduzione contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">50408</itcc-ci:TotaleCostiProduzione>
+  <itcc-ci:DifferenzaValoreCostiProduzione contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">17944</itcc-ci:DifferenzaValoreCostiProduzione>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiAltri contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">41</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiAltri>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiTotaleProventiDiversiPrecedenti contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">41</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiTotaleProventiDiversiPrecedenti>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariTotaleAltriProventiFinanziari contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">41</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariTotaleAltriProventiFinanziari>
+  <itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariAltri contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">915</itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariAltri>
+  <itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariTotaleInteressiAltriOneriFinanziari contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">915</itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariTotaleInteressiAltriOneriFinanziari>
+  <itcc-ci:ProventiOneriFinanziariUtiliPerditeCambi contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">-45</itcc-ci:ProventiOneriFinanziariUtiliPerditeCambi>
+  <itcc-ci:TotaleProventiOneriFinanziari contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">-919</itcc-ci:TotaleProventiOneriFinanziari>
+  <itcc-ci:RisultatoPrimaImposte contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">17025</itcc-ci:RisultatoPrimaImposte>
+  <itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteCorrenti contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">225</itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteCorrenti>
+  <itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateTotaleImposteRedditoEsercizioCorrentiDifferiteAnticipate contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">225</itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateTotaleImposteRedditoEsercizioCorrentiDifferiteAnticipate>
+  <itcc-ci:UtilePerditaEsercizio contextRef="D_01-01-21_31-12-21" unitRef="EUR" decimals="0">16800</itcc-ci:UtilePerditaEsercizio>
+  <itcc-ci:ValoreProduzioneRicaviVenditePrestazioni contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ValoreProduzioneRicaviVenditePrestazioni>
+  <itcc-ci:ValoreProduzioneIncrementiImmobilizzazioniLavoriInterni contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ValoreProduzioneIncrementiImmobilizzazioniLavoriInterni>
+  <itcc-ci:ValoreProduzioneAltriRicaviProventiContributiContoEsercizio contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ValoreProduzioneAltriRicaviProventiContributiContoEsercizio>
+  <itcc-ci:ValoreProduzioneAltriRicaviProventiAltri contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">51811</itcc-ci:ValoreProduzioneAltriRicaviProventiAltri>
+  <itcc-ci:ValoreProduzioneAltriRicaviProventiTotaleAltriRicaviProventi contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">51811</itcc-ci:ValoreProduzioneAltriRicaviProventiTotaleAltriRicaviProventi>
+  <itcc-ci:TotaleValoreProduzione contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">51811</itcc-ci:TotaleValoreProduzione>
+  <itcc-ci:CostiProduzioneMateriePrimeSussidiarieConsumoMerci contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">320</itcc-ci:CostiProduzioneMateriePrimeSussidiarieConsumoMerci>
+  <itcc-ci:CostiProduzioneServizi contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">15632</itcc-ci:CostiProduzioneServizi>
+  <itcc-ci:CostiProduzioneGodimentoBeniTerzi contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">1150</itcc-ci:CostiProduzioneGodimentoBeniTerzi>
+  <itcc-ci:CostiProduzionePersonaleSalariStipendi contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:CostiProduzionePersonaleSalariStipendi>
+  <itcc-ci:CostiProduzionePersonaleOneriSociali contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:CostiProduzionePersonaleOneriSociali>
+  <itcc-ci:CostiProduzionePersonaleTotaleCostiPersonale contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:CostiProduzionePersonaleTotaleCostiPersonale>
+  <itcc-ci:CostiProduzioneAccantonamentiRischi contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:CostiProduzioneAccantonamentiRischi>
+  <itcc-ci:CostiProduzioneAltriAccantonamenti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:CostiProduzioneAltriAccantonamenti>
+  <itcc-ci:CostiProduzioneOneriDiversiGestione contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">1200</itcc-ci:CostiProduzioneOneriDiversiGestione>
+  <itcc-ci:TotaleCostiProduzione contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">18302</itcc-ci:TotaleCostiProduzione>
+  <itcc-ci:DifferenzaValoreCostiProduzione contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">33509</itcc-ci:DifferenzaValoreCostiProduzione>
+  <itcc-ci:ProventiOneriFinanziariProventiPartecipazioniImpreseControllate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariProventiPartecipazioniImpreseControllate>
+  <itcc-ci:ProventiOneriFinanziariProventiPartecipazioniImpreseCollegate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariProventiPartecipazioniImpreseCollegate>
+  <itcc-ci:ProventiOneriFinanziariProventiPartecipazioniImpreseControllanti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariProventiPartecipazioniImpreseControllanti>
+  <itcc-ci:ProventiOneriFinanziariProventiPartecipazioniImpreseSottoposteControlloControllanti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariProventiPartecipazioniImpreseSottoposteControlloControllanti>
+  <itcc-ci:ProventiOneriFinanziariProventiPartecipazioniAltri contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariProventiPartecipazioniAltri>
+  <itcc-ci:ProventiOneriFinanziariProventiPartecipazioniTotaleProventiPartecipazioni contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariProventiPartecipazioniTotaleProventiPartecipazioni>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseControllate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseControllate>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseCollegate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseCollegate>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseControllanti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseControllanti>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseSottoposteControlloControllanti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniImpreseSottoposteControlloControllanti>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniAltri contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniAltri>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniTotaleProventiFinanziariCreditiIscrittiImmobilizzazioni contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariCreditiIscrittiImmobilizzazioniTotaleProventiFinanziariCreditiIscrittiImmobilizzazioni>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseControllate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseControllate>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseCollegate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseCollegate>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseControllanti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseControllanti>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseSottoposteControlloControllanti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiImpreseSottoposteControlloControllanti>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiAltri contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">1</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiAltri>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiTotaleProventiDiversiPrecedenti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">1</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariProventiDiversiPrecedentiTotaleProventiDiversiPrecedenti>
+  <itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariTotaleAltriProventiFinanziari contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">1</itcc-ci:ProventiOneriFinanziariAltriProventiFinanziariTotaleAltriProventiFinanziari>
+  <itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseControllate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseControllate>
+  <itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseCollegate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseCollegate>
+  <itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseControllanti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseControllanti>
+  <itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseSottoposteControlloControllanti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariVersoImpreseSottoposteControlloControllanti>
+  <itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariAltri contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariAltri>
+  <itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariTotaleInteressiAltriOneriFinanziari contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariInteressiAltriOneriFinanziariTotaleInteressiAltriOneriFinanziari>
+  <itcc-ci:ProventiOneriFinanziariUtiliPerditeCambi contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ProventiOneriFinanziariUtiliPerditeCambi>
+  <itcc-ci:TotaleProventiOneriFinanziari contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">1</itcc-ci:TotaleProventiOneriFinanziari>
+  <itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniPartecipazioni contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniPartecipazioni>
+  <itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniAttivitaFinanziarieLaGestioneAccentrataTesoreria contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniAttivitaFinanziarieLaGestioneAccentrataTesoreria>
+  <itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniTotaleRivalutazioni contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieRivalutazioniTotaleRivalutazioni>
+  <itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniPartecipazioni contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniPartecipazioni>
+  <itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniAttivitaFinanziarieLaGestioneAccentrataTesoreria contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniAttivitaFinanziarieLaGestioneAccentrataTesoreria>
+  <itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniTotaleSvalutazioni contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:RettificheValoreAttivitaPassivitaFinanziarieSvalutazioniTotaleSvalutazioni>
+  <itcc-ci:TotaleRettificheValoreAttivitaPassivitaFinanziarie contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:TotaleRettificheValoreAttivitaPassivitaFinanziarie>
+  <itcc-ci:RisultatoPrimaImposte contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">33510</itcc-ci:RisultatoPrimaImposte>
+  <itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteCorrenti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">1019</itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteCorrenti>
+  <itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteRelativeEserciziPrecedenti contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteRelativeEserciziPrecedenti>
+  <itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteDifferiteAnticipate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">0</itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateImposteDifferiteAnticipate>
+  <itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateTotaleImposteRedditoEsercizioCorrentiDifferiteAnticipate contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">1019</itcc-ci:ImposteRedditoEsercizioCorrentiDifferiteAnticipateTotaleImposteRedditoEsercizioCorrentiDifferiteAnticipate>
+  <itcc-ci:UtilePerditaEsercizio contextRef="D_01-01-20_31-12-20" unitRef="EUR" decimals="0">32491</itcc-ci:UtilePerditaEsercizio>
+  <itcc-ci:IntroduzioneBilancioMicroAltreInformazioni contextRef="I_31-12-21">&lt;html&gt;&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:red"&gt;SENZA EFFETTI SULLA PRODUTTIVITA'&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:12pt"&gt;&lt;span style="font-family:&amp;quot;Times New Roman&amp;quot;,serif"&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;&lt;span style="color:#333333"&gt;La valutazione delle voci di bilancio è stata fatta ispirandosi a criteri generali di prudenza e competenza e nella prospettiva della &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="font-size:10.5pt"&gt;&lt;span style="font-family:&amp;quot;Helvetica&amp;quot;,sans-serif"&gt;continuazione&lt;span style="color:#333333"&gt; dell'attività, tenuto anche in considerazione degli effetti prodotti dall'emergenza sanitaria Covid 19.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/html&gt;</itcc-ci:IntroduzioneBilancioMicroAltreInformazioni>
+  <itcc-ci:CommentoInformazioniRelativeStartupAncheVocazioneSocialePMIInnovative contextRef="I_31-12-21">&lt;html&gt;&lt;p&gt;&lt;span style="font-size:16px"&gt;&lt;strong&gt;Informazioni relative a startup innovative&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;L'esercizio di riferimento del bilancio e` stato caratterizzato dall'attivita` di ricerca e sviluppo. La societa` e` stata iscritta nell'apposita sezione speciale, presso la Camera di Commercio di Bolzano, in qualita` di START-UP INNOVATIVA a norma dell' Art. 4 c. 10 bis del DL 24.01.2015, n, 3, in data 12.05.2020, poiche´ l'attivita` svolta, cui fanno capo i requisiti relativi all'innovazione tecnologica e per la quale sono sostenute le spese di ricerca e sviluppo, e` finalizzata allo sviluppo di una piattaforma di pubblicazione e indicizzazione di contenuti multimedia giapponesi attraverso l'impiego di nuove tecnologie quali intelligenze artificiali, banche dati a grafi e algoritmi di riconoscimento immagini. L'opportunita` di business risiede nella possibilita` offerta agli artisti e ai piccoli distributori di raggiungere facilmente il pubblico occidentale e promuovere le proprie opere senza doversi appoggiare all'esistente obsoleta rete di distribuzione cartacea.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;La piattaforma include i seguenti servizi ed applicativi:&lt;br /&gt;
+- un'applicazione web con supporto mobile per la navigazione e pubblicazione dei contenuti;&lt;br /&gt;
+- un'enciclopedia universale per la consultazione gratuita dei contenuti disponibili;&lt;br /&gt;
+- un motore di ricerca per la ricerca di nuovi contenuti con supporto aggiuntivo di ricerca tramite immagini; - un sito di documentazione per ricercatori e sviluppatori di terze parti.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;L'enciclopedia rappresenta la parte principale di "discovery" del progetto in quanto permette agli utenti finali di cercare in una banca dati di milioni di titoli e individuare distributori autorizzati per il consumo legale dei contenuti stessi. La piattaforma di condivisione dei titoli rappresenta il lato commerciale del progetto fornendo gli strumenti necessari per l'incubazione, traduzione, e distribuzione di contenuti dal Giappone verso il mondo occidentale.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="font-size:16px"&gt;&lt;strong&gt;Art. 25, co. 2, lett. h), n. 1 D.L. 179/2012 (start-up innovative)&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;La societa` possiede il requisito previsto dall'art. 25 c.2 lettera h) n.1 relativamente alle spese per ricerca e sviluppo che risultano, in questo esercizio, essere superiori al 15 per cento del maggiore valore fra costo e valore della produzione.&lt;br /&gt;
+Dal computo per le spese in ricerca e sviluppo sono escluse le spese per l'acquisto e la locazione di beni immobili. Ai fini di questo provvedimento, in aggiunta a quanto previsto dai principi contabili, sono altresi` da annoverarsi tra le spese in ricerca e sviluppo: le spese relative allo sviluppo pre competitivo e competitivo, quali sperimentazione, prototipazione e sviluppo del business plan, le spese relative ai servizi di incubazione forniti da incubatori certificati, gli eventuali costi lordi di personale interno e di consulenti esterni impiegati nelle attivita` di ricerca e sviluppo, inclusi soci ed amministratori, le spese legali per la registrazione e protezione di proprieta` intellettuale, termini e licenze d'uso.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;In relazione alle informazioni richieste dall'art. 25, DL 18 ottobre 2012, n. 179 in merito ai costi di ricerca e sviluppo, si specifica che la Societa` rispetta i limiti imposti dall'art. 25, comma 2, lettera h), n. 1 del citato Decreto ed e` pertanto in possesso del relativo requisito.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;I costi di ricerca e sviluppo rilevanti per il calcolo del requisito che figurano nel bilancio al 31.12.20201 ammontano a complessivi euro 37.806 e sono cosi`classificati:&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;- costi per servizi di incubazione per start up innovative (B.7 Ce);&lt;br /&gt;
+- costi per servizi di infrastrutture informatiche in cloud per R&amp;amp;S di servizi ad alto contenuto tecnologico (B.7 Ce)&lt;br /&gt;
+- costi per servizi di hosting per codice sorgente (B.7 CE).&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Si ha inoltre:&lt;/p&gt;
+
+&lt;p&gt;A. VALORE DELLA PRODUZIONE (voce A CE): euro 68.352&lt;/p&gt;
+
+&lt;p&gt;B. COSTI DELLA PRODUZIONE (voce B CE): euro 50.409&lt;/p&gt;
+
+&lt;p&gt;C. MAGGIORE TRA A E B: euro 68.352&lt;br /&gt;
+D. 15% DI C: 10.253&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;Sulla base dei dati di bilancio al 31/12/2021, le spese di ricerca e sviluppo rilevanti ai sensi dell'art. 25, comma 2, lett. h), n. 1 del DL 179/2012, pari ad euro 37.806, sono pertanto superiori al 15% del maggiore valore fra costo e valore totale della produzione.&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style="font-size:16px"&gt;Proposta di destinazione del risultato di esercizio&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;(art. 2427, co. 1, n. 22 septies, C.c.) &lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;Signori Soci,&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;alla luce di quanto esposto nei punti precedenti, l'Organo Amministrativo propone la destinazione del risultato d'esercizio pari ad Euro 16.800 a Riserva Straordinaria, avendo la Riserva Legale già raggiunto il limite di legge, e&lt;/span&gt;&lt;span style="font-size:14px"&gt; invita i Soci ad approvare il Bilancio cosi` come predisposto.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;Il presente Bilancio, composto da Stato patrimoniale, Conto economico e Note in calce, rappresenta in modo veritiero e corretto la situazione patrimoniale e finanziaria nonche´ il risultato economico dell'esercizio ed e` veritiero e conforme alle risultanze delle scritture contabili.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;Luogo e data 30 Aprile 2022&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;In originale firmato da&lt;/span&gt;&lt;/p&gt;
+
+&lt;p style="text-align:justify"&gt;&lt;span style="font-size:14px"&gt;L'Amministratore Unico __________________&lt;/span&gt;&lt;/p&gt;
+&lt;/html&gt;</itcc-ci:CommentoInformazioniRelativeStartupAncheVocazioneSocialePMIInnovative>
+  <itcc-ci:DichiarazioneConformita contextRef="I_31-12-21">&lt;html&gt;&lt;p style="text-align:justify"&gt;&lt;span style="font-size:16px"&gt;&lt;span style="font-family:Helv,sans-serif"&gt;Il Bilancio in XBRL sottoscritto digitalmente da un amministratore della società non necessita di alcuna dichiarazione di conformità. &lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/html&gt;</itcc-ci:DichiarazioneConformita>
+</xbrl>
